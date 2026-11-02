@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: _site
+  # Only these files become pages. The module template in templates/ is never rendered.
+  render:
+    - index.qmd
+    - disclaimer.qmd
+    - errata.qmd
+    - modules/*.qmd
+
+website:
+  title: "Open EP Mapping Lab"
+  description: "A free, open course on cardiac electroanatomic mapping systems."
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: modules/m03-electrograms.qmd
+        text: Pilot module
+      - href: errata.qmd
+        text: Errata
+      - href: disclaimer.qmd
+        text: Disclaimer
+  sidebar:
+    style: docked
+    search: true
+    contents:
+      - section: "Part I · Math and bioelectric foundations"
+        contents:
+          - modules/m03-electrograms.qmd
+  page-footer:
+    left: "Education only. Not for clinical use."
+    right: "Text CC BY 4.0 · Code MIT"
+
+filters:
+  - filters/badges.lua
+
+execute:
+  freeze: auto
+
+format:
+  html:
+    theme: cosmo
+    css: assets/styles.css
+    toc: true
+    html-math-method: mathjax

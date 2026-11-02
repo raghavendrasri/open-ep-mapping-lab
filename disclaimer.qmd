@@ -1,0 +1,22 @@
+---
+title: "Disclaimer"
+toc: false
+---
+
+**Education only.** Open EP Mapping Lab teaches the engineering principles behind cardiac
+electroanatomic mapping systems. It is not medical advice. Do not use it for diagnosis,
+treatment or any clinical decision.
+
+**Content may contain errors.** Modules are drafted with AI assistance and checked by
+recomputing results in code and verifying citations. Human expert review is recorded per
+module, and each module shows its review status at the top. Known errors are listed on the
+[errata](errata.qmd) page.
+
+**No warranty.** Content and code are provided as is, without warranty of any kind.
+
+**Hardware.** Any bench or hardware material is for bench use only. It must never be
+connected to a person or an animal.
+
+**Trademarks.** Product names such as CARTO, EnSite, Rhythmia and KODEX belong to their
+owners. They are used only to describe products, based on public sources. This course is not
+affiliated with or endorsed by any device maker.

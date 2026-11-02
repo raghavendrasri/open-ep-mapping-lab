@@ -1,0 +1,75 @@
+---
+title: "mNN · Module title"
+module-id: mNN
+part: "Part X · Part name"
+# draft | in-review | released
+status: draft
+# pending | signed-off. Only a human reviewer changes this to signed-off.
+clinical-review: pending
+---
+
+<!--
+How to start a new module:
+1. Copy this file to modules/mNN-<slug>.qmd (IDs and titles: docs/curriculum.md).
+2. Add the file to the sidebar in _quarto.yml.
+3. Keep every level-2 heading below, in this order. tests/test_content_rules.py checks it.
+-->
+
+::: {.callout-warning}
+Education only. Not for diagnosis, treatment or any clinical decision.
+:::
+
+## In 60 seconds
+
+The whole idea in one paragraph.
+
+## From the field
+
+Practical lessons from the mapping lab.
+
+## Derivations
+
+### First topic
+
+Define every symbol on first use. Number each equation:
+
+$$
+y = a x
+$$ {#eq-mNN-example}
+
+Each figure or demo is a `.demo` div with exactly one badge
+(exact, simulation, approximate model or schematic) and an Assumptions list:
+
+::: {.demo #mNN-d1 badge="schematic"}
+Demo mounts here.
+
+**Assumptions**
+
+- Model, simplifications, parameter values with sources, and what would change the result.
+:::
+
+**Key takeaways**
+
+- One line per takeaway.
+
+## Clinical correlate
+
+::: {.callout-note title="Pending clinical review"}
+Where this shows up in a real case, with a cited source.
+:::
+
+## Visual summary
+
+## How experts think
+
+## Cheat sheet
+
+## Interview questions
+
+## Code lab
+
+## Self-check
+
+## Literature figures
+
+## Further reading

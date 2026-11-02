@@ -1,0 +1,51 @@
+name: CI
+
+# Runs on every pull request and on every push to main.
+# Builds the site, runs all checks and uploads the built site as a downloadable preview.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Python packages
+        run: pip install -r requirements.txt
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Content rules and equation tests
+        run: pytest -q
+
+      - name: Build site
+        run: quarto render
+
+      - name: Check internal links and anchors
+        run: python tools/check_links.py _site
+
+      - name: Install Chromium for render checks
+        run: python -m playwright install --with-deps chromium
+
+      - name: Check every page renders without errors
+        run: python tools/check_render.py _site
+
+      - name: Upload site preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+          retention-days: 14
