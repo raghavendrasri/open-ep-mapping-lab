@@ -1,0 +1,17 @@
+Course content license
+
+Copyright (c) 2026 Open EP Mapping Lab contributors
+
+The text, equations, figures, glossary, formula sheet, interview questions and other
+course content in this repository are licensed under the Creative Commons Attribution
+4.0 International License (CC BY 4.0).
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+When reusing this content, credit "Open EP Mapping Lab" and link to the course site.
+
+This license does not cover:
+- Source code (labs, demos, build and test tools), which is licensed under the MIT
+  License in the LICENSE file.
+- Third-party datasets, libraries and figures, which keep their own licenses as
+  recorded in data/registry.json and next to each figure.
