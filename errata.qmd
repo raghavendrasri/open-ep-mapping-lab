@@ -1,0 +1,15 @@
+---
+title: "Errata"
+toc: false
+---
+
+Found an error? Open an issue on the course repository and include:
+
+- the module ID (for example m03)
+- the equation, figure or section
+- what is wrong
+- a source that supports the correction
+
+## Corrections so far
+
+None yet. The pilot module is still a draft.

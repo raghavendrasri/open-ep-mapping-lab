@@ -161,7 +161,26 @@ errata.json  review_record.json  references.bib
 4. Run the full check suite before calling any stage done, and report what failed.
 5. Log non-trivial choices in `docs/decisions.md`.
 
-Commands: none yet. Add the build, test and preview commands here once the site is scaffolded.
+### Commands
+
+```
+pip install -r requirements.txt            # once
+python -m playwright install chromium      # once, for the render check
+pytest -q                                  # content rules, badge filter, equation tests
+quarto render                              # build the site into _site/
+quarto preview                             # live preview while writing
+python tools/check_links.py _site          # internal links and anchors
+python tools/check_render.py _site         # every page loads without errors
+```
+
+The full check suite = all four checks above (pytest, render, links, render check). CI runs
+the same steps on every pull request.
+
+### Starting a new module
+
+1. Copy `templates/module-template.qmd` to `modules/mNN-<slug>.qmd`.
+2. Add the file to the sidebar in `_quarto.yml`.
+3. Keep every level-2 heading from the template, in order.
 
 ## 11. Definition of done (per module)
 

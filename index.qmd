@@ -1,0 +1,38 @@
+---
+title: "Open EP Mapping Lab"
+subtitle: "A free, open course on cardiac electroanatomic mapping systems"
+toc: false
+---
+
+::: {.callout-warning}
+Education only. Nothing here is for diagnosis, treatment or any clinical decision.
+Read the [disclaimer](disclaimer.qmd) before relying on any content.
+:::
+
+This course explains how electroanatomic mapping systems work, end to end: how they
+localize catheters, record and process electrograms, and build activation and voltage maps.
+
+## Status
+
+The course is being built. The first module, the pilot
+[m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd),
+is in progress. Every module shows its review status at the top.
+
+## What the course will include
+
+- 36 modules in six parts, from bioelectric foundations to regulation
+- Live figures, each labeled as exact, simulation, approximate model or schematic
+- Runnable Python labs, with GNU Octave versions for the math foundations
+- A formula sheet, glossary, interview questions and a public [errata](errata.qmd) log
+
+## Built on
+
+- [OpenEP](https://github.com/openep) for mapping data formats and analysis
+- [openCARP](https://www.opencarp.org/) for cardiac simulation
+- [PhysioNet](https://physionet.org/) and [EDGAR](https://edgar.sci.utah.edu/) for public recordings
+
+The course format is inspired by [OpenUltrasoundLab](https://openultrasoundlab.org).
+
+## License
+
+Text and figures: CC BY 4.0. Code: MIT. Datasets keep their original licenses.

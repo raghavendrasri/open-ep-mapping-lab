@@ -1,0 +1,68 @@
+---
+title: "m03 · Unipolar, bipolar and omnipolar electrograms as spatial filters"
+module-id: m03
+part: "Part I · Math and bioelectric foundations"
+# draft | in-review | released
+status: draft
+# pending | signed-off. Only a human reviewer changes this to signed-off.
+clinical-review: pending
+---
+
+::: {.callout-warning}
+Education only. Not for diagnosis, treatment or any clinical decision.
+:::
+
+::: {.callout-note}
+**Pilot module, in progress.** Content is added in stages: outline, derivations and tests,
+demos, code lab, then questions and literature. Each stage is reviewed before the next begins.
+:::
+
+## In 60 seconds
+
+*Written after the derivations stage.*
+
+## From the field
+
+*Planned in the outline stage.*
+
+## Derivations
+
+*Planned in the outline stage.*
+
+## Clinical correlate
+
+::: {.callout-note title="Pending clinical review"}
+*Planned in the outline stage. Requires sign-off by an EP physician.*
+:::
+
+## Visual summary
+
+*Planned in the outline stage.*
+
+## How experts think
+
+*Planned in the outline stage.*
+
+## Cheat sheet
+
+*Planned in the outline stage.*
+
+## Interview questions
+
+*Planned in the outline stage.*
+
+## Code lab
+
+*Planned in the outline stage.*
+
+## Self-check
+
+*Planned in the outline stage.*
+
+## Literature figures
+
+*Planned in the outline stage.*
+
+## Further reading
+
+*Planned in the outline stage.*

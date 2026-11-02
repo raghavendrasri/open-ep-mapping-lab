@@ -6,10 +6,9 @@ venv/
 .pytest_cache/
 .ipynb_checkpoints/
 
-# Quarto build output
+# Quarto build output (_freeze/ is committed on purpose: it stores executed lab output)
 /_site/
 /.quarto/
-/_freeze/
 
 # Large or local data (publish datasets on Zenodo instead)
 data/raw/
@@ -18,3 +17,5 @@ data/raw/
 .vscode/
 .idea/
 .DS_Store
+
+**/*.quarto_ipynb
