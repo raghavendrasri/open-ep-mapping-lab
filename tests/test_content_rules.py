@@ -136,6 +136,24 @@ def test_released_modules_are_finished(path):
     assert "**Key takeaways**" in body, f"{path.name}: released module needs Key takeaways"
 
 
+@pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
+def test_every_equation_has_a_test(path):
+    """CLAUDE.md §5: every numbered equation is named in at least one test in tests/."""
+    labels = re.findall(r"\{#(eq-[a-z0-9-]+)\}", path.read_text())
+    test_text = "\n".join(p.read_text() for p in (ROOT / "tests").glob("test_*.py"))
+    missing = [label for label in labels if not re.search(re.escape(label) + r"(?![a-z0-9-])", test_text)]
+    assert not missing, f"{path.name}: equations without a test naming them: {missing}"
+
+
+def test_citations_are_in_references_bib():
+    """CLAUDE.md §5: every [@key] cited in a module exists in references.bib."""
+    keys = set(re.findall(r"^@\w+\{([^,]+),", (ROOT / "references.bib").read_text(), re.M))
+    for path in MODULE_FILES:
+        cited = set(re.findall(r"@([A-Za-z][A-Za-z0-9_]*)", re.sub(r"@eq-[a-z0-9-]+", "", path.read_text())))
+        missing = sorted(cited - keys)
+        assert not missing, f"{path.name}: cites keys missing from references.bib: {missing}"
+
+
 def test_references_have_doi_or_pmid():
     text = (ROOT / "references.bib").read_text()
     entries = re.split(r"\n(?=@)", text)

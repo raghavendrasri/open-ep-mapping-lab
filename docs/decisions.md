@@ -2,6 +2,24 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-02 · m03 derivations
+
+- **Arctangent wavefront model.** The rise of V_m across the front is modeled as an arctangent of
+  width w. Its slope is a Lorentzian, so the unipolar electrogram has a closed form,
+  U(s) = A s / (s² + a²) with a = w + h. This keeps every m03 result exact and testable. A
+  tanh or ionic-model front would need numerics. Undo: swap the front model in
+  `labs/python/epml/electrograms.py`; the tests compare against independent quadrature, so they
+  would show what changes.
+- **Omnipole direction = principal axis of the E-field loop.** The published method picks the
+  angle whose projection best matches the unipolar derivative (cross-correlation). Both give the
+  propagation direction for a plane wave. The text says which one we use.
+- **Shared model code lives in `labs/python/epml/`.** Tests, labs and (later) demo data
+  generation import the same functions. `tests/conftest.py` adds it to the import path.
+- **New content rules:** every numbered equation must be named in a test, and every cited key
+  must exist in `references.bib` (`tests/test_content_rules.py`).
+- **Bibliography wired into Quarto** (`bibliography: references.bib` in `_quarto.yml`).
+  Citations render as author-date with a reference list at the end of each page.
+
 ## 2026-11-02 · Publishing the pilot
 
 - **Repo is public, and the site publishes to GitHub Pages** after CI passes on `main`
