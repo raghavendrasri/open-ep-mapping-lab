@@ -674,11 +674,11 @@ break it on purpose. It runs in about a minute.
 | E | Look at real bipolar recordings from a decapolar catheter and estimate delays between neighboring bipoles | PhysioNet |
 
 - **Python notebook:**
-  [labs/python/m03_lab.ipynb](https://github.com/raghavendrasri/open-ep-mapping-lab/blob/main/labs/python/m03_lab.ipynb).
+  [labs/python/m03_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m03_lab.ipynb).
   Run it from the course repository after `pip install -r requirements.txt`, or
-  [open it in Google Colab](https://colab.research.google.com/github/raghavendrasri/open-ep-mapping-lab/blob/main/labs/python/m03_lab.ipynb).
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m03_lab.ipynb).
 - **GNU Octave or MATLAB:**
-  [labs/octave/m03_lab.m](https://github.com/raghavendrasri/open-ep-mapping-lab/blob/main/labs/octave/m03_lab.m)
+  [labs/octave/m03_lab.m]({{< var repo.url >}}/blob/main/labs/octave/m03_lab.m)
   covers parts A–D with the same checks. It needs no toolboxes.
 - **Data for part E:** one record (about 1 MB) of the Intracardiac Atrial Fibrillation Database
   [@iafdb; @goldberger2000], downloaded from PhysioNet and checked against PhysioNet's published

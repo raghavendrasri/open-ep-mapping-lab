@@ -250,3 +250,22 @@ def test_home_hero_is_up_to_date():
 
     result = subprocess.run([sys.executable, str(ROOT / "tools" / "make_hero.py"), "--check"], capture_output=True, text=True)
     assert result.returncode == 0, result.stdout
+
+
+def test_repository_address_has_one_source():
+    """The site and repo addresses live in _variables.yml. Pages link with {{< var repo.url >}}
+    (or repo.colab); README, the site URL in _quarto.yml and the lab notebooks must agree with it."""
+    variables = yaml.safe_load((ROOT / "_variables.yml").read_text())
+    site, repo = variables["site"]["url"], variables["repo"]["url"]
+    hard_coded = re.compile(r"(github\.com|colab\.research\.google\.com/github)/[\w.-]+/open-ep-mapping-lab")
+    pages = [*MODULE_FILES, TEMPLATE, *ROOT.glob("*.qmd")]
+    for page in pages:
+        match = hard_coded.search(page.read_text())
+        assert not match, f"{page.name}: write {{{{< var repo.url >}}}} instead of {match.group(0)}"
+    quarto = yaml.safe_load((ROOT / "_quarto.yml").read_text())
+    assert quarto["website"]["site-url"] == site, "_quarto.yml site-url differs from _variables.yml"
+    assert site in (ROOT / "README.md").read_text(), "README.md does not show the site address"
+    for notebook in (ROOT / "labs" / "python").glob("*.ipynb"):
+        text = notebook.read_text()
+        for url in re.findall(r"https://github\.com/[\w.-]+/[\w.-]*open-ep-mapping-lab[\w.-]*", text):
+            assert url == repo, f"{notebook.name}: clones {url}, expected {repo}"

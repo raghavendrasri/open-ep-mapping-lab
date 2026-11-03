@@ -1,0 +1,9 @@
+# Where the course lives. Pages use these with {{< var repo.url >}} instead of
+# hard-coding an address, so a move or rename is a one-line change here.
+# The Colab cell in labs/python/*.ipynb and README.md hold the same address;
+# tests/test_content_rules.py checks that they agree with this file.
+site:
+  url: https://open-ep-mapping-lab.github.io/
+repo:
+  url: https://github.com/open-ep-mapping-lab/open-ep-mapping-lab.github.io
+  colab: https://colab.research.google.com/github/open-ep-mapping-lab/open-ep-mapping-lab.github.io

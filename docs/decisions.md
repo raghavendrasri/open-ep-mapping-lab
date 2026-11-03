@@ -2,23 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
-## 2026-11-03 · m03 cheat sheet and interview questions
+## 2026-11-03 · Move the repo to a project organization
 
-- **Only results the module already derives.** The cheat sheet restates the module's equations and
-  adds a few direct consequences (unipolar peak-to-trough time $2a/c$, a close bipole as
-  $-(d\cos\theta/c)\,dU/dt$, the disk's first null at $kr_e \approx 3.83$, the collinear-clique
-  limit). Each new statement and each number quoted in an answer has its own test in
-  `tests/test_m03_*.py`. The model answers add no new citations: they reuse sources the module
-  already cites for the same claims.
-- **Answers are hidden by default** in native `<details class="model-answer">` blocks, so readers
-  can try a question first. They open with a click, Enter or Space, and need no script.
-- **Questions live in the module page** for now. `interview/` in the target layout can later
-  collect all modules' questions; a content test already parses the `**Qn.**` + model-answer
-  structure, so they can be extracted.
-- **New content rule:** questions are numbered in order, each has exactly one model answer, and a
-  released module has at least 10.
-- **Tables on narrow screens** scroll sideways instead of spilling out of the page.
-- **Undo:** remove the two sections' content and the tests named in this entry.
+- **Decision (author):** move the repo from the author's personal account to a free GitHub
+  organization, `open-ep-mapping-lab`, and rename it `open-ep-mapping-lab.github.io`.
+- **Why:** a GitHub Pages address is built from the owner's account name, so the site showed
+  the author's username. As an organization site it lives at the root,
+  `https://open-ep-mapping-lab.github.io/`, and the code links no longer carry a personal name.
+  A custom domain was considered and left for later; it can be added without moving again.
+- **One source for addresses:** `_variables.yml` holds the site and repo URLs. Pages link with
+  `{{< var repo.url >}}` and `{{< var repo.colab >}}`. A test checks that pages don't hard-code
+  the repo and that `_quarto.yml`, `README.md` and the lab notebooks agree with the file.
+- **Side effects:** GitHub redirects old repo and git URLs after a transfer, but not the old
+  Pages address (`raghavendrasri.github.io/open-ep-mapping-lab/`), which stops working.
+- **Undo:** transfer the repo back and restore the old URLs in `_variables.yml`, `README.md`,
+  `_quarto.yml` and the notebook's Colab cell.
 
 ## 2026-11-02 · Site look (EP theme)
 
