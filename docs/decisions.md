@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-02 · Course map and placeholder pages
+
+- **Every module has a page from day one.** Unwritten modules get a generated placeholder
+  (`status: planned`) showing planned topics, learning paths and planned release, so the whole
+  course structure can be shown to people now.
+- **`docs/curriculum.md` is the single source of truth.** `tools/sync_curriculum.py` generates the
+  placeholder pages, `_sidebar.yml` (loaded through `metadata-files`) and `course-map.qmd`. A test
+  fails if they are out of date. Pages with any status other than `planned` are never overwritten.
+- **Sidebar parts collapse** (`collapse-level: 1`) so 36 modules stay navigable.
+
 ## 2026-11-02 · m03 derivations
 
 - **Arctangent wavefront model.** The rise of V_m across the front is modeled as an arctangent of

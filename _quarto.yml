@@ -6,7 +6,12 @@ project:
     - index.qmd
     - disclaimer.qmd
     - errata.qmd
+    - course-map.qmd
     - modules/*.qmd
+
+# The sidebar is generated from docs/curriculum.md by tools/sync_curriculum.py.
+metadata-files:
+  - _sidebar.yml
 
 website:
   title: "Open EP Mapping Lab"
@@ -16,19 +21,14 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: course-map.qmd
+        text: Course map
       - href: modules/m03-electrograms.qmd
         text: Pilot module
       - href: errata.qmd
         text: Errata
       - href: disclaimer.qmd
         text: Disclaimer
-  sidebar:
-    style: docked
-    search: true
-    contents:
-      - section: "Part I · Math and bioelectric foundations"
-        contents:
-          - modules/m03-electrograms.qmd
   page-footer:
     left: "Education only. Not for clinical use."
     right: "Text CC BY 4.0 · Code MIT"

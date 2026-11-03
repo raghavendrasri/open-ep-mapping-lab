@@ -16,11 +16,13 @@ localize catheters, record and process electrograms, and build activation and vo
 
 The course is being built. The first module, the pilot
 [m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd),
-is in progress. Every module shows its review status at the top.
+is in progress: its derivations are written and checked by tests. The other 35 modules are
+planned; the sidebar lists them all. Every module shows its status at the top.
 
 ## What the course will include
 
-- 36 modules in six parts, from bioelectric foundations to regulation
+- 36 modules in six parts, from bioelectric foundations to regulation. See the
+  [course map](course-map.qmd) for every module, its status and its planned release
 - Live figures, each labeled as exact, simulation, approximate model or schematic
 - Runnable Python labs, with GNU Octave versions for the math foundations
 - A formula sheet, glossary, interview questions and a public [errata](errata.qmd) log
