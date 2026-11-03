@@ -172,6 +172,7 @@ quarto render                              # build the site into _site/
 quarto preview                             # live preview while writing
 python tools/check_links.py _site          # internal links and anchors
 python tools/check_render.py _site         # every page loads without errors
+python tools/sync_curriculum.py            # regenerate sidebar, course map, placeholder pages
 ```
 
 The full check suite = all four checks above (pytest, render, links, render check). CI runs
@@ -179,9 +180,13 @@ the same steps on every pull request.
 
 ### Starting a new module
 
-1. Copy `templates/module-template.qmd` to `modules/mNN-<slug>.qmd`.
-2. Add the file to the sidebar in `_quarto.yml`.
-3. Keep every level-2 heading from the template, in order.
+Every module already has a generated placeholder page (`status: planned`).
+
+1. Replace the placeholder `modules/mNN-<slug>.qmd` with a copy of
+   `templates/module-template.qmd`, keeping the same file name, and set `status: draft`.
+2. Keep every level-2 heading from the template, in order.
+3. Run `python tools/sync_curriculum.py` to refresh the course map. The sidebar, course map and
+   placeholder pages are generated from `docs/curriculum.md`; never edit them by hand.
 
 ## 11. Definition of done (per module)
 
