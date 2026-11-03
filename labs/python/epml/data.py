@@ -7,12 +7,23 @@ turn a missing download into an error instead.
 """
 
 import hashlib
+import json
 import os
 import urllib.request
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parents[3]
 IAFDB_URL = "https://physionet.org/files/iafdb/1.0.0/"
-CACHE = Path(__file__).resolve().parents[3] / "data" / "cache" / "iafdb"
+CACHE = ROOT / "data" / "cache" / "iafdb"
+REGISTRY = ROOT / "data" / "registry.json"
+
+
+def pinned_checksums(prefix="iafdb/"):
+    """SHA-256 values recorded in data/registry.json, as {file name: hex digest}."""
+    if not REGISTRY.exists():
+        return {}
+    entries = json.loads(REGISTRY.read_text())
+    return {e["name"][len(prefix):]: e["sha256"] for e in entries if e["name"].startswith(prefix)}
 
 
 class DataUnavailable(RuntimeError):
@@ -58,10 +69,13 @@ def fetch_iafdb(record="iaf1_svc", cache=CACHE):
             raise
         raise DataUnavailable(f"could not download {record} from PhysioNet: {err}") from err
 
+    pinned = pinned_checksums()
     for f in files:
         got = sha256(cache / f)
         if sums.get(f) != got:
             (cache / f).unlink(missing_ok=True)
             raise ValueError(f"{f}: SHA-256 {got} does not match PhysioNet's published {sums.get(f)}")
+        if f in pinned and pinned[f] != got:
+            raise ValueError(f"{f}: SHA-256 {got} differs from data/registry.json ({pinned[f]}); the source changed")
         print(f"verified {f}  sha256 {got}")
     return str(cache / record)

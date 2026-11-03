@@ -197,3 +197,17 @@ def test_site_structure_matches_curriculum():
 def test_every_curriculum_module_has_a_page():
     page_ids = {p.name[:3] for p in MODULE_FILES}
     assert curriculum_ids() == page_ids, f"missing pages: {sorted(curriculum_ids() - page_ids)}"
+
+
+def test_pinned_checksums_are_read_from_registry():
+    """The lab data helper checks downloads against the SHA-256 values in data/registry.json."""
+    import sys
+
+    sys.path.insert(0, str(ROOT / "labs" / "python"))
+    from epml.data import pinned_checksums
+
+    registry = json.loads((ROOT / "data" / "registry.json").read_text())
+    pinned = pinned_checksums()
+    for entry in registry:
+        if entry["name"].startswith("iafdb/"):
+            assert pinned[entry["name"][len("iafdb/"):]] == entry["sha256"]
