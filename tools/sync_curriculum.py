@@ -191,7 +191,8 @@ def course_map(parts, paths, statuses):
     for part_title, modules in parts:
         lines += [f"## {part_title}", "", "| ID | Module | Status | Release |", "| --- | --- | --- | --- |"]
         for m, t in modules:
-            status = STATUS_LABELS.get(statuses.get(m) or "planned", statuses.get(m))
+            key = statuses.get(m) or "planned"
+            status = f"[{STATUS_LABELS.get(key, key)}]{{.status .status-{key}}}"
             lines.append(f"| {m} | [{t}](modules/{m}-{SLUGS[m]}.qmd) | {status} | {release_for(m, part_title)} |")
         lines.append("")
     lines += ["## Learning paths", "", "| Path | Modules |", "| --- | --- |"]

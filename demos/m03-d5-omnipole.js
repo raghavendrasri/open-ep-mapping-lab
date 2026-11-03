@@ -92,6 +92,8 @@ function mount(root) {
       `while each fixed bipole goes from 0 to full amplitude. At ${deg}°, the loop axis is off the true direction by ${angleErr.toFixed(1)}°.`;
   }
   draw();
+  // Redraw once the page fonts have loaded, so canvas labels use them too.
+  if (document.fonts) document.fonts.ready.then(draw);
 }
 
 // Start after every constant above is defined.
