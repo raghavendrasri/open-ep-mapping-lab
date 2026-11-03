@@ -1,11 +1,14 @@
 name: Deploy site to GitHub Pages
 
-# Manual only for now. GitHub Pages on a free plan needs a public repository.
-# To turn on publishing once the repo is public:
-#   1. Repo Settings → Pages → Build and deployment → Source: GitHub Actions.
-#   2. Run this workflow from the Actions tab, or add `push: branches: [main]` below.
+# Publishes the site after CI passes on main, so a failing check never goes live.
+# Can also be run by hand from the Actions tab.
+# Needs: repo Settings → Pages → Build and deployment → Source: GitHub Actions.
 
 on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -19,12 +22,16 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Deploy exactly the commit that CI checked.
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - uses: quarto-dev/quarto-actions/setup@v2
 

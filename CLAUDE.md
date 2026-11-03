@@ -120,7 +120,7 @@ Defaults below; the author may change them after the pilot module (record change
 - **Math:** LaTeX rendered with MathJax; numbered equations.
 - **Demos:** plain ES modules; Canvas 2D or SVG for 2D, three.js for 3D meshes, WebGL for
   reaction–diffusion. No front-end build step unless the author approves one.
-- **Labs:** Python 3.11+ with numpy, scipy, matplotlib, sympy, pyvista, wfdb; openep-py pinned
+- **Labs:** Python 3.12+ with numpy, scipy, matplotlib, sympy, pyvista, wfdb; openep-py pinned
   to a specific commit (its API is unstable). Part I labs also get GNU Octave copies in
   `labs/octave/`.
 - **Tests and CI:** pytest (equation tests and labs), nbmake for notebooks, Playwright for page
