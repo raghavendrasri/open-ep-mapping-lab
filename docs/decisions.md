@@ -2,6 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-02 · m03 code lab
+
+- **Notebook committed without outputs.** CI executes it (nbmake), so outputs never go stale and
+  the repo stays small. Colab and Jupyter users see outputs when they run it.
+- **Real data is downloaded, not committed (for now).** The outline proposed keeping one iafdb
+  record in `data/samples/`, but PhysioNet is not reachable from the authoring environment, so
+  the file could not be fetched and checked there. `epml/data.py` downloads it, verifies it
+  against PhysioNet's published SHA-256 list, and caches it in `data/cache/` (git-ignored). CI
+  sets `EPML_REQUIRE_DATA=1`, so the real-data part must succeed in CI rather than skip, and
+  caches the download between runs. Undo: commit the two files to `data/samples/` with a
+  `data/registry.json` entry.
+- **Octave copy uses anonymous functions, `fprintf` and `assert`** so the same file runs in GNU
+  Octave and base MATLAB. CI runs it with figures off.
+- **Labs have a 5-minute CI timeout**, enforcing CLAUDE.md §11.
+
 ## 2026-11-02 · m03 demos
 
 - **Demo math mirrors the tested Python model.** `demos/m03-common.js` re-implements the
