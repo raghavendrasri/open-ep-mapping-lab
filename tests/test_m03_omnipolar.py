@@ -120,3 +120,32 @@ def test_clique_velocity_from_amplitude_ratio(speed):
     du_dt = np.gradient(u.mean(axis=0), T)
     ratio = peak_to_peak(du_dt) / peak_to_peak(n @ E)
     assert ratio == pytest.approx(speed, rel=0.01)
+
+
+def test_collinear_clique_cannot_give_the_field():
+    """Interview question: a 2D field needs two independent bipoles, so at least three electrodes
+    that are not in a line. For collinear electrodes D D^T has rank 1 and the field is not determined."""
+    line = np.array([[0, 0], [1, 0], [2, 0]], dtype=float)
+    pairs = [(0, 1), (1, 2), (0, 2)]
+    D = np.stack([line[j] - line[i] for i, j in pairs], axis=1)
+    assert np.linalg.matrix_rank(D @ D.T) == 1
+    positions, pairs = triangle_clique(1.0)
+    D = np.stack([positions[j] - positions[i] for i, j in pairs], axis=1)
+    assert np.linalg.matrix_rank(D @ D.T) == 2
+
+
+def test_square_clique_spread_values_quoted_in_text():
+    """Values quoted in the module: across 18 wave directions, without time alignment, the omnipolar
+    amplitude spread for a square clique is under 1% at d/a = 0.2 and about 32% at d/a = 1.6."""
+    spreads = {}
+    for ratio in (0.2, 1.6):
+        d = ratio * a
+        positions, pairs = square_clique(d)
+        p2p = []
+        for theta in range(0, 180, 10):
+            u, _ = wave_signals(positions, theta)
+            v, _ = omnipolar(clique_field(positions, u, pairs), d)
+            p2p.append(peak_to_peak(v))
+        spreads[ratio] = max(p2p) / min(p2p) - 1
+    assert spreads[0.2] < 0.01
+    assert spreads[1.6] == pytest.approx(0.32, abs=0.01)
