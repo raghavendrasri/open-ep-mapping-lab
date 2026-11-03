@@ -2,6 +2,14 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-02 · Publishing the pilot
+
+- **Repo is public, and the site publishes to GitHub Pages** after CI passes on `main`
+  (`deploy-pages.yml`, triggered by the CI workflow). A failing check never goes live. Undo:
+  set the trigger back to `workflow_dispatch` only.
+- **CI moved from Python 3.11 to 3.12.** Dependabot raised the SciPy minimum to 1.18.1, which
+  requires Python 3.12, and the install step failed on 3.11. CLAUDE.md §7 now says 3.12+.
+
 ## 2026-11-02 · Site skeleton
 
 - **Quarto for the site.** It handles math, cross-references, executed code and search with no
