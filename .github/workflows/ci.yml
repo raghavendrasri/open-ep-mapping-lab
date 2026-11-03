@@ -44,6 +44,9 @@ jobs:
           EPML_REQUIRE_DATA: "1"   # real-data parts must download and verify, not skip
         run: pytest -q --nbmake labs/python
 
+      - name: Show checksums of downloaded lab data
+        run: sha256sum data/cache/*/* || true
+
       - name: Install GNU Octave
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends octave
 
