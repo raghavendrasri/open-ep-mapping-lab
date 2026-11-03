@@ -32,7 +32,8 @@ function Div(el)
   end
 
   local slug = badge:gsub(" ", "-")
-  local label = pandoc.Span({ pandoc.Str(badge) }, pandoc.Attr("", { "badge", "badge-" .. slug }))
+  local text = badge:sub(1, 1):upper() .. badge:sub(2) -- sentence case: "Approximate model"
+  local label = pandoc.Span({ pandoc.Str(text) }, pandoc.Attr("", { "badge", "badge-" .. slug }))
   table.insert(el.content, 1, pandoc.Para({ label }))
   return el
 end

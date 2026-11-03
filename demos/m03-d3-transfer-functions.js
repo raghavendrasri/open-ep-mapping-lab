@@ -54,6 +54,8 @@ function mount(root) {
       `The bipole's first null is at k = 2π/d = ${(2 * Math.PI / d).toFixed(2)} rad/mm (wavelength ${d.toFixed(1)} mm).`;
   }
   draw();
+  // Redraw once the page fonts have loaded, so canvas labels use them too.
+  if (document.fonts) document.fonts.ready.then(draw);
 }
 
 // Start after every constant above is defined.

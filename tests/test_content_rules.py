@@ -211,3 +211,12 @@ def test_pinned_checksums_are_read_from_registry():
     for entry in registry:
         if entry["name"].startswith("iafdb/"):
             assert pinned[entry["name"][len("iafdb/"):]] == entry["sha256"]
+
+
+def test_home_hero_is_up_to_date():
+    """The home page hero is generated from the m03 model. Fix: python tools/make_hero.py"""
+    import subprocess
+    import sys
+
+    result = subprocess.run([sys.executable, str(ROOT / "tools" / "make_hero.py"), "--check"], capture_output=True, text=True)
+    assert result.returncode == 0, result.stdout

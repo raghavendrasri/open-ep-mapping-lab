@@ -66,6 +66,8 @@ function mount(root) {
       `(true activation at 0 ms). a = w + h = ${a.toFixed(2)} mm.`;
   }
   draw();
+  // Redraw once the page fonts have loaded, so canvas labels use them too.
+  if (document.fonts) document.fonts.ready.then(draw);
 }
 
 // Start after every constant above is defined.
