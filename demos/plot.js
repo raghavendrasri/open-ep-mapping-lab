@@ -63,7 +63,7 @@ export function drawPlot(p, opts) {
   ctx.clearRect(0, 0, width, height);
   ctx.fillStyle = "#ffffff";
   ctx.fillRect(0, 0, width, height);
-  ctx.font = "12px system-ui, sans-serif";
+  ctx.font = '12px "IBM Plex Sans", system-ui, sans-serif';
   ctx.lineWidth = 1;
 
   // grid and ticks
@@ -156,7 +156,7 @@ export function drawPlot(p, opts) {
     ...(opts.markers || []).filter((v) => v.label),
   ];
   if (items.length) {
-    ctx.font = "12px system-ui, sans-serif";
+    ctx.font = '12px "IBM Plex Sans", system-ui, sans-serif';
     ctx.textAlign = "left";
     ctx.textBaseline = "middle";
     let y = m.t + 10;
@@ -195,7 +195,7 @@ export function drawPolar(p, { curves, rMax = 1, marker, title }) {
   ctx.fillRect(0, 0, width, height);
   ctx.strokeStyle = "#e6e8eb";
   ctx.fillStyle = COLORS.gray;
-  ctx.font = "11px system-ui, sans-serif";
+  ctx.font = '11px "IBM Plex Sans", system-ui, sans-serif';
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   for (const f of [0.25, 0.5, 0.75, 1]) {
@@ -235,7 +235,7 @@ export function drawPolar(p, { curves, rMax = 1, marker, title }) {
   }
   if (title) {
     ctx.fillStyle = COLORS.ink;
-    ctx.font = "12px system-ui, sans-serif";
+    ctx.font = '12px "IBM Plex Sans", system-ui, sans-serif';
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
     ctx.fillText(title, 6, 4);
