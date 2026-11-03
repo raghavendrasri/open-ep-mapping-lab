@@ -1,0 +1,102 @@
+---
+title: "Formula sheet"
+---
+
+The main results of each module, with links to their derivations. Each result holds only under its
+module's assumptions; read those before using it. Every formula here is checked by a test in
+`tests/`.
+
+## m03 · Unipolar, bipolar and omnipolar electrograms
+
+Symbols: $\sigma$ conductivity, $i_m$ membrane current per area, $V_m$ transmembrane voltage,
+$h$ electrode height, $w$ front width, $c$ conduction velocity, $d$ spacing, $\theta$ angle between
+bipole and propagation, $k$ spatial frequency, $r_e$ electrode radius, $s$ distance from the front.
+Model: a thin tissue sheet in an infinite homogeneous conductor and a planar front.
+
+**Unipolar potential, thin sheet in an infinite homogeneous conductor** ([derivation](../modules/m03-electrograms.qmd#eq-m03-volume-conductor))
+
+$$
+\phi(\mathbf r, t) = \frac{1}{4\pi\sigma} \iint \frac{i_m(\mathbf r', t)}{\lVert \mathbf r - \mathbf r' \rVert}\, dA'
+$$
+
+**Membrane current from the voltage profile** ([derivation](../modules/m03-electrograms.qmd#eq-m03-cable))
+
+$$
+i_m = \beta\,\frac{\partial^2 V_m}{\partial x^2}
+$$
+
+**Height filter** ([derivation](../modules/m03-electrograms.qmd#eq-m03-height-filter))
+
+$$
+\hat\phi(k) = \frac{e^{-|k| h}}{2\sigma |k|}\, \hat i_m(k)
+$$
+
+**Unipolar electrogram for a planar arctangent front** ([derivation](../modules/m03-electrograms.qmd#eq-m03-unipolar-closed))
+
+$$
+U(s) = A\,\frac{s}{s^2 + a^2},
+\qquad
+A = \frac{\beta\,\Delta V}{2\pi\sigma},
+\qquad
+a = w + h
+$$
+
+**Unipolar slope** ([derivation](../modules/m03-electrograms.qmd#eq-m03-unipolar-slope))
+
+$$
+\frac{dU}{dt} = -c\,\frac{dU}{ds}
+$$
+
+**Bipolar electrogram (distal minus proximal)** ([derivation](../modules/m03-electrograms.qmd#eq-m03-bipolar))
+
+$$
+V_{\text{bip}}(t) = \phi(\mathbf r_1, t) - \phi(\mathbf r_2, t),
+\qquad
+\mathbf r_{1,2} = \mathbf r_0 \pm \tfrac{d}{2}\,\hat u
+$$
+
+**Close bipole** ([derivation](../modules/m03-electrograms.qmd#eq-m03-bipolar-gradient))
+
+$$
+V_{\text{bip}} \approx d\, \hat u \cdot \nabla \phi = d \cos\theta\, \frac{dU}{ds}
+$$
+
+**Disk electrode average** ([derivation](../modules/m03-electrograms.qmd#eq-m03-disk-average))
+
+$$
+H_{\text{disk}}(k) = \frac{2 J_1(k r_e)}{k r_e}
+$$
+
+**Bipole transfer function** ([derivation](../modules/m03-electrograms.qmd#eq-m03-bipolar-transfer))
+
+$$
+H_{\text{bip}}(k) = 2i \sin\!\left( \frac{k d \cos\theta}{2} \right),
+\qquad
+|H_{\text{bip}}| = 2 \left| \sin\!\left( \frac{k d \cos\theta}{2} \right) \right|
+$$
+
+**Far-field decay at distance R** ([derivation](../modules/m03-electrograms.qmd#eq-m03-farfield))
+
+$$
+\phi_{\text{monopole}} \propto \frac{1}{R},\quad V_{\text{bip}} \propto \frac{d}{R^2};
+\qquad
+\phi_{\text{dipole}} \propto \frac{1}{R^2},\quad V_{\text{bip}} \propto \frac{d}{R^3}
+$$
+
+**Electric field from a clique (least squares)** ([derivation](../modules/m03-electrograms.qmd#eq-m03-clique-field))
+
+$$
+\hat{\mathbf E}(t) = -\left( D D^{\mathsf T} \right)^{-1} D\, \mathbf b(t)
+$$
+
+**Omnipolar signal** ([derivation](../modules/m03-electrograms.qmd#eq-m03-omnipole))
+
+$$
+v_\omega(t) = -d\, \hat\omega \cdot \hat{\mathbf E}(t)
+$$
+
+**Conduction velocity from one clique** ([derivation](../modules/m03-electrograms.qmd#eq-m03-clique-velocity))
+
+$$
+c \approx \frac{\mathrm{pp}\left( dU/dt \right)}{\mathrm{pp}\left( \hat n \cdot \hat{\mathbf E} \right)}
+$$

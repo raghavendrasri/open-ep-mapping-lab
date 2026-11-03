@@ -2,6 +2,30 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-03 · m03 stage 6: remaining sections, glossary and formula sheet
+
+- **Front width sourced as a range.** $w = c\,\Delta V/(\pi \max dV_m/dt)$ from @eq-m03-front.
+  Human right atrial trabeculae: $\Delta V$ about 95–99 mV and 250–300 V/s [loose2014]; human
+  atrial fibres: about 100 V/s [wang1991]. That gives $w$ between about 0.1 and 0.3 mm. The default
+  stays 0.3 mm (no change to demos); the assumption text states the range and that it moves
+  $a = w + h$ by only 0.2 mm. The arithmetic is checked in `tests/test_m03_unipolar.py`.
+- **Literature figures are linked, not copied.** Of the candidate papers, only loose2014 has a
+  confirmed CC BY license in PubMed Central's records; the others lack license metadata there, and
+  their pages could not be fetched from the authoring environment. Each entry names the figure,
+  what it shows (from its caption) and what to compare with this module.
+- **Static figures in demo boxes.** The visual summary is a numbered Quarto figure
+  (`#fig-m03-filter-chain`, CLAUDE.md §9) inside a `.demo` box, so the badge filter still applies.
+  Quarto turns a div with a `fig-` ID into a float and the badge filter does not see it, so the
+  badge goes on the outer box. The content test accepts a demo ID or a nested `#fig-mNN-…`.
+- **Self-check uses the interview format** (`**S1.**`, answers in `<details>`), checked by the same
+  content rule; released modules need at least 5. Numeric answers are checked in tests.
+- **Course-wide glossary and formula sheet** at `glossary/index.qmd` and `formula-sheet/index.qmd`,
+  linked from the navbar. Tests keep the glossary sorted with module links, and keep each formula
+  identical to its module's equation.
+- **Guard against Pandoc example lists:** a wrapped line starting with `(@label)` or `@label)`
+  becomes a numbered list. A content test now rejects such lines.
+- **Undo:** revert the stage 6 commit.
+
 ## 2026-11-03 · m03 cheat sheet and interview questions
 
 - **Only results the module already derives.** The cheat sheet restates the module's equations and

@@ -185,3 +185,26 @@ def test_far_field_share_grows_with_spacing():
     values = [ratios[k] for k in (0.1, 0.2, 0.5, 1, 2, 3)]
     assert all(x < y for x, y in zip(values, values[1:]))
     assert np.ptp(bipolar_planar(s, 40 * a, 0.0, a, A)) == pytest.approx(A / a, rel=5e-3)
+
+
+def test_self_check_answers():
+    """Self-check S1, S3 and S5 in the m03 module: numbers worked from the cheat-sheet formulas."""
+    from scipy.special import jn_zeros
+
+    from epml.electrograms import bipolar_transfer, disk_transfer
+
+    # S1: peak-to-trough time 2a/c with a = 1.3 mm, c = 1.0 mm/ms.
+    t = np.linspace(-20, 20, 400_001)
+    u = unipolar(-1.0 * t, 1.3)
+    assert t[np.argmin(u)] - t[np.argmax(u)] == pytest.approx(2.6, abs=1e-3)
+    # S3: a 2-mm aligned bipole cancels a 2-mm wavelength and passes 4 mm best.
+    d = 2.0
+    assert abs(bipolar_transfer(2 * np.pi / 2.0, d)) == pytest.approx(0.0, abs=1e-12)
+    wavelengths = np.linspace(1.05, 40, 200_001)
+    best = wavelengths[np.argmax(np.abs(bipolar_transfer(2 * np.pi / wavelengths, d)))]
+    assert best == pytest.approx(4.0, abs=1e-3)
+    # S5: disk of radius 0.5 mm first cancels at k r = 3.8317, a wavelength of about 0.82 mm.
+    k0 = jn_zeros(1, 1)[0] / 0.5
+    assert k0 == pytest.approx(7.66, abs=0.01)
+    assert 2 * np.pi / k0 == pytest.approx(0.82, abs=0.005)
+    assert disk_transfer(np.array([k0]), 0.5)[0] == pytest.approx(0.0, abs=1e-12)
