@@ -1,31 +1,39 @@
 ---
 title: "Open EP Mapping Lab"
-subtitle: "A free, open course on cardiac electroanatomic mapping systems"
+subtitle: "How electroanatomic mapping systems work, from membrane current to color map"
 toc: false
 ---
 
-::: {.callout-warning}
+{{< include assets/_hero-egm.md >}}
+
+::: {.hero-actions}
+[Read the pilot module](modules/m03-electrograms.qmd){.btn .btn-primary}
+[See all 36 modules](course-map.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.callout-warning appearance="simple"}
 Education only. Nothing here is for diagnosis, treatment or any clinical decision.
 Read the [disclaimer](disclaimer.qmd) before relying on any content.
 :::
 
-This course explains how electroanatomic mapping systems work, end to end: how they
-localize catheters, record and process electrograms, and build activation and voltage maps.
+A free, open course for engineers joining EP device companies, clinical mapping specialists,
+EP fellows and researchers. It follows the signal the whole way: how a mapping system finds the
+catheter, records and filters electrograms, and turns them into activation and voltage maps.
+
+## How each module works
+
+- Derivations you can check. Every equation has a test in code.
+- Live figures you can change, each labeled as exact, simulation, approximate model or
+  schematic, with its assumptions listed underneath.
+- A runnable lab in Python, with GNU Octave versions for the math foundations.
+- A cheat sheet, interview questions and a self-check, plus a public [errata](errata.qmd) log.
 
 ## Status
 
-The course is being built. The first module, the pilot
-[m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd),
-is in progress: its derivations are written and checked by tests. The other 35 modules are
-planned; the sidebar lists them all. Every module shows its status at the top.
-
-## What the course will include
-
-- 36 modules in six parts, from bioelectric foundations to regulation. See the
-  [course map](course-map.qmd) for every module, its status and its planned release
-- Live figures, each labeled as exact, simulation, approximate model or schematic
-- Runnable Python labs, with GNU Octave versions for the math foundations
-- A formula sheet, glossary, interview questions and a public [errata](errata.qmd) log
+The pilot module, [m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd),
+is being written in six stages, each reviewed before the next. Its page shows how far it has got.
+The other 35 modules are planned; the [course map](course-map.qmd) lists every module, its
+status and its planned release.
 
 ## Built on
 

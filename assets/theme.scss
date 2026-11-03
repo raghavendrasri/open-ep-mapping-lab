@@ -1,0 +1,240 @@
+/*-- scss:defaults --*/
+
+// Open EP Mapping Lab theme.
+// Palette: white recording paper, slate ink, a mapping blue for links, and activation red
+// kept for small highlights. The isochrone band under the navbar uses the red-to-violet order
+// of an activation map, in discrete steps as on an isochronal map.
+
+$epml-ink: #1e2b37;
+$epml-muted: #5b6875;
+$epml-rule: #dfe4ea;
+$epml-paper-tint: #f6f8fa;
+$epml-blue: #155e9a;
+$epml-red: #b2182b;
+
+$web-font-path: false; // no Google Fonts; IBM Plex is self-hosted (see rules below)
+$font-family-sans-serif: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+$font-family-monospace: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$font-size-root: 17px;
+$line-height-base: 1.6;
+$headings-font-weight: 600;
+$headings-color: $epml-ink;
+
+$body-bg: #ffffff;
+$body-color: $epml-ink;
+$primary: $epml-blue;
+$link-color: $epml-blue;
+$link-decoration: none;
+$link-hover-decoration: underline;
+$border-color: $epml-rule;
+
+$navbar-bg: #ffffff;
+$navbar-fg: $epml-ink;
+$navbar-hl: $epml-red;
+$sidebar-bg: $epml-paper-tint;
+$sidebar-fg: $epml-ink;
+$sidebar-hl: $epml-red;
+$footer-bg: #ffffff;
+$footer-fg: $epml-muted;
+$toc-color: $epml-muted;
+
+$code-color: #8a2a3b;
+$code-block-bg: $epml-paper-tint;
+
+/*-- scss:rules --*/
+
+// IBM Plex @font-face rules live in assets/styles.css (plain CSS paths to vendor/fonts).
+
+// ---------------------------------------------------------------- navbar + isochrone band
+
+.navbar {
+  box-shadow: none;
+  border-bottom: 0;
+  position: relative;
+  padding-bottom: 0.55rem;
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    #b2182b 0 12.5%,
+    #d6452e 12.5% 25%,
+    #ee8a2f 25% 37.5%,
+    #e9c341 37.5% 50%,
+    #79b35a 50% 62.5%,
+    #2e9c8f 62.5% 75%,
+    #3a6fb0 75% 87.5%,
+    #6a4c9c 87.5% 100%
+  );
+}
+
+.navbar-title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+}
+
+// Quarto marks the navbar item tied to the sidebar as active on every module page, which
+// points at the wrong place. The sidebar shows the current page, so keep navbar links neutral.
+.navbar .nav-link.active,
+.navbar .nav-link.active:focus {
+  color: $epml-ink;
+}
+
+// ---------------------------------------------------------------- reading column
+
+main.content {
+  max-width: 46rem;
+}
+
+h1.title,
+.quarto-title h1 {
+  font-size: 2.05rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+h2 {
+  font-size: 1.45rem;
+  margin-top: 2.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid $epml-rule;
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin-top: 2rem;
+}
+
+h4 {
+  font-size: 1rem;
+}
+
+.quarto-title .subtitle,
+p.subtitle {
+  color: $epml-muted;
+  font-weight: 400;
+  font-size: 1.12rem;
+  line-height: 1.45;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid $epml-blue;
+  outline-offset: 2px;
+}
+
+// equation numbers quieter than the math
+.math.display + .eq-number,
+mjx-container[display="true"] mjx-mtd:last-child {
+  color: $epml-muted;
+}
+
+// ---------------------------------------------------------------- sidebar
+
+#quarto-sidebar {
+  border-right: 1px solid $epml-rule;
+}
+
+.sidebar-item-section > .sidebar-item-container .sidebar-item-text {
+  font-weight: 600;
+  color: $epml-ink;
+}
+
+.sidebar-link.active {
+  color: $epml-red;
+  font-weight: 500;
+  box-shadow: inset 2px 0 0 $epml-red;
+  padding-left: 0.5rem;
+}
+
+// ---------------------------------------------------------------- tables and callouts
+
+table {
+  font-size: 0.93rem;
+}
+
+thead th {
+  font-weight: 600;
+  border-bottom-width: 2px;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.callout {
+  border-radius: 6px;
+}
+
+// ---------------------------------------------------------------- footer
+
+.nav-footer {
+  border-top: 1px solid $epml-rule;
+  font-size: 0.88rem;
+}
+
+// ---------------------------------------------------------------- home page
+
+.hero-egm {
+  margin: 1.25rem 0 0.75rem;
+  border: 1px solid $epml-rule;
+  border-radius: 6px;
+  padding: 0.5rem 0.5rem 0.25rem;
+  background: #ffffff;
+}
+
+.hero-egm svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-egm figcaption {
+  color: $epml-muted;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.25rem 0.15rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.hero-actions .btn {
+  border-radius: 4px;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+}
+
+.hero-actions .btn:hover {
+  text-decoration: none;
+}
+
+// ---------------------------------------------------------------- course map status
+
+.status {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.status-planned { background: #eef1f4; color: $epml-muted; }
+.status-draft { background: #fff1d6; color: #7a4d00; }
+.status-in-review { background: #e3eefa; color: $epml-blue; }
+.status-released { background: #e2f3e8; color: #1c6b3a; }

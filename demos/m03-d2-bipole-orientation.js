@@ -46,7 +46,7 @@ function drawSchematic(p, theta, d) {
     ctx.fill();
   }
   ctx.fillStyle = COLORS.ink;
-  ctx.font = "12px system-ui, sans-serif";
+  ctx.font = '12px "IBM Plex Sans", system-ui, sans-serif';
   ctx.textAlign = "left";
   ctx.textBaseline = "top";
   ctx.fillText("wave direction →", 6, 4);
@@ -120,6 +120,8 @@ function mount(root) {
       `Spacing ${d.toFixed(1)} mm is ${(d / a).toFixed(1)} × a = w + h; the formula holds when spacing is much smaller than a.`;
   }
   draw();
+  // Redraw once the page fonts have loaded, so canvas labels use them too.
+  if (document.fonts) document.fonts.ready.then(draw);
 }
 
 // Start after every constant above is defined.

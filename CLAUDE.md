@@ -173,9 +173,11 @@ quarto preview                             # live preview while writing
 python tools/check_links.py _site          # internal links and anchors
 python tools/check_render.py _site         # every page loads without errors
 python tools/sync_curriculum.py            # regenerate sidebar, course map, placeholder pages
+pytest -q --nbmake labs/python             # run the Python code labs (EPML_REQUIRE_DATA=1 to forbid skipping real data)
+octave-cli --no-gui labs/octave/m03_lab.m  # run an Octave lab (EPML_NO_PLOTS=1 for no figures)
 ```
 
-The full check suite = all four checks above (pytest, render, links, render check). CI runs
+The full check suite = pytest, render, links, render check, and the code labs. CI runs
 the same steps on every pull request.
 
 ### Starting a new module

@@ -12,6 +12,7 @@ venv/
 
 # Large or local data (publish datasets on Zenodo instead)
 data/raw/
+data/cache/
 
 # Editors and OS
 .vscode/

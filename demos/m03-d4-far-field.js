@@ -83,6 +83,8 @@ function mount(root) {
       `and ${shareB.toFixed(3)} × on the bipole (spacing ${d} mm).`;
   }
   draw();
+  // Redraw once the page fonts have loaded, so canvas labels use them too.
+  if (document.fonts) document.fonts.ready.then(draw);
 }
 
 // Start after every constant above is defined.
