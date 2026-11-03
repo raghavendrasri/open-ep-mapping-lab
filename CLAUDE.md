@@ -153,7 +153,8 @@ errata.json  review_record.json  references.bib
 
 ## 10. How Claude works on a module
 
-1. Read this file, `docs/curriculum.md` and the module's outline (if any).
+1. Read this file, `docs/curriculum.md` and the module's outline, `docs/outlines/mNN-outline.md`
+   (if any).
 2. Work in stages and **stop for author review after each stage**:
    outline → derivations + tests → demos → code lab → cheat sheet + interview questions →
    self-check + literature figures.
