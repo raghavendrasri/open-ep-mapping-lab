@@ -8,6 +8,9 @@ project:
     - errata.qmd
     - course-map.qmd
     - modules/*.qmd
+  # Demo scripts are copied to the site as-is (plain ES modules, no build step).
+  resources:
+    - demos/
 
 # The sidebar is generated from docs/curriculum.md by tools/sync_curriculum.py.
 metadata-files:

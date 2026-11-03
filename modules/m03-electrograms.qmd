@@ -13,9 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Pilot module, draft.** Stage 2 of 6 is written: the derivations, each checked by tests in
-`tests/test_m03_*.py`. Interactive demos, the code lab, questions and literature figures follow
-in later stages. Nothing here has had expert review yet.
+**Pilot module, draft.** Stages 2 and 3 of 6 are written: the derivations, each checked by
+tests in `tests/test_m03_*.py`, and five interactive demos that use the same model. The code lab,
+questions and literature figures follow in later stages. Nothing here has had expert review yet.
 :::
 
 ## In 60 seconds
@@ -136,7 +136,21 @@ potential, with small errors under ideal uniform propagation. It errs more near 
 activation sequence, short strands and non-uniform coupling [@steinhaus1989]. Our model is the
 ideal case, so the match is exact.
 
-*Interactive demo m03-d1, a wavefront passing one electrode, arrives in stage 3.*
+::: {.demo #m03-d1 badge="approximate model"}
+```{=html}
+<div id="m03-d1-root" class="demo-root" data-demo="m03-d1"></div>
+<script type="module" src="../demos/m03-d1-unipolar.js"></script>
+```
+
+**Assumptions**
+
+- Model: the arctangent front of @eq-m03-front in a thin tissue sheet, seen by a point electrode in an infinite homogeneous conductor (@eq-m03-unipolar-closed). It ignores the blood–tissue boundary, anisotropy, curved fronts and amplifier filtering.
+- Default conduction velocity 1.0 m/s, reported for the anterior left atrial wall in normal-voltage areas; low-voltage areas in the same study averaged 0.6 m/s [@heil2023].
+- Default electrode height 1 mm, the electrode-to-tissue distance used in a published omnipolar simulation [@riccio2021].
+- Default front width 0.3 mm. TODO(source): from @eq-m03-front, the fastest upstroke is $c\,\Delta V/(\pi w)$. With an atrial upstroke near 100 V/s [@wang1991] and $c$ = 1 m/s, $w$ = 0.3 mm implies an action-potential amplitude $\Delta V$ of about 94 mV, which still needs a source.
+- Amplitudes are relative. The scale $A$ depends on tissue properties not modeled here, so the readout compares with the defaults.
+- What would change the result: non-ideal propagation moves the steepest downstroke away from true activation [@steinhaus1989].
+:::
 
 **Key takeaways**
 
@@ -181,7 +195,19 @@ The relative error of this approximation falls as $d^2$. Three consequences foll
 - **Locality.** Unipolar amplitude falls as $1/a$, but bipolar amplitude falls as $1/a^2$. The
   bipole is dominated by tissue closer to the catheter.
 
-*Interactive demo m03-d2, bipole orientation and spacing, arrives in stage 3.*
+::: {.demo #m03-d2 badge="approximate model"}
+```{=html}
+<div id="m03-d2-root" class="demo-root" data-demo="m03-d2"></div>
+<script type="module" src="../demos/m03-d2-bipole-orientation.js"></script>
+```
+
+**Assumptions**
+
+- Model: two point electrodes at $\pm d/2$ along the bipole axis and the planar arctangent front (@eq-m03-bipolar-planar). It ignores electrode size (see m03-d3), curved fronts and the blood–tissue boundary.
+- Default spacing 2 mm, the bipole spacing of a 2-5-2 mm decapolar catheter [@iafdb]. Height 1 mm [@riccio2021] and conduction velocity 1.0 m/s [@heil2023] as in m03-d1; front width as in m03-d1 (TODO(source)).
+- The polar plot divides by an aligned bipole of the same spacing, so it shows direction dependence only.
+- What would change the result: curved or colliding wavefronts, and slow conduction zones under one electrode.
+:::
 
 **Key takeaways**
 
@@ -233,8 +259,32 @@ This is why bipolar recordings reject far-field signal better than unipolar ones
 remove it completely: far-field signals still appear in bipolar recordings, and the local signal
 can lie under either electrode [@stevenson2005].
 
-*Interactive demos m03-d3, spatial transfer functions, and m03-d4, far-field rejection, arrive in
-stage 3.*
+::: {.demo #m03-d3 badge="exact"}
+```{=html}
+<div id="m03-d3-root" class="demo-root" data-demo="m03-d3"></div>
+<script type="module" src="../demos/m03-d3-transfer-functions.js"></script>
+```
+
+**Assumptions**
+
+- Each curve is a closed-form result: @eq-m03-height-filter, @eq-m03-disk-average and @eq-m03-bipolar-transfer for a bipole aligned with the wave ($\theta$ = 0), plotted as $|H|/2$ so its maximum is 1.
+- The disk model assumes the electrode reports the average potential over a flat disk. It ignores current shunting by the metal and partial contact.
+- Default spacing 2 mm [@iafdb] and height 1 mm [@riccio2021]. Default radius 0.5 mm treats a 1-mm electrode [@anter2015] as a 1-mm-diameter disk; real electrodes are often rings or tips.
+:::
+
+::: {.demo #m03-d4 badge="approximate model"}
+```{=html}
+<div id="m03-d4-root" class="demo-root" data-demo="m03-d4"></div>
+<script type="module" src="../demos/m03-d4-far-field.js"></script>
+```
+
+**Assumptions**
+
+- Local signal: as in m03-d2, with the bipole aligned with the wave and 2-mm spacing [@iafdb].
+- Far source: one current dipole on the bipole axis, pointing along it, with a biphasic time course 25 ms after local activation. Its strength is set so that at 20 mm it equals the local unipolar signal. These are illustrative choices, not physiological values; only the trend with distance is meant (@eq-m03-farfield).
+- Each panel is scaled by its own local peak-to-peak, so the panels compare the far-field share, not absolute size.
+- What would change the result: a far source off the bipole axis or a bipole across it (less bipolar pickup), and conductivity boundaries such as the blood–tissue interface.
+:::
 
 **Key takeaways**
 
@@ -294,7 +344,19 @@ bipoles within a clique activate at slightly different times, which biases the e
 aligning them first reduces the bias [@riccio2021]. Curved or colliding wavefronts make the field
 trace a true loop, and no single direction then describes propagation.
 
-*Interactive demo m03-d5, the omnipole from a clique, arrives in stage 3.*
+::: {.demo #m03-d5 badge="approximate model"}
+```{=html}
+<div id="m03-d5-root" class="demo-root" data-demo="m03-d5"></div>
+<script type="module" src="../demos/m03-d5-omnipole.js"></script>
+```
+
+**Assumptions**
+
+- Model: the planar arctangent front crossing a square clique of point electrodes. The field comes from all six bipoles by least squares (@eq-m03-clique-field), and the omnipole reads it along the loop's principal axis (@eq-m03-omnipole).
+- The published method picks the direction by cross-correlation with the unipolar derivative and can time-align the bipoles first [@riccio2021]. Neither is done here, which is why the omnipole is not perfectly direction-independent at larger spacing.
+- Default spacing 2 mm, the grid spacing in a published omnipolar simulation, and height 1 mm from the same study [@riccio2021]; front width as in m03-d1 (TODO(source)). With these defaults $d/a$ is about 1.5. Reduce the spacing to see the omnipole become direction-independent.
+- What would change the result: time alignment, curved wavefronts (the loop opens up) and noise.
+:::
 
 **Key takeaways**
 

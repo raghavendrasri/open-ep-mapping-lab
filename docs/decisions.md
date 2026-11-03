@@ -2,6 +2,24 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-02 · m03 demos
+
+- **Demo math mirrors the tested Python model.** `demos/m03-common.js` re-implements the
+  functions in `labs/python/epml/electrograms.py`; `tests/test_m03_demo_math.py` runs it in Node
+  and compares the numbers. Bessel J1 is computed from its integral form (no memorized
+  coefficients) and checked against SciPy.
+- **One tiny plotting helper, no libraries** (`demos/plot.js`): canvas plots, polar plots, labeled
+  sliders, live text readouts. Okabe-Ito colors plus dashes, so curves stay distinguishable
+  without color.
+- **The render check now exercises every demo:** each must draw, label its canvases and sliders,
+  and update its readout when an arrow key moves a slider. This caught a start-up-order bug.
+- **Demo defaults and their sources:** c = 1.0 m/s [heil2023], h = 1 mm [riccio2021],
+  d = 2 mm [iafdb; riccio2021 for the clique], 1-mm electrode as a 0.5-mm-radius disk [anter2015].
+  The front width w = 0.3 mm is **TODO(source)**: it follows from an upstroke near 100 V/s
+  [wang1991] only with an action-potential amplitude we have not yet sourced.
+- **Far-field demo uses illustrative source strength and timing**, stated as such in its
+  Assumptions; only the trend with distance is a claim.
+
 ## 2026-11-02 · Course map and placeholder pages
 
 - **Every module has a page from day one.** Unwritten modules get a generated placeholder
