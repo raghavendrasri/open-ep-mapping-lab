@@ -3,7 +3,7 @@
 A free, open, interactive course on cardiac electroanatomic mapping systems: how they
 localize catheters, process electrograms and build activation and voltage maps.
 
-**Site (pilot):** https://raghavendrasri.github.io/open-ep-mapping-lab/
+**Site (pilot):** https://open-ep-mapping-lab.github.io/
 
 **Status:** pilot. The first module (m03) is planned and in progress; no modules are complete yet.
 
