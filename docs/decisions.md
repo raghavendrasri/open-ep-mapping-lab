@@ -2,6 +2,22 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-03 · Move the repo to a project organization
+
+- **Decision (author):** move the repo from the author's personal account to a free GitHub
+  organization, `open-ep-mapping-lab`, and rename it `open-ep-mapping-lab.github.io`.
+- **Why:** a GitHub Pages address is built from the owner's account name, so the site showed
+  the author's username. As an organization site it lives at the root,
+  `https://open-ep-mapping-lab.github.io/`, and the code links no longer carry a personal name.
+  A custom domain was considered and left for later; it can be added without moving again.
+- **One source for addresses:** `_variables.yml` holds the site and repo URLs. Pages link with
+  `{{< var repo.url >}}` and `{{< var repo.colab >}}`. A test checks that pages don't hard-code
+  the repo and that `_quarto.yml`, `README.md` and the lab notebooks agree with the file.
+- **Side effects:** GitHub redirects old repo and git URLs after a transfer, but not the old
+  Pages address (`raghavendrasri.github.io/open-ep-mapping-lab/`), which stops working.
+- **Undo:** transfer the repo back and restore the old URLs in `_variables.yml`, `README.md`,
+  `_quarto.yml` and the notebook's Colab cell.
+
 ## 2026-11-02 · Site look (EP theme)
 
 - **One signature element:** a 3-px band of eight discrete colors under the navbar, in the
