@@ -1,5 +1,5 @@
 # Tools for building and checking the course.
-# Lab-specific packages (pyvista, wfdb, openep-py) are added when the first lab needs them.
+# Lab packages are added with the first lab that needs them (pyvista and openep-py come later).
 numpy>=2.0
 scipy>=1.18.1
 sympy>=1.13
@@ -7,3 +7,8 @@ matplotlib>=3.11.2
 pyyaml>=6.0.3
 pytest>=9.2.0
 playwright>=1.64.1
+
+# Code labs
+wfdb>=4.3
+nbmake>=1.5
+ipykernel>=6.29

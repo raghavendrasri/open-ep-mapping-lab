@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "iafdb/iaf1_svc.hea",
+    "source": "Intracardiac Atrial Fibrillation Database v1.0.0, PhysioNet, doi:10.13026/C23S33",
+    "url": "https://physionet.org/files/iafdb/1.0.0/iaf1_svc.hea",
+    "license": "Open Data Commons Attribution License v1.0",
+    "cite": ["iafdb", "goldberger2000"],
+    "sha256": "29362a652a1baa05ffad6eb22e0ecb680bd662c8595d49a67e5f50909ae47ddf",
+    "used_by": ["labs/python/m03_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/ (not committed)"
+  },
+  {
+    "name": "iafdb/iaf1_svc.dat",
+    "source": "Intracardiac Atrial Fibrillation Database v1.0.0, PhysioNet, doi:10.13026/C23S33",
+    "url": "https://physionet.org/files/iafdb/1.0.0/iaf1_svc.dat",
+    "license": "Open Data Commons Attribution License v1.0",
+    "cite": ["iafdb", "goldberger2000"],
+    "sha256": "eb8ffe86c79efcf579959294cce5f1e12e74bf5529ef1e93c5bad675c9ccedf7",
+    "used_by": ["labs/python/m03_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/ (not committed)"
+  }
+]

@@ -31,6 +31,35 @@ jobs:
       - name: Content rules and equation tests
         run: pytest -q
 
+      # Code labs must run from a clean environment in under 5 minutes (CLAUDE.md §11).
+      - name: Cache lab datasets
+        uses: actions/cache@v4
+        with:
+          path: data/cache
+          key: lab-data-iafdb-v1
+
+      - name: Run Python code labs
+        timeout-minutes: 5
+        env:
+          EPML_REQUIRE_DATA: "1"   # real-data parts must download and verify, not skip
+        run: pytest -q --nbmake labs/python
+
+      - name: Show checksums of downloaded lab data
+        run: sha256sum data/cache/*/* || true
+
+      - name: Install GNU Octave
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends octave
+
+      - name: Run Octave code labs
+        timeout-minutes: 5
+        env:
+          EPML_NO_PLOTS: "1"
+        run: |
+          for lab in labs/octave/*.m; do
+            echo "== $lab"
+            octave-cli --no-gui --quiet "$lab"
+          done
+
       - name: Build site
         run: quarto render
 
