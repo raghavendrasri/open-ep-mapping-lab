@@ -33,6 +33,9 @@ website:
     left: "Education only. Not for clinical use."
     right: "Text CC BY 4.0 · Code MIT"
 
+bibliography: references.bib
+link-citations: true
+
 filters:
   - filters/badges.lua
 

@@ -13,56 +13,329 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Pilot module, in progress.** Content is added in stages: outline, derivations and tests,
-demos, code lab, then questions and literature. Each stage is reviewed before the next begins.
+**Pilot module, draft.** Stage 2 of 6 is written: the derivations, each checked by tests in
+`tests/test_m03_*.py`. Interactive demos, the code lab, questions and literature figures follow
+in later stages. Nothing here has had expert review yet.
 :::
 
 ## In 60 seconds
 
-*Written after the derivations stage.*
+An electrogram is the voltage an electrode picks up from currents crossing cell membranes
+nearby. A **unipolar** electrogram measures one electrode against a distant reference. It sees
+the local wavefront clearly, but it also sees activity far away. A **bipolar** electrogram
+subtracts two nearby unipolar signals. That subtraction acts like a spatial derivative: it keeps
+sharp local detail and cancels slowly varying, distant activity. The price is direction
+dependence. A bipole aligned with the wave records a large signal; a bipole turned across it
+records almost nothing. An **omnipolar** signal combines several bipoles to estimate the local
+electric field, then reads it along the direction the wave is travelling, which removes most of
+that dependence. Height above the tissue, electrode size and electrode spacing all act as
+spatial filters on what the catheter can see.
 
 ## From the field
 
-*Planned in the outline stage.*
+*Planned in the outline (`docs/outlines/m03-outline.md`); written in a later stage.*
 
 ## Derivations
 
-*Planned in the outline stage.*
+**Symbols used throughout.** $\sigma$ extracellular conductivity (S/m). $i_m$ membrane current
+per unit area of tissue, positive outward (A/m²). $V_m$ transmembrane voltage. $h$ electrode
+height above the tissue (mm). $w$ width of the activation front (mm). $c$ conduction velocity
+(m/s, which equals mm/ms). $\hat n$ unit vector along the direction of propagation. $d$
+interelectrode spacing (mm). $\hat u$ unit vector along a bipole, from its proximal to its distal
+electrode. $\theta$ angle between $\hat u$ and $\hat n$. $k$ spatial frequency (rad/mm).
+
+### Where a unipolar electrogram comes from
+
+The extracellular electrogram is produced by transmembrane currents that flow out into the
+extracellular space as the impulse propagates [@debakker2019]. A unipolar recording measures the
+potential at one exploring electrode relative to a distant reference electrode.
+
+To compute that potential, treat the tissue and blood as an infinite, homogeneous, isotropic
+conductor, and treat the fields as quasi-static. A membrane current density then produces a
+potential that falls off as one over distance [@plonsey2007]. For a thin sheet of tissue in the
+plane $z = 0$:
+
+$$
+\phi(\mathbf r, t) = \frac{1}{4\pi\sigma} \iint \frac{i_m(\mathbf r', t)}{\lVert \mathbf r - \mathbf r' \rVert}\, dA'
+$$ {#eq-m03-volume-conductor}
+
+**Membrane current from the voltage profile.** Along a thin strand, the intracellular current is
+$I_i = -\beta\,\partial V_m/\partial x$, where $\beta$ (S) lumps the intracellular conductivity and the
+sheet thickness. If the extracellular potential gradient is small next to the intracellular one,
+current conservation says the outward membrane current equals the loss of intracellular current
+along the strand, $i_m = -\partial I_i/\partial x$, so
+
+$$
+i_m = \beta\,\frac{\partial^2 V_m}{\partial x^2}
+$$ {#eq-m03-cable}
+
+**A wavefront with a closed form.** Let a planar front travel along $+x$ at speed $c$. Write
+$s = x - ct$ for the signed distance from the front: $s > 0$ is tissue the front has not reached
+yet. Model the rise of $V_m$ across the front with an arctangent profile of width $w$ and
+amplitude $\Delta V$:
+
+$$
+V_m(s) = \Delta V \left( \tfrac12 - \tfrac1\pi \arctan\frac{s}{w} \right),
+\qquad
+\frac{dV_m}{ds} = -\frac{\Delta V}{\pi}\,\frac{w}{s^2 + w^2}
+$$ {#eq-m03-front}
+
+The slope is a Lorentzian of width $w$. Its second derivative is odd in $s$: outward current
+(a source) ahead of the front, inward current (a sink) behind it. Net membrane current over the
+whole front is zero.
+
+**The height filter.** Take the Fourier transform of @eq-m03-volume-conductor in the plane of the
+sheet. The kernel $1/\sqrt{\rho^2 + h^2}$ transforms to $2\pi e^{-|k| h}/|k|$, so
+
+$$
+\hat\phi(k) = \frac{e^{-|k| h}}{2\sigma |k|}\, \hat i_m(k)
+$$ {#eq-m03-height-filter}
+
+The factor $e^{-|k|h}$ is a spatial low-pass filter. The farther the electrode sits from the
+tissue, the more fine spatial detail it loses.
+
+**The unipolar electrogram.** Insert @eq-m03-cable and @eq-m03-front into
+@eq-m03-height-filter. For a planar front only the spatial frequency along $x$ matters, so $k$ is
+one-dimensional. Since $\hat i_m = -\beta k^2 \hat V_m$ and the transform of
+$dV_m/ds$ is $-\Delta V e^{-w|k|}$, the potential spectrum is
+$\hat\phi = -i\,\mathrm{sgn}(k)\,\frac{\beta\Delta V}{2\sigma}\, e^{-(w+h)|k|}$. Its inverse
+transform is
+
+$$
+U(s) = A\,\frac{s}{s^2 + a^2},
+\qquad
+A = \frac{\beta\,\Delta V}{2\pi\sigma},
+\qquad
+a = w + h
+$$ {#eq-m03-unipolar-closed}
+
+Read it as a waveform in time at a fixed electrode, where $s = x_e - ct$:
+
+- Before the front arrives ($s > 0$) the potential is positive. It peaks at $s = a$.
+- It falls through zero exactly as the front passes under the electrode ($s = 0$).
+- After the front passes ($s < 0$) it is negative, with its trough at $s = -a$.
+- Peak-to-peak amplitude is $A/a = A/(w + h)$. Moving the electrode away from the tissue, or
+  widening the front, shrinks the signal.
+
+**Slope and the intrinsic deflection.** By the chain rule,
+
+$$
+\frac{dU}{dt} = -c\,\frac{dU}{ds}
+$$ {#eq-m03-unipolar-slope}
+
+so the unipolar slope scales with conduction velocity. In this model the steepest negative slope
+is $-cA/a^2$, and it occurs exactly at $s = 0$, when the front passes the electrode. That is the
+basis of the classic activation marker:
+
+$$
+t_{\text{act}} \approx \arg\max_t \left( -\frac{dU}{dt} \right)
+$$ {#eq-m03-intrinsic-deflection}
+
+Simulation work predicts that this "intrinsic deflection" matches the steepest rise of the action
+potential, with small errors under ideal uniform propagation. It errs more near changes in
+activation sequence, short strands and non-uniform coupling [@steinhaus1989]. Our model is the
+ideal case, so the match is exact.
+
+*Interactive demo m03-d1, a wavefront passing one electrode, arrives in stage 3.*
+
+**Key takeaways**
+
+- A unipolar electrogram is a weighted sum of membrane currents, weighted by one over distance.
+- For a passing planar front it is positive, then crosses zero at activation, then is negative.
+- Its amplitude falls as $1/(w + h)$; its steepest slope scales with $c/(w + h)^2$.
+- The steepest downstroke marks activation exactly only in ideal propagation.
+
+### The bipolar electrogram as a spatial difference
+
+A bipolar electrogram is the difference between two unipolar signals. We use the convention
+distal minus proximal:
+
+$$
+V_{\text{bip}}(t) = \phi(\mathbf r_1, t) - \phi(\mathbf r_2, t),
+\qquad
+\mathbf r_{1,2} = \mathbf r_0 \pm \tfrac{d}{2}\,\hat u
+$$ {#eq-m03-bipolar}
+
+For a planar wave, only the distance of each electrode along $\hat n$ matters. The two electrodes
+sit at $s \pm \delta$ with $\delta = \tfrac{d}{2}\cos\theta$, so
+
+$$
+V_{\text{bip}}(s) = U(s + \delta) - U(s - \delta)
+$$ {#eq-m03-bipolar-planar}
+
+**A close bipole is a directional derivative.** When $d$ is small next to $a$, expand to first
+order:
+
+$$
+V_{\text{bip}} \approx d\, \hat u \cdot \nabla \phi = d \cos\theta\, \frac{dU}{ds}
+$$ {#eq-m03-bipolar-gradient}
+
+The relative error of this approximation falls as $d^2$. Three consequences follow:
+
+- **Direction dependence.** Amplitude scales with $|\cos\theta|$. A bipole perpendicular to the
+  direction of propagation ($\theta = 90°$) records nothing, because both electrodes activate
+  together. In animal recordings, voltage at the same site varied most where the wavefront was
+  perpendicular to one bipole and parallel to the other [@takigawa2018].
+- **Amplitude.** Using $dU/ds$ from @eq-m03-unipolar-closed, the peak-to-peak bipolar amplitude
+  tends to $d\,|\cos\theta| \cdot 9A/(8a^2)$ as $d \to 0$.
+- **Locality.** Unipolar amplitude falls as $1/a$, but bipolar amplitude falls as $1/a^2$. The
+  bipole is dominated by tissue closer to the catheter.
+
+*Interactive demo m03-d2, bipole orientation and spacing, arrives in stage 3.*
+
+**Key takeaways**
+
+- A bipole measures a spatial difference; when it is short, that is a directional derivative.
+- Bipolar amplitude depends on catheter orientation and on spacing, not only on the tissue.
+- A bipole is more local than a unipole: its amplitude falls off faster with distance.
+
+### Recordings as spatial filters
+
+@eq-m03-height-filter already showed that distance from the tissue is a low-pass filter. Two more
+filters complete the picture.
+
+**Electrode size.** A disk electrode of radius $r_e$ reports, approximately, the average potential
+over its face. Averaging a spatial harmonic over a disk multiplies it by
+
+$$
+H_{\text{disk}}(k) = \frac{2 J_1(k r_e)}{k r_e}
+$$ {#eq-m03-disk-average}
+
+where $J_1$ is the Bessel function of the first kind. This is another low-pass filter: larger
+electrodes blur fine detail. The model ignores contact effects and current shunting by the metal.
+
+**The bipole.** Apply @eq-m03-bipolar to a harmonic $e^{i k\, \hat n \cdot \mathbf r}$:
+
+$$
+H_{\text{bip}}(k) = 2i \sin\!\left( \frac{k d \cos\theta}{2} \right),
+\qquad
+|H_{\text{bip}}| = 2 \left| \sin\!\left( \frac{k d \cos\theta}{2} \right) \right|
+$$ {#eq-m03-bipolar-transfer}
+
+This is a spatial high-pass filter. It rejects slowly varying fields ($k \to 0$), peaks near
+$k d \cos\theta = \pi$, and has nulls wherever $k d \cos\theta$ is a multiple of $2\pi$.
+
+Put together, a bipolar recording sees the tissue's current pattern through
+$H_{\text{bip}} \cdot H_{\text{disk}} \cdot e^{-|k|h}$: a spatial band-pass filter. Height and
+electrode size set the upper edge; spacing sets the lower edge and the nulls.
+
+**Far-field rejection.** A distant source changes slowly across the catheter, so the bipole
+mostly cancels it. For a distant point source the unipole falls off as $1/R$ and a bipole as
+$1/R^2$; for a distant dipole, as $1/R^2$ and $1/R^3$:
+
+$$
+\phi_{\text{monopole}} \propto \frac{1}{R},\quad V_{\text{bip}} \propto \frac{d}{R^2};
+\qquad
+\phi_{\text{dipole}} \propto \frac{1}{R^2},\quad V_{\text{bip}} \propto \frac{d}{R^3}
+$$ {#eq-m03-farfield}
+
+This is why bipolar recordings reject far-field signal better than unipolar ones. They do not
+remove it completely: far-field signals still appear in bipolar recordings, and the local signal
+can lie under either electrode [@stevenson2005].
+
+*Interactive demos m03-d3, spatial transfer functions, and m03-d4, far-field rejection, arrive in
+stage 3.*
+
+**Key takeaways**
+
+- Distance and electrode size are spatial low-pass filters; a bipole is a spatial high-pass filter.
+- A bipolar recording is therefore a spatial band-pass filter, tuned by height, size and spacing.
+- Bipoles reject distant sources better than unipoles, but not completely.
+
+### Omnipolar signals from a clique of electrodes
+
+An omnipolar method estimates the local electric field from a small group of electrodes, called a
+**clique**, and reads it along the direction of propagation [@deno2017; @riccio2021].
+
+**The field from a clique.** The electric field is $\mathbf E = -\nabla\phi$. If the potential is
+nearly linear across the clique, each bipole between electrodes $i$ and $j$ is a projection of
+the field, $b_{ij} = \phi_j - \phi_i \approx -(\mathbf r_j - \mathbf r_i) \cdot \mathbf E$.
+Stack the bipoles into a vector $\mathbf b$ and the electrode separations into the columns of a
+matrix $D$. Then $\mathbf b = -D^{\mathsf T}\mathbf E$, and the least-squares estimate
+is [@riccio2021]
+
+$$
+\hat{\mathbf E}(t) = -\left( D D^{\mathsf T} \right)^{-1} D\, \mathbf b(t)
+$$ {#eq-m03-clique-field}
+
+A triangle of three electrodes or a square of four can be used. For a linear potential the
+estimate is exact.
+
+**The omnipolar signal.** For a plane wave the field points along $\pm\hat n$ at every instant, so
+$\hat{\mathbf E}(t)$ traces a line, not a loop, along the propagation direction [@riccio2021].
+Reading the field along a unit direction $\hat\omega$ gives the signal a bipole of spacing $d$
+would record if it pointed that way:
+
+$$
+v_\omega(t) = -d\, \hat\omega \cdot \hat{\mathbf E}(t)
+$$ {#eq-m03-omnipole}
+
+With $\hat\omega = \hat n$, this equals an aligned bipole, whatever the catheter's orientation.
+Here we take $\hat\omega$ as the principal axis of the field loop. The published method instead
+picks the angle whose field projection best matches the time derivative of the unipolar signal
+[@riccio2021], following @deno2017. For a plane wave both choices give $\hat n$.
+
+**Velocity from one clique.** Along $\hat n$ the field is $-dU/ds$, while the unipolar slope is
+$-c\, dU/ds$ (@eq-m03-unipolar-slope). Their ratio gives the conduction velocity without
+measuring activation times [@riccio2021; @deno2017]:
+
+$$
+c \approx \frac{\mathrm{pp}\left( dU/dt \right)}{\mathrm{pp}\left( \hat n \cdot \hat{\mathbf E} \right)}
+$$ {#eq-m03-clique-velocity}
+
+where pp is the peak-to-peak amplitude. Module m25 returns to this.
+
+**Where it breaks down.** The estimate assumes the wave is planar and the potential is linear
+inside the clique. Neither holds when the spacing is not small next to $a = w + h$. In our model,
+without time alignment, the spread of omnipolar amplitude across 18 wave directions grows from
+under 1% at $d/a = 0.2$ to about 32% at $d/a = 1.6$ for a square clique, and more for a triangle
+(computed with `labs/python/epml`; the trend is checked in `tests/test_m03_omnipolar.py`). Published work reports the same mechanism:
+bipoles within a clique activate at slightly different times, which biases the estimate, and
+aligning them first reduces the bias [@riccio2021]. Curved or colliding wavefronts make the field
+trace a true loop, and no single direction then describes propagation.
+
+*Interactive demo m03-d5, the omnipole from a clique, arrives in stage 3.*
+
+**Key takeaways**
+
+- A clique of electrodes estimates the local electric field by least squares.
+- Reading that field along the propagation direction removes most orientation dependence.
+- The method assumes a locally planar wave; it degrades as spacing grows relative to $w + h$.
 
 ## Clinical correlate
 
 ::: {.callout-note title="Pending clinical review"}
-*Planned in the outline stage. Requires sign-off by an EP physician.*
+*Planned in the outline. Requires sign-off by an EP physician.*
 :::
 
 ## Visual summary
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## How experts think
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Cheat sheet
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Interview questions
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Code lab
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Self-check
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Literature figures
 
-*Planned in the outline stage.*
+*Planned in the outline.*
 
 ## Further reading
 
-*Planned in the outline stage.*
+*Planned in the outline.*
