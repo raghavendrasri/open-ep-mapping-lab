@@ -13,8 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stage 2 of 6.** The derivations are written, and each equation is checked by tests in
-`tests/test_m34_pipeline.py`. Demos, code lab, questions and the remaining sections follow in later
+**Draft, stages 2 and 3 of 6.** The derivations and three interactive demos are written. Each
+equation is checked by tests in `tests/test_m34_pipeline.py`, and the demos' math is checked
+against the same Python model in `tests/test_part6_demo_math.py`. The code lab, questions and the remaining sections follow in later
 stages (plan: `docs/outlines/m34-outline.md`). Nothing here has had expert review yet.
 :::
 
@@ -76,6 +77,19 @@ A full buffer must do something: drop new data, overwrite old data, or block the
 Blocking an acquisition stage is rarely acceptable, so the choice is usually between dropping and
 overwriting, and it should be a design decision that is logged, not an accident.
 
+::: {.demo #m34-d2 badge="exact"}
+```{=html}
+<div id="m34-d2-root" class="demo-root" data-demo="m34-d2"></div>
+<script type="module" src="../demos/m34-d2-data-rate.js"></script>
+```
+
+**Assumptions**
+
+- Computes @eq-m34-data-rate and @eq-m34-buffer for raw samples, with no compression or framing overhead.
+- Default: 8 channels sampled at 1 kHz with 14-bit resolution, as in each record of the Intracardiac Atrial Fibrillation Database [@iafdb]. Session length and stall duration are illustrative inputs, not typical values.
+- What would change the result: compression, framing overhead, padding samples to whole bytes (try 16 bits), and storing maps and annotations alongside the raw signals.
+:::
+
 **Key takeaways**
 
 - Data rate is channels × sampling rate × sample width, plus framing.
@@ -113,6 +127,20 @@ With no load, $W = 1/\mu$, the bare service time. At load $\rho$ it is $1/(1 - \
 twice as large at half load, ten times at 90%, and without bound as $\rho \to 1$. Real stages are
 not exactly M/M/1; with other service-time distributions the numbers change, but delay still
 rises steeply as utilization approaches one (checked by simulation in the tests).
+
+::: {.demo #m34-d1 badge="simulation"}
+```{=html}
+<div id="m34-d1-root" class="demo-root" data-demo="m34-d1"></div>
+<script type="module" src="../demos/m34-d1-pipeline-latency.js"></script>
+```
+
+**Assumptions**
+
+- Model: one first-in-first-out stage with random (Poisson) arrivals at rate λ and service times with mean 1/μ drawn from an Erlang distribution of shape k. k = 1 gives exponential service times, the M/M/1 case of @eq-m34-mm1; larger k means more regular service.
+- Simulated item by item: 80,000 items, the first 10% discarded as start-up, with a fixed random seed so the picture is repeatable. Times are in units of the mean service time, so no product values are assumed.
+- Buffer capacity counts the items in the stage, including the one in service; a full stage drops new arrivals. At the maximum capacity drops are rare and the formula line applies.
+- What would change the result: burstier arrivals (worse), several servers in parallel, priorities, or service times that depend on load.
+:::
 
 **Key takeaways**
 
@@ -172,6 +200,20 @@ $$
 $$ {#eq-m34-interp-error}
 
 where $\ddot x$ is the acceleration of the catheter. Faster sampling helps quadratically.
+
+::: {.demo #m34-d3 badge="approximate model"}
+```{=html}
+<div id="m34-d3-root" class="demo-root" data-demo="m34-d3"></div>
+<script type="module" src="../demos/m34-d3-stream-alignment.js"></script>
+```
+
+**Assumptions**
+
+- Model: the tip moves at constant speed on a circle of radius 10 mm; location is sampled every $h$ and linearly interpolated; each point's position is read $\Delta t$ away from its true time.
+- The bound in the readout is $v\lvert\Delta t\rvert$ (@eq-m34-misregistration) plus the chord error $h^2 v^2/(8r)$ from @eq-m34-interp-error with $\lvert\ddot x\rvert = v^2/r$ on a circle.
+- Speed, offset, sampling interval and radius are illustrative inputs. TODO(source): typical catheter speeds and location update rates, for realistic defaults.
+- What would change the result: clock drift (an offset that grows with time), cardiac and respiratory motion, and localization noise.
+:::
 
 **Key takeaways**
 

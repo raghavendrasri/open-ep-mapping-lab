@@ -143,3 +143,13 @@ def test_overfitting_gives_slope_below_one():
     model = LogisticRegression(C=np.inf, max_iter=5000).fit(x_tr, y_tr)
     _, slope = ml.calibration_slope_intercept(model.predict_proba(x_te)[:, 1], y_te)
     assert slope < 0.7
+
+
+@pytest.mark.parametrize("d", [0.0, 0.8, 1.5, 3.0])
+def test_binormal_auc(d):
+    """Demo m35-d2: with negatives ~ N(0, 1) and positives ~ N(d, 1), AUC = Phi(d / sqrt 2)."""
+    rng = np.random.default_rng(15)
+    neg = rng.normal(0, 1, 4000)
+    pos = rng.normal(d, 1, 4000)
+    y = np.r_[np.zeros(4000), np.ones(4000)]
+    assert roc_auc_score(y, np.r_[neg, pos]) == pytest.approx(ml.binormal_auc(d), abs=0.012)

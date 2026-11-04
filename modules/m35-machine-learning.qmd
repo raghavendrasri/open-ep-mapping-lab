@@ -13,9 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stage 2 of 6.** The derivations are written, and each equation is checked by tests in
-`tests/test_m35_evaluation.py`, against scikit-learn where it has the same function. Demos, code
-lab, questions and the remaining sections follow in later stages (plan:
+**Draft, stages 2 and 3 of 6.** The derivations and three interactive demos are written. Each
+equation is checked by tests in `tests/test_m35_evaluation.py`, against scikit-learn where it has
+the same function, and the demos' math in `tests/test_part6_demo_math.py`. The code lab, questions and the remaining sections follow in later stages (plan:
 `docs/outlines/m35-outline.md`). Nothing here has had expert review yet.
 :::
 
@@ -108,6 +108,20 @@ even a modest correlation makes the effective sample close to the number of pati
 number of records. Splitting records at random puts records of the same patient on both sides of the
 split, and the model is then partly tested on patients it has already seen.
 
+::: {.demo #m35-d1 badge="simulation"}
+```{=html}
+<div id="m35-d1-root" class="demo-root" data-demo="m35-d1"></div>
+<script type="module" src="../demos/m35-d1-leakage.js"></script>
+```
+
+**Assumptions**
+
+- Model: 30 synthetic patients, half labeled 1. Each record has six features: a patient signature (a share of the variance set by the slider, the same for every record of that patient), independent noise, and the class signal along one feature.
+- Classifier: one nearest neighbour. Record-wise scoring leaves out one record at a time; patient-wise scoring leaves out all of a patient's records. Only the patient-wise number matches use on new patients [@saeb2017].
+- All values are synthetic and dimensionless, with a fixed random seed; no clinical data.
+- What would change the result: models that memorize less than nearest neighbour (smaller gap), more patients, or features that carry no patient signature.
+:::
+
 **Key takeaways**
 
 - Split by patient (or by site, or by hospital) to match how the model will be used.
@@ -140,6 +154,19 @@ $$ {#eq-m35-auc}
 (ties count one half). AUC measures ranking only. It does not depend on prevalence, and it says
 nothing about whether the scores are good probabilities.
 
+::: {.demo #m35-d2 badge="exact"}
+```{=html}
+<div id="m35-d2-root" class="demo-root" data-demo="m35-d2"></div>
+<script type="module" src="../demos/m35-d2-threshold-prevalence.js"></script>
+```
+
+**Assumptions**
+
+- Scores of negative cases are N(0, 1) and of positive cases N($d$, 1). Then AUC = $\Phi(d/\sqrt2)$, because the difference of a positive and a negative score is N($d$, 2) (checked in `tests/test_m35_evaluation.py`). Predictive values from @eq-m35-ppv.
+- Defaults (separation 1.5, threshold 0.75, prevalence 10%) are illustrative inputs.
+- What would change the result: real scores are rarely normal with equal variances; the ROC curve then becomes asymmetric.
+:::
+
 **Key takeaways**
 
 - Quote PPV and NPV at the prevalence where the model will be used.
@@ -166,6 +193,19 @@ $$ {#eq-m35-calibration}
 to the outcomes. A well-calibrated model has $\alpha = 0$ and $\beta = 1$. A slope $\beta < 1$
 means the predictions are too extreme, too close to 0 and 1; $\beta > 1$ means they are too timid.
 Poorly calibrated models can mislead even when they rank cases well [@vancalster2019].
+
+::: {.demo #m35-d3 badge="simulation"}
+```{=html}
+<div id="m35-d3-root" class="demo-root" data-demo="m35-d3"></div>
+<script type="module" src="../demos/m35-d3-calibration.js"></script>
+```
+
+**Assumptions**
+
+- Model: 6,000 synthetic cases with true logits drawn from N(0, 1.5²) and outcomes drawn from those probabilities; the model's predictions are distorted exactly as in @eq-m35-calibration. Fixed random seed.
+- The diagram shows bins of width 0.1 that hold at least 20 cases. The readout compares the Brier score (@eq-m35-brier) with that of the true probabilities.
+- All values are synthetic and dimensionless. With fewer cases, the binned points scatter more around the line.
+:::
 
 **Key takeaways**
 
