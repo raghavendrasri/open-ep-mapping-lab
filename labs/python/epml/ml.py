@@ -113,3 +113,11 @@ def calibration_slope_intercept(p, y):
 
     res = optimize.minimize(nll, x0=[0.0, 1.0], jac=grad, method="BFGS")
     return float(res.x[0]), float(res.x[1])
+
+
+def binormal_auc(separation):
+    """AUC when negative scores are N(0, 1) and positive scores N(d, 1): Phi(d / sqrt(2)),
+    because the difference of a positive and a negative score is N(d, 2)."""
+    from scipy.stats import norm
+
+    return float(norm.cdf(separation / np.sqrt(2.0)))

@@ -2,6 +2,28 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-03 · m34–m36 stage 3: demos
+
+- **Defaults for engineering demos.** CLAUDE.md §4 asks for physiologically plausible, cited
+  defaults. These demos have few physiological inputs, so they are dimensionless where possible
+  (queue load, times in mean service times, score separations) or labeled "illustrative input" in
+  their Assumptions. The one real-world default, 8 channels at 1 kHz with 14-bit resolution in
+  m34-d2, is cited to the Intracardiac Atrial Fibrillation Database. Typical catheter speeds and
+  location update rates stay `TODO(source)` (m34-d3).
+- **Leakage demo uses six features.** With two features the 30 synthetic patients overlap and the
+  record-wise versus patient-wise gap is small; with six, patient signatures separate and the
+  lesson is clear (about 80% versus 60% at the defaults). The gap comes from the patient signature,
+  as in the text; the test checks that with no class signal the patient-wise accuracy stays near
+  chance while the record-wise accuracy is high.
+- **Shared demo math** lives in `demos/m34-common.js`, `m35-common.js` and `m36-common.js`;
+  `tests/test_part6_demo_math.py` runs them in Node and compares with the Python models
+  (queue departures, data rate, normal CDF, predictive values, binormal AUC, log-gamma and binomial
+  CDF, sample sizes, reliability).
+- **Standards map (m36)** is a numbered schematic figure inside a badged box, listing only
+  requirements whose sources were checked; IEC 60601-1 and IEC 62304 were added to the text with
+  their IEC webstore pages. EMC, usability and the EU route are still to come.
+- **Undo:** revert the stage 3 commit.
+
 ## 2026-11-03 · m34–m36 stage 2: derivations
 
 - **Defaults for the outline questions** (the author chose scikit-learn and left the rest open):

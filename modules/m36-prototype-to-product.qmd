@@ -19,8 +19,9 @@ version before relying on it.
 :::
 
 ::: {.callout-note}
-**Draft, stage 2 of 6.** The derivations are written, and each equation is checked by tests in
-`tests/test_m36_verification.py`. The EU route, demos, code lab, questions and the remaining
+**Draft, stages 2 and 3 of 6.** The derivations, two interactive demos and a standards map are
+written. Each equation is checked by tests in `tests/test_m36_verification.py`, and the demos'
+math in `tests/test_part6_demo_math.py`. The EU route, code lab, questions and the remaining
 sections follow in later stages (plan: `docs/outlines/m36-outline.md`). Nothing here has had expert
 review yet.
 :::
@@ -68,9 +69,53 @@ measuring devices, including the programs supplied with it. It is a Class II dev
 - **Risk management.** ISO 14971:2019 sets out a process to identify hazards, estimate and evaluate
   risks, control them and monitor the controls. It requires each manufacturer to set objective
   criteria for risk acceptability but does not set acceptable levels itself [@iso14971].
+- **Electrical equipment.** IEC 60601-1 sets requirements for basic safety and essential
+  performance that apply generally to medical electrical equipment; the current consolidated
+  version is edition 3.2 (2020) [@iec60601].
+- **Software life cycle.** IEC 62304 defines life-cycle requirements for the development and
+  maintenance of medical device software. It does not cover validation and final release of the
+  device, even when the device is entirely software [@iec62304].
 
-The EU route under the Medical Device Regulation, and the electrical-safety and software life-cycle
-standards (IEC 60601-1, IEC 62304), are added in a later stage once their sources are checked.
+The EU route under the Medical Device Regulation is added in a later stage once its sources are
+checked.
+
+:::::: {.demo badge="schematic"}
+::::: {#fig-m36-standards-map}
+:::: {.filter-chain}
+::: {.stage}
+**1 · The manufacturer**\
+Quality management system: ISO 13485:2016, through the QMSR. Risk management over the
+whole life cycle: ISO 14971.
+:::
+::: {.stage}
+**2 · Electrical equipment**\
+Amplifiers, localization hardware, power: basic safety and essential performance, IEC 60601-1.
+:::
+::: {.stage}
+**3 · Software**\
+Life-cycle processes: IEC 62304. Documentation level in a US submission.
+:::
+::: {.stage}
+**4 · Connectivity**\
+Cybersecurity and the software bill of materials, section 524B.
+:::
+::: {.stage}
+**5 · AI-enabled functions**\
+Planned changes through a predetermined change control plan.
+:::
+::::
+
+Which requirements bear on which part of a mapping system, in the United States. A teaching
+simplification, not a regulatory determination.
+:::::
+
+**Assumptions**
+
+- Schematic: no quantitative claim. Each block names only requirements whose sources were checked
+  on 3 November 2026; the sources are cited in the list above.
+- Not a complete list. Standards for electromagnetic compatibility and usability, among others,
+  also apply and will be added once their sources are checked; the EU route is not shown yet.
+::::::
 
 **Key takeaways**
 
@@ -112,6 +157,19 @@ Take the smallest $n$ that satisfies it. For $R$ = 0.95 and $C$ = 0.95, allowing
 needs 59, 93 or 124 units. The plan becomes more forgiving of a stray failure, at the cost of more
 units.
 
+::: {.demo #m36-d1 badge="exact"}
+```{=html}
+<div id="m36-d1-root" class="demo-root" data-demo="m36-d1"></div>
+<script type="module" src="../demos/m36-d1-sample-size.js"></script>
+```
+
+**Assumptions**
+
+- Computes the smallest $n$ in @eq-m36-acceptance; $c = 0$ gives @eq-m36-success-run. Binomial probabilities use a log-gamma function checked against SciPy in `tests/test_part6_demo_math.py`.
+- Assumes independent trials and one true reliability for every unit. The defaults R = C = 0.95 are example targets, which a real plan takes from its risk analysis.
+- What would change the result: variation between production lots, failures that are not independent, and test methods that can miss a failure.
+:::
+
 **Key takeaways**
 
 - Choose the plan ($n$, $c$) before testing, and write down why.
@@ -150,6 +208,19 @@ $$ {#eq-m36-reliability}
 
 The constant-rate model ignores early failures and wear-out. It is a starting point for comparing
 designs, not a lifetime prediction.
+
+::: {.demo #m36-d3 badge="exact"}
+```{=html}
+<div id="m36-d3-root" class="demo-root" data-demo="m36-d3"></div>
+<script type="module" src="../demos/m36-d3-series-reliability.js"></script>
+```
+
+**Assumptions**
+
+- @eq-m36-reliability: constant failure rates, parts in series, independent failures.
+- Failure rates and mission time are illustrative inputs, not data for any product.
+- What would change the result: early failures and wear-out (rates that change with time), redundancy, and repair.
+:::
 
 **Key takeaways**
 
