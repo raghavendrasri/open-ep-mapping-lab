@@ -13,9 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stages 2 and 3 of 6.** The derivations and three interactive demos are written. Each
+**Draft, stages 2 to 4 of 6.** The derivations and three interactive demos are written. Each
 equation is checked by tests in `tests/test_m35_evaluation.py`, against scikit-learn where it has
-the same function, and the demos' math in `tests/test_part6_demo_math.py`. The code lab, questions and the remaining sections follow in later stages (plan:
+the same function, and the demos' math in `tests/test_part6_demo_math.py`. The code lab is in place too. The questions and the remaining sections follow in later stages (plan:
 `docs/outlines/m35-outline.md`). Nothing here has had expert review yet.
 :::
 
@@ -247,7 +247,25 @@ regulators handle AI-enabled device software, including changes after clearance.
 
 ## Code lab
 
-*Planned in the outline.*
+The lab rebuilds this module's results in code, so you can see where each one comes from and
+break it on purpose. It runs in a few seconds.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Generate labeled electrograms (local versus far-field) from the m03 model, with patient-specific gain and noise | synthetic |
+| B | Fit logistic regression with scikit-learn and evaluate it patient by patient: accuracy, AUC (@eq-m35-auc), Brier score and calibration (@eq-m35-calibration) | synthetic |
+| C | Leakage: compare record-wise and patient-wise cross-validation for a nearest-neighbour model and for logistic regression (@eq-m35-design-effect) | synthetic |
+| D | A confidence interval for AUC that resamples patients, against one that resamples records | synthetic |
+| E | Flip a share of the labels and compare the measured accuracy with @eq-m35-label-ceiling | synthetic |
+
+- **Python notebook:**
+  [labs/python/m35_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m35_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m35_lab.ipynb).
+- All data are synthetic; scikit-learn is used for the models and the cross-validation splits.
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
 
 ## Self-check
 

@@ -19,10 +19,10 @@ version before relying on it.
 :::
 
 ::: {.callout-note}
-**Draft, stages 2 and 3 of 6.** The derivations, two interactive demos and a standards map are
+**Draft, stages 2 to 4 of 6.** The derivations, two interactive demos and a standards map are
 written. Each equation is checked by tests in `tests/test_m36_verification.py`, and the demos'
-math in `tests/test_part6_demo_math.py`. The EU route, code lab, questions and the remaining
-sections follow in later stages (plan: `docs/outlines/m36-outline.md`). Nothing here has had expert
+math in `tests/test_part6_demo_math.py`. The code lab is in place too. The EU route, questions and
+the remaining sections follow in later stages (plan: `docs/outlines/m36-outline.md`). Nothing here has had expert
 review yet.
 :::
 
@@ -270,7 +270,25 @@ The split shows where a risk control acts. A control can make the hazardous situ
 
 ## Code lab
 
-*Planned in the outline.*
+The lab rebuilds this module's results in code, so you can see where each one comes from and
+break it on purpose. It runs in about 15 seconds.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Sample sizes for several targets, with and without allowed failures, checked by simulating lots that are exactly as good as the target (@eq-m36-success-run, @eq-m36-acceptance) | synthetic |
+| B | Coverage of the Clopper–Pearson interval (@eq-m36-clopper-pearson) against the normal approximation, which falls short near 100% | synthetic |
+| C | Series reliability by Monte Carlo (@eq-m36-reliability), and what a redundant pair of the weakest part buys | synthetic |
+| D | A traceability matrix from this course's own rules to its own tests; two requirements are verified another way, and the matrix says so | this repository |
+| E | A small risk register: estimate $P_1 P_2$ (@eq-m36-harm), apply controls, and check residual risk against an example acceptability matrix | synthetic |
+
+- **Python notebook:**
+  [labs/python/m36_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m36_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m36_lab.ipynb).
+- The hazards and the acceptability matrix in part E are illustrative; ISO 14971 leaves the criteria to each manufacturer [@iso14971].
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
 
 ## Self-check
 
