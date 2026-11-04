@@ -196,14 +196,21 @@ def test_citations_are_in_references_bib():
 
 
 def test_references_have_doi_or_pmid():
+    """CLAUDE.md §5: every entry has a DOI or PMID. Official documents that have neither (regulations,
+    regulator guidances, standards) are @misc entries with the official url and the date it was
+    checked (urldate); see docs/decisions.md."""
     text = (ROOT / "references.bib").read_text()
     entries = re.split(r"\n(?=@)", text)
     for entry in entries:
         if not entry.strip().startswith("@"):
             continue
         key = re.match(r"@\w+\{([^,]+),", entry.strip())
-        assert re.search(r"^\s*(doi|pmid)\s*=", entry, re.M | re.I), (
-            f"references.bib: entry {key.group(1) if key else '?'} needs a doi or pmid field"
+        name = key.group(1) if key else "?"
+        if re.search(r"^\s*(doi|pmid)\s*=", entry, re.M | re.I):
+            continue
+        assert entry.strip().lower().startswith("@misc"), f"references.bib: entry {name} needs a doi or pmid field"
+        assert re.search(r"^\s*url\s*=\s*\{https://", entry, re.M) and re.search(r"^\s*urldate\s*=\s*\{\d{4}-\d{2}-\d{2}\}", entry, re.M), (
+            f"references.bib: official document {name} needs url = {{https://...}} and urldate = {{YYYY-MM-DD}}"
         )
 
 

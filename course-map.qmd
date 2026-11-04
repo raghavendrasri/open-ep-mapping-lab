@@ -72,7 +72,7 @@ Status shows how far each module has got.
 | --- | --- | --- | --- |
 | m34 | [Mapping-system software architecture: real-time pipeline, latency, data formats](modules/m34-software-architecture.qmd) | [Draft]{.status .status-draft} | v1.0 |
 | m35 | [Machine learning in EP mapping: annotation, driver detection, validation pitfalls](modules/m35-machine-learning.qmd) | [Draft]{.status .status-draft} | v1.0 |
-| m36 | [From prototype to product: FDA Class II (21 CFR 870.1425, product code DQK), 510(k), IEC 60601-1, IEC 62304, ISO 14971, EU MDR](modules/m36-prototype-to-product.qmd) | [Planned]{.status .status-planned} | v1.0 |
+| m36 | [From prototype to product: FDA Class II (21 CFR 870.1425, product code DQK), 510(k), IEC 60601-1, IEC 62304, ISO 14971, EU MDR](modules/m36-prototype-to-product.qmd) | [Draft]{.status .status-draft} | v1.0 |
 
 ## Learning paths
 

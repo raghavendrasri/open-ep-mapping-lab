@@ -2,6 +2,28 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-03 · m34–m36 stage 2: derivations
+
+- **Defaults for the outline questions** (the author chose scikit-learn and left the rest open):
+  m34 stops at Little's law and the single-server queue, uses plain Python and synthetic data;
+  m35 uses scikit-learn (`scikit-learn>=1.8` in `requirements.txt`), logistic regression in the
+  lab, neural networks in text only, synthetic data; m36 covers the US and EU and teaches
+  IEC 62304 as in force.
+- **Official documents in `references.bib` (needs author approval).** CLAUDE.md §5 asks for a DOI
+  or PMID. Regulations, FDA guidances and ISO standards have neither, so they are `@misc` entries
+  with the official `url` and the date it was checked (`urldate`). The content test enforces
+  this: every other entry still needs a DOI or PMID. ISO 14971's P1·P2 split (Annex C) was
+  checked through an FDA presentation that reproduces Figure C.1.
+- **One open marker in m36:** the statement that mapping systems are cleared under 21 CFR
+  870.1425 with product code DQK is `TODO(source)` until each 510(k) record is checked on the FDA
+  database; examples were found only through a secondary index. The EU route and the IEC
+  60601-1 / IEC 62304 content wait for their sources (stage 3).
+- **Worked numbers come from our code** (for example 59, 93 and 124 units for R = C = 0.95 with
+  0, 1 or 2 failures allowed); each quoted value has a test.
+- **Branches are stacked** (m34 → m35 → m36), each with a PR against `main`, so merging in order
+  avoids conflicts in shared files.
+- **Undo:** revert the three stage-2 commits; remove `scikit-learn` from `requirements.txt`.
+
 ## 2026-11-03 · m03 stage 6: remaining sections, glossary and formula sheet
 
 - **Front width sourced as a range.** $w = c\,\Delta V/(\pi \max dV_m/dt)$ from @eq-m03-front.
