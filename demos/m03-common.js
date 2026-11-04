@@ -10,7 +10,7 @@ export const DEFAULTS = {
   h: 1.0, // mm, electrode-to-tissue distance used in [riccio2021]
   d: 2.0, // mm, bipole spacing of a 2-5-2 mm decapolar catheter [iafdb]
   re: 0.5, // mm, disk radius for a 1-mm electrode [anter2015], treated as a 1-mm-diameter disk
-  w: 0.3, // mm, front width: TODO(source), see m03 Assumptions
+  w: 0.3, // mm, front width from the upstroke rate [loose2014; wang1991], see m03-d1 Assumptions
 };
 
 export function linspace(a, b, n) {

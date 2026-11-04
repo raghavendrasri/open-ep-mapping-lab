@@ -1,0 +1,87 @@
+---
+title: "Glossary"
+---
+
+Terms used in the course, in alphabetical order. Each entry names the modules that use it.
+Clinical terms are defined in plain words for engineers; they are not clinical guidance.
+
+Ablation
+: Destroying a small area of heart tissue on purpose, for example by radiofrequency heating, to stop an arrhythmia. [m03](../modules/m03-electrograms.qmd)
+
+Action potential
+: The rise and fall of the transmembrane voltage when a heart cell is excited. [m03](../modules/m03-electrograms.qmd)
+
+Activation wavefront
+: The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
+
+Arrhythmia
+: An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
+
+Atrium (plural atria)
+: One of the two upper chambers of the heart. [m03](../modules/m03-electrograms.qmd)
+
+Bipolar electrogram
+: The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
+
+Clique
+: A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
+
+Conduction velocity
+: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd)
+
+Decapolar catheter
+: A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd)
+
+Electrogram
+: The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
+
+Endocardium
+: The inner surface of the heart wall. [m03](../modules/m03-electrograms.qmd)
+
+Far-field signal
+: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
+
+Focal source
+: A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
+
+Intrinsic deflection
+: The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Local activation time
+: The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)
+
+Low-voltage area
+: A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
+
+Myocardial infarction
+: Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
+
+Omnipolar electrogram
+: A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
+
+Pacing
+: Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
+
+Scar
+: Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd)
+
+Sinus rhythm
+: The normal heartbeat, started by the heart's own pacemaker. [m03](../modules/m03-electrograms.qmd)
+
+Spatial frequency
+: How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
+
+Transmembrane voltage
+: The voltage across a cell membrane, inside minus outside. [m03](../modules/m03-electrograms.qmd)
+
+Unipolar electrogram
+: The signal of one electrode measured against a distant reference electrode. It sees local and far-field activity. [m03](../modules/m03-electrograms.qmd)
+
+Ventricle
+: One of the two lower chambers of the heart. [m03](../modules/m03-electrograms.qmd)
+
+Ventricular tachycardia
+: A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd)
+
+Volume conductor
+: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd)

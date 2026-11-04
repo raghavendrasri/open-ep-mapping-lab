@@ -66,8 +66,8 @@ def demo_divs(body):
                 div = stack.pop()
                 if ".demo" in div["attrs"]:
                     demos.append((div["attrs"], "\n".join(div["lines"])))
-                if stack:
-                    stack[-1]["lines"].extend(div["lines"])
+                if stack:  # keep nested divs, fence included, in the parent's content
+                    stack[-1]["lines"].extend([f":::{{{div['attrs']}}}" if not div["attrs"].startswith("{") else f"::: {div['attrs']}"] + div["lines"])
         elif stack:
             stack[-1]["lines"].append(line)
     return demos
@@ -120,8 +120,12 @@ def test_demos_have_badge_and_assumptions(path):
         assert re.search(r"^\*\*Assumptions\*\*", content, re.M), (
             f"{path.name}: demo {{{attrs}}} needs an **Assumptions** list"
         )
-        assert re.search(r"#m\d\d-d\d+", attrs) or "#mNN-d" in attrs, (
-            f"{path.name}: demo {{{attrs}}} needs an ID like #m03-d1"
+        # An interactive demo has an ID like #m03-d1; a static figure box holds a numbered
+        # Quarto figure with an ID like #fig-m03-filter-chain (CLAUDE.md §9).
+        has_id = re.search(r"#m\d\d-d\d+", attrs) or "#mNN-d" in attrs or re.search(r"\{#fig-m\d\d-[a-z0-9-]+", content)
+        assert has_id, f"{path.name}: demo {{{attrs}}} needs an ID like #m03-d1 or a nested figure #fig-m03-..."
+        assert len(re.findall(r"^\*\*Assumptions\*\*", content, re.M)) == 1, (
+            f"{path.name}: demo {{{attrs}}} needs exactly one **Assumptions** list"
         )
 
 
@@ -144,28 +148,33 @@ def section(body, heading):
     return match.group(1) if match else ""
 
 
-MODEL_ANSWER = '<details class="model-answer">\n<summary>Model answer</summary>'
-MIN_INTERVIEW_QUESTIONS = 10  # CLAUDE.md §11
+# CLAUDE.md §3 and §11: question sections, their numbering, answer label and released minimum.
+QUESTION_SECTIONS = {
+    "Interview questions": ("Q", "Model answer", 10),
+    "Self-check": ("S", "Answer", 5),
+}
 
 
+@pytest.mark.parametrize("heading", list(QUESTION_SECTIONS))
 @pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
-def test_interview_questions_have_model_answers(path):
-    """Questions are numbered **Q1.**, **Q2.**, ... and each is followed by one model answer
-    (a <details class="model-answer"> block). Released modules need at least 10 (CLAUDE.md §11)."""
+def test_questions_have_answers(path, heading):
+    """Questions are numbered **Q1.**, **Q2.**, ... (interview) or **S1.**, ... (self-check), and each
+    is followed by exactly one answer in a <details class="model-answer"> block. Released modules
+    need at least 10 interview and 5 self-check questions (CLAUDE.md §11)."""
     meta, body = split_front_matter(path.read_text())
     if meta.get("status") == "planned":
         pytest.skip("planned placeholder pages have no questions")
-    text = section(body, "Interview questions")
-    numbers = [int(n) for n in re.findall(r"^\*\*Q(\d+)\. ", text, re.M)]
-    assert numbers == list(range(1, len(numbers) + 1)), f"{path.name}: questions must be numbered Q1, Q2, ... in order"
-    blocks = re.split(r"^\*\*Q\d+\. ", text, flags=re.M)[1:]
+    prefix, label, minimum = QUESTION_SECTIONS[heading]
+    answer = f'<details class="model-answer">\n<summary>{label}</summary>'
+    text = section(body, heading)
+    numbers = [int(n) for n in re.findall(rf"^\*\*{prefix}(\d+)\. ", text, re.M)]
+    assert numbers == list(range(1, len(numbers) + 1)), f"{path.name}: {heading} must be numbered {prefix}1, {prefix}2, ..."
+    blocks = re.split(rf"^\*\*{prefix}\d+\. ", text, flags=re.M)[1:]
     for n, block in zip(numbers, blocks):
-        assert block.count(MODEL_ANSWER) == 1, f"{path.name}: Q{n} needs exactly one model answer block"
-        assert "</details>" in block, f"{path.name}: Q{n}'s model answer is not closed with </details>"
+        assert block.count(answer) == 1, f"{path.name}: {prefix}{n} needs exactly one '{label}' block"
+        assert "</details>" in block, f"{path.name}: {prefix}{n}'s answer is not closed with </details>"
     if meta.get("status") == "released":
-        assert len(numbers) >= MIN_INTERVIEW_QUESTIONS, (
-            f"{path.name}: released module needs at least {MIN_INTERVIEW_QUESTIONS} interview questions"
-        )
+        assert len(numbers) >= minimum, f"{path.name}: released module needs at least {minimum} {heading.lower()}"
 
 
 @pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
@@ -269,3 +278,41 @@ def test_repository_address_has_one_source():
         text = notebook.read_text()
         for url in re.findall(r"https://github\.com/[\w.-]+/[\w.-]*open-ep-mapping-lab[\w.-]*", text):
             assert url == repo, f"{notebook.name}: clones {url}, expected {repo}"
+
+
+@pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
+def test_no_line_starts_with_a_cross_reference(path):
+    """Pandoc reads a line that starts with "(@label)" or "@label)" as an example-list marker, which
+    turns a wrapped sentence into a numbered list. Reflow so no line starts that way."""
+    bad = [n for n, line in enumerate(path.read_text().splitlines(), 1)
+           if re.match(r"^\s*\(?@[A-Za-z0-9_-]+[\);\]]", line)]
+    assert not bad, f"{path.name}: lines start with a cross-reference: {bad}"
+
+
+def display_equations(text):
+    """Map label -> normalized LaTeX for every labelled display equation $$ ... $$ {#eq-...}."""
+    norm = lambda tex: re.sub(r"\s+", "", tex)
+    return {m.group(2): norm(m.group(1)) for m in re.finditer(r"\$\$\n(.*?)\n\$\$ \{#(eq-[a-z0-9-]+)\}", text, re.S)}
+
+
+def test_formula_sheet_matches_modules():
+    """Each formula-sheet entry links to its derivation, and its LaTeX is identical to the module's."""
+    sheet = (ROOT / "formula-sheet" / "index.qmd").read_text()
+    entries = re.findall(r"\(\.\./modules/(m\d\d-[a-z0-9-]+)\.qmd#(eq-[a-z0-9-]+)\)\)\n\n\$\$\n(.*?)\n\$\$", sheet, re.S)
+    assert entries, "formula sheet has no entries"
+    for module, label, tex in entries:
+        module_eqs = display_equations((ROOT / "modules" / f"{module}.qmd").read_text())
+        assert label in module_eqs, f"formula sheet links to {module}#{label}, which does not exist"
+        assert re.sub(r"\s+", "", tex) == module_eqs[label], f"formula sheet {label} differs from {module}"
+
+
+def test_glossary_is_sorted_and_linked():
+    """Glossary terms are in alphabetical order and each names at least one existing module."""
+    text = (ROOT / "glossary" / "index.qmd").read_text()
+    entries = re.findall(r"^([^\n:][^\n]*)\n: ([^\n]+)$", text, re.M)
+    terms = [t for t, _ in entries]
+    assert terms == sorted(terms, key=str.lower), "glossary terms must be in alphabetical order"
+    pages = {p.stem for p in MODULE_FILES}
+    for term, definition in entries:
+        linked = re.findall(r"\(\.\./modules/(m\d\d-[a-z0-9-]+)\.qmd\)", definition)
+        assert linked and all(m in pages for m in linked), f"glossary '{term}' needs a link to an existing module"

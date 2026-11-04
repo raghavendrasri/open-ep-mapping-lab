@@ -7,6 +7,8 @@ project:
     - disclaimer.qmd
     - errata.qmd
     - course-map.qmd
+    - glossary/index.qmd
+    - formula-sheet/index.qmd
     - modules/*.qmd
   # Copied to the site as-is: demo scripts (plain ES modules, no build step) and pinned
   # third-party files such as the self-hosted IBM Plex fonts (SIL Open Font License).
@@ -31,6 +33,10 @@ website:
         text: Course map
       - href: modules/m03-electrograms.qmd
         text: Pilot module
+      - href: glossary/index.qmd
+        text: Glossary
+      - href: formula-sheet/index.qmd
+        text: Formula sheet
       - href: errata.qmd
         text: Errata
       - href: disclaimer.qmd

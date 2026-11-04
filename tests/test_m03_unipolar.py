@@ -157,3 +157,21 @@ def test_velocity_rescales_time_not_amplitude():
         u_t = unipolar(-c * t, a, A)  # electrode at x = 0, front passes at t = 0
         assert np.ptp(u_t) == pytest.approx(A / a, rel=1e-6)
         assert t[np.argmin(u_t)] - t[np.argmax(u_t)] == pytest.approx(2 * a / c, abs=2 * (t[1] - t[0]))
+
+
+def test_front_width_from_upstroke_rate():
+    """eq-m03-front: the fastest upstroke is max dVm/dt = c dV / (pi w), so w = c dV / (pi max dVm/dt).
+    Values quoted in the m03-d1 Assumptions (units: mm/ms, mV, mV/ms = V/s):
+    dV ~ 95 mV with 100 V/s gives w ~ 0.30 mm; the same trabeculae reported 250-300 V/s, giving 0.10-0.13 mm."""
+    s, t = sp.symbols("s t", real=True)
+    c_, dv, w_ = sp.symbols("c Delta_V w", positive=True)
+    vm = dv * (sp.Rational(1, 2) - sp.atan((s - c_ * t) / w_) / sp.pi)  # front moving along +s
+    rate_at_front = sp.diff(vm, t).subs(s, c_ * t)
+    assert sp.simplify(rate_at_front - c_ * dv / (sp.pi * w_)) == 0
+
+    def width(c, delta_v, rate):
+        return c * delta_v / (np.pi * rate)
+
+    assert width(1.0, 95.3, 100.0) == pytest.approx(0.30, abs=0.01)
+    assert width(1.0, 95.3, 300.8) == pytest.approx(0.10, abs=0.01)
+    assert width(1.0, 98.7, 250.2) == pytest.approx(0.13, abs=0.01)

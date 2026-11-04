@@ -83,3 +83,28 @@ details.model-answer > summary:focus-visible {
 @media (max-width: 575.98px) {
   main.content table { display: block; overflow-x: auto; }
 }
+
+/* Visual summary: a chain of stages, each with a small decorative sketch (aria-hidden) and real text. */
+.filter-chain {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7.4rem, 1fr));
+  gap: 0.6rem;
+  counter-reset: stage;
+}
+.filter-chain .stage {
+  background: #fff;
+  border: 1px solid #dfe4ea;
+  border-radius: 6px;
+  padding: 0.5rem 0.6rem 0.4rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
+}
+.filter-chain .stage p { margin: 0 0 0.35rem; }
+.filter-chain svg.sketch { width: 100%; height: auto; display: block; margin-bottom: 0.3rem; }
+.filter-chain svg.sketch .axis { stroke: #b8c0c8; stroke-width: 1; fill: none; }
+.filter-chain svg.sketch .curve { stroke: #155e9a; stroke-width: 2; fill: none; stroke-linejoin: round; }
+.filter-chain svg.sketch text { font-size: 11px; fill: #5b6875; font-family: inherit; }
+.filter-chain .stage:last-child { border-color: #155e9a; }
+
+/* Long display equations scroll sideways on narrow screens instead of widening the page. */
+main.content span.math.display { display: block; overflow-x: auto; overflow-y: hidden; max-width: 100%; }
