@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m34–m36 stage 4: code labs
+
+- **Three notebooks, Python only** (Part VI has no Octave copies), committed without outputs and run
+  in CI by nbmake: `labs/python/m34_lab.ipynb`, `m35_lab.ipynb`, `m36_lab.ipynb`. Each runs in
+  seconds; all data are synthetic or come from the course's own models.
+- **m35 synthetic task tuned for realism, not ease.** Local and far-field fronts use overlapping
+  distance ranges (0.8–4 mm and 2.5–8 mm) so the classifier is good but not perfect (AUC about
+  0.93), and the slope feature is measured after a 9-point moving average because noise makes small
+  signals look sharp. The leakage part uses 60 synthetic patients with a strong patient signature,
+  where a memorizing model (1-NN) gains about 20 points from a record-wise split and logistic
+  regression about 5. The patient-level bootstrap uses that clustered task; on part B's task, whose
+  labels vary within patients, the two intervals are similar, and the notebook says so.
+- **m36 traceability part reads this repository's own tests** with `ast`, and lists two
+  requirements verified another way (CI timeout, human review), to show that not every requirement
+  is verified by a test.
+- **Undo:** revert the stage 4 commit.
+
 ## 2026-11-03 · m34–m36 stage 3: demos
 
 - **Defaults for engineering demos.** CLAUDE.md §4 asks for physiologically plausible, cited

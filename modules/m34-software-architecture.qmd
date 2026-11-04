@@ -13,9 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stages 2 and 3 of 6.** The derivations and three interactive demos are written. Each
+**Draft, stages 2 to 4 of 6.** The derivations and three interactive demos are written. Each
 equation is checked by tests in `tests/test_m34_pipeline.py`, and the demos' math is checked
-against the same Python model in `tests/test_part6_demo_math.py`. The code lab, questions and the remaining sections follow in later
+against the same Python model in `tests/test_part6_demo_math.py`. The code lab is in place too. The questions and the remaining sections follow in later
 stages (plan: `docs/outlines/m34-outline.md`). Nothing here has had expert review yet.
 :::
 
@@ -266,7 +266,25 @@ in a header [@goldberger2000]; the m03 code lab reads one.
 
 ## Code lab
 
-*Planned in the outline.*
+The lab rebuilds this module's results in code, so you can see where each one comes from and
+break it on purpose. It runs in a few seconds.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Generate an 8-channel stream from the m03 electrogram model, quantize it to 14 bits in 16-bit words, and measure stored versus information rate (@eq-m34-data-rate) | synthetic |
+| B | Push blocks through a ring buffer while the consumer stalls; find the smallest buffer that loses nothing (@eq-m34-buffer) and how spare capacity sets the recovery time | synthetic |
+| C | Check Little's law and the single-server queue by discrete-event simulation (@eq-m34-littles-law, @eq-m34-mm1) | synthetic |
+| D | Align a location stream with electrogram timestamps; measure the misregistration, then remove it with a common clock (@eq-m34-misregistration, @eq-m34-interp-error) | synthetic |
+| E | Store the session in an OpenEP-style structure and in WFDB format, and read both back | synthetic |
+
+- **Python notebook:**
+  [labs/python/m34_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m34_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m34_lab.ipynb).
+- Part E writes WFDB files with the `wfdb` package; the OpenEP-style structure mirrors the kinds of content OpenEP stores but is not the OpenEP format itself [@williams2021].
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
 
 ## Self-check
 
