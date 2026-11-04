@@ -13,9 +13,10 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Pilot module, draft.** Stages 2 and 3 of 6 are written: the derivations, each checked by
-tests in `tests/test_m03_*.py`, and five interactive demos that use the same model. The code lab,
-questions and literature figures follow in later stages. Nothing here has had expert review yet.
+**Pilot module, draft.** Stages 2 to 5 of 6 are written: the derivations, five interactive
+demos, the code lab, the cheat sheet and the interview questions. Every result they use is checked
+by tests in `tests/test_m03_*.py`. The self-check, literature figures and the remaining sections
+follow in stage 6. Nothing here has had expert review yet.
 :::
 
 ## In 60 seconds
@@ -380,11 +381,284 @@ trace a true loop, and no single direction then describes propagation.
 
 ## Cheat sheet
 
-*Planned in the outline.*
+Everything here uses this module's model: a thin tissue sheet in an infinite homogeneous
+conductor, a planar front with the arctangent profile, and point electrodes unless stated.
+Throughout, $a = w + h$, and $s$ is the distance from the front to the electrode, positive before
+the front arrives.
+
+**Signals**
+
+| Quantity | Result |
+| ---------------- | ------------------------------------------------ |
+| Unipolar potential (@eq-m03-volume-conductor) | $\phi = \frac{1}{4\pi\sigma} \iint \frac{i_m}{\lVert \mathbf r - \mathbf r' \rVert}\, dA'$ |
+| Membrane current (@eq-m03-cable) | $i_m = \beta\, \partial^2 V_m / \partial x^2$ |
+| Unipolar, planar front (@eq-m03-unipolar-closed) | $U(s) = A\, s/(s^2 + a^2)$. Peaks at $s = \pm a$, zero at $s = 0$, peak-to-peak $A/a$ |
+| Unipolar timing (@eq-m03-unipolar-slope) | Peak to trough takes $2a/c$. Steepest slope $-cA/a^2$, at $s = 0$ |
+| Activation marker (@eq-m03-intrinsic-deflection) | $t_{\text{act}} \approx \arg\max_t(-dU/dt)$. Exact only for ideal propagation |
+| Bipolar (@eq-m03-bipolar) | $V_{\text{bip}} = \phi(\mathbf r_1) - \phi(\mathbf r_2)$, distal minus proximal |
+| Close bipole, $d \ll a$ (@eq-m03-bipolar-gradient) | $V_{\text{bip}} \approx d\cos\theta\, \dfrac{dU}{ds} = -\dfrac{d \cos\theta}{c}\, \dfrac{dU}{dt}$ |
+| Close-bipole amplitude | Peak-to-peak $\to \dfrac{9A}{8a^2}\, d\, \lvert\cos\theta\rvert$ |
+| Clique field (@eq-m03-clique-field) | $\hat{\mathbf E} = -(D D^{\mathsf T})^{-1} D\, \mathbf b$. Needs three or more electrodes not in a line |
+| Omnipole (@eq-m03-omnipole) | $v_\omega = -d\, \hat\omega \cdot \hat{\mathbf E}$ |
+| Velocity from one clique (@eq-m03-clique-velocity) | $c \approx \mathrm{pp}(dU/dt) / \mathrm{pp}(\hat n \cdot \hat{\mathbf E})$ |
+
+**Spatial filters** (spatial frequency $k$ in rad/mm)
+
+| Element | Transfer function | Behavior |
+| ----------- | ---------------- | ------------------ |
+| Height $h$ | $e^{-\lvert k\rvert h}$ (@eq-m03-height-filter) | Low-pass |
+| Disk electrode, radius $r_e$ | $2 J_1(k r_e)/(k r_e)$ (@eq-m03-disk-average) | Low-pass; first null at $k r_e \approx 3.83$ |
+| Bipole, spacing $d$ | $2\lvert\sin(k d \cos\theta / 2)\rvert$ (@eq-m03-bipolar-transfer) | High-pass; peak at $k d\cos\theta = \pi$, nulls at multiples of $2\pi$ |
+| Bipolar recording | Product of all three | Band-pass |
+
+**Far field** from a source at distance $R \gg d$ (@eq-m03-farfield): for a monopole, the unipole
+falls as $1/R$ and the bipole as $d/R^2$; for a dipole, as $1/R^2$ and $d/R^3$.
+
+**What changes what** (close bipole, $d \ll a$)
+
+| Change | Unipolar peak-to-peak | Unipolar steepest slope | Unipolar peak-to-trough time | Close-bipole peak-to-peak |
+| ------------ | -------- | -------- | -------- | -------- |
+| Double $a = w + h$ | Halves | Quarters | Doubles | Quarters |
+| Double $c$ | Same | Doubles | Halves | Same |
+| Double $d$ | Same | Same | Same | Doubles |
+| Turn the bipole to angle $\theta$ | Same | Same | Same | Times $\lvert\cos\theta\rvert$ |
+
+**Rules of thumb**
+
+- A unipole sees near and far. A bipole sees near, along its own axis.
+- In this model a small bipolar voltage can come from a weak source (small $A$), a large $w + h$,
+  a short spacing, or a wave crossing the bipole near 90°. The voltage alone cannot tell these
+  apart.
+- Height and electrode size blur. Spacing decides which spatial scales a bipole keeps.
+- An omnipole removes orientation dependence only while the clique is small next to $w + h$ and
+  the wave is locally planar.
+- Units: 1 m/s = 1 mm/ms, so a length in mm divided by a speed in m/s gives a time in ms.
 
 ## Interview questions
 
-*Planned in the outline.*
+Try each question before you open its model answer. The answers use this module's model and
+symbols. In a real interview, say which assumptions you are making.
+
+### Fundamentals
+
+**Q1. What does a unipolar electrogram measure, and why does a planar wavefront passing under the
+electrode give a positive deflection followed by a negative one?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+It measures the potential at one electrode relative to a distant reference. By
+@eq-m03-volume-conductor, that potential is a sum of membrane currents weighted by one over
+distance. Ahead of the front, membrane current flows outward (a source); behind it, current flows
+inward (a sink), and the two balance over the whole front. While the front approaches, the source
+side is closer, so the potential is positive. When the front is directly under the electrode, the
+two sides cancel and the potential crosses zero. After the front passes, the sink side is closer,
+so the potential is negative. In closed form, $U(s) = A s/(s^2 + a^2)$: peaks at $s = \pm a$, zero
+at $s = 0$ (@eq-m03-unipolar-closed).
+
+</details>
+
+**Q2. Why is the steepest negative slope of the unipolar signal used as the local activation time,
+and when does that marker become unreliable?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+At a fixed electrode $dU/dt = -c\, dU/ds$ (@eq-m03-unipolar-slope). For the planar front $dU/ds$ is
+largest at $s = 0$, so the steepest downstroke happens exactly when the front passes under the
+electrode (@eq-m03-intrinsic-deflection). That holds for ideal, uniform propagation. Simulation
+work found small errors under uniform conditions and larger ones near changes in activation
+sequence, in short strands and with non-uniform coupling [@steinhaus1989]. Curved or colliding
+fronts break the planar-wave assumption the derivation relies on.
+
+</details>
+
+**Q3. The electrode is lifted so that $w + h$ doubles. What happens to the unipolar amplitude, the
+amplitude of a close bipole, and the signal duration? Which recording is more local, and why?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Unipolar peak-to-peak is $A/a$, so it halves. A close bipole's peak-to-peak is
+$\frac{9A}{8a^2}\, d\, \lvert\cos\theta\rvert$, so it falls to a quarter. The unipolar peak-to-trough
+time is $2a/c$, so it doubles: the signal gets smaller and broader. The bipole is more local:
+its amplitude falls off faster with distance, so tissue close to the catheter dominates it. In
+spatial-frequency terms, height multiplies the spectrum by $e^{-\lvert k\rvert h}$, and the bipole
+mostly keeps the higher frequencies that this factor removes first (@eq-m03-height-filter).
+
+</details>
+
+**Q4. Describe a bipolar recording as a spatial filter. What sets its low and high edges, and
+where are its nulls?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+A bipolar recording sees the tissue's current pattern through the product
+$H_{\text{bip}} \cdot H_{\text{disk}} \cdot e^{-\lvert k\rvert h}$. The height factor and the disk
+average $2J_1(kr_e)/(kr_e)$ are low-pass filters, so height and electrode size set the high edge:
+fine detail is blurred, and the disk factor first reaches zero at $k r_e \approx 3.83$. The bipole
+factor $2\lvert\sin(kd\cos\theta/2)\rvert$ is zero at $k = 0$, so spacing sets the low edge. It
+peaks at $kd\cos\theta = \pi$ and has nulls wherever $kd\cos\theta$ is a multiple of $2\pi$
+(@eq-m03-bipolar-transfer). Together they make a band-pass filter, and orientation enters through
+$\cos\theta$.
+
+</details>
+
+### Derivation questions
+
+**Q5. Show that a close bipole measures a directional derivative. How large is the error of that
+approximation, and what does it predict about catheter orientation?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+For a planar wave the two electrodes sit at $s \pm \delta$, with $\delta = \tfrac{d}{2}\cos\theta$
+(@eq-m03-bipolar-planar). A Taylor expansion gives
+$U(s + \delta) - U(s - \delta) = 2\delta\, U'(s) + \tfrac{\delta^3}{3} U'''(s) + \dots$, so
+$V_{\text{bip}} \approx d\cos\theta\, dU/ds = d\, \hat u \cdot \nabla\phi$
+(@eq-m03-bipolar-gradient). The next term is smaller by a factor of order $\delta^2$, so the
+relative error falls as $d^2$. The amplitude scales with $\lvert\cos\theta\rvert$: a bipole aligned
+with the wave records the most, and one at 90° records nothing, because both electrodes activate
+together. In animal recordings, voltage at the same site varied most where the wavefront was
+perpendicular to one bipole and parallel to the other [@takigawa2018].
+
+</details>
+
+**Q6. Show that, in this model, a close bipolar electrogram is proportional to the time derivative
+of the unipolar signal at its center. When does its largest value occur?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Combine $V_{\text{bip}} \approx d\cos\theta\, dU/ds$ (@eq-m03-bipolar-gradient) with
+$dU/dt = -c\, dU/ds$ (@eq-m03-unipolar-slope):
+
+$V_{\text{bip}}(t) \approx -\dfrac{d\cos\theta}{c}\, \dfrac{dU}{dt}$,
+
+where $U$ is the unipolar signal at the bipole's center. The bipolar signal is largest in magnitude
+when $-dU/dt$ is largest, which is when the front passes under the center of the bipole. So in the
+ideal case, the bipolar peak and the unipolar steepest downstroke mark the same moment. The factor
+$1/c$ cancels the factor $c$ in the slope, so the bipolar amplitude does not depend on conduction
+velocity.
+
+</details>
+
+**Q7. Why do bipoles reject far-field activity better than unipoles? Derive the decay exponents,
+and say why the rejection is never complete.**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+A distant source changes slowly across the catheter, so a bipole records about $d$ times the
+gradient of its potential. A monopole's potential falls as $1/R$, so its gradient, and the bipole
+signal, fall as $1/R^2$. A dipole's potential falls as $1/R^2$, so the bipole signal falls as
+$1/R^3$ (@eq-m03-farfield). The bipole is always one power of $R$ better than the unipole. But the
+gradient of a distant source is small, not zero, so far-field signals still appear in bipolar
+recordings, and the local signal can lie under either electrode [@stevenson2005].
+
+</details>
+
+**Q8. How do you estimate the local electric field from a clique of electrodes, and what is the
+smallest clique that works?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+If the potential is nearly linear across the clique, each bipole is a projection of the field:
+$b_{ij} = \phi_j - \phi_i \approx -(\mathbf r_j - \mathbf r_i) \cdot \mathbf E$. Stacking the bipoles
+gives $\mathbf b = -D^{\mathsf T}\mathbf E$, and least squares gives
+$\hat{\mathbf E} = -(DD^{\mathsf T})^{-1} D\, \mathbf b$ [@riccio2021] (@eq-m03-clique-field). A
+field in the plane has two unknowns, so the clique needs two independent bipole directions: at least
+three electrodes that are not in a line. If the electrodes are collinear, $DD^{\mathsf T}$ has
+rank 1, and only the field component along the line can be measured. A square clique gives six
+bipoles for the same two unknowns, and least squares combines them.
+
+</details>
+
+**Q9. Derive the conduction velocity from a single clique, without measuring activation times.
+Check the units.**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Along the propagation direction the field is $\hat n \cdot \mathbf E = -dU/ds$, and the unipolar
+slope is $dU/dt = -c\, dU/ds$ (@eq-m03-unipolar-slope). Dividing one by the other cancels $dU/ds$,
+so $c \approx \mathrm{pp}(dU/dt)/\mathrm{pp}(\hat n \cdot \hat{\mathbf E})$
+(@eq-m03-clique-velocity) [@riccio2021; @deno2017]. Units: (mV/ms) divided by (mV/mm) is mm/ms,
+which equals m/s. The estimate assumes a plane wave across the clique and that the unipolar signal
+is recorded at the clique. Module m25 returns to conduction velocity.
+
+</details>
+
+### Design and troubleshooting
+
+**Q10. At one site, the bipolar amplitude halves after the catheter is rotated, and nothing else
+changes. Give a model explanation, and say how you would tell an orientation effect from a real
+change in the tissue.**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+For a close bipole the amplitude scales with $\lvert\cos\theta\rvert$ (@eq-m03-bipolar-gradient).
+If the bipole was aligned with the wave before, halving means $\lvert\cos\theta\rvert$ went from 1 to
+0.5, which is a rotation of 60° relative to the propagation direction. To separate orientation
+from tissue: look at the unipolar amplitude, which a point electrode records independently of
+catheter orientation; compare several bipole directions at the same site; or use an omnipolar
+estimate, which, within its assumptions, reads the field along the propagation direction whatever
+the catheter's orientation (@eq-m03-omnipole).
+
+</details>
+
+**Q11. For a fixed local wavefront and a fixed distant source, how does bipole spacing change the
+share of far-field signal in a bipolar recording?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+While $d \ll a$, both the local and the far-field bipolar signals are about $d$ times a gradient,
+so their ratio barely depends on $d$. Once $d$ is comparable to $a = w + h$, the local signal stops
+growing: the bipole spans the whole front, and for very wide spacing it records two separate
+unipolar deflections, with peak-to-peak tending to $A/a$. The far-field term keeps growing with $d$
+as long as $d \ll R$. So wider spacing raises the far-field share. In this model, with a monopole at
+$R = 200a$ on the bipole axis, the share stays within 1% of the short-bipole value up to
+$d = 0.2a$. It is about 1.2 times that value at $d = a$, and about 1.9 times at $d = 2a$.
+
+</details>
+
+**Q12. Why is an omnipolar amplitude independent of catheter orientation, and which assumptions
+break that?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+The clique estimates the field vector $\hat{\mathbf E}$, whichever bipoles the catheter happens to
+offer. Reading it along the propagation direction gives the signal of a bipole aligned with the
+wave, whatever the catheter's orientation (@eq-m03-omnipole). That relies on a locally planar wave
+and a potential that is linear across the clique. Both fail as the spacing grows relative to
+$w + h$. In this model, without time alignment, the spread of omnipolar amplitude across wave
+directions grows from under 1% at $d/a = 0.2$ to about 32% at $d/a = 1.6$ for a square clique.
+Published work traces the same bias to bipoles in a clique activating at slightly different times,
+and aligning them first reduces it [@riccio2021]. Curved or colliding fronts make the field trace a
+true loop, and then no single direction describes propagation.
+
+</details>
+
+**Q13. In this model, does slower conduction lower unipolar or bipolar voltage? What does it
+change?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Not on its own. With $w$, $h$ and the source strength fixed, the signal is $U(x_e - ct)$, so $c$
+only rescales the time axis. Unipolar peak-to-peak stays $A/a$, and close-bipole peak-to-peak stays
+$\frac{9A}{8a^2}\, d\, \lvert\cos\theta\rvert$. What changes is timing: the unipolar peak-to-trough
+time $2a/c$ grows, and the steepest slope $cA/a^2$ falls, as $c$ falls. In this model, a voltage
+change has to come from $A$, $w$, $h$, $d$ or $\theta$. The model treats those as independent of
+$c$. Whether they stay fixed when conduction slows in real tissue depends on why it slows; module
+m09 covers propagation.
+
+</details>
 
 ## Code lab
 

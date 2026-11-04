@@ -136,3 +136,52 @@ def test_far_field_decay_exponents():
     assert slopes["monopole"][1] == pytest.approx(-2.0, abs=1e-2)
     assert slopes["dipole"][0] == pytest.approx(-2.0, abs=1e-6)
     assert slopes["dipole"][1] == pytest.approx(-3.0, abs=1e-2)
+
+
+def test_close_bipole_is_scaled_time_derivative():
+    """Cheat sheet: eq-m03-bipolar-gradient with eq-m03-unipolar-slope gives
+    V_bip ~ -(d cos(theta) / c) dU/dt at the bipole's center, so its largest value falls when the
+    front passes the center."""
+    t = np.linspace(-30, 30, 600_001)
+    for c, theta in [(0.5, 0.0), (1.0, 0.6), (1.5, -1.0)]:
+        d = 0.05 * a
+        s_center = -c * t  # bipole center at x = 0, front passes it at t = 0
+        v = bipolar_planar(s_center, d, theta, a, A)
+        du_dt = np.gradient(unipolar(s_center, a, A), t)
+        approx = -(d * np.cos(theta) / c) * du_dt
+        assert np.max(np.abs(v - approx)) < 5e-3 * np.max(np.abs(v))
+        assert abs(t[np.argmax(np.abs(v))]) < 2 * (t[1] - t[0])
+
+
+def test_disk_transfer_first_null():
+    """Cheat sheet: the disk factor 2 J1(k r) / (k r) first reaches zero at k r = 3.8317 (first zero of J1)."""
+    from scipy.special import jn_zeros
+
+    from epml.electrograms import disk_transfer
+
+    x0 = jn_zeros(1, 1)[0]
+    assert x0 == pytest.approx(3.8317, abs=1e-4)
+    x = np.linspace(1e-6, x0 - 1e-6, 10_001)
+    assert np.all(disk_transfer(x, 1.0) > 0)
+    assert disk_transfer(np.array([x0]), 1.0)[0] == pytest.approx(0.0, abs=1e-12)
+
+
+def test_far_field_share_grows_with_spacing():
+    """Interview question: for d << a both the local and the far-field bipolar signals scale with d,
+    so their ratio barely changes; once d is comparable to a = w + h the local signal saturates
+    (towards the unipolar peak-to-peak A / a) while the far-field term keeps growing.
+    Far source: a unit monopole on the bipole axis at R = 200 a."""
+    s = np.linspace(-150 * a, 150 * a, 600_001)
+    R = 200 * a
+
+    def share(d):
+        far = 1 / (R - d / 2) - 1 / (R + d / 2)
+        return far / np.ptp(bipolar_planar(s, d, 0.0, a, A))
+
+    ratios = {k: share(k * a) / share(0.05 * a) for k in (0.1, 0.2, 0.5, 1, 2, 3)}
+    assert ratios[0.2] == pytest.approx(1.0, abs=0.01)
+    assert ratios[1] == pytest.approx(1.22, abs=0.01)
+    assert ratios[2] == pytest.approx(1.86, abs=0.01)
+    values = [ratios[k] for k in (0.1, 0.2, 0.5, 1, 2, 3)]
+    assert all(x < y for x, y in zip(values, values[1:]))
+    assert np.ptp(bipolar_planar(s, 40 * a, 0.0, a, A)) == pytest.approx(A / a, rel=5e-3)

@@ -147,3 +147,13 @@ def test_unipolar_slope_scales_with_velocity():
         slopes.append(-np.min(np.gradient(u_t, t)))
     assert slopes[1] / slopes[0] == pytest.approx(2.0, rel=1e-3)
     assert slopes[1] == pytest.approx(1.0 * A / a**2, rel=1e-3)
+
+
+def test_velocity_rescales_time_not_amplitude():
+    """Cheat sheet: with w and h fixed, c only rescales time. Peak-to-peak stays A / a, and the
+    interval from the positive peak to the negative trough is 2a / c."""
+    t = np.linspace(-40, 40, 160_001)
+    for c in (0.3, 0.6, 1.2):
+        u_t = unipolar(-c * t, a, A)  # electrode at x = 0, front passes at t = 0
+        assert np.ptp(u_t) == pytest.approx(A / a, rel=1e-6)
+        assert t[np.argmin(u_t)] - t[np.argmax(u_t)] == pytest.approx(2 * a / c, abs=2 * (t[1] - t[0]))

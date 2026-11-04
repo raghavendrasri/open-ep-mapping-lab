@@ -138,6 +138,36 @@ def test_released_modules_are_finished(path):
     assert "**Key takeaways**" in body, f"{path.name}: released module needs Key takeaways"
 
 
+def section(body, heading):
+    """Text of one level-2 section, up to the next level-2 heading."""
+    match = re.search(rf"^## {re.escape(heading)}\n(.*?)(?=^## |\Z)", body, re.M | re.S)
+    return match.group(1) if match else ""
+
+
+MODEL_ANSWER = '<details class="model-answer">\n<summary>Model answer</summary>'
+MIN_INTERVIEW_QUESTIONS = 10  # CLAUDE.md §11
+
+
+@pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
+def test_interview_questions_have_model_answers(path):
+    """Questions are numbered **Q1.**, **Q2.**, ... and each is followed by one model answer
+    (a <details class="model-answer"> block). Released modules need at least 10 (CLAUDE.md §11)."""
+    meta, body = split_front_matter(path.read_text())
+    if meta.get("status") == "planned":
+        pytest.skip("planned placeholder pages have no questions")
+    text = section(body, "Interview questions")
+    numbers = [int(n) for n in re.findall(r"^\*\*Q(\d+)\. ", text, re.M)]
+    assert numbers == list(range(1, len(numbers) + 1)), f"{path.name}: questions must be numbered Q1, Q2, ... in order"
+    blocks = re.split(r"^\*\*Q\d+\. ", text, flags=re.M)[1:]
+    for n, block in zip(numbers, blocks):
+        assert block.count(MODEL_ANSWER) == 1, f"{path.name}: Q{n} needs exactly one model answer block"
+        assert "</details>" in block, f"{path.name}: Q{n}'s model answer is not closed with </details>"
+    if meta.get("status") == "released":
+        assert len(numbers) >= MIN_INTERVIEW_QUESTIONS, (
+            f"{path.name}: released module needs at least {MIN_INTERVIEW_QUESTIONS} interview questions"
+        )
+
+
 @pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
 def test_every_equation_has_a_test(path):
     """CLAUDE.md §5: every numbered equation is named in at least one test in tests/."""
