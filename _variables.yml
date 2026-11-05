@@ -1,9 +1,11 @@
 # Where the course lives. Pages use these with {{< var repo.url >}} instead of
 # hard-coding an address, so a move or rename is a one-line change here.
+# site.url is the custom domain set in the repo's Settings → Pages; repo.url is
+# where the repository is today (GitHub redirects it if the repo is moved later).
 # The Colab cell in labs/python/*.ipynb and README.md hold the same address;
 # tests/test_content_rules.py checks that they agree with this file.
 site:
-  url: https://open-ep-mapping-lab.github.io/
+  url: https://open-ep-mapping-lab.org/
 repo:
-  url: https://github.com/open-ep-mapping-lab/open-ep-mapping-lab.github.io
-  colab: https://colab.research.google.com/github/open-ep-mapping-lab/open-ep-mapping-lab.github.io
+  url: https://github.com/raghavendrasri/open-ep-mapping-lab
+  colab: https://colab.research.google.com/github/raghavendrasri/open-ep-mapping-lab
