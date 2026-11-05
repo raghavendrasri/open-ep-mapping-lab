@@ -2,6 +2,19 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m30 stage 2: derivations and equation tests
+
+- **m30 written before m20 and m22–m26**, with its own minimal versions (projection, inverse-distance
+  interpolation, plane-fit velocity, RMSE and fill distance), labelled `eq-m30-*`. When those
+  modules are written, m30 will cite their equations instead.
+- **Eikonal ground truth only** (no reaction–diffusion option yet). The solver in
+  `epml/mapping.py` uses iterative triangle updates rather than ordered fast marching: simpler to
+  read, same fixed point. Tests compare it with exact answers on a plane (≤ 5 % worst case, improving
+  with refinement), a sphere (mean error < 2 %) and a detour around a line of block.
+- **Own geometry:** flat grids and icospheres generated in code. No external mesh or new dependency
+  (pyvista is not needed for stage 2).
+- **Undo:** revert the m30 stage 2 commit.
+
 ## 2026-11-04 · m29 stage 2: derivations and equation tests
 
 - **DF, OI and Hilbert phase defined in m29** (`eq-m29-*`), since m05 is not written yet. When m05
