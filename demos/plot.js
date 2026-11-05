@@ -283,3 +283,151 @@ export function el(tag, className, text) {
   if (text) node.textContent = text;
   return node;
 }
+
+// A labeled drop-down. options: [{value, label}]. Keyboard works natively. Returns the select.
+export function addSelect(parent, { id, label, options, value, onChange }) {
+  const row = document.createElement("div");
+  row.className = "demo-control";
+  const lab = document.createElement("label");
+  lab.htmlFor = id;
+  lab.textContent = label;
+  const select = document.createElement("select");
+  select.id = id;
+  for (const o of options) {
+    const opt = document.createElement("option");
+    opt.value = String(o.value);
+    opt.textContent = o.label;
+    select.appendChild(opt);
+  }
+  select.value = String(value);
+  select.addEventListener("change", onChange);
+  row.append(lab, select);
+  parent.appendChild(row);
+  return select;
+}
+
+// A button inside the controls row.
+export function addButton(parent, { label, onClick }) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "demo-button";
+  button.textContent = label;
+  button.addEventListener("click", onClick);
+  parent.appendChild(button);
+  return button;
+}
+
+// Viridis (perceptually uniform, readable with common color-vision deficiencies), sampled from
+// matplotlib's map at ten points and interpolated linearly.
+const VIRIDIS = ["#440154", "#482878", "#3e4989", "#31688e", "#26828e", "#1f9e89", "#35b779", "#6ece58",
+  "#b5de2b", "#fde725"].map((h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)));
+
+export function viridis(t) {
+  const u = Math.min(1, Math.max(0, t)) * (VIRIDIS.length - 1);
+  const i = Math.min(VIRIDIS.length - 2, Math.floor(u));
+  const f = u - i;
+  return VIRIDIS[i].map((c, k) => Math.round(c + f * (VIRIDIS[i + 1][k] - c)));
+}
+
+// Diverging map for signed differences: Okabe-Ito blue (negative), white (0), vermillion (positive).
+export function diverging(t) {
+  const neg = [0, 114, 178];
+  const pos = [213, 94, 0];
+  const s = Math.min(1, Math.max(-1, t));
+  const end = s < 0 ? neg : pos;
+  return [255, 255, 255].map((w, k) => Math.round(w + Math.abs(s) * (end[k] - w)));
+}
+
+// A 2D scalar field on a regular grid, drawn in the panel {x, y, w, h} of a canvas from setupCanvas.
+// field: row-major values (row 0 at the bottom), null for no data; extent [x0, x1, y0, y1];
+// range [lo, hi]; colormap(t) with t in [0, 1] (or [-1, 1] when signed); band: draw isochrone-like
+// bands of this width; mask: optional booleans drawn in gray (for example scar); markers [{x, y}].
+export function drawField(p, opts) {
+  const { ctx } = p;
+  const { nx, ny, field, extent, range, panel, title } = opts;
+  const cmap = opts.colormap || viridis;
+  const signed = opts.signed || false;
+  const m = { l: 44, r: 10, t: 20, b: 36 };
+  const W = panel.w - m.l - m.r - 46;
+  const H = panel.h - m.t - m.b;
+  const side = Math.min(W, H);
+  const x0p = panel.x + m.l;
+  const y0p = panel.y + m.t;
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(panel.x, panel.y, panel.w, panel.h);
+  const cw = side / nx;
+  const ch = side / ny;
+  for (let j = 0; j < ny; j++) {
+    for (let i = 0; i < nx; i++) {
+      const k = j * nx + i;
+      let color;
+      if (opts.mask && opts.mask[k]) color = [140, 149, 159];
+      else if (field[k] === null || !Number.isFinite(field[k])) color = [235, 237, 240];
+      else {
+        let v = field[k];
+        if (opts.band) v = Math.floor(v / opts.band) * opts.band + opts.band / 2;
+        const t = signed ? v / Math.max(Math.abs(range[0]), Math.abs(range[1])) : (v - range[0]) / (range[1] - range[0]);
+        color = cmap(t);
+      }
+      ctx.fillStyle = `rgb(${color[0]},${color[1]},${color[2]})`;
+      ctx.fillRect(x0p + i * cw, y0p + side - (j + 1) * ch, cw + 0.6, ch + 0.6);
+    }
+  }
+  ctx.strokeStyle = "#8c959f";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(x0p, y0p, side, side);
+  const [ex0, ex1, ey0, ey1] = extent;
+  const X = (v) => x0p + ((v - ex0) / (ex1 - ex0)) * side;
+  const Y = (v) => y0p + side - ((v - ey0) / (ey1 - ey0)) * side;
+  for (const mk of opts.markers || []) {
+    ctx.fillStyle = mk.color || COLORS.ink;
+    ctx.strokeStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(X(mk.x), Y(mk.y), mk.radius || 2.5, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+  }
+  ctx.font = '11px "IBM Plex Sans", system-ui, sans-serif';
+  ctx.fillStyle = COLORS.gray;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "top";
+  for (const v of niceTicks(ex0, ex1, 4)) ctx.fillText(fmt(v), X(v), y0p + side + 3);
+  ctx.textAlign = "right";
+  ctx.textBaseline = "middle";
+  for (const v of niceTicks(ey0, ey1, 4)) ctx.fillText(fmt(v), x0p - 4, Y(v));
+  ctx.fillStyle = COLORS.ink;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(opts.xLabel || "x (mm)", x0p + side / 2, y0p + side + 30);
+  ctx.save();
+  ctx.translate(panel.x + 10, y0p + side / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textBaseline = "middle";
+  ctx.fillText(opts.yLabel || "y (mm)", 0, 0);
+  ctx.restore();
+  ctx.textAlign = "left";
+  ctx.textBaseline = "top";
+  if (title) ctx.fillText(title, x0p, panel.y + 3);
+  // color bar
+  const bx = x0p + side + 10;
+  const bw = 10;
+  for (let s = 0; s < side; s++) {
+    const t = 1 - s / side;
+    const c = signed ? cmap(2 * t - 1) : cmap(t);
+    ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+    ctx.fillRect(bx, y0p + s, bw, 1.5);
+  }
+  ctx.strokeRect(bx, y0p, bw, side);
+  ctx.fillStyle = COLORS.gray;
+  ctx.textAlign = "left";
+  ctx.textBaseline = "middle";
+  const lim = signed ? Math.max(Math.abs(range[0]), Math.abs(range[1])) : null;
+  const lo = signed ? -lim : range[0];
+  const hi = signed ? lim : range[1];
+  for (const v of niceTicks(lo, hi, 4)) ctx.fillText(fmt(v), bx + bw + 3, y0p + side - ((v - lo) / (hi - lo)) * side);
+  if (opts.unit) {
+    ctx.textBaseline = "bottom";
+    ctx.fillText(opts.unit, bx - 2, y0p - 2);
+  }
+  return { X, Y };
+}

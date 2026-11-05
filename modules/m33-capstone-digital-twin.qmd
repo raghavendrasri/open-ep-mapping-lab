@@ -13,9 +13,9 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stage 2 of 6.** The derivations are written, and each equation is checked by tests in
-`tests/test_m33_twin.py`. Demos, the guided code lab, questions and the remaining sections follow in
-later stages (plan: `docs/outlines/m33-outline.md`). Nothing here has had expert review yet. No
+**Draft, stage 3 of 6.** The derivations and two demos are written. Each equation is checked by
+tests in `tests/test_m33_twin.py`, and the demos by `tests/test_m33_demos.py`. The guided code lab,
+questions and the remaining sections follow in later stages (plan: `docs/outlines/m33-outline.md`). Nothing here has had expert review yet. No
 openCARP code or binaries are part of this course; the lab links to openCARP and exports files for
 it.
 :::
@@ -68,10 +68,36 @@ potentials, electrograms and ECGs of a full bidomain model at a computational co
 orders of magnitude lower [@neic2017]. This capstone keeps the surface isotropic ($v_f = v_t$) and
 fits one speed per region.
 
+**What does the speed-up cost?** The demo below runs both models on the same sheet: a
+reaction–diffusion (monodomain) model with Mitchell–Schaeffer membrane kinetics [@mitchell2003], and
+the eikonal model with its speeds set to the reaction–diffusion model's planar conduction velocities.
+After removing the best constant offset (@eq-m33-offset), the two agree within about 1 ms for a
+planar wave. With point pacing, the reaction–diffusion wave falls 3–4 ms behind the eikonal one, and
+most of that lag builds up within 3 mm of the stimulus. Behind a narrow isthmus in a line of block,
+reaction–diffusion activates about 2.7 ms later than the eikonal model predicts. A twin fitted with
+the eikonal model absorbs such differences into its fitted speeds and offset; that is one reason
+fitted speeds are model-specific numbers.
+
+::: {.demo #m33-d2 badge="simulation"}
+```{=html}
+<div id="m33-d2-root" class="demo-root" data-demo="m33-d2"></div>
+<script type="module" src="../demos/m33-d2-eikonal-vs-rd.js"></script>
+```
+
+**Assumptions**
+
+- Reaction–diffusion: Mitchell–Schaeffer monodomain model [@mitchell2003] on a 30 × 30 mm sheet, 0.2-mm grid, explicit time steps of 0.005 ms. The membrane constants are illustrative; the conductivities were tuned with @eq-m33-cv-scaling so that the planar velocity is 1.0 m/s in normal tissue and 0.6 m/s in the slow region, values reported for normal-voltage and low-voltage left atrium [@heil2023]. The line of block is an insulating scar. Activation is the first upward crossing of half the model's dimensionless voltage.
+- Eikonal: the m30 solver on the same grid with those two velocities; the stimulated nodes are its sources.
+- Precomputed by `tools/make_m33_d2.py` (about a minute) and shown at every second node (0.4 mm), with times rounded to 0.1 ms. A test checks that the data come from the current generator and that the numbers quoted above hold.
+- Results depend on the membrane model and its parameters, and would change in 3D tissue, with anisotropy or with a different stimulus.
+:::
+
 **Key takeaways**
 
 - Twins are fitted by running a forward model many times; eikonal models make that affordable.
 - Anisotropy enters through the speed tensor $D$.
+- The eikonal model misses delays that reaction–diffusion shows near a point stimulus and behind an
+  isthmus; fitted parameters partly compensate.
 
 ### Fitting the model to the map
 
@@ -133,6 +159,26 @@ and no noise, $E_{\text{CV}}$ is close to zero. A model with too many parameters
 points better and predicts held-out points worse; the tests show this with polynomials. For twins,
 also refit from many starting points: if quite different parameter sets give the same error, the
 data do not identify those parameters.
+
+The demo fits twins with 1 to 16 regions to activation times from a sheet with a hidden slow
+region. More regions always fit the measured points at least as well; the held-out error tells you
+when the extra regions have started fitting noise. A region with no measured point inside it is
+constrained only indirectly, through points the wave reaches after crossing it; the demo grays such
+regions out.
+
+::: {.demo #m33-d1 badge="simulation"}
+```{=html}
+<div id="m33-d1-root" class="demo-root" data-demo="m33-d1"></div>
+<script type="module" src="../demos/m33-d1-calibrate-twin.js"></script>
+```
+
+**Assumptions**
+
+- Truth: an eikonal model on a 30 × 30 mm sheet with a 1-mm triangulated grid, paced at the middle of the left edge. Speed is 1.0 m/s, except 0.6 m/s inside a disc of radius 7 mm; these are values reported for normal-voltage and low-voltage left atrium [@heil2023]. The disc's size and place are illustrative.
+- Measurements: activation times at random grid points, plus Gaussian annotation noise and an unknown timing offset of 20 ms (any offset gives the same fit). The default noise of 1 ms and the default of 60 points are illustrative inputs; typical clinical values: `TODO(source)`.
+- Twin: the same eikonal solver (fast-sweeping order, same fixed point as the Python solver in the tests) with one speed per square region, fitted by Levenberg–Marquardt on log speed within 0.1–3 m/s; the offset is solved in closed form (@eq-m33-offset). Held-out error is 5-fold cross-validation (@eq-m33-holdout).
+- Ignored: anisotropy, curvature of the atrial wall, wall thickness, and errors in point position. A real twin also faces annotation bias, which noise of zero mean does not model.
+:::
 
 **Key takeaways**
 
