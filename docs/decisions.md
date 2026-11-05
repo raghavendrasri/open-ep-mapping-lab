@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m32 stage 2: derivations and equation tests
+
+- **Tikhonov, filter factors and λ rules defined in m32** (`eq-m32-*`), since m07 is not written
+  yet; m07 can take them over later.
+- **Axisymmetric nested-sphere model** (Legendre polynomials) for the closed-form forward matrix and
+  all tests. It shows the ill-posedness exactly and needs no external geometry.
+- **Hansen's L-curve papers** are not in PubMed; both were checked by DOI (SIAM Review 1992,
+  10.1137/1034115; SIAM J Sci Comput 1993, 10.1137/0914086).
+- **EDGAR terms** are taken from its user guide (checked 2026-11-04), cited as an official document.
+  No EDGAR data is committed. How the lab gets data stays open (outline question 1).
+- **Undo:** revert the m32 stage 2 commit.
+
 ## 2026-11-04 · m31 stage 2: derivations and equation tests
 
 - **All equation tests use synthetic signals**, so they run without downloading iafdb; the code lab
