@@ -37,6 +37,8 @@ def ms_cable(n, dx, dt, t_end, D, params, stim_times, stim_cells=3, stim_amp=0.5
     D is the diffusion coefficient (length^2 / ms, in the units of dx). Upstroke time = first time
     v crosses 0.5 upward in each beat, linearly interpolated.
     """
+    if D * dt / dx**2 > 0.5:
+        raise ValueError("explicit diffusion step is unstable: need D dt / dx^2 <= 1/2")
     v = np.zeros(n)
     h = np.ones(n)
     steps = int(round(t_end / dt))
