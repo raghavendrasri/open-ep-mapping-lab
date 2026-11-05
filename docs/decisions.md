@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m29 stage 2: derivations and equation tests
+
+- **DF, OI and Hilbert phase defined in m29** (`eq-m29-*`), since m05 is not written yet. When m05
+  is written it can define the general tools and m29 can cite them; the formula sheet will keep one
+  copy.
+- **Mitchell–Schaeffer model in `epml/ionic.py`**, shared with m33. Tests use illustrative
+  parameters only; the module states no parameter values until they are sourced.
+- **Preprocessing chain not attributed.** The abstract of Botteron and Smith (1995) does not
+  describe the band-pass / rectify / low-pass chain, so the module states the chain and marks its
+  origin and filter values `TODO(source)`; Botteron and Smith is not cited yet.
+- **Recomposition wavelet period** set to the cycle length in this course; only the slope-weighted
+  amplitudes are attributed to Kuklik et al.
+- **Undo:** revert the m29 stage 2 commit.
+
 ## 2026-11-04 · m28 stage 2: derivations and equation tests
 
 - **Spheroidal cells described, not derived.** The PMC copy of Kotnik and Miklavčič (2000) has no
