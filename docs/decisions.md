@@ -2,6 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m27 stage 2: derivations and equation tests
+
+- **Outline questions answered with the recommended options** (the outline was merged without
+  answers): generic weighted index only, no commercial formula; 1D spherical model in the text and
+  lab, 2D axisymmetric only in the demo; cryoablation out of scope.
+- **Hemisphere instead of a disk electrode** in eq-m27-spreading. The hemisphere result follows from
+  the sphere by symmetry and needs no outside source; the disk result (Newman) is still unverified.
+- **New equation eq-m27-power-fraction** (share of heating within radius $r$ is $1 - r_0/r$). It is
+  the clearest way to show that heating is concentrated next to the tip.
+- **Numbers taken from the Berjano 2006 review (full text read):** RF frequency range 300 kHz–1 MHz
+  with tissue treated as purely resistive; a conductivity temperature coefficient of +2 %/°C, used by
+  most models and measured below 42 °C; 50 °C as the most frequently used lesion isotherm.
+  Arrhenius coefficients for myocardium and blood/tissue conductivities stay `TODO(source)`.
+- **Undo:** revert the m27 stage 2 commit.
+
 ## 2026-11-04 · m34–m36 stage 4: code labs
 
 - **Three notebooks, Python only** (Part VI has no Octave copies), committed without outputs and run

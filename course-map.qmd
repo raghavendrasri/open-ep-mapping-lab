@@ -58,7 +58,7 @@ Status shows how far each module has got.
 
 | ID | Module | Status | Release |
 | --- | --- | --- | --- |
-| m27 | [RF ablation biophysics and lesion metrics (power, force, time, impedance drop)](modules/m27-rf-ablation.qmd) | [Planned]{.status .status-planned} | v1.0 |
+| m27 | [RF ablation biophysics and lesion metrics (power, force, time, impedance drop)](modules/m27-rf-ablation.qmd) | [Draft]{.status .status-draft} | v1.0 |
 | m28 | [Pulsed field ablation: electroporation and what it changes for mapping](modules/m28-pulsed-field-ablation.qmd) | [Planned]{.status .status-planned} | v1.0 |
 | m29 | [Complex maps: fractionation, phase mapping, rotor and driver detection](modules/m29-complex-maps.qmd) | [Planned]{.status .status-planned} | v1.0 |
 | m30 | [Capstone: build a mini mapping system on a simulated atrium](modules/m30-capstone-mini-mapping-system.qmd) | [Planned]{.status .status-planned} | v0.1 |
