@@ -2,6 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m33 stage 2: derivations and equation tests
+
+- **Isotropic surface twin** fitted with the m30 eikonal solver; the anisotropic eikonal is derived
+  and checked on a flat sheet, but fibres are not used in the fit (outline question 3, recommended
+  option).
+- **Velocity-to-conductivity scaling derived** from the invariance of the monodomain equation and
+  checked on a Mitchell–Schaeffer cable; Costa et al. (2013) is cited for iterating on real meshes.
+- **Cross-validation shown on a polynomial example** in the tests (fast and unambiguous); the lab
+  will apply it to the twin.
+- **No openCARP in tests.** Nothing in stage 2 needs it; whether CI may install it for the lab stays
+  open (outline question 2).
+- **`epml/ionic.py` now refuses unstable explicit steps** (D dt / dx² > 1/2), after a test with a
+  larger diffusion coefficient blew up silently.
+- **Undo:** revert the m33 stage 2 commit.
+
 ## 2026-11-04 · m32 stage 2: derivations and equation tests
 
 - **Tikhonov, filter factors and λ rules defined in m32** (`eq-m32-*`), since m07 is not written

@@ -64,7 +64,7 @@ Status shows how far each module has got.
 | m30 | [Capstone: build a mini mapping system on a simulated atrium](modules/m30-capstone-mini-mapping-system.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m31 | [Capstone: AF electrogram analysis on real recordings (PhysioNet iafdb)](modules/m31-capstone-af-electrograms.qmd) | [Draft]{.status .status-draft} | v1.0 |
 | m32 | [Capstone: ECG imaging end to end (EDGAR)](modules/m32-capstone-ecg-imaging.qmd) | [Draft]{.status .status-draft} | v1.0 |
-| m33 | [Capstone: from map to digital twin (OpenEP to openCARP)](modules/m33-capstone-digital-twin.qmd) | [Planned]{.status .status-planned} | v1.0 |
+| m33 | [Capstone: from map to digital twin (OpenEP to openCARP)](modules/m33-capstone-digital-twin.qmd) | [Draft]{.status .status-draft} | v1.0 |
 
 ## Part VI · Systems and practice
 
