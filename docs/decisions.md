@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m31 stage 2: derivations and equation tests
+
+- **All equation tests use synthetic signals**, so they run without downloading iafdb; the code lab
+  (stage 4) uses the real records.
+- **Block bootstrap instead of sample bootstrap**, tied to the design effect from m35. The block
+  length is the analyst's choice and must exceed the correlation time; the test shows the coverage
+  gap on AR(1) data rather than claiming a rule for block length.
+- **Facts about iafdb** come from its PhysioNet page, checked on 2026-11-04, including that
+  amplitudes are uncalibrated; the page's inconsistent ECG-lead count is stated, not resolved.
+- **Open:** the real-data badge question (outline question 1) affects stage 3 demos, not this stage.
+- **Undo:** revert the m31 stage 2 commit.
+
 ## 2026-11-04 · m30 stage 2: derivations and equation tests
 
 - **m30 written before m20 and m22–m26**, with its own minimal versions (projection, inverse-distance
