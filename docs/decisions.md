@@ -2,6 +2,19 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-04 · m28 stage 2: derivations and equation tests
+
+- **Spheroidal cells described, not derived.** The PMC copy of Kotnik and Miklavčič (2000) has no
+  full text, so its spheroid formula could not be checked; the module states the generalization in
+  words and keeps the sphere (Schwan) result. Revisit if the full text is read.
+- **Charging time constant derived here** from the $l = 1$ solutions with a capacitive membrane
+  (SymPy test), instead of quoting it.
+- **New equation eq-m28-zones** (reversible and irreversible shells), the simplest model of the
+  "core and halo" seen on post-PFA maps.
+- **Bench thresholds quoted only as bench values** (Avazzadeh 2021, 2022), with tissue thresholds
+  `TODO(source)`.
+- **Undo:** revert the m28 stage 2 commit.
+
 ## 2026-11-04 · m27 stage 2: derivations and equation tests
 
 - **Outline questions answered with the recommended options** (the outline was merged without
