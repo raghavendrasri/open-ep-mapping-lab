@@ -2,6 +2,27 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-05 · Custom domain: open-ep-mapping-lab.org
+
+- **Decision (author):** serve the site at `https://open-ep-mapping-lab.org/` instead of a
+  `github.io` address.
+- **Why:** the planned move to `open-ep-mapping-lab.github.io` had not happened, so that address
+  did not exist, and since PR #20 the site's code-lab and Colab links pointed at a repository that
+  did not exist yet. A custom domain removes the personal name from the site address without moving
+  the repository, and keeps working if the repository moves later (GitHub redirects repository
+  links after a transfer, but not `github.io` Pages addresses).
+- **Change:** `_variables.yml` site URL is the custom domain; the repo URL is the repository's real
+  location today (`raghavendrasri/open-ep-mapping-lab`). `_quarto.yml`, `README.md` and the lab
+  notebooks follow, as the address test requires.
+- **Needs the author:** register the domain, add it under Settings → Pages → Custom domain, add the
+  DNS records GitHub lists (four A records for the apex, optional AAAA, and a `www` CNAME to
+  `raghavendrasri.github.io`), verify the domain, then tick "Enforce HTTPS". With deployment by
+  GitHub Actions, no `CNAME` file is needed.
+- **Moving to the organization** stays optional. If it happens, change `repo.url` (and the Colab
+  URL) here and the custom domain keeps the site address unchanged.
+- **Undo:** restore the previous URLs in `_variables.yml`, `_quarto.yml`, `README.md` and the
+  notebooks, and remove the custom domain in Settings → Pages.
+
 ## 2026-11-04 · m33 stage 2: derivations and equation tests
 
 - **Isotropic surface twin** fitted with the m30 eikonal solver; the anisotropic eikonal is derived

@@ -23,7 +23,7 @@ metadata-files:
 website:
   title: "Open EP Mapping Lab"
   description: "A free, open course on cardiac electroanatomic mapping systems."
-  site-url: https://open-ep-mapping-lab.github.io/
+  site-url: https://open-ep-mapping-lab.org/
   page-navigation: true
   navbar:
     left:

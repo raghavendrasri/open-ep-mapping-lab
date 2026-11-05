@@ -3,6 +3,8 @@ name: Deploy site to GitHub Pages
 # Publishes the site after CI passes on main, so a failing check never goes live.
 # Can also be run by hand from the Actions tab.
 # Needs: repo Settings → Pages → Build and deployment → Source: GitHub Actions.
+# Custom domain (open-ep-mapping-lab.org): set under Settings → Pages → Custom domain.
+# With an Actions deployment no CNAME file is needed; GitHub ignores one if present.
 
 on:
   workflow_run:
