@@ -2,6 +2,27 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-05 · m33 stage 3: demos
+
+- **m33-d1 (calibrate a twin)** runs entirely in the browser: an eikonal model on a 30 × 30 mm,
+  1-mm grid, fitted with Levenberg–Marquardt (one speed per square region, closed-form offset) and
+  scored by 5-fold cross-validation. The JS eikonal visits triangles in fast-sweeping order for
+  speed (about 0.3 ms per solve); it uses the same local update as the Python solver, and
+  `tests/test_m33_demos.py` checks that both reach the same times. Default 9 regions, so the slow
+  region shows on first load.
+- **Cited defaults:** 1.0 m/s and 0.6 m/s from Heil et al. (2023). Point count, annotation noise and
+  the slow region's size are illustrative inputs; typical clinical values stay `TODO(source)`.
+- **m33-d2 (eikonal vs reaction–diffusion)** is precomputed by `tools/make_m33_d2.py` (about a
+  minute, 481 KB of JSON) from the course's own Mitchell–Schaeffer sheet, with conductivities tuned
+  to the cited velocities by eq-m33-cv-scaling. Four scenarios (planar, point pacing, slow region,
+  isthmus) replace the outline's free sliders, because the reaction–diffusion runs are too slow for
+  the browser. The data file carries the generator's hash; a test checks it and the numbers quoted
+  in the text.
+- **Shared plot helpers** gained `drawField` (viridis or a blue–white–vermillion diverging map, with
+  optional isochrone-like bands), `addSelect` and `addButton`. On screens narrower than 520 px the two
+  maps stack.
+- **Undo:** revert the m33 stage 3 commit.
+
 ## 2026-11-05 · Custom domain: open-ep-mapping-lab.org
 
 - **Decision (author):** serve the site at `https://open-ep-mapping-lab.org/` instead of a

@@ -63,3 +63,43 @@ def ms_cable(n, dx, dt, t_end, D, params, stim_times, stim_cells=3, stim_amp=0.5
             snaps.append(v.copy())
             times.append(t)
     return np.array(times), [np.array(u) for u in ups], np.array(snaps)
+
+
+def ms_sheet(nx, ny, dx, dt, t_end, D, excitable, params, stim_mask, stim_amp=1.0, stim_dur=2.0):
+    """2D sheet with node-wise diffusion D (length^2/ms) and a mask of excitable nodes.
+
+    Non-excitable nodes (scar) carry no current: faces touching them have zero conductance, so the
+    scar is an insulating obstacle. Face conductances are the mean of the two nodes. Returns the
+    activation time of each node (first upward crossing of v = 0.5, interpolated), NaN if never.
+    """
+    D = np.where(excitable, np.asarray(D, dtype=float), 0.0)
+    if np.max(D) * dt / dx**2 > 0.25:
+        raise ValueError("explicit 2D diffusion step is unstable: need D dt / dx^2 <= 1/4")
+    ex = np.asarray(excitable, dtype=bool)
+    Dx = 0.5 * (D[:, 1:] + D[:, :-1]) * (ex[:, 1:] & ex[:, :-1])
+    Dy = 0.5 * (D[1:, :] + D[:-1, :]) * (ex[1:, :] & ex[:-1, :])
+    v = np.zeros((ny, nx))
+    h = np.ones((ny, nx))
+    act = np.full((ny, nx), np.nan)
+    steps = int(round(t_end / dt))
+    stim = np.where(stim_mask & ex, stim_amp, 0.0)
+    for k in range(steps):
+        t = k * dt
+        fx = Dx * (v[:, 1:] - v[:, :-1])
+        fy = Dy * (v[1:, :] - v[:-1, :])
+        div = np.zeros_like(v)
+        div[:, :-1] += fx
+        div[:, 1:] -= fx
+        div[:-1, :] += fy
+        div[1:, :] -= fy
+        dv, dh = ms_reaction(v, h, *params)
+        dv = np.where(ex, dv, 0.0)
+        dh = np.where(ex, dh, 0.0)
+        v_new = v + dt * (div / dx**2 + dv + (stim if t < stim_dur else 0.0))
+        h = h + dt * dh
+        up = np.isnan(act) & (v < 0.5) & (v_new >= 0.5)
+        if up.any():
+            frac = (0.5 - v[up]) / (v_new[up] - v[up])
+            act[up] = t + frac * dt
+        v = v_new
+    return act
