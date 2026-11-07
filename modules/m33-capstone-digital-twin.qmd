@@ -13,9 +13,10 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 :::
 
 ::: {.callout-note}
-**Draft, stage 3 of 6.** The derivations and two demos are written. Each equation is checked by
-tests in `tests/test_m33_twin.py`, and the demos by `tests/test_m33_demos.py`. The guided code lab,
-questions and the remaining sections follow in later stages (plan: `docs/outlines/m33-outline.md`). Nothing here has had expert review yet. No
+**Draft, stage 4 of 6.** The derivations, two demos and the code lab are written. Each equation is
+checked by tests in `tests/test_m33_twin.py`, the demos by `tests/test_m33_demos.py`, and the lab runs
+in CI. Questions and the remaining sections follow in later stages (plan:
+`docs/outlines/m33-outline.md`). Nothing here has had expert review yet. No
 openCARP code or binaries are part of this course; the lab links to openCARP and exports files for
 it.
 :::
@@ -209,7 +210,31 @@ regions out.
 
 ## Code lab
 
-*Planned in the outline.*
+The lab builds a small twin from a synthetic mapping case and tests it the way this module says a
+twin should be tested. The truth is known, so every number the twin reports can be checked. It runs
+in about a minute.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Build a mapping case on an atrium-sized sphere: a pacing site, a slow region (0.6 m/s) in normal tissue (1.0 m/s) [@heil2023], and a scar; acquire 200 points with position error, annotation noise, an unknown offset and relative voltages | synthetic |
+| B | Choose the twin's mesh: eikonal error and run time at three resolutions ([m30](m30-capstone-mini-mapping-system.qmd#eq-m30-eikonal)) | synthetic |
+| C | Label low-voltage regions by interpolating point voltages and applying a threshold; score the labels against the truth | synthetic |
+| D | Calibrate regional speeds with the closed-form offset (@eq-m33-offset) for four twins, and see how the labels bias the fitted slow speed | synthetic |
+| E | Cross-validate the twins (@eq-m33-holdout); refit a 24-region twin from three starts and see which speeds the data do not determine | synthetic |
+| F | Write the twin in openCARP's mesh formats (nodes in micrometres, `Tr` triangles with region tags, one fibre vector per element) [@carpformats], and turn speeds into conductivity scale factors (@eq-m33-cv-scaling) | synthetic |
+
+- **Python notebook:**
+  [labs/python/m33_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m33_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m33_lab.ipynb).
+- The lab stops at the exported files. openCARP is not part of this course: its simulator and
+  binaries are under the openCARP Academic Public License [@opencarplicense]. The notebook ends with
+  the steps to run the twin in openCARP yourself.
+- The sphere's size, the regions' sizes and places, the error sizes and the relative voltages are
+  illustrative inputs.
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
 
 ## Self-check
 

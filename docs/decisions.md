@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-06 · m33 stage 4: code lab
+
+- **Author decisions (2026-11-06):** the lab stops at exporting files for openCARP, so CI never needs
+  openCARP; the lab starts from a synthetic case rather than an OpenEP example case.
+- **The case:** a 20-mm sphere (illustrative size) with a slow region (0.6 m/s) in normal tissue
+  (1.0 m/s, both Heil et al. 2023) and a non-conducting scar; 200 points with 1-mm position error,
+  1-ms annotation noise and a 25-ms offset (illustrative). Voltage is in relative units, to avoid
+  quoting mV thresholds without an atrial source.
+- **Changed from the first draft of the lab:** a planned "three regions with block" twin had no effect
+  because the very-low-voltage label was nearly empty; it was replaced by the same two-region twin at
+  two thresholds, which shows the real lesson (fitted speeds absorb labeling errors).
+- **`epml/twin.py`:** `calibrate_regions` can hold regions at a fixed speed (for block) and cap
+  evaluations; new `write_opencarp`, `read_opencarp` and `tangent_fibres`, with a round-trip test.
+  Formats from the CARP/openCARP file-format page and openCARP's mesh writer (`Tr n0 n1 n2 tag`).
+- **Runtime:** about 25 s here, well inside the 5-minute CI limit.
+- **Undo:** revert the m33 stage 4 commit.
+
 ## 2026-11-05 · m33 stage 3: demos
 
 - **m33-d1 (calibrate a twin)** runs entirely in the browser: an eikonal model on a 30 × 30 mm,
