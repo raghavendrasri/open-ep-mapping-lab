@@ -2,6 +2,34 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m37 stages 1–6, and how Part VII modules are built
+
+- **Process (author decision, 2026-11-11):** each Part VII module (m37–m45) goes through all six
+  stages in one branch and one pull request, reviewed per module instead of per stage. Human
+  sign-offs (`review_record.json`, clinical review) stay open. CLAUDE.md §10's per-stage stop is
+  waived for Part VII only.
+- **Libraries (author decision):** labs use NumPy and scikit-learn; each lab with a neural network
+  also has an optional PyTorch part. CI runs those parts in a separate job, `labs-pytorch`, with the
+  CPU-only PyTorch build and `EPML_REQUIRE_TORCH=1`; it sets `EPML_SKIP_REAL_DATA=1` because the main
+  job already checks the downloads.
+- **Data (author decision):** synthetic data always; real public data downloaded in CI and skipped
+  offline. m37 uses PTB-XL 1.0.3 (CC BY 4.0) and the PhysioNet/CinC Challenge 2017 training set
+  (ODC-By 1.0). `epml.data.PhysioNetDB` fetches files in parallel and checks each against the
+  database's published SHA256SUMS.txt; the hash of that list is printed in CI and will be pinned in
+  `data/registry.json` in a follow-up commit (the workspace cannot reach PhysioNet).
+- **CI:** the lab step now gives each notebook its own 5-minute limit (`timeout 300`) instead of 5
+  minutes for all labs together, which nine new labs would exceed. The job limit rose from 20 to 45
+  minutes. The data cache key now follows `data/registry.json` and `epml/data.py`.
+- **m37 content:** derivations with nine tested equations, two exact demos (receptive field;
+  screening yield with prior shift), clinical correlate on AI-ECG-guided AF screening (pending
+  review), 12 interview and 6 self-check questions, glossary and formula-sheet entries. The
+  synthetic ECG (Gaussian waves after McSharry et al. 2003) uses illustrative values, flagged as
+  such in every place it appears.
+- **Stanford and NVIDIA work** (author request): cited where it fits the derivations, with
+  affiliations checked on PubMed (Hannun 2019, Kaur 2023; Dayan 2021 with NVIDIA authors; NVIDIA
+  FLARE on arXiv).
+- **Undo:** revert the m37 commit; restore the old lab step in `.github/workflows/ci.yml`.
+
 ## 2026-11-10 · Part VII: AI in electrophysiology (m37–m45)
 
 - **Decision (author request):** add a seventh part, "AI in electrophysiology", with nine planned

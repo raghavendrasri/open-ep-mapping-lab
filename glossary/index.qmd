@@ -17,6 +17,9 @@ Activation wavefront
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
+Atrial fibrillation (AF)
+: A fast, irregular rhythm of the upper chambers, without organized atrial activity. [m37](../modules/m37-ai-ecg.qmd)
+
 Atrium (plural atria)
 : One of the two upper chambers of the heart. [m03](../modules/m03-electrograms.qmd)
 
@@ -29,6 +32,15 @@ Clique
 Conduction velocity
 : The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd)
 
+Cross-entropy
+: The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
+
+Data augmentation
+: Training on altered copies of the data (for example, flipped or noisier signals) so a model ignores the alteration. [m37](../modules/m37-ai-ecg.qmd)
+
+Dataset shift
+: Any difference between the data a model was trained on and the data where it is used: in class mix (prior shift), in the recordings (covariate shift) or in what labels mean. [m37](../modules/m37-ai-ecg.qmd)
+
 Decapolar catheter
 : A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd)
 
@@ -38,8 +50,14 @@ Electrogram
 Endocardium
 : The inner surface of the heart wall. [m03](../modules/m03-electrograms.qmd)
 
+External validation
+: Testing a frozen model on data from another place or time that played no part in training or tuning. [m37](../modules/m37-ai-ecg.qmd)
+
 Far-field signal
 : Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
+
+Federated learning
+: Training one model across sites that keep their data; only model updates are shared. [m37](../modules/m37-ai-ecg.qmd)
 
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
@@ -62,11 +80,20 @@ Omnipolar electrogram
 Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
+Receptive field
+: The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
+
+RR interval
+: The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
+
 Scar
 : Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd)
 
 Sinus rhythm
 : The normal heartbeat, started by the heart's own pacemaker. [m03](../modules/m03-electrograms.qmd)
+
+Softmax
+: The function that turns a vector of scores into probabilities that are positive and sum to one. [m37](../modules/m37-ai-ecg.qmd)
 
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)

@@ -78,7 +78,7 @@ Status shows how far each module has got.
 
 | ID | Module | Status | Release |
 | --- | --- | --- | --- |
-| m37 | [AI on the surface ECG: rhythm classification, detecting hidden disease, external validation](modules/m37-ai-ecg.qmd) | [Planned]{.status .status-planned} | v1.5 |
+| m37 | [AI on the surface ECG: rhythm classification, detecting hidden disease, external validation](modules/m37-ai-ecg.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m38 | [Wearables and implantable monitors: PPG and single-lead ECG, alert triage, remote monitoring](modules/m38-wearables-monitoring.qmd) | [Planned]{.status .status-planned} | v1.5 |
 | m39 | [AI on intracardiac electrograms and maps: electrogram classification, graph learning on mapping data, AI-guided ablation trials](modules/m39-ai-electrograms-maps.qmd) | [Planned]{.status .status-planned} | v1.5 |
 | m40 | [AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis, automated chamber reconstruction](modules/m40-ai-imaging-substrate.qmd) | [Planned]{.status .status-planned} | v1.5 |
