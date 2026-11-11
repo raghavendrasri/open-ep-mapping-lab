@@ -33,7 +33,7 @@ jobs:
 
       # Code labs must run from a clean environment in under 5 minutes (CLAUDE.md §11).
       - name: Cache lab datasets
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: data/cache
           key: lab-data-iafdb-v1

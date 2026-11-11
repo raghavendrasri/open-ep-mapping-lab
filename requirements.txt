@@ -1,6 +1,6 @@
 # Tools for building and checking the course.
 # Lab packages are added with the first lab that needs them (pyvista and openep-py come later).
-numpy>=2.0
+numpy>=2.5.4
 scipy>=1.18.1
 scikit-learn>=1.8
 sympy>=1.13
@@ -11,5 +11,5 @@ playwright>=1.64.1
 
 # Code labs
 wfdb>=4.3
-nbmake>=1.5
-ipykernel>=7.4.0
+nbmake>=1.5.5
+ipykernel>=6.29

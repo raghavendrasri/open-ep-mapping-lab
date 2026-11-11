@@ -107,3 +107,43 @@ def test_kfold_error_exposes_overfitting():
     in_simple = np.sqrt(np.mean((np.polyval(np.polyfit(X, y, 1), X) - y) ** 2))
     assert in_complex < in_simple
     assert cv_complex > cv_simple
+
+
+def test_opencarp_export_round_trip(tmp_path):
+    """openCARP export used by the m33 lab: headers give the counts, coordinates are written in
+    micrometres, elements are 'Tr n0 n1 n2 tag' with 0-based nodes, and everything reads back."""
+    V, F = mp.icosphere(20.0, 1)
+    tags = np.arange(len(F)) % 3
+    fib = twin.tangent_fibres(V, F)
+    pts_f, elem_f, lon_f = twin.write_opencarp(tmp_path / "case", V, F, tags, fib)
+    pts_lines = pts_f.read_text().splitlines()
+    assert int(pts_lines[0]) == len(V)
+    assert float(pts_lines[1].split()[0]) == pytest.approx(V[0, 0] * 1000, abs=1e-3)
+    elem_lines = elem_f.read_text().splitlines()
+    assert int(elem_lines[0]) == len(F) and elem_lines[1].split()[0] == "Tr"
+    assert lon_f.read_text().splitlines()[0] == "1"
+    V2, F2, t2, f2 = twin.read_opencarp(tmp_path / "case")
+    assert V2 == pytest.approx(V, abs=1e-6)
+    assert np.array_equal(F2, F) and np.array_equal(t2, tags)
+    assert np.linalg.norm(f2, axis=1) == pytest.approx(np.ones(len(F)), abs=1e-5)
+    # fibres lie in the plane of their triangle
+    n = np.cross(V[F[:, 1]] - V[F[:, 0]], V[F[:, 2]] - V[F[:, 0]])
+    assert np.abs(np.einsum("ij,ij->i", n, f2)).max() < 1e-4 * np.linalg.norm(n, axis=1).max()
+
+
+def test_calibration_with_a_fixed_block_region():
+    """eq-m33-offset with a region held at speed 0 (block): the other speeds are still recovered and
+    the fixed region keeps its value."""
+    V, F = mp.plane_mesh(21, 21, 1.0)
+    c = V[F].mean(axis=1)
+    region = np.where((np.abs(c[:, 0] - 10) < 1) & (c[:, 1] < 14), 2, (c[:, 0] > 10).astype(int))
+    true_v = np.array([1.0, 0.6, 0.0])
+    src = 10 * 21
+    T = mp.eikonal(V, F, src, true_v[region])
+    rng = np.random.default_rng(6)
+    pts = rng.choice(np.flatnonzero(np.isfinite(T)), 60, replace=False)
+    meas = T[pts] + 12.0 + rng.normal(0, 0.3, pts.size)
+    v, t0, _ = twin.calibrate_regions(V, F, region, src, pts, meas, v_init=0.8, fixed={2: 0.0})
+    assert v[2] == 0.0
+    assert v[:2] == pytest.approx(true_v[:2], rel=0.06)
+    assert t0 == pytest.approx(12.0, abs=1.0)
