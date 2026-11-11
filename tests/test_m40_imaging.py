@@ -216,6 +216,10 @@ def test_fetch_msd_heart_verifies_and_unpacks(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match="MD5"):
         data.fetch_msd_heart(cache=tmp_path / "a")
     monkeypatch.setattr(data, "MSD_HEART_MD5", hashlib.md5(payload).hexdigest())
+    with pytest.raises(ValueError, match="changed"):                   # the registry pins the real archive
+        data.fetch_msd_heart(cache=tmp_path / "c")
+    fake_sha = hashlib.sha256(payload).hexdigest()
+    monkeypatch.setattr(data, "pinned_checksums", lambda prefix="": {"Task02_Heart.tar": fake_sha})
     pairs = data.fetch_msd_heart(cache=tmp_path / "b")
     assert len(pairs) == 20 and all(p.exists() and q.exists() for p, q in pairs)
     assert not any(p.name.startswith("._") for p, _ in pairs)
