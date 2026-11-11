@@ -100,3 +100,67 @@ $$
 $$
 c \approx \frac{\mathrm{pp}\left( dU/dt \right)}{\mathrm{pp}\left( \hat n \cdot \hat{\mathbf E} \right)}
 $$
+
+## m37 · AI on the surface ECG
+
+Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
+kernel width and stride of layer $l$, $RR_i$ an RR interval, $\pi$ prevalence, Se and Sp sensitivity and specificity.
+Model: a classifier that outputs class probabilities; the prior-shift result needs calibrated probabilities and
+unchanged class-conditional recordings.
+
+**Softmax** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-softmax))
+
+$$
+p_c = \frac{e^{z_c}}{\sum_{j=1}^{C} e^{z_j}}
+$$
+
+**Cross-entropy gradient** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-ce-grad))
+
+$$
+\frac{\partial L}{\partial z_c} = p_c - y_c
+$$
+
+**Logistic regression** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-logistic))
+
+$$
+p = \sigma(\beta_0 + \boldsymbol\beta^{\mathsf T}\mathbf x), \qquad \sigma(u) = \frac{1}{1 + e^{-u}}
+$$
+
+**Convolution layer** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-conv))
+
+$$
+y[n] = b + \sum_{k=0}^{K-1} w[k]\, x[s n + k]
+$$
+
+**Kernel frequency response** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-kernel-response))
+
+$$
+H(f) = \sum_{k=0}^{K-1} w[k]\, e^{-i 2\pi f k / f_s}
+$$
+
+**Receptive field** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-receptive-field))
+
+$$
+r = 1 + \sum_{l=1}^{L} (k_l - 1) \prod_{j<l} s_j
+$$
+
+**RR-interval features** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-rr))
+
+$$
+\overline{RR}, \qquad
+\mathrm{CV} = \frac{s_{RR}}{\overline{RR}}, \qquad
+\mathrm{nRMSSD} = \frac{1}{\overline{RR}} \sqrt{\frac{1}{n-1}\sum_{i=1}^{n-1} \left(RR_{i+1} - RR_i\right)^2 }
+$$
+
+**Screening yield** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-yield))
+
+$$
+N_{+} = N\left[\pi\,\mathrm{Se} + (1-\pi)(1-\mathrm{Sp})\right], \qquad
+\frac{N_{+}}{N\pi\,\mathrm{Se}} = \frac{1}{\mathrm{PPV}}
+$$
+
+**Prior-shift correction** ([derivation](../modules/m37-ai-ecg.qmd#eq-m37-prior-shift))
+
+$$
+p' = \frac{\dfrac{\pi'}{\pi}\, p}{\dfrac{\pi'}{\pi}\, p + \dfrac{1-\pi'}{1-\pi}\,(1-p)}
+$$

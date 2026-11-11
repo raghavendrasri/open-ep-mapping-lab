@@ -14,7 +14,7 @@ permissions:
 jobs:
   build-and-check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 
@@ -31,21 +31,28 @@ jobs:
       - name: Content rules and equation tests
         run: pytest -q
 
-      # Code labs must run from a clean environment in under 5 minutes (CLAUDE.md §11).
+      # Code labs must run from a clean environment in under 5 minutes each (CLAUDE.md §11).
       - name: Cache lab datasets
         uses: actions/cache@v6
         with:
           path: data/cache
-          key: lab-data-iafdb-v1
+          key: lab-data-${{ hashFiles('data/registry.json', 'labs/python/epml/data.py') }}
+          restore-keys: lab-data-
 
       - name: Run Python code labs
-        timeout-minutes: 5
+        timeout-minutes: 30
         env:
           EPML_REQUIRE_DATA: "1"   # real-data parts must download and verify, not skip
-        run: pytest -q --nbmake labs/python
+        run: |
+          for nb in labs/python/*.ipynb; do
+            echo "== $nb"
+            timeout 300 pytest -q --nbmake "$nb"
+          done
 
       - name: Show checksums of downloaded lab data
-        run: sha256sum data/cache/*/* || true
+        run: |
+          sha256sum data/cache/iafdb/* || true
+          find data/cache -name SHA256SUMS.txt -exec sha256sum {} \; || true
 
       - name: Install GNU Octave
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends octave
@@ -78,3 +85,32 @@ jobs:
           name: site-preview
           path: _site
           retention-days: 14
+
+  # The optional PyTorch parts of the Part VII labs (CLAUDE.md §7: NumPy and scikit-learn are the default;
+  # PyTorch examples run here, with the CPU-only build, and skip the downloads the main job already checks).
+  labs-pytorch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python packages and CPU-only PyTorch
+        run: |
+          pip install -r requirements.txt
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+      - name: Run the Part VII labs with their PyTorch parts
+        env:
+          EPML_REQUIRE_TORCH: "1"
+          EPML_SKIP_REAL_DATA: "1"
+        run: |
+          for nb in labs/python/m3[7-9]_lab.ipynb labs/python/m4[0-5]_lab.ipynb; do
+            [ -e "$nb" ] || continue
+            echo "== $nb"
+            timeout 300 pytest -q --nbmake "$nb"
+          done
