@@ -199,7 +199,10 @@ def load_challenge2017(n_per_class=100, classes=("N", "A"), seed=0, db=None):
         mat, hea = paths[2 * i], paths[2 * i + 1]
         fields = hea.read_text().splitlines()[1].split()
         gain = float(fields[2].split("/")[0].split("(")[0]) if len(fields) > 2 else 1000.0
-        signals.append(loadmat(mat)["val"][0].astype(float) / gain)
+        x = np.asarray(loadmat(mat)["val"], float).ravel() / gain   # stored as one row or one column
+        if x.size < 100:
+            raise ValueError(f"{r}: only {x.size} samples read from {mat.name}")
+        signals.append(x)
     return signals, labels, chosen
 
 
