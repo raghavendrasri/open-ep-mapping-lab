@@ -23,6 +23,9 @@ Atrial fibrillation (AF)
 Atrium (plural atria)
 : One of the two upper chambers of the heart. [m03](../modules/m03-electrograms.qmd)
 
+Attention
+: In a neural network, a weighted average of value vectors whose weights come from how well a query matches each key, normalized by a softmax. The building block of the transformer. [m43](../modules/m43-foundation-models-llms.qmd)
+
 Average precision (PR AUC)
 : The area under the precision–recall curve, averaged over thresholds. Unlike the ROC AUC it falls when positives are rare. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -47,6 +50,9 @@ Concordance index (C index)
 Conduction velocity
 : The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd)
 
+Contrastive learning
+: Self-supervised learning that pulls the embeddings of matched pairs, such as two recordings of one patient, together and pushes unmatched pairs apart. [m43](../modules/m43-foundation-models-llms.qmd)
+
 Cross-entropy
 : The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -67,6 +73,9 @@ Eikonal equation
 
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
+
+Embedding
+: A vector that represents an input, such as a beat or a sentence, so that similar inputs get nearby vectors. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Endocardium
 : The inner surface of the heart wall. [m03](../modules/m03-electrograms.qmd)
@@ -95,6 +104,9 @@ Focal loss
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
 
+Foundation model
+: A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
+
 Gaussian mixture model
 : A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -106,6 +118,9 @@ Geodesic distance
 
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
+Hallucination
+: Output of a language model that reads as fluent and confident but is false or unsupported, such as an invented number or reference. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -122,6 +137,9 @@ Intrinsic deflection
 Jaccard index
 : Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Large language model (LLM)
+: A transformer trained on very large amounts of text to predict the next token; it can follow instructions and answer questions in text. [m43](../modules/m43-foundation-models-llms.qmd)
+
 Late gadolinium enhancement (LGE)
 : MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -130,6 +148,9 @@ Leave-one-patient-out
 
 Levenberg–Marquardt method
 : An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
+
+Linear probe
+: A linear classifier trained on the frozen features of a pretrained model, used to measure how much those features already encode. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Local activation time
 : The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)
@@ -182,6 +203,9 @@ Receptive field
 Remote monitoring
 : Sending data from an implanted or wearable device to a clinic, where alerts are reviewed. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Retrieval-augmented generation (RAG)
+: Answering with a language model after giving it passages retrieved from a chosen document collection, so that the answer can rest on, and cite, those passages. [m43](../modules/m43-foundation-models-llms.qmd)
+
 RR interval
 : The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -190,6 +214,9 @@ Scar
 
 Segmentation
 : Labelling which voxels of an image belong to a structure, such as the left atrium. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Self-supervised learning
+: Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Sinus rhythm
 : The normal heartbeat, started by the heart's own pacemaker. [m03](../modules/m03-electrograms.qmd)
@@ -202,6 +229,15 @@ Spatial frequency
 
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
+
+TF-IDF
+: Term frequency times inverse document frequency: a word weight that grows with how often the word appears in a document and with how rare it is across the collection. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Token
+: A unit of text, often a word or part of a word, that a language model reads and writes. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Transformer
+: A neural-network architecture built from attention layers; the basis of most large language models and of many ECG foundation models. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Transmembrane voltage
 : The voltage across a cell membrane, inside minus outside. [m03](../modules/m03-electrograms.qmd)

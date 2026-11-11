@@ -403,3 +403,57 @@ $$
 $$
 T\big(\mathbf x;\, k\,s(\cdot)\big) = k\, T\big(\mathbf x;\, s(\cdot)\big)
 $$
+
+## m43 · Foundation models and large language models
+
+Symbols: $N$ batch size, $S_{ik}$ similarity of anchor $i$ and candidate $k$ (unit embeddings), $\tau$ temperature, $P_{ik}$ row softmax of $S/\tau$, $Q, K, V$ queries, keys and values, $d$ key length, $\operatorname{tf}$ term count in a document, $\operatorname{df}$ number of documents containing the term, $\hat p = k/n$ observed accuracy, $z$ normal quantile (1.96 for 95%), $h$ interval half-width.
+Model: independent questions for the intervals; independent unit-variance query and key entries for the scaling.
+
+**InfoNCE contrastive loss** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-infonce))
+
+$$
+L = -\frac{1}{N}\sum_{i=1}^{N} \ln \frac{\exp(S_{ii}/\tau)}{\sum_{k=1}^{N} \exp(S_{ik}/\tau)}
+$$
+
+**Its gradient with respect to the similarities** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-infonce-grad))
+
+$$
+\frac{\partial L}{\partial S_{ik}} = \frac{P_{ik} - \delta_{ik}}{N\tau}
+$$
+
+**Scaled dot-product attention** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-attention))
+
+$$
+\operatorname{Attention}(Q, K, V) = \operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt d}\right) V
+$$
+
+**Variance of a query-key score** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-scaling))
+
+$$
+\operatorname{Var}\!\left(\mathbf q^\top \mathbf k\right) = d, \qquad
+\operatorname{Var}\!\left(\mathbf q^\top \mathbf k / \sqrt d\right) = 1
+$$
+
+**TF-IDF weight (smoothed)** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-tfidf))
+
+$$
+w_{t,d} = \operatorname{tf}_{t,d}\left[\ln\frac{1 + N}{1 + \operatorname{df}_t} + 1\right]
+$$
+
+**Cosine similarity** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-cosine))
+
+$$
+\cos(\mathbf a, \mathbf b) = \frac{\mathbf a^\top \mathbf b}{\lVert\mathbf a\rVert\,\lVert\mathbf b\rVert}
+$$
+
+**Wilson score interval** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-wilson))
+
+$$
+\frac{\hat p + \dfrac{z^2}{2n} \pm z\sqrt{\dfrac{\hat p(1-\hat p)}{n} + \dfrac{z^2}{4n^2}}}{1 + \dfrac{z^2}{n}}
+$$
+
+**Questions needed for an interval of half-width h** ([derivation](../modules/m43-foundation-models-llms.qmd#eq-m43-questions))
+
+$$
+n \approx \frac{z^2\,p(1-p)}{h^2}
+$$

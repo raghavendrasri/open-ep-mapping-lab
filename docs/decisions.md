@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m43 stages 1–6, contrastive pretraining and an offline LLM-evaluation harness
+
+- **m43** (Foundation models and large language models): eight tested equations (InfoNCE and its
+  gradient, attention, score variance, TF-IDF, cosine, Wilson interval, questions needed), two demos
+  (precomputed contrastive embedding; exact retrieval over the course glossary), clinical correlate
+  (pending review), 13 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **`epml.foundation`** trains a small encoder with InfoNCE in NumPy (manual backward pass, Adam), so
+  the core lab needs no PyTorch; part H repeats it with a 1-D CNN in PyTorch.
+- **`epml.retrieval`** holds the TF-IDF index, ranking metrics, Wilson interval and an evaluation
+  harness whose "model" is a scripted stand-in with planted faults (Part VII rule: no external AI
+  services in CI). An optional notebook cell, skipped in CI, lets readers plug in their own model.
+- **New generated demo files:** `demos/m43-d1-data.json` (from `tools/make_m43_d1.py`) and
+  `demos/m43-d2-corpus.json` (from `tools/make_m43_d2.py`, rerun after glossary changes); both are
+  checked by `tests/test_m43_demos.py`.
+- **Stanford and NVIDIA:** Almanac (Zakka et al. 2024) and MedHELM (Bedi et al. 2025) from Stanford;
+  NV-Embed (Lee et al., NVIDIA) as the example of a dense text-embedding model.
+
 ## 2026-11-11 · m42 stages 1–6, physics-informed fits without a deep-learning library
 
 - **m42** (Physics-informed machine learning): six tested equations (eikonal residual, loss, RBF map,
