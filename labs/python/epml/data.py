@@ -283,3 +283,68 @@ def load_afdb_rr(records=("04015", "04043", "04048", "04126", "04746"), db=None)
                 af.append((t, stop))
         out[r] = {"beats": beats, "af": af, "fs": fs}
     return out
+
+
+# ---------------------------------------------------------------------------------------------
+# Medical Segmentation Decathlon, Task02_Heart (m40): 20 labelled cardiac MRI volumes with the left
+# atrium outlined (Antonelli et al. 2022; data from the 2013 Left Atrial Segmentation Challenge,
+# Tobon-Gomez et al. 2015), CC BY-SA 4.0. The archive is fetched from the MONAI consortium's
+# AWS Open Data bucket and checked against the MD5 value that MONAI publishes for it
+# (monai.apps.DecathlonDataset, MONAI 1.6.1). Its SHA-256 is printed so it can be pinned.
+
+MSD_HEART_URL = "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar"
+MSD_HEART_MD5 = "06ee59366e1e5124267b774dbd654057"
+
+
+def _md5(path):
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def fetch_msd_heart(cache=None):
+    """Download, verify and unpack Task02_Heart once; return [(image_path, label_path), ...] for the
+    20 training cases, sorted by name. The archive (several hundred MB) is deleted after unpacking."""
+    import shutil
+    import tarfile
+
+    if skip_real_data():
+        raise DataUnavailable("EPML_SKIP_REAL_DATA=1")
+    cache = Path(cache) if cache else ROOT / "data" / "cache" / "msd"
+    root = cache / "Task02_Heart"
+    done = cache / "Task02_Heart.verified"
+    if not done.exists():
+        cache.mkdir(parents=True, exist_ok=True)
+        tar = cache / "Task02_Heart.tar"
+        try:
+            with urllib.request.urlopen(MSD_HEART_URL, timeout=120) as r, open(tar, "wb") as f:
+                shutil.copyfileobj(r, f, 1 << 20)
+        except OSError as err:
+            tar.unlink(missing_ok=True)
+            if require_data():
+                raise
+            raise DataUnavailable(f"could not download Task02_Heart: {err}") from err
+        got = _md5(tar)
+        if got != MSD_HEART_MD5:
+            tar.unlink(missing_ok=True)
+            raise ValueError(f"Task02_Heart.tar: MD5 {got} does not match MONAI's published {MSD_HEART_MD5}")
+        digest = sha256(tar)
+        pinned = pinned_checksums(prefix="msd/").get("Task02_Heart.tar")
+        print(f"msd/Task02_Heart.tar  sha256 {digest}" + ("  (pinned)" if pinned else ""))
+        if pinned and pinned != digest:
+            tar.unlink(missing_ok=True)
+            raise ValueError(f"Task02_Heart.tar changed: {digest}, registry has {pinned}")
+        with tarfile.open(tar) as t:
+            members = [m for m in t.getmembers() if m.isfile() and m.name.endswith(".nii.gz")
+                       and ("/imagesTr/" in m.name or "/labelsTr/" in m.name)
+                       and not Path(m.name).name.startswith("._")]
+            t.extractall(cache, members=members, filter="data")
+        tar.unlink()
+        done.write_text(f"md5 {got}\nsha256 {digest}\n")
+    images = sorted(p for p in (root / "imagesTr").glob("*.nii.gz") if not p.name.startswith("._"))
+    pairs = [(p, root / "labelsTr" / p.name) for p in images if (root / "labelsTr" / p.name).exists()]
+    if len(pairs) != 20:
+        raise ValueError(f"expected 20 labelled cases in {root}, found {len(pairs)}")
+    return pairs

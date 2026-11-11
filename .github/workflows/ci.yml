@@ -53,6 +53,7 @@ jobs:
         run: |
           sha256sum data/cache/iafdb/* || true
           find data/cache -name SHA256SUMS.txt -exec sha256sum {} \; || true
+          cat data/cache/msd/Task02_Heart.verified || true
 
       - name: Install GNU Octave
         run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends octave
@@ -99,14 +100,16 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install Python packages and CPU-only PyTorch
+      - name: Install Python packages, CPU-only PyTorch and MONAI
         run: |
           pip install -r requirements.txt
           pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install monai   # m40 part F uses MONAI's U-Net and Dice loss (Apache-2.0)
 
       - name: Run the Part VII labs with their PyTorch parts
         env:
           EPML_REQUIRE_TORCH: "1"
+          EPML_REQUIRE_MONAI: "1"
           EPML_SKIP_REAL_DATA: "1"
         run: |
           for nb in labs/python/m3[7-9]_lab.ipynb labs/python/m4[0-5]_lab.ipynb; do

@@ -11,5 +11,6 @@ playwright>=1.64.1
 
 # Code labs
 wfdb>=4.3.1
+nibabel>=5.5.0          # NIfTI images (m40)
 nbmake>=1.5.5
 ipykernel>=6.29
