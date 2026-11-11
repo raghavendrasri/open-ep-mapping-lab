@@ -185,7 +185,7 @@ def load_challenge2017(n_per_class=100, classes=("N", "A"), seed=0, db=None):
     sums = db.checksums()
     (ref_path,) = db.fetch(["training/REFERENCE-v3.csv"])
     rows = [line.strip().split(",")[:2] for line in ref_path.read_text().splitlines() if "," in line]
-    rows = [(r.strip(), lab.strip()) for r, lab in rows]
+    rows = [(Path(r.strip()).name, lab.strip()) for r, lab in rows]   # names may carry their subfolder
     where = {Path(f).stem: f[: -len(".mat")] for f in sums if f.endswith(".mat")}
     if not rows or not where:
         raise ValueError(f"Challenge 2017: {len(rows)} label rows, {len(where)} .mat files in the checksum list; "
