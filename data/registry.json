@@ -18,5 +18,25 @@
     "sha256": "eb8ffe86c79efcf579959294cce5f1e12e74bf5529ef1e93c5bad675c9ccedf7",
     "used_by": ["labs/python/m03_lab.ipynb"],
     "stored": "downloaded at run time to data/cache/ (not committed)"
+  },
+  {
+    "name": "afdb-1.0.0/SHA256SUMS.txt",
+    "source": "MIT-BIH Atrial Fibrillation Database v1.0.0, PhysioNet, doi:10.13026/C2MW2D",
+    "url": "https://physionet.org/files/afdb/1.0.0/SHA256SUMS.txt",
+    "license": "Open Data Commons Attribution License v1.0",
+    "cite": ["afdb", "goldberger2000"],
+    "sha256": "8f3ab7b38bf0591235680a855d6a7f00fe8fdaf2e457fa4c00edad2c735e0d9a",
+    "used_by": ["labs/python/m38_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/ (not committed); every fetched file is checked against this list"
+  },
+  {
+    "name": "ptb-xl-1.0.3/SHA256SUMS.txt",
+    "source": "PTB-XL, a large publicly available electrocardiography dataset v1.0.3, PhysioNet, doi:10.13026/kfzx-aw45",
+    "url": "https://physionet.org/files/ptb-xl/1.0.3/SHA256SUMS.txt",
+    "license": "Creative Commons Attribution 4.0 International",
+    "cite": ["ptbxl103", "wagner2020"],
+    "sha256": "b7224b92b341511ec3ceb13dc6652079b2c36a06504bcb49506f157f51dc695d",
+    "used_by": ["labs/python/m37_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/ (not committed); every fetched file is checked against this list"
   }
 ]

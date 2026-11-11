@@ -52,7 +52,7 @@ jobs:
       - name: Show checksums of downloaded lab data
         run: |
           sha256sum data/cache/iafdb/* || true
-          find data/cache -name SHA256SUMS.txt -exec sha256sum {} \; || true
+          find data/cache -name 'SHA256SUMS*' -exec sha256sum {} \; || true
           cat data/cache/msd/Task02_Heart.verified || true
 
       - name: Install GNU Octave
