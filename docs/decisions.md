@@ -18,6 +18,14 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
 - **Demo change from the overview:** m41-d2 is the one-dimensional GP and EI demo.
 - **Undo:** revert the m41 commit.
 
+## 2026-11-11 · Pin the PhysioNet checksum lists used by m37 and m38
+
+- **Decision:** record the SHA-256 of `afdb-1.0.0/SHA256SUMS.txt` and `ptb-xl-1.0.3/SHA256SUMS.txt`
+  in `data/registry.json`, as printed by the main-branch CI run of 2026-11-11 (commit 300e5ab).
+  `epml.data.PhysioNetDB` now refuses a list that has changed. The CI checksum step prints every
+  `SHA256SUMS*` file, so the Challenge 2017 list (`training/SHA256SUMS`) can be pinned next.
+- **Undo:** remove the two entries.
+
 ## 2026-11-11 · m40 stages 1–6, nibabel, and MONAI in the PyTorch job
 
 - **m40** (AI for cardiac imaging and substrate): eight tested equations (Dice–Jaccard, Hausdorff,
