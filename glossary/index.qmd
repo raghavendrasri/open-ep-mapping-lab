@@ -29,6 +29,9 @@ Average precision (PR AUC)
 Average symmetric surface distance (ASSD)
 : The mean distance between two surfaces, measured from each to the other; a typical-error measure for segmentations. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Bayesian optimization
+: Choosing where to measure next by modelling an unknown function with a probabilistic surrogate, such as a Gaussian process, and maximizing an acquisition function. [m41](../modules/m41-ai-origin-localization.qmd)
+
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
@@ -62,6 +65,9 @@ Electrogram
 Endocardium
 : The inner surface of the heart wall. [m03](../modules/m03-electrograms.qmd)
 
+Expected improvement
+: An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
+
 External validation
 : Testing a frozen model on data from another place or time that played no part in training or tuning. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -82,6 +88,12 @@ Focal source
 
 Gaussian mixture model
 : A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
+Gaussian process
+: A probability model over functions; given measurements, it gives a mean estimate and an uncertainty at every other point. [m41](../modules/m41-ai-origin-localization.qmd)
+
+Geodesic distance
+: The length of the shortest path between two points that stays on a surface. [m41](../modules/m41-ai-origin-localization.qmd)
 
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -122,6 +134,12 @@ Normalized surface Dice (NSD)
 Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
 
+Outflow tract
+: The part of a ventricle leading to its great artery (pulmonary artery on the right, aorta on the left); a common origin of idiopathic premature ventricular beats. [m41](../modules/m41-ai-origin-localization.qmd)
+
+Pace mapping
+: Pacing from a catheter at candidate sites and comparing the paced 12-lead ECG with the ECG of the arrhythmia, to find where the arrhythmia starts. [m41](../modules/m41-ai-origin-localization.qmd)
+
 Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
@@ -133,6 +151,9 @@ Positive predictive value (PPV)
 
 Premature beat
 : A beat that comes earlier than expected, usually followed by a longer interval; a common cause of false AF alerts. [m38](../modules/m38-wearables-monitoring.qmd)
+
+Premature ventricular contraction (PVC)
+: An extra beat that starts in a ventricle earlier than the next normal beat. [m41](../modules/m41-ai-origin-localization.qmd)
 
 Pulmonary vein isolation (PVI)
 : Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -171,7 +192,7 @@ Ventricle
 : One of the two lower chambers of the heart. [m03](../modules/m03-electrograms.qmd)
 
 Ventricular tachycardia
-: A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd)
+: A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd), [m41](../modules/m41-ai-origin-localization.qmd)
 
 Volume conductor
 : The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd)
