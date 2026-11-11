@@ -2,6 +2,19 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m38 stages 1–6, and stacked Part VII branches
+
+- **m38** (Wearables and implantable monitors): seven tested equations, two exact demos
+  (consecutive-window rule; review inbox), clinical correlate on ILR false alerts (pending review),
+  12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Real data:** MIT-BIH Atrial Fibrillation Database, beat (.qrs) and rhythm (.atr) annotations
+  only (`epml.data.load_afdb_rr`), ODC-By 1.0.
+- **Stacked branches:** each Part VII module branch starts from the previous module's branch, and its
+  pull request targets that branch, because the modules share files (data helpers, references,
+  glossary, formula sheet). Merge in order m37, m38, …; after a merge GitHub retargets the next
+  pull request to main when the merged branch is deleted (otherwise change its base by hand).
+- **Undo:** revert the m38 commit.
+
 ## 2026-11-11 · m37 stages 1–6, and how Part VII modules are built
 
 - **Process (author decision, 2026-11-11):** each Part VII module (m37–m45) goes through all six
