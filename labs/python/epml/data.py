@@ -101,8 +101,10 @@ def skip_real_data():
 class PhysioNetDB:
     """Files of one PhysioNet database version, e.g. PhysioNet("ptb-xl", "1.0.3")."""
 
-    def __init__(self, name, version, cache=None):
-        self.name, self.version = name, version
+    def __init__(self, name, version, cache=None, sums="SHA256SUMS.txt"):
+        """sums: the checksum list, relative to the database root. Most databases have SHA256SUMS.txt
+        at the root; older Challenge databases keep a SHA256SUMS file next to their records."""
+        self.name, self.version, self.sums_file = name, version, sums
         self.base = f"{PHYSIONET}{name}/{version}/"
         self.cache = Path(cache) if cache else ROOT / "data" / "cache" / f"{name}-{version}"
         self._sums = None
@@ -113,46 +115,55 @@ class PhysioNetDB:
         raise DataUnavailable(f"could not download from PhysioNet ({self.name} {self.version}): {err}") from err
 
     def checksums(self):
-        """The database's SHA256SUMS.txt as {relative path: hex digest}; cached and pinned if listed in
-        data/registry.json under '<name>-<version>/SHA256SUMS.txt'."""
+        """The database's checksum list as {path relative to the database root: hex digest}. The list's
+        own hash is printed, and checked if data/registry.json pins it under '<name>-<version>/<sums>'."""
         if self._sums is None:
             if skip_real_data():
                 raise DataUnavailable("EPML_SKIP_REAL_DATA=1")
-            path = self.cache / "SHA256SUMS.txt"
+            path = self.cache / self.sums_file
             try:
                 if not path.exists():
-                    self.cache.mkdir(parents=True, exist_ok=True)
-                    path.write_bytes(_get(self.base + "SHA256SUMS.txt"))
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_bytes(_get(self.base + self.sums_file))
             except OSError as err:
                 self._wrap(err)
             got = sha256(path)
-            pinned = pinned_checksums(prefix=f"{self.name}-{self.version}/").get("SHA256SUMS.txt")
-            print(f"{self.name}-{self.version}/SHA256SUMS.txt  sha256 {got}" + ("  (pinned)" if pinned else ""))
+            key = f"{self.name}-{self.version}/"
+            pinned = pinned_checksums(prefix=key).get(self.sums_file)
+            print(f"{key}{self.sums_file}  sha256 {got}" + ("  (pinned)" if pinned else ""))
             if pinned and pinned != got:
                 path.unlink(missing_ok=True)
-                raise ValueError(f"{self.name} SHA256SUMS.txt changed: {got}, registry has {pinned}")
+                raise ValueError(f"{self.name} {self.sums_file} changed: {got}, registry has {pinned}")
+            folder = self.sums_file.rsplit("/", 1)[0] + "/" if "/" in self.sums_file else ""
             sums = {}
             for line in path.read_text().splitlines():
                 parts = line.split()
                 if len(parts) == 2:
-                    sums[parts[1].lstrip("*")] = parts[0]
+                    sums[folder + parts[1].lstrip("*").removeprefix("./")] = parts[0]
             self._sums = sums
         return self._sums
 
     def fetch(self, files, workers=8):
-        """Download (if needed) and verify each relative path; return local paths in the same order."""
+        """Download (if needed) and verify each relative path; return local paths in the same order.
+        A file missing from the published list must be pinned in data/registry.json under
+        '<name>-<version>/<path>'; until it is, its hash is printed so it can be pinned."""
         from concurrent.futures import ThreadPoolExecutor
 
         sums = self.checksums()
+        pins = pinned_checksums(prefix=f"{self.name}-{self.version}/")
 
         def one(rel):
             local = self.cache / rel
             if not local.exists():
                 local.parent.mkdir(parents=True, exist_ok=True)
                 local.write_bytes(_get(self.base + rel))
-            if sums.get(rel) != sha256(local):
+            got = sha256(local)
+            want = sums.get(rel) or pins.get(rel)
+            if want is None:
+                print(f"{self.name}-{self.version}/{rel}  sha256 {got}  (not in the published list; pin it)")
+            elif want != got:
                 local.unlink(missing_ok=True)
-                raise ValueError(f"{rel}: checksum does not match {self.name}'s published SHA256SUMS.txt")
+                raise ValueError(f"{rel}: SHA-256 {got} does not match the expected {want}")
             return local
 
         try:
@@ -164,30 +175,25 @@ class PhysioNetDB:
 
 def load_challenge2017(n_per_class=100, classes=("N", "A"), seed=0, db=None):
     """Single-lead recordings of the PhysioNet/CinC Challenge 2017 training set (Clifford et al. 2017):
-    300 Hz, lead I equivalent. Labels: N normal rhythm, A AF, O other rhythm, ~ noisy. Returns
-    (list of signals in mV, labels, record names). License: Open Data Commons Attribution v1.0."""
+    300 Hz, lead I equivalent. Labels: N normal rhythm, A AF, O other rhythm, ~ noisy (REFERENCE-v3.csv,
+    the final labels). Returns (list of signals in mV, labels, record names). License: Open Data
+    Commons Attribution v1.0."""
     import numpy as np
     from scipy.io import loadmat
 
-    db = db or PhysioNetDB("challenge-2017", "1.0.0")
+    db = db or PhysioNetDB("challenge-2017", "1.0.0", sums="training/SHA256SUMS")
     sums = db.checksums()
-    refs = sorted(f for f in sums if f.lower().endswith(".csv") and "reference" in f.lower())
-    ref = next((f for f in refs if "v3" in f.lower()), refs[0] if refs else None)
-    if ref is None:
-        raise ValueError("no REFERENCE csv in the Challenge 2017 file list")
-    (ref_path,) = db.fetch([ref])
+    (ref_path,) = db.fetch(["training/REFERENCE-v3.csv"])
     rows = [line.strip().split(",") for line in ref_path.read_text().splitlines() if "," in line]
-    folder = ref.rsplit("/", 1)[0] + "/" if "/" in ref else ""
-    names = {Path(f).stem for f in sums if f.endswith(".mat")}
+    where = {Path(f).stem: f[: -len(".mat")] for f in sums if f.endswith(".mat")}
     rng = np.random.default_rng(seed)
     chosen, labels = [], []
     for c in classes:
-        recs = sorted(r for r, lab in rows if lab == c and r in names)
+        recs = sorted(r for r, lab in rows if lab == c and r in where)
         pick = rng.choice(recs, size=min(n_per_class, len(recs)), replace=False)
         chosen += list(pick)
         labels += [c] * len(pick)
-    prefix = next((f.rsplit("/", 1)[0] + "/" for f in sums if f.endswith(f"{chosen[0]}.mat") and "/" in f), folder)
-    paths = db.fetch([f"{prefix}{r}.{ext}" for r in chosen for ext in ("mat", "hea")])
+    paths = db.fetch([f"{where[r]}.{ext}" for r in chosen for ext in ("mat", "hea")])
     signals = []
     for i, r in enumerate(chosen):
         mat, hea = paths[2 * i], paths[2 * i + 1]
