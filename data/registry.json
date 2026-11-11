@@ -36,7 +36,27 @@
     "license": "Creative Commons Attribution 4.0 International",
     "cite": ["ptbxl103", "wagner2020"],
     "sha256": "b7224b92b341511ec3ceb13dc6652079b2c36a06504bcb49506f157f51dc695d",
+    "used_by": ["labs/python/m37_lab.ipynb", "labs/python/m43_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/ (not committed); every fetched file is checked against this list"
+  },
+  {
+    "name": "challenge-2017-1.0.0/training/SHA256SUMS",
+    "source": "AF Classification from a Short Single Lead ECG Recording: the PhysioNet/Computing in Cardiology Challenge 2017, v1.0.0, PhysioNet",
+    "url": "https://physionet.org/files/challenge-2017/1.0.0/training/SHA256SUMS",
+    "license": "Open Data Commons Attribution License v1.0",
+    "cite": ["cinc2017data", "clifford2017"],
+    "sha256": "4c4cb9f9ade1bb51e1f7269b82320148b3678cbedb6ddce5448b78c73623ed7d",
     "used_by": ["labs/python/m37_lab.ipynb"],
     "stored": "downloaded at run time to data/cache/ (not committed); every fetched file is checked against this list"
+  },
+  {
+    "name": "msd/Task02_Heart.tar",
+    "source": "Medical Segmentation Decathlon, Task02_Heart, MONAI consortium mirror on AWS Open Data",
+    "url": "https://msd-for-monai.s3-us-west-2.amazonaws.com/Task02_Heart.tar",
+    "license": "Creative Commons Attribution-ShareAlike 4.0 International",
+    "cite": ["antonelli2022", "tobongomez2015"],
+    "sha256": "4277dc6dfe100142aa8060e895f6ff0f81c5b733703ea250bd294df8f820bcba",
+    "used_by": ["labs/python/m40_lab.ipynb"],
+    "stored": "downloaded at run time to data/cache/msd/, unpacked, archive deleted (not committed); MD5 also checked against MONAI's published value"
   }
 ]

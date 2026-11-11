@@ -18,6 +18,10 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
   checked by `tests/test_m43_demos.py`.
 - **Stanford and NVIDIA:** Almanac (Zakka et al. 2024) and MedHELM (Bedi et al. 2025) from Stanford;
   NV-Embed (Lee et al., NVIDIA) as the example of a dense text-embedding model.
+- **Last checksum pins.** The first CI runs that downloaded them (main, `5bfa3f2`) printed the
+  SHA-256 of the Challenge 2017 `training/SHA256SUMS` list and of the MSD `Task02_Heart.tar` archive
+  (whose MD5 matched MONAI's published value); both are now pinned in `data/registry.json`, so a
+  changed file stops the lab. Also restored the m41 and m42 entries above, lost in a merge on main.
 
 ## 2026-11-11 · m42 stages 1–6, physics-informed fits without a deep-learning library
 
