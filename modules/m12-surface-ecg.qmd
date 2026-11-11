@@ -18,3 +18,4 @@ See the [course map](../course-map.qmd) for every module and its status.
 
 - Clinical mapping specialist or EP fellow
 - Computational modeller
+- AI in EP (engineers and clinicians)

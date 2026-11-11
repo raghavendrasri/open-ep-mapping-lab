@@ -8,7 +8,7 @@ toc: false
 
 ::: {.hero-actions}
 [Read the pilot module](modules/m03-electrograms.qmd){.btn .btn-primary}
-[See all 36 modules](course-map.qmd){.btn .btn-outline-primary}
+[See all 45 modules](course-map.qmd){.btn .btn-outline-primary}
 :::
 
 ::: {.callout-warning appearance="simple"}

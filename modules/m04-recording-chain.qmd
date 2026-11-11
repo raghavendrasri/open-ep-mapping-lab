@@ -18,3 +18,4 @@ See the [course map](../course-map.qmd) for every module and its status.
 
 - Mapping-system software engineer
 - Localization and hardware engineer
+- AI in EP (engineers and clinicians)

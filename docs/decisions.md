@@ -2,6 +2,27 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-10 · Part VII: AI in electrophysiology (m37–m45)
+
+- **Decision (author request):** add a seventh part, "AI in electrophysiology", with nine planned
+  modules, m37–m45. Titles and learning path are in `docs/curriculum.md`; scope, use cases
+  (including agentic AI), planned equations, demos, labs, data sets and verified sources are in
+  `docs/outlines/part7-overview.md`. Module count and numbering still need the author's approval
+  in the pull request.
+- **Why nine:** each covers a distinct data type or method with its own evidence base (surface
+  ECG, wearables and implants, intracardiac signals, imaging, origin localization, physics-informed
+  ML, foundation models and LLMs, agents, evidence and regulation). The overview lists merges the
+  author may prefer.
+- **Release:** Part VII is tagged v1.5 (after v1.0). `tools/sync_curriculum.py` gained `V15_PARTS`,
+  slugs and sidebar names for m37–m45, and now writes the course-map count from the curriculum
+  instead of a fixed "Thirty-six modules in six parts".
+- **Rules:** `CLAUDE.md` §2 now lists AI methods in scope and adds three Part VII rules: report
+  results as the study reports them, no external AI calls from labs or demos (scripted stand-in
+  model in CI), and agents act only on course files with a human approving every write.
+- **Sources:** about 60 papers were looked up on PubMed for the overview; bib entries are added
+  when a module first cites them (stage 2). Six method papers (graph networks, PINNs, attention,
+  sample size, CUSUM, decision curves) are marked `[unverified]` until stage 1.
+- **Undo:** revert this commit and rerun `python tools/sync_curriculum.py`.
 ## 2026-11-06 · m33 stage 4: code lab
 
 - **Author decisions (2026-11-06):** the lab stops at exporting files for openCARP, so CI never needs
