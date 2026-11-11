@@ -457,3 +457,32 @@ $$
 $$
 n \approx \frac{z^2\,p(1-p)}{h^2}
 $$
+
+## m44 · Agentic AI in EP
+
+Symbols: $n$ steps in a task, $p_i$ or $p$ step success, $c$ share of failed steps a check catches, $p_r$ success of the retry, $N$ tasks, $r$ share of wrong outputs a reviewer catches, $h$ share of hard tasks, $p_e$, $p_h$ step success in easy and hard tasks, $\bar p$ mean step success.
+Model: steps fail independently (except in the mixture), one retry per caught failure.
+
+**Task success of a chain of independent steps** ([derivation](../modules/m44-agentic-ai.qmd#eq-m44-chain))
+
+$$
+P_{\text{task}} = \prod_{i=1}^{n} p_i \;=\; p^n \ \text{ if all } p_i = p
+$$
+
+**With a check and one retry** ([derivation](../modules/m44-agentic-ai.qmd#eq-m44-check))
+
+$$
+P_{\text{task}} = \big[\,p + (1-p)\,c\,p_r\,\big]^n \;=\; \big[1 - (1-p)(1-c)\big]^n \ \text{ if } p_r = 1
+$$
+
+**Wrong outputs that get past a reviewer** ([derivation](../modules/m44-agentic-ai.qmd#eq-m44-escape))
+
+$$
+E = N\,(1 - P_{\text{task}})\,(1 - r)
+$$
+
+**Correlated errors: hard and easy tasks** ([derivation](../modules/m44-agentic-ai.qmd#eq-m44-mixture))
+
+$$
+P_{\text{task}} = (1-h)\,p_e^{\,n} + h\,p_h^{\,n} \;\ge\; \bar p^{\,n}, \qquad \bar p = (1-h)\,p_e + h\,p_h
+$$
