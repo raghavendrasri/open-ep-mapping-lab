@@ -30,9 +30,23 @@ class DataUnavailable(RuntimeError):
     """Raised when a dataset cannot be downloaded (for example, no network)."""
 
 
-def _get(url, timeout=60):
-    with urllib.request.urlopen(url, timeout=timeout) as response:
-        return response.read()
+def _get(url, timeout=60, attempts=4, wait_s=3.0):
+    """Download a URL. Server errors (HTTP 5xx) and dropped connections are retried a few times with a
+    growing wait, because PhysioNet occasionally answers 502 under load; other errors are raised."""
+    import time
+    import urllib.error
+
+    for attempt in range(attempts):
+        try:
+            with urllib.request.urlopen(url, timeout=timeout) as response:
+                return response.read()
+        except urllib.error.HTTPError as err:
+            if err.code < 500 or attempt == attempts - 1:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError):
+            if attempt == attempts - 1:
+                raise
+        time.sleep(wait_s * (attempt + 1))
 
 
 def sha256(path):
