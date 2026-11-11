@@ -23,6 +23,9 @@ Atrial fibrillation (AF)
 Atrium (plural atria)
 : One of the two upper chambers of the heart. [m03](../modules/m03-electrograms.qmd)
 
+Average precision (PR AUC)
+: The area under the precision–recall curve, averaged over thresholds. Unlike the ROC AUC it falls when positives are rare. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
@@ -42,7 +45,10 @@ Dataset shift
 : Any difference between the data a model was trained on and the data where it is used: in class mix (prior shift), in the recordings (covariate shift) or in what labels mean. [m37](../modules/m37-ai-ecg.qmd)
 
 Decapolar catheter
-: A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd)
+: A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd), [m39](../modules/m39-ai-electrograms-maps.qmd)
+
+Dice coefficient
+: Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
@@ -59,14 +65,26 @@ Far-field signal
 Federated learning
 : Training one model across sites that keep their data; only model updates are shared. [m37](../modules/m37-ai-ecg.qmd)
 
+Focal loss
+: A cross-entropy that down-weights examples the model already gets right, so training attends to rare and hard ones. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
+
+Gaussian mixture model
+: A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
+Graph convolution
+: A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
 
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Leave-one-patient-out
+: A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Local activation time
 : The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)

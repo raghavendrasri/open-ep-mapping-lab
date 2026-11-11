@@ -213,3 +213,49 @@ $$
 $$
 \mathrm{PPV}' = \frac{\kappa\,\mathrm{PPV}}{\kappa\,\mathrm{PPV} + (1 - r)(1 - \mathrm{PPV})}
 $$
+
+## m39 · AI on electrograms and maps
+
+Symbols: $A$ mesh adjacency matrix, $I$ identity, $\tilde D$ degree matrix of $A + I$, $H$ vertex features, $W$ shared
+weights, $\sigma$ nonlinearity, $\mathbf v$ eigenvector with $v_i \propto \sqrt{\tilde d_i}$, $P$ and $T$ predicted and true regions,
+$R$ and $r$ disc radii, $d$ centre distance, $p_t$ probability of the true class, $\alpha$ and $\gamma$ focal-loss
+weight and focusing parameters, $\pi_k$, $\mu_k$, $\sigma_k$ mixture weights, means and standard deviations, $\gamma_{ik}$
+responsibilities.
+
+**Graph convolution layer** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-gcn))
+
+$$
+H' = \sigma\!\left(\hat A H W\right), \qquad
+\hat A = \tilde D^{-1/2}\,(A + I)\,\tilde D^{-1/2}
+$$
+
+**Fixed point of the normalized adjacency** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-smoothing))
+
+$$
+\hat A\, \mathbf v = \mathbf v, \qquad v_i \propto \sqrt{\tilde d_i}
+$$
+
+**Dice coefficient** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-dice))
+
+$$
+\mathrm{Dice} = \frac{2\,\lvert P \cap T \rvert}{\lvert P \rvert + \lvert T \rvert}
+$$
+
+**Overlap of two discs (lens area)** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-lens))
+
+$$
+\lvert P \cap T\rvert = r^2 \cos^{-1}\!\frac{d^2 + r^2 - R^2}{2dr} + R^2 \cos^{-1}\!\frac{d^2 + R^2 - r^2}{2dR}
+- \tfrac12\sqrt{(-d + r + R)(d + r - R)(d - r + R)(d + r + R)}
+$$
+
+**Focal loss** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-focal))
+
+$$
+\mathrm{FL}(p_t) = -\alpha_t\,(1 - p_t)^{\gamma}\,\log p_t
+$$
+
+**Gaussian mixture responsibilities** ([derivation](../modules/m39-ai-electrograms-maps.qmd#eq-m39-gmm))
+
+$$
+\gamma_{ik} = \frac{\pi_k\, \mathcal N(x_i \mid \mu_k, \sigma_k)}{\sum_{j=1}^{K} \pi_j\, \mathcal N(x_i \mid \mu_j, \sigma_j)}
+$$
