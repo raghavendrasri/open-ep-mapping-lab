@@ -248,3 +248,30 @@ def load_ptbxl_lead(n_per_class=50, codes=("SR", "AFIB"), fold=10, lead="I", see
         labels.append(c)
         ids.append(ecg_id)
     return np.array(signals), labels, ids, {c: len(v) for c, v in by_code.items()}
+
+
+def load_afdb_rr(records=("04015", "04043", "04048", "04126", "04746"), db=None):
+    """Beat times and rhythm annotations from the MIT-BIH Atrial Fibrillation Database (Moody and Mark
+    1983; PhysioNet, doi:10.13026/C2MW2D, Open Data Commons Attribution v1.0). Only the header, the
+    unaudited beat annotations (.qrs) and the manual rhythm annotations (.atr) are fetched, a few hundred
+    kilobytes per record. Returns {record: {"beats": seconds, "af": [(start_s, end_s), ...], "fs": Hz}}."""
+    import wfdb
+
+    db = db or PhysioNetDB("afdb", "1.0.0")
+    db.fetch([f"{r}.{ext}" for r in records for ext in ("hea", "qrs", "atr")])
+    out = {}
+    for r in records:
+        base = str(db.cache / r)
+        fs = float(wfdb.rdheader(base).fs)
+        beats = wfdb.rdann(base, "qrs").sample / fs
+        atr = wfdb.rdann(base, "atr")
+        notes = [(s / fs, (n or "").strip("\x00").strip()) for s, n in zip(atr.sample, atr.aux_note)]
+        notes = [(t, n) for t, n in notes if n.startswith("(")]
+        end = float(beats[-1])
+        af = []
+        for i, (t, n) in enumerate(notes):
+            stop = notes[i + 1][0] if i + 1 < len(notes) else end
+            if n == "(AFIB":
+                af.append((t, stop))
+        out[r] = {"beats": beats, "af": af, "fs": fs}
+    return out

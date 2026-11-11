@@ -164,3 +164,52 @@ $$
 $$
 p' = \frac{\dfrac{\pi'}{\pi}\, p}{\dfrac{\pi'}{\pi}\, p + \dfrac{1-\pi'}{1-\pi}\,(1-p)}
 $$
+
+## m38 · Wearables and implantable monitors
+
+Symbols: $RR_i$ beat intervals, $\Delta_i$ pulse delays, $\mathrm{IBI}_i$ pulse intervals, $q$ and $p$ per-window
+flag rates in regular rhythm and AF, $k$ windows required in a row, $n$ windows per day, $L$ windows per episode,
+$N$ patients, $\lambda$ alerts per patient per day, $\tau$ review minutes, $\kappa$ and $r$ shares of true alerts
+kept and false alerts removed. Model: independent windows and alerts.
+
+**Heart rate** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-hr))
+
+$$
+\mathrm{HR} = \frac{60}{\overline{\mathrm{IBI}}} \quad \text{beats per minute}
+$$
+
+**Pulse intervals** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-ibi))
+
+$$
+\mathrm{IBI}_i = RR_i + \left(\Delta_{i+1} - \Delta_i\right)
+$$
+
+**Pulse-interval variance** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-ibi-var))
+
+$$
+\operatorname{Var}(\mathrm{IBI}) = \operatorname{Var}(RR) + 2\sigma_\Delta^2\,(1 - \rho)
+$$
+
+**False notifications, k in a row** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-runs))
+
+$$
+\mathbb E[\text{runs}] = q^{k}\left[1 + (n - k)(1 - q)\right]
+$$
+
+**Episode caught** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-detect))
+
+$$
+a_m = \sum_{j=0}^{k-1} p^{j}(1 - p)\, a_{m-j-1}, \qquad P(\text{episode caught}) = 1 - a_L
+$$
+
+**Review load** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-workload))
+
+$$
+A = N\lambda, \qquad A_{\text{false}} = N\lambda\,(1 - \mathrm{PPV}), \qquad H = \frac{N\lambda\,\tau}{60}\ \text{hours}
+$$
+
+**PPV after a triage filter** ([derivation](../modules/m38-wearables-monitoring.qmd#eq-m38-filter))
+
+$$
+\mathrm{PPV}' = \frac{\kappa\,\mathrm{PPV}}{\kappa\,\mathrm{PPV} + (1 - r)(1 - \mathrm{PPV})}
+$$
