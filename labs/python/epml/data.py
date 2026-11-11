@@ -184,12 +184,19 @@ def load_challenge2017(n_per_class=100, classes=("N", "A"), seed=0, db=None):
     db = db or PhysioNetDB("challenge-2017", "1.0.0", sums="training/SHA256SUMS")
     sums = db.checksums()
     (ref_path,) = db.fetch(["training/REFERENCE-v3.csv"])
-    rows = [line.strip().split(",") for line in ref_path.read_text().splitlines() if "," in line]
+    rows = [line.strip().split(",")[:2] for line in ref_path.read_text().splitlines() if "," in line]
+    rows = [(Path(r.strip()).name, lab.strip()) for r, lab in rows]   # names may carry their subfolder
     where = {Path(f).stem: f[: -len(".mat")] for f in sums if f.endswith(".mat")}
+    if not rows or not where:
+        raise ValueError(f"Challenge 2017: {len(rows)} label rows, {len(where)} .mat files in the checksum list; "
+                         f"first list entries {list(sums)[:3]}")
     rng = np.random.default_rng(seed)
     chosen, labels = [], []
     for c in classes:
         recs = sorted(r for r, lab in rows if lab == c and r in where)
+        if not recs:
+            raise ValueError(f"Challenge 2017: no '{c}' records; label rows look like {rows[:3]}, "
+                             f"records like {list(where)[:3]}")
         pick = rng.choice(recs, size=min(n_per_class, len(recs)), replace=False)
         chosen += list(pick)
         labels += [c] * len(pick)
@@ -200,6 +207,7 @@ def load_challenge2017(n_per_class=100, classes=("N", "A"), seed=0, db=None):
         fields = hea.read_text().splitlines()[1].split()
         gain = float(fields[2].split("/")[0].split("(")[0]) if len(fields) > 2 else 1000.0
         x = np.asarray(loadmat(mat)["val"], float).ravel() / gain   # stored as one row or one column
+        print(f"{r}: {x.size} samples") if i < 2 else None
         if x.size < 100:
             raise ValueError(f"{r}: only {x.size} samples read from {mat.name}")
         signals.append(x)
