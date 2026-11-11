@@ -359,3 +359,47 @@ $$
 \mathrm{EI}(\mathbf s) = \Delta\, \Phi\!\left(\frac{\Delta}{\sigma}\right) + \sigma\, \varphi\!\left(\frac{\Delta}{\sigma}\right),
 \qquad \Delta = \mu(\mathbf s) - f^* - \xi
 $$
+
+## m42 · Physics-informed machine learning
+
+Symbols: $T$ activation time (ms), $s = 1/v$ slowness (ms/mm), $\mathbf x_i$, $t_i$ measurement points and times, $\mathbf x_c$
+collocation points, $\lambda$ physics weight (ms²), $\mathbf c_k$, $h$, $a_k$ basis centres, width and coefficients, $J$ Jacobian,
+$\mathbf r$ residual vector, $\mu$ damping, $T_m$ ensemble members, $k$ a scale factor.
+
+**Eikonal residual** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-eikonal))
+
+$$
+r(\mathbf x) = s(\mathbf x)\,\lvert \nabla T(\mathbf x) \rvert - 1
+$$
+
+**Physics-informed loss** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-loss))
+
+$$
+L = \frac{1}{N_d} \sum_{i=1}^{N_d} \big(T(\mathbf x_i) - t_i\big)^2 + \frac{\lambda}{N_c} \sum_{c=1}^{N_c} r(\mathbf x_c)^2
+$$
+
+**Radial-basis map and its gradient** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-rbf))
+
+$$
+T(\mathbf x) = a_0 + \sum_{k} a_k\, e^{-\lvert \mathbf x - \mathbf c_k\rvert^2/2h^2}, \qquad
+\nabla T(\mathbf x) = -\sum_k a_k\, \frac{\mathbf x - \mathbf c_k}{h^2}\, e^{-\lvert \mathbf x - \mathbf c_k\rvert^2/2h^2}
+$$
+
+**Levenberg–Marquardt step** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-lm))
+
+$$
+\left(J^\top J + \mu\, \mathrm{diag}(J^\top J)\right) \boldsymbol\delta = -J^\top \mathbf r, \qquad J = \frac{\partial \mathbf r}{\partial \mathbf p}
+$$
+
+**Ensemble mean and spread** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-ensemble))
+
+$$
+\bar T(\mathbf x) = \frac{1}{M}\sum_{m=1}^{M} T_m(\mathbf x), \qquad
+\sigma^2(\mathbf x) = \frac{1}{M-1}\sum_{m=1}^{M} \big(T_m(\mathbf x) - \bar T(\mathbf x)\big)^2
+$$
+
+**Slowness scaling of activation times** ([derivation](../modules/m42-physics-informed-ml.qmd#eq-m42-scaling))
+
+$$
+T\big(\mathbf x;\, k\,s(\cdot)\big) = k\, T\big(\mathbf x;\, s(\cdot)\big)
+$$

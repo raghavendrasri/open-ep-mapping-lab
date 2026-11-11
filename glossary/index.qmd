@@ -38,11 +38,14 @@ Bipolar electrogram
 Clique
 : A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
 
+Collocation point
+: A point where a governing equation is checked during fitting; it needs no measurement. [m42](../modules/m42-physics-informed-ml.qmd)
+
 Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Conduction velocity
-: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd)
+: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd)
 
 Cross-entropy
 : The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
@@ -59,11 +62,17 @@ Decapolar catheter
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Eikonal equation
+: The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd)
+
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
 
 Endocardium
 : The inner surface of the heart wall. [m03](../modules/m03-electrograms.qmd)
+
+Ensemble
+: A set of models trained with different random choices; their spread is used as an uncertainty estimate. [m42](../modules/m42-physics-informed-ml.qmd)
 
 Expected improvement
 : An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
@@ -119,6 +128,9 @@ Late gadolinium enhancement (LGE)
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Levenberg–Marquardt method
+: An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
+
 Local activation time
 : The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)
 
@@ -146,6 +158,9 @@ Pacing
 Photoplethysmography (PPG)
 : Measuring blood-volume changes in tissue with light; the basis of pulse sensing in watches and trackers. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Physics-informed neural network (PINN)
+: A neural network trained on a loss that adds the residual of a governing equation to the data misfit. [m42](../modules/m42-physics-informed-ml.qmd)
+
 Positive predictive value (PPV)
 : The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd)
 
@@ -157,6 +172,9 @@ Premature ventricular contraction (PVC)
 
 Pulmonary vein isolation (PVI)
 : Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Radial basis function
+: A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
 
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
@@ -181,6 +199,9 @@ Softmax
 
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
+
+Surrogate model
+: A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
 
 Transmembrane voltage
 : The voltage across a cell membrane, inside minus outside. [m03](../modules/m03-electrograms.qmd)

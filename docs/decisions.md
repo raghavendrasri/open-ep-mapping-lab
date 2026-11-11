@@ -2,6 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m42 stages 1–6, physics-informed fits without a deep-learning library
+
+- **m42** (Physics-informed machine learning): six tested equations (eikonal residual, loss, RBF map,
+  Levenberg–Marquardt step, ensemble statistics, slowness scaling), two simulation demos (precomputed
+  data versus physics; live one-dimensional ensemble), clinical correlate on what method studies show
+  (pending review), 12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **`epml.pinn`** fits RBF activation maps with analytic gradients by Levenberg–Marquardt, so the core
+  lab needs no PyTorch; part F repeats the homogeneous case with a PyTorch PINN.
+- **New precomputed demo data:** `demos/m42-d1-data.json` (73 kB) from `tools/make_m42_d1.py`, checked
+  against a fresh computation in `tests/test_m42_demos.py`.
+- **NVIDIA and Stanford:** Raissi et al. 2020 (an NVIDIA-affiliated author, checked on PubMed) and
+  NVIDIA PhysicsNeMo (software record); Sahli Costabal et al. 2020 with a Stanford co-author
+  (affiliation checked on the publisher's PDF).
+- **Undo:** revert the m42 commit.
+
 ## 2026-11-11 · m41 stages 1–6, synthetic lab only
 
 - **m41** (Locating arrhythmia origins from the ECG): six tested equations (QRS integral in a
