@@ -91,3 +91,23 @@ website:
         text: m35 · Machine learning in EP mapping
       - href: modules/m36-prototype-to-product.qmd
         text: m36 · From prototype to product
+    - section: Part VII · AI in electrophysiology
+      contents:
+      - href: modules/m37-ai-ecg.qmd
+        text: m37 · AI on the surface ECG
+      - href: modules/m38-wearables-monitoring.qmd
+        text: m38 · Wearables and implantable monitors
+      - href: modules/m39-ai-electrograms-maps.qmd
+        text: m39 · AI on electrograms and maps
+      - href: modules/m40-ai-imaging-substrate.qmd
+        text: m40 · AI for imaging and substrate
+      - href: modules/m41-ai-origin-localization.qmd
+        text: m41 · Locating arrhythmia origins
+      - href: modules/m42-physics-informed-ml.qmd
+        text: m42 · Physics-informed ML
+      - href: modules/m43-foundation-models-llms.qmd
+        text: m43 · Foundation models and LLMs
+      - href: modules/m44-agentic-ai.qmd
+        text: m44 · Agentic AI in EP
+      - href: modules/m45-ai-evidence-regulation.qmd
+        text: m45 · Evidence and regulation of AI

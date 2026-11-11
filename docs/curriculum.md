@@ -1,6 +1,8 @@
 # Curriculum
 
-Six parts, 36 modules. Part IV (map formation) is the core of the course and ships first.
+Seven parts, 45 modules. Part IV (map formation) is the core of the course and ships first.
+Part VII (AI in electrophysiology) was added in November 2026; its plan is in
+`docs/outlines/part7-overview.md`.
 Change this list only with the author's approval.
 
 ## Part I · Math and bioelectric foundations
@@ -69,6 +71,20 @@ Change this list only with the author's approval.
 | m35 | Machine learning in EP mapping: annotation, driver detection, validation pitfalls |
 | m36 | From prototype to product: FDA Class II (21 CFR 870.1425, product code DQK), 510(k), IEC 60601-1, IEC 62304, ISO 14971, EU MDR |
 
+## Part VII · AI in electrophysiology
+
+| ID | Module |
+| --- | --- |
+| m37 | AI on the surface ECG: rhythm classification, detecting hidden disease, external validation |
+| m38 | Wearables and implantable monitors: PPG and single-lead ECG, alert triage, remote monitoring |
+| m39 | AI on intracardiac electrograms and maps: electrogram classification, graph learning on mapping data, AI-guided ablation trials |
+| m40 | AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis, automated chamber reconstruction |
+| m41 | Locating arrhythmia origins from the ECG: regression and deep learning, simulation-trained models, active pace-mapping |
+| m42 | Physics-informed machine learning: PINNs, surrogate models, uncertainty for digital twins |
+| m43 | Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval |
+| m44 | Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight |
+| m45 | Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring |
+
 ## Learning paths
 
 | Path | Modules |
@@ -77,6 +93,7 @@ Change this list only with the author's approval.
 | Localization and hardware engineer | m01–m04, m13–m19, m34, m36, plus bench track |
 | Clinical mapping specialist or EP fellow | m03, m08–m12, m20–m29, m31 |
 | Computational modeller | m01, m02, m05–m09, m12, m24, m25, m29, m33 |
+| AI in EP (engineers and clinicians) | m03, m04, m12, m22, m35, m37–m45 |
 | Interview prep | Interview questions across all modules |
 
 ## Release order
@@ -87,3 +104,4 @@ Change this list only with the author's approval.
 | v0.1 (MVP) | m03, m04, m20, m22, m23, m24, m25, m30 |
 | v0.5 | Parts I–III, plus m21, m26 |
 | v1.0 | Parts V–VI, formula sheet, glossary, interview bank |
+| v1.5 | Part VII |
