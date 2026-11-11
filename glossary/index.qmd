@@ -62,6 +62,9 @@ Federated learning
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
 
+Implantable loop recorder (ILR)
+: A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
+
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
 
@@ -80,8 +83,20 @@ Omnipolar electrogram
 Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
+Photoplethysmography (PPG)
+: Measuring blood-volume changes in tissue with light; the basis of pulse sensing in watches and trackers. [m38](../modules/m38-wearables-monitoring.qmd)
+
+Positive predictive value (PPV)
+: The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd)
+
+Premature beat
+: A beat that comes earlier than expected, usually followed by a longer interval; a common cause of false AF alerts. [m38](../modules/m38-wearables-monitoring.qmd)
+
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
+
+Remote monitoring
+: Sending data from an implanted or wearable device to a clinic, where alerts are reviewed. [m38](../modules/m38-wearables-monitoring.qmd)
 
 RR interval
 : The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
