@@ -2,6 +2,58 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m43 stages 1–6, contrastive pretraining and an offline LLM-evaluation harness
+
+- **m43** (Foundation models and large language models): eight tested equations (InfoNCE and its
+  gradient, attention, score variance, TF-IDF, cosine, Wilson interval, questions needed), two demos
+  (precomputed contrastive embedding; exact retrieval over the course glossary), clinical correlate
+  (pending review), 13 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **`epml.foundation`** trains a small encoder with InfoNCE in NumPy (manual backward pass, Adam), so
+  the core lab needs no PyTorch; part H repeats it with a 1-D CNN in PyTorch.
+- **`epml.retrieval`** holds the TF-IDF index, ranking metrics, Wilson interval and an evaluation
+  harness whose "model" is a scripted stand-in with planted faults (Part VII rule: no external AI
+  services in CI). An optional notebook cell, skipped in CI, lets readers plug in their own model.
+- **New generated demo files:** `demos/m43-d1-data.json` (from `tools/make_m43_d1.py`) and
+  `demos/m43-d2-corpus.json` (from `tools/make_m43_d2.py`, rerun after glossary changes); both are
+  checked by `tests/test_m43_demos.py`.
+- **Stanford and NVIDIA:** Almanac (Zakka et al. 2024) and MedHELM (Bedi et al. 2025) from Stanford;
+  NV-Embed (Lee et al., NVIDIA) as the example of a dense text-embedding model.
+- **Last checksum pins.** The first CI runs that downloaded them (main, `5bfa3f2`) printed the
+  SHA-256 of the Challenge 2017 `training/SHA256SUMS` list and of the MSD `Task02_Heart.tar` archive
+  (whose MD5 matched MONAI's published value); both are now pinned in `data/registry.json`, so a
+  changed file stops the lab. Also restored the m41 and m42 entries above, lost in a merge on main.
+
+## 2026-11-11 · m42 stages 1–6, physics-informed fits without a deep-learning library
+
+- **m42** (Physics-informed machine learning): six tested equations (eikonal residual, loss, RBF map,
+  Levenberg–Marquardt step, ensemble statistics, slowness scaling), two simulation demos (precomputed
+  data versus physics; live one-dimensional ensemble), clinical correlate on what method studies show
+  (pending review), 12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **`epml.pinn`** fits RBF activation maps with analytic gradients by Levenberg–Marquardt, so the core
+  lab needs no PyTorch; part F repeats the homogeneous case with a PyTorch PINN.
+- **New precomputed demo data:** `demos/m42-d1-data.json` (73 kB) from `tools/make_m42_d1.py`, checked
+  against a fresh computation in `tests/test_m42_demos.py`.
+- **NVIDIA and Stanford:** Raissi et al. 2020 (an NVIDIA-affiliated author, checked on PubMed) and
+  NVIDIA PhysicsNeMo (software record); Sahli Costabal et al. 2020 with a Stanford co-author
+  (affiliation checked on the publisher's PDF).
+- **Undo:** revert the m42 commit.
+
+## 2026-11-11 · m41 stages 1–6, synthetic lab only
+
+- **m41** (Locating arrhythmia origins from the ECG): six tested equations (QRS integral in a
+  double-layer model, least squares, geodesic error, pace-map correlation, GP posterior, expected
+  improvement), a simulation demo of active pace-mapping and an exact one-dimensional GP and EI demo,
+  clinical correlate on what localization studies show and what their references mean (pending
+  review), 12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Forward model** (`epml.origins`): a uniform double layer on a closed ellipsoidal surface in an
+  infinite medium, activation times from mesh edge paths. Labelled an approximate model; it gives the
+  QRS integral the structure derived in the module.
+- **No real data in this lab.** The candidate open database (Zheng et al. 2020, figshare) could not
+  be reached from the build workspace to verify its licence and files. Recorded as an open point in
+  the outline and the pull request rather than guessed.
+- **Demo change from the overview:** m41-d2 is the one-dimensional GP and EI demo.
+- **Undo:** revert the m41 commit.
+
 ## 2026-11-11 · Pin the PhysioNet checksum lists used by m37 and m38
 
 - **Decision:** record the SHA-256 of `afdb-1.0.0/SHA256SUMS.txt` and `ptb-xl-1.0.3/SHA256SUMS.txt`

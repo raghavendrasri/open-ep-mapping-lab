@@ -84,7 +84,7 @@ Status shows how far each module has got.
 | m40 | [AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis, automated chamber reconstruction](modules/m40-ai-imaging-substrate.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m41 | [Locating arrhythmia origins from the ECG: regression and deep learning, simulation-trained models, active pace-mapping](modules/m41-ai-origin-localization.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m42 | [Physics-informed machine learning: PINNs, surrogate models, uncertainty for digital twins](modules/m42-physics-informed-ml.qmd) | [Draft]{.status .status-draft} | v1.5 |
-| m43 | [Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval](modules/m43-foundation-models-llms.qmd) | [Planned]{.status .status-planned} | v1.5 |
+| m43 | [Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval](modules/m43-foundation-models-llms.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m44 | [Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight](modules/m44-agentic-ai.qmd) | [Planned]{.status .status-planned} | v1.5 |
 | m45 | [Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring](modules/m45-ai-evidence-regulation.qmd) | [Planned]{.status .status-planned} | v1.5 |
 
