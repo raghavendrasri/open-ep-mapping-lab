@@ -12,4 +12,8 @@ Found an error? Open an issue on the course repository and include:
 
 ## Corrections so far
 
-None yet. The pilot module is still a draft.
+The machine-readable record is `errata.json` in the repository.
+
+| ID | Date | Module | Where | Correction | Status |
+| --- | --- | --- | --- | --- | --- |
+| E1 | 2026-11-11 | m37 | Code lab, part E | The line that printed the external calibration slope printed the calibration intercept, because the helper's two return values were unpacked in the wrong order. Fixed; no page text quoted the value. | Fixed, pending human review |

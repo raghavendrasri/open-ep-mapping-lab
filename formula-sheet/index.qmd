@@ -486,3 +486,26 @@ $$
 $$
 P_{\text{task}} = (1-h)\,p_e^{\,n} + h\,p_h^{\,n} \;\ge\; \bar p^{\,n}, \qquad \bar p = (1-h)\,p_e + h\,p_h
 $$
+
+## m45 · Evidence and regulation of AI in EP
+
+Symbols: $Se$, $Sp$ expected sensitivity and specificity, $d$ interval half-width, $\pi$ prevalence, $z$ normal quantile (1.96 for 95%), TP and FP true and false positives among $n$ patients, $p_t$ threshold probability, $x_t$ standardized daily statistic, $\mu_0$ its in-control mean, $k$ allowance, $h$ alarm threshold.
+Model: independent patients and days; normal approximation for the sample size.
+
+**Patients needed for a sensitivity or specificity interval** ([derivation](../modules/m45-ai-evidence-regulation.qmd#eq-m45-n-sens))
+
+$$
+n_{Se} = \frac{z^2\,Se\,(1-Se)}{d^2\,\pi}, \qquad n_{Sp} = \frac{z^2\,Sp\,(1-Sp)}{d^2\,(1-\pi)}
+$$
+
+**Net benefit of a decision rule** ([derivation](../modules/m45-ai-evidence-regulation.qmd#eq-m45-net-benefit))
+
+$$
+\mathrm{NB}(p_t) = \frac{\mathrm{TP}}{n} - \frac{\mathrm{FP}}{n}\cdot\frac{p_t}{1 - p_t}
+$$
+
+**CUSUM drift alarm** ([derivation](../modules/m45-ai-evidence-regulation.qmd#eq-m45-cusum))
+
+$$
+S_t = \max\bigl(0,\; S_{t-1} + x_t - \mu_0 - k\bigr), \quad S_0 = 0, \qquad \text{alarm when } S_t > h
+$$

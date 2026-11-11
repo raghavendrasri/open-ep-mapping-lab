@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "id": "E1",
+    "date": "2026-11-11",
+    "module": "m37",
+    "location": "labs/python/m37_lab.ipynb, part E",
+    "kind": "correction",
+    "description": "The external-calibration line unpacked epml.ml.calibration_slope_intercept as (slope, intercept), but the function returns (intercept, slope), so the value printed as 'external calibration slope' was the intercept. Fixed by unpacking in the documented order. No page text quoted the value.",
+    "found_by": "Claude, while building m45",
+    "status": "fixed, pending human review"
+  }
+]

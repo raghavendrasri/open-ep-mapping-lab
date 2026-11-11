@@ -86,7 +86,7 @@ Status shows how far each module has got.
 | m42 | [Physics-informed machine learning: PINNs, surrogate models, uncertainty for digital twins](modules/m42-physics-informed-ml.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m43 | [Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval](modules/m43-foundation-models-llms.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m44 | [Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight](modules/m44-agentic-ai.qmd) | [Draft]{.status .status-draft} | v1.5 |
-| m45 | [Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring](modules/m45-ai-evidence-regulation.qmd) | [Planned]{.status .status-planned} | v1.5 |
+| m45 | [Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring](modules/m45-ai-evidence-regulation.qmd) | [Draft]{.status .status-draft} | v1.5 |
 
 ## Learning paths
 
