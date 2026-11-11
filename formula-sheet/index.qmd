@@ -313,3 +313,49 @@ $$
 $$
 C = \frac{\sum_{i,j} \mathbb 1[t_i < t_j]\, e_i \left(\mathbb 1[r_i > r_j] + \tfrac12\, \mathbb 1[r_i = r_j]\right)}{\sum_{i,j} \mathbb 1[t_i < t_j]\, e_i}
 $$
+
+## m41 · Locating arrhythmia origins from the ECG
+
+Symbols: $\Omega_{ej}$ solid angle of surface element $j$ seen from electrode $e$, $\tau_j$ activation times, $c$ potential scale,
+$T$ integration window, $A = [X\;\mathbf 1]$ features with an intercept column, $R$ origin coordinates, $\mathbf u$, $\mathbf v$ unit vectors
+on a sphere of radius $R$, $a_l$, $b_l$ two ECGs in lead $l$, $K$ and $\mathbf k_*$ kernel matrices, $\ell$, $\sigma_f$, $\sigma_n$ kernel length
+scale, signal scale and noise, $f^*$ best score so far, $\xi$ margin, $\Phi$ and $\varphi$ standard normal distribution and density.
+
+**QRS integral in a double-layer model** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-integral))
+
+$$
+x_e = \int_0^T \phi_e(t)\, dt = c \sum_j \Omega_{ej}\,(T - \tau_j)_+
+= -c \sum_j \Omega_{ej}\, \tau_j \quad \text{when } T \ge \max_j \tau_j
+$$
+
+**Least-squares localization** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-linear))
+
+$$
+\begin{bmatrix} W \\ \mathbf b^\top \end{bmatrix} = (A^\top A)^{-1} A^\top R
+$$
+
+**Error along a spherical surface** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-geodesic))
+
+$$
+d = R \arccos(\mathbf u \cdot \mathbf v), \qquad \lvert \mathbf u - \mathbf v \rvert R = 2R\sin\frac{d}{2R} \le d
+$$
+
+**Pace-map similarity** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-corr))
+
+$$
+\rho = \frac{1}{12} \sum_{l=1}^{12} \frac{\sum_t (a_l(t) - \bar a_l)(b_l(t) - \bar b_l)}{\sqrt{\sum_t (a_l(t) - \bar a_l)^2 \sum_t (b_l(t) - \bar b_l)^2}}
+$$
+
+**Gaussian-process posterior** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-gp))
+
+$$
+\mu(\mathbf s) = m + \mathbf k_*^\top (K + \sigma_n^2 I)^{-1} (\mathbf f - m), \qquad
+\sigma^2(\mathbf s) = \sigma_f^2 - \mathbf k_*^\top (K + \sigma_n^2 I)^{-1} \mathbf k_*
+$$
+
+**Expected improvement** ([derivation](../modules/m41-ai-origin-localization.qmd#eq-m41-ei))
+
+$$
+\mathrm{EI}(\mathbf s) = \Delta\, \Phi\!\left(\frac{\Delta}{\sigma}\right) + \sigma\, \varphi\!\left(\frac{\Delta}{\sigma}\right),
+\qquad \Delta = \mu(\mathbf s) - f^* - \xi
+$$
