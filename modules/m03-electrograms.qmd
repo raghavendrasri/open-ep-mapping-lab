@@ -41,8 +41,8 @@ explains it.
   from which activation spreads outward), but notes that their far-field signal can hide small
   local signals in diseased tissue. Bipolar recordings are standard because they reject far-field
   signal. Still, the local signal can come from under either electrode, far-field signals do
-  appear, and unipolar recordings taken at the same time help in some situations [@stevenson2005]. The physics is in
-  @eq-m03-farfield.
+  appear, and unipolar recordings taken at the same time help in some situations [@stevenson2005]. The physics
+  is in @eq-m03-farfield.
 - **Filtering changes what a unipolar signal can tell you.** High-pass filtering a unipolar
   recording reduces its far-field part but limits what its shape can tell you [@stevenson2005].
   Module m04 covers the recording chain and its filters.
@@ -127,8 +127,8 @@ $$ {#eq-m03-height-filter}
 The factor $e^{-|k|h}$ is a spatial low-pass filter. The farther the electrode sits from the
 tissue, the more fine spatial detail it loses.
 
-**The unipolar electrogram.** Insert @eq-m03-cable and @eq-m03-front into
-@eq-m03-height-filter. For a planar front only the spatial frequency along $x$ matters, so $k$ is
+**The unipolar electrogram.** Insert @eq-m03-cable and @eq-m03-front into @eq-m03-height-filter.
+For a planar front only the spatial frequency along $x$ matters, so $k$ is
 one-dimensional. Since $\hat i_m = -\beta k^2 \hat V_m$ and the transform of
 $dV_m/ds$ is $-\Delta V e^{-w|k|}$, the potential spectrum is
 $\hat\phi = -i\,\mathrm{sgn}(k)\,\frac{\beta\Delta V}{2\sigma}\, e^{-(w+h)|k|}$. Its inverse

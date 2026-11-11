@@ -217,7 +217,7 @@ designs, not a lifetime prediction.
 
 **Assumptions**
 
-- @eq-m36-reliability: constant failure rates, parts in series, independent failures.
+- Model (@eq-m36-reliability): constant failure rates, parts in series, independent failures.
 - Failure rates and mission time are illustrative inputs, not data for any product.
 - What would change the result: early failures and wear-out (rates that change with time), redundancy, and repair.
 :::

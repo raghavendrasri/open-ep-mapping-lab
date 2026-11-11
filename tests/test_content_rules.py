@@ -290,9 +290,10 @@ def test_repository_address_has_one_source():
 @pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
 def test_no_line_starts_with_a_cross_reference(path):
     """Pandoc reads a line that starts with "(@label)" or "@label)" as an example-list marker, which
-    turns a wrapped sentence into a numbered list. Reflow so no line starts that way."""
+    turns a wrapped sentence into a numbered list; a list item that starts with "@label" renders as a
+    number too. Reflow so no line or list item starts that way."""
     bad = [n for n, line in enumerate(path.read_text().splitlines(), 1)
-           if re.match(r"^\s*\(?@[A-Za-z0-9_-]+[\);\]]", line)]
+           if re.match(r"^\s*\(?@[A-Za-z0-9_-]+([\);\]]|\.(\s|$))", line) or re.match(r"^\s*(-|\d+\.) \(?@[A-Za-z]", line)]
     assert not bad, f"{path.name}: lines start with a cross-reference: {bad}"
 
 

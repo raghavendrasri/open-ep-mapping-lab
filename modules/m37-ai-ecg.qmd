@@ -255,8 +255,8 @@ about 0.02. Ranking, and so AUC, does not change; thresholds and PPV do.
 Covariate shift has no formula. It is found by testing on an **external** data set: one collected
 elsewhere, never used for training or tuning (TRIPOD+AI, [@collins2024]). Practical checks for
 ECG models: resample to a common rate, match the band, test with inverted polarity, and report
-results by subgroup [@kaur2023]. Standards for digital ECG acquisition are set out in
-@kligfield2007.
+results by subgroup [@kaur2023]. Standards for digital ECG acquisition are set out by
+Kligfield and colleagues [@kligfield2007].
 
 **Key takeaways**
 
@@ -620,8 +620,8 @@ not see the model's output?**
 <details class="model-answer">
 <summary>Answer</summary>
 
-A pragmatic randomized trial: it tests whether using the model changes what happens, as in
-@yao2021.
+A pragmatic randomized trial: it tests whether using the model changes what happens, as in the
+trial of @yao2021.
 
 </details>
 
