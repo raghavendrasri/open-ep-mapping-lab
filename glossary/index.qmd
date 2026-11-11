@@ -14,6 +14,9 @@ Action potential
 Activation wavefront
 : The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
 
+AI agent
+: A program in which a model, usually a large language model, chooses step by step which tool to call, reads the result and continues until a goal is met or a step limit is reached. [m44](../modules/m44-agentic-ai.qmd)
+
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
@@ -25,6 +28,9 @@ Atrium (plural atria)
 
 Attention
 : In a neural network, a weighted average of value vectors whose weights come from how well a query matches each key, normalized by a softmax. The building block of the transformer. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Audit log
+: An append-only record of every step an agent took: the tool, its arguments, the policy decision and the result, so a person can check the run afterwards. [m44](../modules/m44-agentic-ai.qmd)
 
 Average precision (PR AUC)
 : The area under the precision–recall curve, averaged over thresholds. Unlike the ROC AUC it falls when positives are rare. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -119,11 +125,17 @@ Geodesic distance
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Guardrail
+: A rule enforced outside the model that limits what an agent may do, such as a tool allowlist, a schema check or a human approval step. [m44](../modules/m44-agentic-ai.qmd)
+
 Hallucination
 : Output of a language model that reads as fluent and confident but is false or unsupported, such as an invented number or reference. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Human approval step
+: A point in an agent's run where a person must accept or decline an action, such as any write, before it is carried out. [m44](../modules/m44-agentic-ai.qmd)
 
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
@@ -191,6 +203,9 @@ Premature beat
 Premature ventricular contraction (PVC)
 : An extra beat that starts in a ventricle earlier than the next normal beat. [m41](../modules/m41-ai-origin-localization.qmd)
 
+Prompt injection
+: Text inside a document or tool output that tries to make a language model follow new instructions, such as a hidden request to delete files. [m44](../modules/m44-agentic-ai.qmd)
+
 Pulmonary vein isolation (PVI)
 : Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -235,6 +250,9 @@ TF-IDF
 
 Token
 : A unit of text, often a word or part of a word, that a language model reads and writes. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Tool schema
+: The declared arguments of an agent's tool, with their types, units and allowed ranges, checked before the tool runs. [m44](../modules/m44-agentic-ai.qmd)
 
 Transformer
 : A neural-network architecture built from attention layers; the basis of most large language models and of many ECG foundation models. [m43](../modules/m43-foundation-models-llms.qmd)

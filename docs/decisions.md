@@ -2,6 +2,22 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m44 stages 1–6, an agent whose guardrails sit outside the model
+
+- **m44** (Agentic AI in EP): four tested equations (chain, check, escape, mixture), two demos
+  (precomputed agent trace under eight guardrail settings; exact error-compounding curves), clinical
+  correlate on remote-monitoring triage (pending review), 12 interview and 6 self-check questions,
+  glossary and formula-sheet entries.
+- **`epml.agent`**: tools with typed, unit-checked schemas, permission tiers, a policy (allowlist,
+  sandbox, approval for writes), a step-limited loop, a JSON-lines audit log, a check that every
+  number in an answer came from a tool, and a scripted stand-in model with chosen faults. **Writes that
+  no person approved are never executed**, whatever the policy settings: they are only simulated, so
+  the "guardrails off" runs in the demo and lab cannot touch files.
+- **Published agent examples** (author's request): MedAgentBench and its follow-up (Stanford),
+  AgentClinic (Stanford and Johns Hopkins), DeepRare, the PPG agent of Feli et al., agentic model
+  search (preprint), ReAct, generative agents and DSPy (Stanford), NVIDIA's NeMo Guardrails.
+- **`demos/m43-d2-corpus.json` regenerated** for the new glossary terms.
+
 ## 2026-11-11 · m43 stages 1–6, contrastive pretraining and an offline LLM-evaluation harness
 
 - **m43** (Foundation models and large language models): eight tested equations (InfoNCE and its
