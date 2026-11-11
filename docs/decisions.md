@@ -2,6 +2,25 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m40 stages 1–6, nibabel, and MONAI in the PyTorch job
+
+- **m40** (AI for cardiac imaging and substrate): eight tested equations (Dice–Jaccard, Hausdorff,
+  ASSD, NSD, first-order offset, spheres, shifted wall, concordance index), two exact demos (metrics
+  with a stray island; Dice against structure size), clinical correlate on DECAAF and DECAAF II and
+  on an AI-built ICE shell (pending review), 12 interview and 6 self-check questions, glossary and
+  formula-sheet entries.
+- **Real data:** Medical Segmentation Decathlon Task02_Heart (20 labelled MRI volumes of the left
+  atrium, CC BY-SA 4.0), downloaded in CI from the MONAI consortium's AWS Open Data bucket and checked
+  against the MD5 value published in MONAI 1.6.1. Share-alike: nothing derived from these images is
+  committed; the lab only prints numbers.
+- **New dependency:** `nibabel` (MIT licence) in `requirements.txt`, to read NIfTI files.
+- **CI:** the `labs-pytorch` job also installs MONAI (Apache-2.0) and sets `EPML_REQUIRE_MONAI=1`, so
+  m40 part F runs MONAI's U-Net and Dice loss (the NVIDIA example the author asked for). Without
+  MONAI the lab falls back to a minimal PyTorch U-Net.
+- **Demo change from the overview:** m40-d2 compares structure sizes exactly instead of simulating a
+  mask-to-shell pipeline; the shell question is lab part D.
+- **Undo:** revert the m40 commit; remove `nibabel` and the MONAI install line.
+
 ## 2026-11-11 · m39 stages 1–6, and Part VII pull requests target main
 
 - **m39** (AI on electrograms and maps): six tested equations (graph convolution, smoothing fixed

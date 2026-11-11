@@ -259,3 +259,57 @@ $$
 $$
 \gamma_{ik} = \frac{\pi_k\, \mathcal N(x_i \mid \mu_k, \sigma_k)}{\sum_{j=1}^{K} \pi_j\, \mathcal N(x_i \mid \mu_j, \sigma_j)}
 $$
+
+## m40 · AI for cardiac imaging and substrate
+
+Symbols: $P$ and $T$ predicted and true regions, $\partial P$ and $\partial T$ their surfaces, $J$ Jaccard index, $d(x, \partial T)$
+distance from a point to a surface, $\tau$ tolerance, $\delta$ boundary offset, $S$ and $V$ surface area and volume, $R$
+sphere radius, $t$ wall thickness, $t_i$, $e_i$ and $r_i$ follow-up time, event indicator and risk score of patient $i$.
+
+**Dice and Jaccard** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-jaccard))
+
+$$
+\mathrm{Dice} = \frac{2J}{1 + J}, \qquad J = \frac{\mathrm{Dice}}{2 - \mathrm{Dice}}
+$$
+
+**Hausdorff distance** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-hausdorff))
+
+$$
+\mathrm{HD}(P, T) = \max\left\{ \max_{p \in \partial P} d(p, \partial T),\; \max_{q \in \partial T} d(q, \partial P) \right\}
+$$
+
+**Average symmetric surface distance** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-assd))
+
+$$
+\mathrm{ASSD} = \frac{\int_{\partial P} d(p, \partial T)\, dp + \int_{\partial T} d(q, \partial P)\, dq}{\lvert\partial P\rvert + \lvert\partial T\rvert}
+$$
+
+**Normalized surface Dice** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-nsd))
+
+$$
+\mathrm{NSD}_\tau = \frac{\lvert\{p \in \partial P : d(p, \partial T) \le \tau\}\rvert + \lvert\{q \in \partial T : d(q, \partial P) \le \tau\}\rvert}{\lvert\partial P\rvert + \lvert\partial T\rvert}
+$$
+
+**Dice after a uniform boundary offset** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-offset))
+
+$$
+\mathrm{Dice} \approx 1 - \frac{\lvert\delta\rvert\, S}{2V}
+$$
+
+**Concentric spheres** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-sphere))
+
+$$
+\mathrm{Dice} = \frac{2\min(R, R+\delta)^3}{R^3 + (R+\delta)^3} \approx 1 - \frac{3\lvert\delta\rvert}{2R}
+$$
+
+**Shifted wall** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-slab))
+
+$$
+\mathrm{Dice} = \max\!\left(0,\; 1 - \frac{\lvert\delta\rvert}{t}\right)
+$$
+
+**Harrell's concordance index** ([derivation](../modules/m40-ai-imaging-substrate.qmd#eq-m40-cindex))
+
+$$
+C = \frac{\sum_{i,j} \mathbb 1[t_i < t_j]\, e_i \left(\mathbb 1[r_i > r_j] + \tfrac12\, \mathbb 1[r_i = r_j]\right)}{\sum_{i,j} \mathbb 1[t_i < t_j]\, e_i}
+$$

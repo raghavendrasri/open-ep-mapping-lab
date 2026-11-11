@@ -26,11 +26,17 @@ Atrium (plural atria)
 Average precision (PR AUC)
 : The area under the precision–recall curve, averaged over thresholds. Unlike the ROC AUC it falls when positives are rare. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Average symmetric surface distance (ASSD)
+: The mean distance between two surfaces, measured from each to the other; a typical-error measure for segmentations. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
 Clique
 : A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
+
+Concordance index (C index)
+: For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Conduction velocity
 : The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd)
@@ -48,7 +54,7 @@ Decapolar catheter
 : A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd), [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Dice coefficient
-: Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd)
+: Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
@@ -65,6 +71,9 @@ Far-field signal
 Federated learning
 : Training one model across sites that keep their data; only model updates are shared. [m37](../modules/m37-ai-ecg.qmd)
 
+Fibrosis
+: Replacement of heart muscle by connective tissue. In the atria it can be estimated on late-gadolinium MRI. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
 Focal loss
 : A cross-entropy that down-weights examples the model already gets right, so training attends to rare and hard ones. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -77,11 +86,23 @@ Gaussian mixture model
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Hausdorff distance
+: The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Intracardiac echocardiography (ICE)
+: Ultrasound imaging from a catheter inside the heart, used during procedures to see anatomy and build shells. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Jaccard index
+: Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Late gadolinium enhancement (LGE)
+: MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -94,6 +115,9 @@ Low-voltage area
 
 Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
+
+Normalized surface Dice (NSD)
+: The share of two surfaces lying within a chosen tolerance of each other. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
@@ -110,6 +134,9 @@ Positive predictive value (PPV)
 Premature beat
 : A beat that comes earlier than expected, usually followed by a longer interval; a common cause of false AF alerts. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Pulmonary vein isolation (PVI)
+: Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -121,6 +148,9 @@ RR interval
 
 Scar
 : Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd)
+
+Segmentation
+: Labelling which voxels of an image belong to a structure, such as the left atrium. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Sinus rhythm
 : The normal heartbeat, started by the heart's own pacemaker. [m03](../modules/m03-electrograms.qmd)
