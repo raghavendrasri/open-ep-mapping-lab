@@ -1,6 +1,6 @@
 # Tools for building and checking the course.
 # Lab packages are added with the first lab that needs them (pyvista and openep-py come later).
-numpy>=2.0
+numpy>=2.5.4
 scipy>=1.18.1
 scikit-learn>=1.8
 sympy>=1.13
