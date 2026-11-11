@@ -62,6 +62,9 @@ Contrastive learning
 Cross-entropy
 : The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
 
+CUSUM
+: Cumulative sum: a running sum of deviations above a target, reset at zero, that raises an alarm when it crosses a threshold. Used to detect a lasting shift in a monitored quantity. [m45](../modules/m45-ai-evidence-regulation.qmd)
+
 Data augmentation
 : Training on altered copies of the data (for example, flipped or noisier signals) so a model ignores the alteration. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -173,6 +176,9 @@ Low-voltage area
 Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
 
+Net benefit
+: In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
+
 Normalized surface Dice (NSD)
 : The share of two surfaces lying within a chosen tolerance of each other. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -197,6 +203,9 @@ Physics-informed neural network (PINN)
 Positive predictive value (PPV)
 : The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd)
 
+Predetermined change control plan (PCCP)
+: A plan, authorized with an AI-enabled device's marketing submission, that describes planned changes to the device and how each will be validated, so those changes need no new submission. [m45](../modules/m45-ai-evidence-regulation.qmd)
+
 Premature beat
 : A beat that comes earlier than expected, usually followed by a longer interval; a common cause of false AF alerts. [m38](../modules/m38-wearables-monitoring.qmd)
 
@@ -212,8 +221,14 @@ Pulmonary vein isolation (PVI)
 Radial basis function
 : A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Randomized controlled trial (RCT)
+: A study that assigns participants at random to an intervention or a comparison, so that differences in outcome can be attributed to the intervention. [m45](../modules/m45-ai-evidence-regulation.qmd)
+
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
+
+Reference standard
+: The best available method for deciding whether a condition is present, against which a test or model is judged; its own errors limit any measured accuracy. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
 Remote monitoring
 : Sending data from an implanted or wearable device to a clinic, where alerts are reviewed. [m38](../modules/m38-wearables-monitoring.qmd)

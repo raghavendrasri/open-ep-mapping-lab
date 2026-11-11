@@ -2,6 +2,22 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m45 stages 1–6 (Part VII capstone), and the first erratum
+
+- **m45** (Evidence and regulation of AI in EP): three tested equations (sample size for sensitivity
+  and specificity, net benefit, CUSUM), two demos (live drift simulation; exact sample-size curves),
+  clinical correlate on where AI in EP stands on the evidence ladder (pending review), 12 interview and
+  6 self-check questions, glossary and formula-sheet entries.
+- **`epml.evidence`**: sample size, net benefit, CUSUM and run lengths, a TRIPOD+AI-style report card
+  (numbers only), and a check of a model update against acceptance criteria written in advance. The
+  check illustrates the idea of a PCCP; it is not a regulatory template.
+- **First erratum (E1).** m37's lab unpacked `calibration_slope_intercept` in the wrong order and printed
+  the intercept as the slope; fixed in the notebook and its generator, recorded in `errata.json` and on
+  the errata page (now a table). No page text quoted the value.
+- **Stanford and NVIDIA:** He et al. 2023 (blinded randomized trial with Stanford and Cedars-Sinai
+  authors) and Wu et al. 2021 (Stanford analysis of FDA AI-device evaluations, cited by title because
+  PubMed has no abstract); federated validation with NVIDIA FLARE and the EXAM study.
+
 ## 2026-11-11 · m44 stages 1–6, an agent whose guardrails sit outside the model
 
 - **m44** (Agentic AI in EP): four tested equations (chain, check, escape, mixture), two demos
