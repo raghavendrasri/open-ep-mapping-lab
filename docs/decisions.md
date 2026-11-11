@@ -2,7 +2,30 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m39 stages 1–6, and Part VII pull requests target main
+
+- **m39** (AI on electrograms and maps): six tested equations (graph convolution, smoothing fixed
+  point, Dice, lens area, focal loss, Gaussian mixture), two exact demos (graph smoothing; Dice
+  against centroid distance), clinical correlate on the TAILORED-AF and RESTART trials as their
+  papers report them (pending review), 12 interview and 6 self-check questions, glossary and
+  formula-sheet entries.
+- **Graph network in NumPy:** `epml.graphs.GCN` has hand-written gradients checked against finite
+  differences, so the core lab needs no deep-learning library; part F repeats it in PyTorch.
+- **Synthetic maps** reuse the eikonal model of m30 with 1.0 and 0.6 m/s (Heil et al. 2023);
+  region sizes, timing noise and the voltage-like feature are illustrative.
+- **Real data:** Intracardiac Atrial Fibrillation Database (ODC-By 1.0), distal bipole CS12, the
+  first fourteen 4-s windows of each record (the free-wall records are longer and include drug
+  delivery). Not yet run against the real files: CI is the first run.
+- **Pull requests now target main.** The m38 pull request (#56) targeted the m37 branch and was
+  merged there after m37 had reached main, so its commits never reached main. From now on every
+  Part VII pull request targets main, and each module branch also carries the commits of earlier
+  modules that are not yet merged; the diff shrinks as they land. This replaces the stacked-branch
+  note in the m38 entry.
+- **Undo:** revert the m39 commit.
+
 ## 2026-11-11 · m38 stages 1–6, and stacked Part VII branches
+
+*Superseded in part: see the m39 entry for how pull requests are now targeted.*
 
 - **m38** (Wearables and implantable monitors): seven tested equations, two exact demos
   (consecutive-window rule; review inbox), clinical correlate on ILR false alerts (pending review),
