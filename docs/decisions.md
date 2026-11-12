@@ -2,6 +2,25 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · Two new Part VII modules (m46, m47), and m46 stages 1–6
+
+- **Curriculum: 45 → 47 modules.** After a gap review of Part VII the author approved two modules:
+  m46 (Trustworthy AI in EP) and m47 (Data and deployment engineering). They are added after m45, so no
+  module was renumbered. Updated: `docs/curriculum.md`, `tools/sync_curriculum.py` (slugs and short names),
+  CLAUDE.md (module counts and ID range), and the generated sidebar, course map and placeholder pages.
+  Undo: remove the two rows and slugs, restore the counts, and rerun `tools/sync_curriculum.py`.
+- **m46**: five tested equations (integrated gradients, split conformal sets, the FPR identity, the
+  Mahalanobis score, the gradient-sign attack on a linear score), two demos (live conformal sets; exact
+  PPV-versus-prevalence trade-off), clinical correlate on subgroup performance, explanations and tampering
+  (pending review), 12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **`epml.trust`**: integrated gradients (midpoint rule, with a closed form for logistic regression), a small
+  NumPy network with input gradients, conformal sets (one threshold or one per class), group rates, a
+  Mahalanobis score with a chi-square threshold, and gradient-sign attacks. **`epml.data.ptbxl_metadata`**
+  reads age and sex from the checksum-verified PTB-XL table; sex is reported as the database's code.
+- **Stanford:** kaur2023 (heart-failure AI-ECG disparities, Stanford Hospital) and ghorbani2020 (EchoNet
+  interpretation). No NVIDIA source fitted this module.
+- **`demos/m43-d2-corpus.json` regenerated** for the new glossary terms.
+
 ## 2026-11-11 · m45 stages 1–6 (Part VII capstone), and the first erratum
 
 - **m45** (Evidence and regulation of AI in EP): three tested equations (sample size for sensitivity

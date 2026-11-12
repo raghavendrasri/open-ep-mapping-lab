@@ -36,6 +36,7 @@ SLUGS = {
     "m37": "ai-ecg", "m38": "wearables-monitoring", "m39": "ai-electrograms-maps",
     "m40": "ai-imaging-substrate", "m41": "ai-origin-localization", "m42": "physics-informed-ml",
     "m43": "foundation-models-llms", "m44": "agentic-ai", "m45": "ai-evidence-regulation",
+    "m46": "trustworthy-ai", "m47": "data-deployment-engineering",
 }
 
 # Planned releases (docs/curriculum.md, "Release order").
@@ -119,6 +120,8 @@ SHORT_NAMES = {
     "m42": "Physics-informed ML",
     "m43": "Foundation models and LLMs",
     "m45": "Evidence and regulation of AI",
+    "m46": "Trustworthy AI in EP",
+    "m47": "Data and deployment engineering",
 }
 
 

@@ -1,6 +1,6 @@
 # Part VII overview · AI in electrophysiology
 
-Curriculum proposal for Part VII (modules m37–m45). Nothing here is course text yet. This file
+Curriculum proposal for Part VII (modules m37–m45; m46 and m47 were added on 2026-11-11, see below). Nothing here is course text yet. This file
 defines each module's scope, use cases, planned equations, demos, labs and sources, so the author
 can approve the plan before the stage-1 outlines are written.
 
@@ -41,6 +41,8 @@ Each module lists its own extra prerequisites.
 | m43 | Foundation models and large language models | Self-supervised ECG encoders, how to evaluate LLMs on EP tasks, retrieval | m37 |
 | m44 | Agentic AI in EP | Tool-using agents, workflow automation, guardrails and human oversight | m35, m43 |
 | m45 | Evidence and regulation of AI in EP | From retrospective AUC to randomized trials, reporting checklists, change control and monitoring | m35, m36 |
+| m46 | Trustworthy AI in EP | Explanations, conformal uncertainty, fairness between groups, unfamiliar inputs, robustness (added 2026-11-11) | m35, m37, m45 |
+| m47 | Data and deployment engineering | Data formats, labelling, de-identification, versioning, quantization, model cards (added 2026-11-11) | m04, m35, m45 |
 
 ## Use-case catalogue
 

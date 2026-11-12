@@ -1,0 +1,540 @@
+---
+title: "m46 · Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness, out-of-distribution inputs and robustness"
+module-id: m46
+part: "Part VII · AI in electrophysiology"
+# draft | in-review | released
+status: draft
+# pending | signed-off. Only a human reviewer changes this to signed-off.
+clinical-review: pending
+---
+
+::: {.callout-warning}
+Education only. Not for diagnosis, treatment or any clinical decision.
+:::
+
+## In 60 seconds
+
+A model that scores well on average can still mislead: its explanation may not reflect what it computes, its
+confidence may be wrong for one class or one group of patients, it may be applied to recordings unlike its
+training data, and small changes to the input can flip its output. This module builds a tool for each concern.
+Integrated gradients attribute an output to the samples of an ECG, and a randomization test checks that the
+attribution depends on the model [@sundararajan2017ig; @adebayo2018sanity]. Conformal prediction turns scores into
+sets with a coverage guarantee [@angelopoulos2021conformal]. Group metrics show why equal error rates and equal
+predictive values cannot both hold when prevalences differ [@chouldechova2017], as AI-ECG studies across race,
+sex and age illustrate [@noseworthy2020; @kaur2023]. A Mahalanobis score flags unfamiliar inputs
+[@lee2018mahalanobis], and adversarial examples show how fragile an ECG classifier can be
+[@han2020; @goodfellow2015fgsm].
+
+## From the field
+
+- **Explanations on the 12-lead ECG.** A network trained on 992,748 ECGs from 365,009 patients reached an AUC of
+  at least 0.960 for 32 of 38 classes in its test set, and a local-surrogate explanation method (LIME) highlighted
+  physiologically relevant ECG segments [@hughes2021]. At Stanford, interpretation analyses of an echocardiography network showed
+  attention to the relevant cardiac structures for tasks people can check, and highlighted regions for tasks they
+  cannot, such as predicting age and sex [@ghorbani2020].
+- **Performance by race, sex and age.** A network that detects low ejection fraction from the ECG, derived in a
+  cohort that was 96.2% non-Hispanic white, kept AUCs between 0.931 and 0.961 across racial and ethnic subgroups
+  of its test cohort; a separate network could predict racial category from the ECG, and the authors recommended
+  reporting performance by race, ethnicity, age and sex [@noseworthy2020]. A Stanford heart-failure model showed
+  no significant difference between racial groups overall but performed worse in young Black patients, most of
+  all young Black women; adding demographics to the model, training separate models or balancing the data did not
+  remove the gap, and group-specific thresholds improved F1 [@kaur2023].
+- **Attacks that experts cannot see.** Smoothed adversarial perturbations fooled a single-lead arrhythmia network
+  while remaining invisible to expert review; the authors advise care where there is an incentive to alter ECGs
+  [@han2020].
+- **Reporting.** The EHRA, HRS and ESC statement found key items such as participant details and data handling
+  under-reported in AI-in-EP studies [@svennberg2025] (m45).
+
+## Derivations
+
+### Explanations: integrated gradients
+
+For a model output $F(\mathbf x)$, an input $\mathbf x$ (for example the samples of a beat) and a baseline
+$\mathbf x'$ (a flat line), integrated gradients attribute to sample $i$ [@sundararajan2017ig]
+
+$$
+\mathrm{IG}_i(\mathbf x) = (x_i - x'_i)\int_0^1 \frac{\partial F\bigl(\mathbf x' + \alpha(\mathbf x - \mathbf x')\bigr)}{\partial x_i}\,d\alpha,
+\qquad \sum_i \mathrm{IG}_i(\mathbf x) = F(\mathbf x) - F(\mathbf x')
+$$ {#eq-m46-ig}
+
+The second identity, completeness, is the fundamental theorem of calculus along the path; checking it tells you
+whether the integral was approximated with enough steps. An explanation can still mislead. The
+model-randomization test [@adebayo2018sanity] recomputes it for the same architecture with random weights: if
+little changes, it describes the input more than the model. In lab part A the attributions of a wide-QRS
+classifier were concentrated near the QRS complex more than those of a randomized copy (53% against 42% of the
+total within 60 ms of the R peak), but their ranks still correlated (0.56), because the factor $x_i - x'_i$
+carries the shape of the beat into any model's explanation.
+
+**Key takeaways**
+
+- Attributions should add up to the change in output; check completeness.
+- Run the randomization test before believing an explanation.
+- An explanation is a hypothesis about the model, not a reason the patient has a condition.
+
+### Uncertainty: conformal prediction
+
+Split conformal prediction [@angelopoulos2021conformal] needs only a calibration set of $n$ labelled examples
+that come from the same distribution as the test data. With scores $s_i = 1 - \hat p_{y_i}(\mathbf x_i)$ (one minus
+the probability given to the true class) and error rate $\alpha$,
+
+$$
+\hat q = s_{(\lceil (n+1)(1-\alpha)\rceil)}, \qquad
+C(\mathbf x) = \{k : 1 - \hat p_k(\mathbf x) \le \hat q\}, \qquad
+\Pr\bigl(y \in C(\mathbf x)\bigr) \ge 1 - \alpha
+$$ {#eq-m46-conformal}
+
+where $s_{(j)}$ is the $j$-th smallest score. The guarantee is marginal: averaged over examples, not within each
+class or group. In lab part B a three-class rhythm model (sinus rhythm, AF, frequent early beats) had 0.936
+coverage overall at $\alpha = 0.1$ but 0.836 for early beats; one threshold per class gave 0.88 to 0.93 in each
+class, with sets of 1.21 classes on average instead of 1.01.
+
+::: {.demo #m46-d1 badge="simulation"}
+```{=html}
+<div id="m46-d1-root" class="demo-root" data-demo="m46-d1"></div>
+<script type="module" src="../demos/m46-d1-conformal-sets.js"></script>
+```
+
+**Assumptions**
+
+- Model: synthetic class probabilities, softmax of Gaussian logits in which each class's own logit is raised by
+  3, 2 or 1 (illustrative separations); 600 calibration and 3,000 test recordings from a fixed seed. Sets follow
+  @eq-m46-conformal, with one threshold or one per class; the JavaScript is tested against `epml.trust`.
+- Calibration and test data are exchangeable here by construction.
+- What would change the result: a calibration set from another population or device (lab part F), class mixes
+  that differ between calibration and use, and smaller calibration sets, whose coverage varies more.
+:::
+
+**Key takeaways**
+
+- Conformal sets give a coverage guarantee if calibration and use data are exchangeable.
+- The guarantee is marginal; check coverage per class and per group.
+- Large or empty sets are signals: ambiguity, or an input unlike the calibration data.
+
+### Fairness: what can and cannot be equal
+
+Write $\pi$ for prevalence in a group, TPR and FPR for the true- and false-positive rates, and PPV for the
+positive predictive value. From the definitions [@chouldechova2017],
+
+$$
+\mathrm{FPR} = \frac{\pi}{1-\pi}\cdot\frac{1-\mathrm{PPV}}{\mathrm{PPV}}\cdot\mathrm{TPR}
+$$ {#eq-m46-fpr}
+
+so if two groups have different prevalences, a model cannot have equal PPV, equal TPR and equal FPR in both. In
+lab part C an AF detector met two synthetic groups with 5% and 22% AF and different shares of early beats: TPR
+was 1.00 and 0.91, FPR 0.02 and 0.15, PPV 0.75 and 0.63. Which inequality matters depends on the decision, so
+report all of them by group, with intervals, and look for causes (here, early beats).
+
+::: {.demo #m46-d2 badge="exact"}
+```{=html}
+<div id="m46-d2-root" class="demo-root" data-demo="m46-d2"></div>
+<script type="module" src="../demos/m46-d2-fairness-tradeoff.js"></script>
+```
+
+**Assumptions**
+
+- Model: PPV from prevalence, TPR and FPR (Bayes' rule, m35) and @eq-m46-fpr; one detector with the same TPR
+  and FPR in both groups. The JavaScript is tested against `epml.trust`.
+- Slider values are illustrative.
+- What would change the result: error rates that themselves differ between groups (lab part C), and
+  group-specific thresholds, which trade one inequality for another [@kaur2023].
+:::
+
+**Key takeaways**
+
+- With different prevalences, equal error rates and equal predictive values are incompatible.
+- Report TPR, FPR and PPV per group with intervals; subgroup samples are often small.
+- Fixing a gap may need data or features, not only thresholds [@kaur2023].
+
+### Unfamiliar inputs
+
+A model's outputs mean little for inputs unlike its training data: a new device, a new lead, heavy noise. With
+features $\mathbf f(\mathbf x)$ whose training mean is $\boldsymbol\mu$ and covariance $\Sigma$, the Mahalanobis
+distance [@lee2018mahalanobis]
+
+$$
+d^2(\mathbf x) = \bigl(\mathbf f(\mathbf x) - \boldsymbol\mu\bigr)^{\top}\Sigma^{-1}\bigl(\mathbf f(\mathbf x) - \boldsymbol\mu\bigr) \;\sim\; \chi^2_k \ \text{ for Gaussian features}
+$$ {#eq-m46-mahalanobis}
+
+flags unusual inputs, and the chi-square quantile sets a false-alarm rate on familiar data. In lab part D it
+flagged 68% of very noisy recordings and 2% of familiar ones; accuracy on the noisy recordings was 0.53 overall
+and 0.93 on those not flagged. Abstaining and asking for a better recording is often the right output.
+
+**Key takeaways**
+
+- Score how familiar an input is, and abstain when it is not.
+- Choose the threshold from the false-alarm rate on familiar data.
+- Test the score on the shifts you expect: devices, leads, noise, populations.
+
+### Robustness to small changes
+
+For a loss $L$, the fast gradient sign method [@goodfellow2015fgsm] moves every sample by at most $\varepsilon$ in
+the direction that increases the loss fastest. For a linear score $z = \mathbf w^{\top}\mathbf x + b$ this is
+exact:
+
+$$
+\mathbf x_{\text{adv}} = \mathbf x + \varepsilon\,\operatorname{sign}\bigl(\nabla_{\mathbf x} L\bigr), \qquad
+\lvert\Delta z\rvert \le \varepsilon\lVert\mathbf w\rVert_1, \qquad
+\varepsilon^\ast = \frac{\lvert z\rvert}{\lVert\mathbf w\rVert_1}
+$$ {#eq-m46-fgsm}
+
+where $\varepsilon^\ast$ is the smallest such change that reaches the decision boundary. In lab part E a linear
+model on raw beats needed a median of 35 µV to flip its decision, less than the 40 µV of noise in the synthetic
+recordings; a smoothed perturbation needed 72 µV. Smoothed attacks on a real ECG network were invisible to
+experts [@han2020].
+
+**Key takeaways**
+
+- Small, structured changes can flip a classifier; noise robustness does not imply attack robustness.
+- Where there is an incentive to alter ECGs, protect the data path, not only the model [@han2020].
+
+## Clinical correlate
+
+::: {.callout-note title="Pending clinical review"}
+This section describes published findings only. It is not guidance for patient care, and it has
+not yet been reviewed by an EP physician.
+:::
+
+**Where these questions arise in EP.** AI-ECG models are applied to populations that differ from their
+development cohorts in race, sex and age; published analyses found both preserved performance
+[@noseworthy2020] and gaps concentrated in specific subgroups [@kaur2023]. ECG interpretation tools show
+explanations to clinicians [@hughes2021]. ECGs are acquired by more and more devices and passed through more
+software, which creates both unfamiliar inputs and opportunities for tampering [@han2020].
+
+**What the evidence is.** The studies here are retrospective analyses of model behaviour. They show how to
+measure explanations, subgroup performance and robustness; none tests whether showing explanations or
+uncertainty to clinicians changes their decisions or patient outcomes, which would need the prospective and
+randomized designs of m45.
+
+**What a reader should ask:**
+
+- **Subgroups.** Is performance reported by sex, age, race and ethnicity, and device, with intervals?
+- **Uncertainty.** Does the tool say when it is unsure or when the input is unfamiliar?
+- **Explanations.** Were they tested, for example with a randomization check, before being shown to users?
+
+## Visual summary
+
+:::: {.demo badge="schematic"}
+::: {#fig-m46-trust}
+```{=html}
+<svg class="sketch" viewBox="0 0 720 220" role="img" aria-label="Five checks around one model: an unfamiliarity score before the model, attributions and a randomization test on its inside, conformal sets on its output, group metrics on its results, and an attack test on its input." style="width:100%;max-width:720px">
+  <defs><marker id="m46a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6e7781"/></marker></defs>
+  <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12" fill="#1f2328">
+    <rect x="10" y="80" width="120" height="50" rx="6" fill="#eef4fa" stroke="#0072B2"/><text x="70" y="101" text-anchor="middle">ECG input</text><text x="70" y="118" text-anchor="middle">(any device)</text>
+    <rect x="300" y="80" width="120" height="50" rx="6" fill="#eef4fa" stroke="#0072B2"/><text x="360" y="110" text-anchor="middle">Model</text>
+    <rect x="580" y="80" width="130" height="50" rx="6" fill="#eef4fa" stroke="#0072B2"/><text x="645" y="101" text-anchor="middle">Prediction set</text><text x="645" y="118" text-anchor="middle">or abstain</text>
+    <path d="M130,105 L298,105" stroke="#6e7781" marker-end="url(#m46a)"/><path d="M420,105 L578,105" stroke="#6e7781" marker-end="url(#m46a)"/>
+    <rect x="150" y="20" width="140" height="40" rx="6" fill="#e9f5ef" stroke="#009E73"/><text x="220" y="45" text-anchor="middle">Unfamiliar? (d²)</text>
+    <rect x="140" y="150" width="130" height="40" rx="6" fill="#fdf1e8" stroke="#D55E00"/><text x="205" y="175" text-anchor="middle">Attack test (ε*)</text>
+    <rect x="290" y="150" width="140" height="40" rx="6" fill="#e9f5ef" stroke="#009E73"/><text x="360" y="167" text-anchor="middle">Attributions +</text><text x="360" y="182" text-anchor="middle">randomization test</text>
+    <rect x="440" y="20" width="140" height="40" rx="6" fill="#e9f5ef" stroke="#009E73"/><text x="510" y="45" text-anchor="middle">Conformal sets</text>
+    <rect x="450" y="150" width="140" height="40" rx="6" fill="#e9f5ef" stroke="#009E73"/><text x="520" y="167" text-anchor="middle">Metrics by group</text><text x="520" y="182" text-anchor="middle">with intervals</text>
+    <path d="M220,60 L220,103" stroke="#6e7781" stroke-dasharray="4 3"/><path d="M205,150 L205,107" stroke="#6e7781" stroke-dasharray="4 3"/>
+    <path d="M360,150 L360,130" stroke="#6e7781" stroke-dasharray="4 3"/><path d="M510,60 L510,103" stroke="#6e7781" stroke-dasharray="4 3"/><path d="M520,150 L520,107" stroke="#6e7781" stroke-dasharray="4 3"/>
+  </g>
+</svg>
+```
+
+Five checks around one model: before it (is the input familiar? could it have been altered?), inside it (what
+drives the output?) and after it (how sure is it, and is it equally good for every group?).
+:::
+
+**Assumptions**
+
+- Schematic: no quantitative claim. Boxes follow @eq-m46-ig to @eq-m46-fgsm.
+::::
+
+## How experts think
+
+Before trusting an AI-ECG or EP model, ask:
+
+1. **What does it say when unsure?** Sets, abstention, an unfamiliarity score
+   (@eq-m46-conformal and @eq-m46-mahalanobis).
+2. **For whom does it work?** TPR, FPR and PPV by group with intervals, and the reason for any gap
+   [@noseworthy2020; @kaur2023].
+3. **What is the explanation for?** Debugging and hypotheses, checked by a randomization test
+   [@adebayo2018sanity], not as proof.
+4. **What inputs will it really see?** Devices, leads, noise, and whether anyone could alter them
+   [@han2020].
+5. **Were these checks prespecified?** Subgroups and thresholds chosen before testing (m45).
+
+One sentence to keep: **a trustworthy model knows when it does not know, works for each group it serves, and
+does not change its mind for a change nobody can see.**
+
+## Cheat sheet
+
+| Quantity | Result |
+| --- | --- |
+| Integrated gradients (@eq-m46-ig) | $(x_i - x'_i)\int_0^1 \partial_i F(\mathbf x' + \alpha(\mathbf x - \mathbf x'))\,d\alpha$; sum $= F(\mathbf x) - F(\mathbf x')$ |
+| Conformal sets (@eq-m46-conformal) | $\hat q$ = rank $\lceil (n+1)(1-\alpha)\rceil$ score; $C = \{k : 1 - \hat p_k \le \hat q\}$; coverage $\ge 1-\alpha$ |
+| FPR identity (@eq-m46-fpr) | $\mathrm{FPR} = \frac{\pi}{1-\pi}\frac{1-\mathrm{PPV}}{\mathrm{PPV}}\mathrm{TPR}$ |
+| Mahalanobis score (@eq-m46-mahalanobis) | $d^2 = (\mathbf f - \boldsymbol\mu)^\top\Sigma^{-1}(\mathbf f - \boldsymbol\mu) \sim \chi^2_k$ |
+| Attack on a linear score (@eq-m46-fgsm) | $\lvert\Delta z\rvert \le \varepsilon\lVert\mathbf w\rVert_1$; $\varepsilon^\ast = \lvert z\rvert/\lVert\mathbf w\rVert_1$ |
+
+**Studies in this module**
+
+| Study | What was examined | Design |
+| --- | --- | --- |
+| @hughes2021 | 12-lead ECG network with LIME explanations | Cross-sectional, single centre |
+| @ghorbani2020 | Interpretation of an echocardiography network (Stanford) | Retrospective |
+| @noseworthy2020 | Low-ejection-fraction AI-ECG across race and ethnicity | Retrospective |
+| @kaur2023 | Heart-failure AI-ECG across race, sex and age (Stanford) | Retrospective |
+| @han2020 | Smoothed adversarial examples for an ECG network | Method study |
+
+**Rules of thumb**
+
+- Check completeness and run a randomization test before showing an explanation.
+- Calibrate conformal sets on data like the deployment data; check coverage per class and group.
+- Report group metrics with intervals; plan subgroup sample sizes (m45).
+
+## Interview questions
+
+Try each question before you open its model answer. In a real interview, say which assumptions you
+are making.
+
+**Q1. What is integrated gradients, and what does completeness tell you?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+It attributes a model's output to its inputs by integrating the gradient along the straight path from a
+baseline to the input, times the input's difference from the baseline (@eq-m46-ig) [@sundararajan2017ig].
+Completeness says the attributions sum to $F(\mathbf x) - F(\mathbf x')$; if they do not, the integral needs
+more steps.
+
+</details>
+
+**Q2. How would you check that a saliency map for an ECG model is meaningful?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Run the model-randomization test: recompute it with random weights and compare [@adebayo2018sanity]. Check that
+it is stable to tiny input changes, that removing highly attributed samples changes the output more than removing
+random ones, and that it highlights features experts can verify for tasks they
+understand [@hughes2021; @ghorbani2020]. Treat it as a hypothesis about the model.
+
+</details>
+
+**Q3. What does a conformal prediction set guarantee, and what not?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+That the set contains the true label with probability at least $1-\alpha$, averaged over examples, if
+calibration and test data are exchangeable (@eq-m46-conformal) [@angelopoulos2021conformal]. Not coverage within
+each class or group, and not under dataset shift. Class-conditional calibration restores per-class coverage at
+the cost of larger sets.
+
+</details>
+
+**Q4. Why can't a model have equal PPV and equal error rates in two groups?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Because $\mathrm{FPR} = \frac{\pi}{1-\pi}\frac{1-\mathrm{PPV}}{\mathrm{PPV}}\mathrm{TPR}$ (@eq-m46-fpr)
+[@chouldechova2017]: with equal PPV and TPR, different prevalences force different FPRs. Decide which
+quantity matters for the decision, and report all of them.
+
+</details>
+
+**Q5. A model's AUC is the same across racial groups. Is it fair?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Not necessarily. AUC is threshold-free; error rates and PPV at the operating threshold can still differ, and gaps
+can hide in intersections such as age by sex by race. A Stanford heart-failure model had no significant
+difference between racial groups overall but performed worse in young Black patients [@kaur2023]; another model
+kept similar AUCs across groups [@noseworthy2020]. Check intersections, thresholds and intervals.
+
+</details>
+
+**Q6. How do you detect that a recording is outside what the model was built for?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Score its features against the training distribution, for example with a Mahalanobis distance as in
+@eq-m46-mahalanobis [@lee2018mahalanobis], set the threshold from the false-alarm rate on familiar data, and
+abstain above it. Validate the score on expected shifts: new devices, leads, noise. Empty or large conformal sets
+are a second signal.
+
+</details>
+
+**Q7. What is an adversarial example, and does it matter for ECG models?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+An input changed slightly so the model's output changes. For a linear score a max-norm change $\varepsilon$
+moves the score by up to $\varepsilon\lVert\mathbf w\rVert_1$ (@eq-m46-fgsm) [@goodfellow2015fgsm]. Smoothed
+perturbations fooled an ECG network while invisible to experts [@han2020]; it matters where someone has an
+incentive to alter ECGs, and the defence includes securing the data path.
+
+</details>
+
+**Q8. A subgroup has 30 patients. What can you say about its sensitivity?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Little, unless the interval is narrow: compute a Wilson interval (m43) and plan subgroup sizes in advance
+(m45). In lab part F each PTB-XL subgroup holds only a few dozen recordings, so its intervals are wide.
+
+</details>
+
+**Q9. How would you present uncertainty to a clinician using an AI-ECG tool?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+As something actionable: a set of possible rhythms at a stated error rate, a clear "unsure, repeat the
+recording" when the input is unfamiliar, and the tool's validated population. Whether this improves decisions is
+an empirical question for a prospective study (m45), not something to assume.
+
+</details>
+
+**Q10. Group-specific thresholds reduce a performance gap. What are the risks?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+They trade one inequality for another (@eq-m46-fpr), need reliable group membership, and can be overfitted to
+small subgroups. They improved F1 in one study [@kaur2023]; any such choice should be prespecified and tested on
+data not used to choose it.
+
+</details>
+
+**Q11. Why do integrated gradients from a random model still look like the beat?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Because each attribution is multiplied by $x_i - x'_i$ (@eq-m46-ig), so large-amplitude samples get large
+attributions whatever the model. That is why the randomization test compares trained and random models rather
+than judging one map by eye [@adebayo2018sanity].
+
+</details>
+
+**Q12. Conformal sets calibrated on one database are used on another. What happens?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+The guarantee no longer holds, because the data are not exchangeable; coverage can fall below or rise above the
+target. Recalibrate on data from the deployment setting, and monitor coverage on labelled samples (m45).
+
+</details>
+
+## Code lab
+
+The lab builds each trust check on synthetic ECGs and then applies the subgroup and conformal checks to real
+recordings.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Integrated gradients and the randomization check (@eq-m46-ig) | synthetic beats |
+| B | Conformal sets for three rhythm classes (@eq-m46-conformal) | synthetic ECGs |
+| C | Error rates and predictive values in two groups (@eq-m46-fpr) | synthetic ECGs |
+| D | An unfamiliarity score and abstention (@eq-m46-mahalanobis) | synthetic ECGs |
+| E | How small an attack flips a decision (@eq-m46-fgsm) | synthetic beats |
+| F | Subgroups and conformal coverage | Challenge 2017 and PTB-XL (download) |
+| G | Optional: integrated gradients with PyTorch autograd | synthetic beats |
+
+- **Python notebook:**
+  [labs/python/m46_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m46_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m46_lab.ipynb).
+- **Data for part F:** the PhysioNet/CinC Challenge 2017 training set [@cinc2017data; @clifford2017] (Open Data
+  Commons Attribution v1.0) and PTB-XL 1.0.3 [@wagner2020] (Creative Commons Attribution 4.0), with PTB-XL's age
+  and sex fields as the database codes them; checked against the published SHA-256 lists and skipped without
+  internet access.
+- **Part G** runs only if PyTorch is installed.
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
+
+## Self-check
+
+Short checks you can do in your head. Open each answer after you have tried it.
+
+**S1. A model's output goes from 0.1 at the baseline to 0.8 at the input. What do the integrated gradients add
+up to?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+0.7 (@eq-m46-ig).
+
+</details>
+
+**S2. 99 calibration scores, $\alpha = 0.1$. Which ranked score is the threshold?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+The $\lceil 100 \times 0.9\rceil = 90$th smallest (@eq-m46-conformal).
+
+</details>
+
+**S3. Prevalence 0.2, TPR 0.9, PPV 0.75. What is the FPR?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$0.25 \times \tfrac{1}{3} \times 0.9 = 0.075$ (@eq-m46-fpr).
+
+</details>
+
+**S4. A linear score is $z = 0.5$ with $\lVert\mathbf w\rVert_1 = 25$ per mV. What is the smallest max-norm change
+that can flip the decision?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$0.5 / 25 = 0.02$ mV, or 20 µV (@eq-m46-fgsm).
+
+</details>
+
+**S5. With two Gaussian features, what share of familiar inputs exceeds the 95% chi-square threshold?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+About 5% (@eq-m46-mahalanobis): the threshold is set by that false-alarm rate.
+
+</details>
+
+**S6. True or false: coverage of 0.90 overall means each rhythm class is covered 90% of the time.**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+False. Coverage is marginal; in lab part B one class was covered 84% of the time while the overall figure was
+94%.
+
+</details>
+
+## Literature figures
+
+These figures are worth looking at alongside this module. We link to them instead of copying them:
+some licenses do not allow reuse here, and others we could not confirm. Each entry says what to
+look for and where this module explains it.
+
+- **Explanations on ECGs.** Hughes and colleagues use LIME to visualize the ECG segments that contributed to the
+  network's diagnoses [@hughes2021; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC8340011/)]. Compare with
+  lab part A.
+- **Adversarial ECGs.** Han and colleagues construct smoothed adversarial examples for single-lead ECGs; compare
+  the perturbed tracings with the originals [@han2020; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC8096552/)]. This
+  module: robustness.
+- **Performance by subgroup.** Noseworthy and colleagues report AUC by racial and ethnic subgroup
+  [@noseworthy2020; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7158877/)]. This module: fairness.
+
+## Further reading
+
+- **Explanations.** @sundararajan2017ig, @adebayo2018sanity; in cardiology @hughes2021, @ghorbani2020.
+- **Uncertainty.** @angelopoulos2021conformal; out-of-distribution detection @lee2018mahalanobis.
+- **Fairness.** @chouldechova2017; in AI-ECG @noseworthy2020, @kaur2023, and @hsieh2026 (m43).
+- **Robustness.** @goodfellow2015fgsm, @han2020.
+- **Next module.** m47: the data and deployment engineering behind a model you can trust.

@@ -111,3 +111,7 @@ website:
         text: m44 · Agentic AI in EP
       - href: modules/m45-ai-evidence-regulation.qmd
         text: m45 · Evidence and regulation of AI
+      - href: modules/m46-trustworthy-ai.qmd
+        text: m46 · Trustworthy AI in EP
+      - href: modules/m47-data-deployment-engineering.qmd
+        text: m47 · Data and deployment engineering

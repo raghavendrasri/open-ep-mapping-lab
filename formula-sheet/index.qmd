@@ -509,3 +509,43 @@ $$
 $$
 S_t = \max\bigl(0,\; S_{t-1} + x_t - \mu_0 - k\bigr), \quad S_0 = 0, \qquad \text{alarm when } S_t > h
 $$
+
+## m46 · Trustworthy AI in EP
+
+Symbols: $F$ model output, $\mathbf x$ input, $\mathbf x'$ baseline, $\hat p_k$ predicted probability of class $k$, $n$ calibration examples, $\alpha$ error rate, $\hat q$ conformal threshold, $\pi$ prevalence, TPR, FPR, PPV true-positive rate, false-positive rate and positive predictive value, $\mathbf f$ features with training mean $\boldsymbol\mu$ and covariance $\Sigma$, $k$ number of features, $L$ loss, $\varepsilon$ max-norm change, $z = \mathbf w^\top\mathbf x + b$ linear score.
+Model: exchangeable calibration and test data for the conformal guarantee; Gaussian features for the chi-square reference.
+
+**Integrated gradients and completeness** ([derivation](../modules/m46-trustworthy-ai.qmd#eq-m46-ig))
+
+$$
+\mathrm{IG}_i(\mathbf x) = (x_i - x'_i)\int_0^1 \frac{\partial F\bigl(\mathbf x' + \alpha(\mathbf x - \mathbf x')\bigr)}{\partial x_i}\,d\alpha,
+\qquad \sum_i \mathrm{IG}_i(\mathbf x) = F(\mathbf x) - F(\mathbf x')
+$$
+
+**Split conformal prediction sets** ([derivation](../modules/m46-trustworthy-ai.qmd#eq-m46-conformal))
+
+$$
+\hat q = s_{(\lceil (n+1)(1-\alpha)\rceil)}, \qquad
+C(\mathbf x) = \{k : 1 - \hat p_k(\mathbf x) \le \hat q\}, \qquad
+\Pr\bigl(y \in C(\mathbf x)\bigr) \ge 1 - \alpha
+$$
+
+**False-positive rate from prevalence, PPV and TPR** ([derivation](../modules/m46-trustworthy-ai.qmd#eq-m46-fpr))
+
+$$
+\mathrm{FPR} = \frac{\pi}{1-\pi}\cdot\frac{1-\mathrm{PPV}}{\mathrm{PPV}}\cdot\mathrm{TPR}
+$$
+
+**Mahalanobis unfamiliarity score** ([derivation](../modules/m46-trustworthy-ai.qmd#eq-m46-mahalanobis))
+
+$$
+d^2(\mathbf x) = \bigl(\mathbf f(\mathbf x) - \boldsymbol\mu\bigr)^{\top}\Sigma^{-1}\bigl(\mathbf f(\mathbf x) - \boldsymbol\mu\bigr) \;\sim\; \chi^2_k \ \text{ for Gaussian features}
+$$
+
+**Fast gradient sign attack on a linear score** ([derivation](../modules/m46-trustworthy-ai.qmd#eq-m46-fgsm))
+
+$$
+\mathbf x_{\text{adv}} = \mathbf x + \varepsilon\,\operatorname{sign}\bigl(\nabla_{\mathbf x} L\bigr), \qquad
+\lvert\Delta z\rvert \le \varepsilon\lVert\mathbf w\rVert_1, \qquad
+\varepsilon^\ast = \frac{\lvert z\rvert}{\lVert\mathbf w\rVert_1}
+$$
