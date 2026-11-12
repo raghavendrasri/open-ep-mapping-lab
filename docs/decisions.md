@@ -2,6 +2,24 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · Part VIII added (m48–m55), and m49 stages 1–6
+
+- **Curriculum: 47 → 55 modules, eight parts.** The author approved Part VIII, imaging in electrophysiology, with
+  eight modules after m47, so nothing was renumbered. Updated: `docs/curriculum.md` (new part and an "Imaging in EP"
+  learning path), `tools/sync_curriculum.py` (slugs, short names, and "not yet scheduled" as the release for Part
+  VIII, because the author has not chosen one), CLAUDE.md (scope, counts and ID range), and the generated pages.
+  Plan and decisions: `docs/outlines/part8-overview.md`.
+- **Author decisions:** registration stays in the existing modules (Part VIII links, it does not re-derive);
+  ultrasound in m50 stays lightweight; open sources only; modules stay `draft` until an imaging collaborator reviews
+  them; m49 and m50 first.
+- **m49** (Fluoroscopy and radiation protection): five tested equations (attenuation, contrast, quantum noise,
+  kerma-area product, staff dose), two demos (projection image with noise; staff dose), clinical correlate on
+  radiation and low-fluoroscopy evidence (pending review), 12 interview and 6 self-check questions, glossary and
+  formula-sheet entries.
+- **`epml.fluoro`**: NIST attenuation coefficients at 60 keV, an ellipsoid chest phantom with exact line integrals
+  (checked against ray marching), Poisson projection images, dose quantities, staff dose and reference-level
+  methods. A single photon energy is a stated simplification.
+
 ## 2026-11-11 · m47 stages 1–6, data and deployment engineering
 
 - **m47** (Data and deployment engineering): five tested equations (header conversion, majority of labellers,

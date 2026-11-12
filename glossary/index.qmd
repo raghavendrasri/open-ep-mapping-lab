@@ -20,6 +20,9 @@ Adversarial example
 AI agent
 : A program in which a model, usually a large language model, chooses step by step which tool to call, reads the result and continues until a goal is met or a step limit is reached. [m44](../modules/m44-agentic-ai.qmd)
 
+Air kerma
+: The kinetic energy that X-rays release per unit mass of air, in gray (Gy); measured at a reference point it relates to the dose at the patient's skin. [m49](../modules/m49-fluoroscopy-radiation.qmd)
+
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
@@ -119,6 +122,9 @@ Federated learning
 Fibrosis
 : Replacement of heart muscle by connective tissue. In the atria it can be estimated on late-gadolinium MRI. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Fluoroscopy
+: Continuous or pulsed X-ray imaging that shows a moving shadow image, used to guide catheters, sheaths and leads. [m49](../modules/m49-fluoroscopy-radiation.qmd)
+
 Focal loss
 : A cross-entropy that down-weights examples the model already gets right, so training attends to rare and hard ones. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -142,6 +148,9 @@ Graph convolution
 
 Guardrail
 : A rule enforced outside the model that limits what an agent may do, such as a tool allowlist, a schema check or a human approval step. [m44](../modules/m44-agentic-ai.qmd)
+
+Half-value layer (HVL)
+: The thickness of a material that halves the intensity of an X-ray beam; for a narrow beam of one energy it is ln 2 divided by the attenuation coefficient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
 Hallucination
 : Output of a language model that reads as fluent and confident but is false or unsupported, such as an invented number or reference. [m43](../modules/m43-foundation-models-llms.qmd)
@@ -169,6 +178,9 @@ Jaccard index
 
 k-anonymity
 : A property of a released table: every record shares its quasi-identifier values with at least k − 1 others, so a match by those values points to at least k records. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Kerma-area product (KAP)
+: Air kerma times the area of the X-ray beam, in Gy·cm²; the same at any distance along the beam, so it describes the total radiation delivered. Also called dose-area product. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
 Large language model (LLM)
 : A transformer trained on very large amounts of text to predict the next token; it can follow instructions and answer questions in text. [m43](../modules/m43-foundation-models-llms.qmd)
@@ -245,6 +257,9 @@ Pulmonary vein isolation (PVI)
 Quantization (integer)
 : Storing a model's weights or activations, or a signal's samples, as integers with a scale and zero point instead of floating-point numbers; it saves memory and computation at the cost of rounding error. [m47](../modules/m47-data-deployment-engineering.qmd)
 
+Quantum noise
+: Image noise caused by the random arrival of photons; with Poisson counts its standard deviation is the square root of the mean, so noise falls only as the square root of dose. [m49](../modules/m49-fluoroscopy-radiation.qmd)
+
 Quasi-identifier
 : A field that does not name a person on its own but can identify them in combination with others, such as age, sex, region or a procedure date. [m47](../modules/m47-data-deployment-engineering.qmd)
 
@@ -256,6 +271,9 @@ Randomized controlled trial (RCT)
 
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
+
+Reference level (radiation dose)
+: A benchmark for the typical dose of a procedure type, set from surveys (for example the third quartile of recorded doses); used to compare and optimize practice, not as a limit for one patient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
 Reference standard
 : The best available method for deciding whether a condition is present, against which a test or model is judged; its own errors limit any measured accuracy. [m45](../modules/m45-ai-evidence-regulation.qmd)

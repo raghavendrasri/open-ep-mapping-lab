@@ -27,7 +27,8 @@ Assume undergraduate engineering math (calculus, linear algebra, basic signals a
 Define every clinical term on first use and add it to the glossary.
 
 In scope: physics, hardware principles, electrogram processing, map algorithms, simulation,
-validation, regulation, and AI methods applied to EP (Part VII).
+validation, regulation, AI methods applied to EP (Part VII), and the imaging modalities used in EP
+(Part VIII: fluoroscopy, intracardiac and transoesophageal echo, CT, MRI, nuclear imaging).
 
 Out of scope: ablation-strategy advice, vendor operating instructions, anything meant for
 patient care. Never write text that tells a clinician what to do for a patient.
@@ -41,7 +42,7 @@ Extra rules for Part VII (AI in EP):
 - Agent examples act only on course files and synthetic or public data, never on clinical
   systems or devices, and every write action goes through a human approval step.
 
-Curriculum (7 parts, 47 modules, learning paths): see `docs/curriculum.md`.
+Curriculum (8 parts, 55 modules, learning paths): see `docs/curriculum.md`.
 Do not add, drop or renumber modules without the author's approval.
 
 ## 3. Module template
@@ -139,7 +140,7 @@ Defaults below; the author may change them after the pilot module (record change
 ## 8. Repository layout (target)
 
 ```
-modules/            m01-<slug>.qmd … m47-<slug>.qmd
+modules/            m01-<slug>.qmd … m55-<slug>.qmd
 demos/              m03-d1-<slug>.js, one ES module per demo
 labs/python/        m03_lab.ipynb and helpers
 labs/octave/        Part I copies
@@ -154,7 +155,7 @@ errata.json  review_record.json  references.bib
 
 ## 9. Conventions
 
-- IDs: modules `m01`–`m47`; demos `m03-d1`; equations `{#eq-m03-bipolar}`; figures
+- IDs: modules `m01`–`m55`; demos `m03-d1`; equations `{#eq-m03-bipolar}`; figures
   `{#fig-m03-...}`.
 - Units: voltage mV, time ms, distance mm, conduction velocity m/s, frequency Hz.
 - Writing: American English, short sentences, plain words, every symbol defined on first use.

@@ -587,3 +587,39 @@ $$
 \sigma_e^2 = \frac{S^2}{12}, \qquad
 \mathrm{SQNR} = 10 \log_{10} \frac{\overline{x^2}}{S^2/12}\ \text{dB} \;\approx\; 6.02\,b + 1.76\ \text{dB for a full-scale sine}
 $$
+
+## m49 · Fluoroscopy and radiation protection
+
+Symbols: $I_0$ incident and $I$ transmitted intensity, $\mu$ linear attenuation coefficient (1/mm), HVL half-value layer, $C$ subject contrast of an object of thickness $t$ with attenuation $\mu_o$ in background $\mu_b$, $N$ photons per pixel, CNR contrast-to-noise ratio, $K$ air kerma, $A$ beam area, $d$ distance from the focal spot, $P_{KA}$ kerma-area product, $H$ staff dose, $f_p$ pulse rate, $q$ dose per pulse, $\tau$ time, $r$ distance from the patient, $n$ shielding in half-value layers.
+Model: narrow monoenergetic beam; Poisson photon counts; scatter from a point at the patient.
+
+**Attenuation and half-value layer** ([derivation](../modules/m49-fluoroscopy-radiation.qmd#eq-m49-beer))
+
+$$
+I = I_0 \exp\!\left(-\int \mu(s)\, ds\right), \qquad \mathrm{HVL} = \frac{\ln 2}{\mu}
+$$
+
+**Subject contrast** ([derivation](../modules/m49-fluoroscopy-radiation.qmd#eq-m49-contrast))
+
+$$
+C = 1 - e^{-(\mu_o - \mu_b)\, t} \;\approx\; (\mu_o - \mu_b)\, t \ \text{ when small}
+$$
+
+**Quantum noise** ([derivation](../modules/m49-fluoroscopy-radiation.qmd#eq-m49-cnr))
+
+$$
+\mathrm{CNR} = \frac{N_b - N_o}{\sqrt{N_b}} = C\sqrt{N}, \qquad N_{\text{needed}} = \left(\frac{\mathrm{CNR}^\ast}{C}\right)^2
+$$
+
+**Kerma-area product along the beam** ([derivation](../modules/m49-fluoroscopy-radiation.qmd#eq-m49-kap))
+
+$$
+K(d) = K(d_0)\left(\frac{d_0}{d}\right)^2, \qquad A(d) = A(d_0)\left(\frac{d}{d_0}\right)^2
+\;\Rightarrow\; P_{KA} = K\,A \ \text{ is the same at every } d
+$$
+
+**Staff dose: time, distance, shielding** ([derivation](../modules/m49-fluoroscopy-radiation.qmd#eq-m49-staff))
+
+$$
+H \;\propto\; \frac{f_p\, q\, \tau}{r^2}\; 2^{-n}
+$$
