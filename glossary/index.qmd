@@ -50,6 +50,9 @@ Bayesian optimization
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
+Cavotricuspid isthmus (CTI)
+: The strip of right atrial tissue between the inferior vena cava and the tricuspid valve; the usual ablation target for typical atrial flutter. [m50](../modules/m50-intracardiac-echo.qmd)
+
 Clique
 : A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
 
@@ -131,6 +134,9 @@ Focal loss
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
 
+Fossa ovalis
+: The thin central part of the wall between the two atria, where a needle usually crosses from the right atrium to the left. [m50](../modules/m50-intracardiac-echo.qmd)
+
 Foundation model
 : A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -145,6 +151,9 @@ Geodesic distance
 
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
+
+Grating lobe
+: A false, full-strength copy of an array's beam that appears when its elements are spaced more than half a wavelength apart for the steering used; echoes from it are drawn in the wrong direction. [m50](../modules/m50-intracardiac-echo.qmd)
 
 Guardrail
 : A rule enforced outside the model that limits what an agent may do, such as a tool allowlist, a schema check or a human approval step. [m44](../modules/m44-agentic-ai.qmd)
@@ -191,6 +200,9 @@ Late gadolinium enhancement (LGE)
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Left atrial appendage occlusion (LAAO)
+: A catheter procedure that closes the left atrial appendage with an implanted device. [m50](../modules/m50-intracardiac-echo.qmd)
+
 Levenberg–Marquardt method
 : An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -229,6 +241,9 @@ Pace mapping
 
 Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
+
+Phased array
+: A row of transducer elements whose firing delays steer and focus the beam electronically, without moving the probe. [m50](../modules/m50-intracardiac-echo.qmd)
 
 Photoplethysmography (PPG)
 : Measuring blood-volume changes in tissue with light; the basis of pulse sensing in watches and trackers. [m38](../modules/m38-wearables-monitoring.qmd)
@@ -305,6 +320,9 @@ Softmax
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
 
+Speed-of-sound assumption
+: Ultrasound systems convert echo time to depth with one assumed speed of sound, commonly 1540 m/s; tissue that is faster or slower is drawn shorter or longer. [m50](../modules/m50-intracardiac-echo.qmd)
+
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -317,11 +335,20 @@ Token
 Tool schema
 : The declared arguments of an agent's tool, with their types, units and allowed ranges, checked before the tool runs. [m44](../modules/m44-agentic-ai.qmd)
 
+Transesophageal echocardiography (TEE)
+: Ultrasound imaging of the heart from a probe in the esophagus, behind the left atrium. [m50](../modules/m50-intracardiac-echo.qmd)
+
 Transformer
 : A neural-network architecture built from attention layers; the basis of most large language models and of many ECG foundation models. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Transmembrane voltage
 : The voltage across a cell membrane, inside minus outside. [m03](../modules/m03-electrograms.qmd)
+
+Transseptal puncture
+: Crossing from the right atrium to the left atrium through the interatrial septum, usually at the fossa ovalis, with a needle and sheath. [m50](../modules/m50-intracardiac-echo.qmd)
+
+Transthoracic echocardiography (TTE)
+: Ultrasound imaging of the heart from a probe on the chest wall. [m50](../modules/m50-intracardiac-echo.qmd)
 
 Unipolar electrogram
 : The signal of one electrode measured against a distant reference electrode. It sees local and far-field activity. [m03](../modules/m03-electrograms.qmd)

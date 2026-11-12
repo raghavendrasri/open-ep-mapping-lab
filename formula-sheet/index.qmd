@@ -623,3 +623,40 @@ $$
 $$
 H \;\propto\; \frac{f_p\, q\, \tau}{r^2}\; 2^{-n}
 $$
+
+## m50 · Intracardiac echocardiography
+
+Symbols: $t$ echo round-trip time, $c$ speed of sound ($c_{\text{assumed}}$ used by the scanner, $c_{\text{true}}$ in the tissue), $z$ depth, $\hat z$ displayed depth, $f$ frequency, $\lambda$ wavelength, $n$ cycles per pulse, $\alpha$ attenuation slope in dB/(cm·MHz), $B$ signal budget in dB, $N$ elements spaced $d$ apart at positions $x_k$, $\theta_0$ steering angle, $D$ image depth, $N_{\text{lines}}$ lines per frame.
+Model: straight-line propagation at one speed of sound; attenuation linear in frequency; far-field array factor of point elements.
+
+**Echo time to depth** ([derivation](../modules/m50-intracardiac-echo.qmd#eq-m50-range))
+
+$$
+z = \frac{c\,t}{2}, \qquad \hat z = z\,\frac{c_{\text{assumed}}}{c_{\text{true}}}
+$$
+
+**Axial resolution** ([derivation](../modules/m50-intracardiac-echo.qmd#eq-m50-axial))
+
+$$
+\lambda = \frac{c}{f}, \qquad \Delta z_{\text{axial}} = \frac{n\,\lambda}{2}
+$$
+
+**Attenuation and reach** ([derivation](../modules/m50-intracardiac-echo.qmd#eq-m50-attenuation))
+
+$$
+L = 2\,\alpha\,f\,z \ \text{dB}, \qquad z_{\max} = \frac{B}{2\,\alpha\,f}
+$$
+
+**Phased-array steering and grating lobes** ([derivation](../modules/m50-intracardiac-echo.qmd#eq-m50-steer))
+
+$$
+\tau_k = \frac{x_k \sin\theta_0}{c}, \qquad
+\mathrm{AF}(\theta) = \frac{1}{N}\left|\sum_{k=0}^{N-1} e^{\,i 2\pi k \frac{d}{\lambda}(\sin\theta - \sin\theta_0)}\right|, \qquad
+\sin\theta_m = \sin\theta_0 + m\frac{\lambda}{d}
+$$
+
+**Frame rate** ([derivation](../modules/m50-intracardiac-echo.qmd#eq-m50-frame-rate))
+
+$$
+\mathrm{FR} = \frac{c}{2\,D\,N_{\text{lines}}}
+$$
