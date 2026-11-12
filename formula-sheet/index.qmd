@@ -549,3 +549,41 @@ $$
 \lvert\Delta z\rvert \le \varepsilon\lVert\mathbf w\rVert_1, \qquad
 \varepsilon^\ast = \frac{\lvert z\rvert}{\lVert\mathbf w\rVert_1}
 $$
+
+## m47 · Data and deployment engineering
+
+Symbols: $d$ stored integer (adu), $b$ baseline (adu), $g$ gain (adu per physical unit), $v$ physical value, $m$ labellers each right with probability $p$, $f_i$ size of record $i$'s equivalence class, $k$ smallest class size, $J$ number of classes, $n$ records, $r$ real value, $q$ integer, $S$ scale, $Z$ zero point, $b$ bits (in the SQNR), $\overline{x^2}$ mean square of the signal.
+Model: independent labellers; an attacker who knows the person is in the data; rounding error uniform within one step.
+
+**Header conversion** ([derivation](../modules/m47-data-deployment-engineering.qmd#eq-m47-adu))
+
+$$
+v = \frac{d - b}{g}, \qquad \lvert v_{\text{stored}} - v \rvert \le \frac{1}{2g}
+$$
+
+**Majority of labellers** ([derivation](../modules/m47-data-deployment-engineering.qmd#eq-m47-majority))
+
+$$
+P_{\text{maj}}(m, p) = \sum_{j=(m+1)/2}^{m} \binom{m}{j}\, p^{j} (1 - p)^{m-j}
+$$
+
+**Re-identification risk** ([derivation](../modules/m47-data-deployment-engineering.qmd#eq-m47-risk))
+
+$$
+r_i = \frac{1}{f_i}, \qquad R_{\max} = \frac{1}{\min_i f_i} = \frac{1}{k}, \qquad
+\bar R = \frac{1}{n}\sum_{i=1}^{n} \frac{1}{f_i} = \frac{J}{n}
+$$
+
+**Affine integer quantization** ([derivation](../modules/m47-data-deployment-engineering.qmd#eq-m47-affine))
+
+$$
+r = S\,(q - Z), \qquad S = \frac{r_{\max} - r_{\min}}{q_{\max} - q_{\min}}, \qquad
+Z = q_{\min} - \operatorname{round}\!\left(\frac{r_{\min}}{S}\right)
+$$
+
+**Quantization noise and SQNR** ([derivation](../modules/m47-data-deployment-engineering.qmd#eq-m47-qnoise))
+
+$$
+\sigma_e^2 = \frac{S^2}{12}, \qquad
+\mathrm{SQNR} = 10 \log_{10} \frac{\overline{x^2}}{S^2/12}\ \text{dB} \;\approx\; 6.02\,b + 1.76\ \text{dB for a full-scale sine}
+$$

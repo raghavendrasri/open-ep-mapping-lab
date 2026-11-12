@@ -292,6 +292,58 @@ def ptbxl_metadata(ecg_ids, fields=("age", "sex"), db=None):
     return out
 
 
+def ptbxl_columns(fields, fold=None, db=None):
+    """Selected columns of PTB-XL's ptbxl_database.csv as the raw strings in the file (None where a
+    column is absent), one dict per record, optionally for one fold; plus the list of all column names.
+    Uses the checksum-verified copy of the csv."""
+    import csv
+
+    db = db or PhysioNetDB("ptb-xl", "1.0.3")
+    sums = db.checksums()
+    meta = next(f for f in sums if f.endswith("ptbxl_database.csv"))
+    (path,) = db.fetch([meta])
+    rows = []
+    with open(path, newline="") as fh:
+        reader = csv.DictReader(fh)
+        names = list(reader.fieldnames or [])
+        for row in reader:
+            if fold is not None and int(float(row["strat_fold"])) != fold:
+                continue
+            rows.append({f: row.get(f) for f in fields})
+    return rows, names
+
+
+def ptbxl_headers(n=12, fold=10, rate="lr", seed=0, db=None):
+    """WFDB headers (only the small .hea files) of n PTB-XL records from one fold, at 100 Hz
+    (rate="lr") or 500 Hz (rate="hr"). Returns [(ecg_id, wfdb header record)]."""
+    import numpy as np
+    import wfdb
+
+    db = db or PhysioNetDB("ptb-xl", "1.0.3")
+    sums = db.checksums()
+    meta = next(f for f in sums if f.endswith("ptbxl_database.csv"))
+    root = meta.rsplit("/", 1)[0] + "/" if "/" in meta else ""
+    rows, _ = ptbxl_columns(("ecg_id", f"filename_{rate}"), fold=fold, db=db)
+    rng = np.random.default_rng(seed)
+    pick = sorted(rng.choice(len(rows), size=min(n, len(rows)), replace=False))
+    chosen = [rows[i] for i in pick]
+    paths = db.fetch([f"{root}{r[f'filename_{rate}']}.hea" for r in chosen])
+    return [(int(float(r["ecg_id"])), wfdb.rdheader(str(p.with_suffix("")))) for r, p in zip(chosen, paths)]
+
+
+def challenge2017_headers(n=12, seed=0, db=None):
+    """WFDB headers of n Challenge 2017 training records (only the .hea files)."""
+    import numpy as np
+    import wfdb
+
+    db = db or PhysioNetDB("challenge-2017", "1.0.0", sums="training/SHA256SUMS")
+    heads = sorted(f for f in db.checksums() if f.endswith(".hea"))
+    rng = np.random.default_rng(seed)
+    chosen = [heads[i] for i in sorted(rng.choice(len(heads), size=min(n, len(heads)), replace=False))]
+    paths = db.fetch(chosen)
+    return [(Path(c).stem, wfdb.rdheader(str(p.with_suffix("")))) for c, p in zip(chosen, paths)]
+
+
 def load_afdb_rr(records=("04015", "04043", "04048", "04126", "04746"), db=None):
     """Beat times and rhythm annotations from the MIT-BIH Atrial Fibrillation Database (Moody and Mark
     1983; PhysioNet, doi:10.13026/C2MW2D, Open Data Commons Attribution v1.0). Only the header, the

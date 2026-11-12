@@ -88,7 +88,7 @@ Status shows how far each module has got.
 | m44 | [Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight](modules/m44-agentic-ai.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m45 | [Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring](modules/m45-ai-evidence-regulation.qmd) | [Draft]{.status .status-draft} | v1.5 |
 | m46 | [Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness, out-of-distribution inputs and robustness](modules/m46-trustworthy-ai.qmd) | [Draft]{.status .status-draft} | v1.5 |
-| m47 | [Data and deployment engineering for AI in EP: data formats, labelling, de-identification, versioning, quantization and model cards](modules/m47-data-deployment-engineering.qmd) | [Planned]{.status .status-planned} | v1.5 |
+| m47 | [Data and deployment engineering for AI in EP: data formats, labelling, de-identification, versioning, quantization and model cards](modules/m47-data-deployment-engineering.qmd) | [Draft]{.status .status-draft} | v1.5 |
 
 ## Learning paths
 

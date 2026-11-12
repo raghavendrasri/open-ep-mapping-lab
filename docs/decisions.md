@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m47 stages 1–6, data and deployment engineering
+
+- **m47** (Data and deployment engineering): five tested equations (header conversion, majority of labellers,
+  re-identification risk, affine quantization, quantization noise), two demos (quantizing a beat, an
+  approximate model; re-identification risk in a synthetic registry, a simulation), clinical correlate on where
+  data-pipeline issues arise in EP (pending review), 12 interview and 6 self-check questions, glossary and
+  formula-sheet entries. Kappa and the label ceiling are reused from m35 rather than restated.
+- **`epml.deploy`**: WFDB write, read and header edits; a plausibility audit with ranges learned from training
+  data (no physiological thresholds); checksum manifests and a dataset version id; labeller simulation and
+  majority votes; equivalence classes and re-identification risk on a synthetic registry; affine quantization,
+  SQNR, per-tensor and per-unit weight quantization; a model card that refuses empty sections.
+  **`epml.data`** gained `ptbxl_columns`, `ptbxl_headers` and `challenge2017_headers` (header files only).
+- **HIPAA as the one legal example**, cited to HHS pages and marked as not legal advice; other jurisdictions are
+  out of scope for now.
+- **Stanford and NVIDIA:** Chambon et al. 2023 (de-identification of report text), Liang et al. 2024 (32,111
+  model cards); Wu et al. 2020 (NVIDIA, integer quantization).
+
 ## 2026-11-11 · Two new Part VII modules (m46, m47), and m46 stages 1–6
 
 - **Curriculum: 45 → 47 modules.** After a gap review of Part VII the author approved two modules:
