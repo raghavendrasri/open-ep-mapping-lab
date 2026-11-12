@@ -660,3 +660,70 @@ $$
 $$
 \mathrm{FR} = \frac{c}{2\,D\,N_{\text{lines}}}
 $$
+
+## m51 · Cardiac CT
+
+Symbols: $\mu$ linear attenuation coefficient ($\mu_w$ water, $\mu_a$ air), $c$ iodine concentration in mg/mL, $(\mu/\rho)_{\mathrm I}$ iodine mass attenuation, $f(x,y)$ image, $p_\theta(s)$ projection at angle $\theta$ and offset $s$, $P_\theta(k)$ its 1-D Fourier transform, $F$ the image's 2-D Fourier transform, $q_\theta$ filtered projection, $d$ detector spacing, $N_0$ photons per ray, $T_{\text{rot}}$ rotation time, $N_{\text{src}}$ X-ray sources, $v$ speed, $b$ blur, $D$ vessel diameter, $w$ wall thickness, $\sigma$ blur standard deviation.
+Model: monoenergetic beam; parallel-beam geometry; Poisson counts; constant speed during the window; Gaussian blur.
+
+**Hounsfield units** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-hu))
+
+$$
+\mathrm{HU} = 1000\,\frac{\mu - \mu_w}{\mu_w - \mu_a}
+$$
+
+**Iodine contrast** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-iodine))
+
+$$
+\Delta\mathrm{HU} = 1000\,\frac{c \cdot 10^{-3}\,(\mu/\rho)_{\mathrm I}}{\mu_w}
+$$
+
+**Projection (Radon transform)** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-radon))
+
+$$
+p_\theta(s) = \iint f(x, y)\,\delta(x\cos\theta + y\sin\theta - s)\,dx\,dy
+$$
+
+**Central-slice theorem** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-slice))
+
+$$
+P_\theta(k) = \int p_\theta(s)\,e^{-i2\pi k s}\,ds = \iint f(x, y)\,e^{-i2\pi k (x\cos\theta + y\sin\theta)}\,dx\,dy = F(k\cos\theta,\,k\sin\theta)
+$$
+
+**Filtered back-projection** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-fbp))
+
+$$
+f(x, y) = \int_0^{\pi} q_\theta(x\cos\theta + y\sin\theta)\,d\theta, \qquad
+q_\theta = \mathcal{F}^{-1}\{\,|k|\,P_\theta(k)\,\}
+$$
+
+**Ram-Lak kernel** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-ramlak))
+
+$$
+h[0] = \frac{1}{4d^2}, \qquad h[n] = -\frac{1}{\pi^2 n^2 d^2}\ \ (n \text{ odd}), \qquad h[n] = 0\ \ (n \text{ even},\ n \neq 0)
+$$
+
+**Quantum noise** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-noise))
+
+$$
+\operatorname{Var}\!\left[-\ln\frac{N}{N_0}\right] \approx \frac{1}{\bar N} = \frac{e^{p}}{N_0}
+$$
+
+**Gating window and motion blur** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-gating))
+
+$$
+\Delta t \approx \frac{T_{\text{rot}}}{2\,N_{\text{src}}}, \qquad b = v\,\Delta t
+$$
+
+**A smeared disk** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-smear))
+
+$$
+I(x, y) = \frac{\left|\,[x - b/2,\ x + b/2] \cap [-c,\ c]\,\right|}{b}, \qquad c = \sqrt{D^2/4 - y^2}
+$$
+
+**A blurred thin wall** ([derivation](../modules/m51-cardiac-ct.qmd#eq-m51-wall))
+
+$$
+g(x) = \tfrac12\left[\operatorname{erf}\!\left(\frac{x + w/2}{\sqrt2\,\sigma}\right) - \operatorname{erf}\!\left(\frac{x - w/2}{\sqrt2\,\sigma}\right)\right], \qquad
+g(0) = \operatorname{erf}\!\left(\frac{w}{2\sqrt2\,\sigma}\right)
+$$
