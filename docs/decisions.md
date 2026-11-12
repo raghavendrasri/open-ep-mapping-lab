@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m52 stages 1–6, cardiac MRI
+
+- **m52** (Cardiac MRI for EP): six tested equations (Larmor, inversion recovery, relaxivity, ECV, inversion time
+  for LGE, image intensity ratio and burden), an exact demo (signal against inversion time) and a simulation demo
+  (burden against threshold on a synthetic wall), clinical correlate (pending review), 12 interview and 6
+  self-check questions, glossary and formula-sheet entries.
+- **Blood-scar contrast from one model.** Blood's post-contrast T1 is computed from the published myocardial values
+  with @eq-m52-ecv and an illustrative native blood T1 and hematocrit, labeled as such, rather than quoted.
+- **The synthetic wall is precomputed** (`tools/make_m52_d2.py` → `demos/m52-d2-wall.json`, ~100 kB) so the demo and
+  the lab use the same data; a test checks the file is current.
+- **Real data without an LGE set.** No openly licensed atrial LGE data set was found in this session, so lab part F
+  uses the Decathlon heart MRI (already used in m40) to show blood-pool normalization only, and says it is not LGE.
+- **Devices:** registry results only, without operating details or advice.
+
 ## 2026-11-11 · m51 stages 1–6, cardiac CT
 
 - **m51** (Cardiac CT for EP): ten tested equations (Hounsfield units, iodine, Radon transform, central-slice

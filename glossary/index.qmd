@@ -68,6 +68,9 @@ Computed tomography (CT)
 Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Conducting channel
+: A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
+
 Conduction velocity
 : The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -122,6 +125,9 @@ Expected improvement
 External validation
 : Testing a frozen model on data from another place or time that played no part in training or tuning. [m37](../modules/m37-ai-ecg.qmd)
 
+Extracellular volume (ECV)
+: The fraction of a tissue's volume outside cells. MRI estimates it from T1 before and after gadolinium and the hematocrit; scar and fibrosis raise it. [m52](../modules/m52-cardiac-mri.qmd)
+
 Far-field signal
 : Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
 
@@ -152,6 +158,9 @@ Fossa ovalis
 Foundation model
 : A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Gadolinium contrast
+: An MRI contrast agent that shortens T1 in proportion to its concentration and stays outside cells, so it accumulates where there is more extracellular space. [m52](../modules/m52-cardiac-mri.qmd)
+
 Gaussian mixture model
 : A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -179,11 +188,17 @@ Hallucination
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Hematocrit
+: The fraction of blood volume made up of red cells; gadolinium in blood is confined to the rest, the plasma. [m52](../modules/m52-cardiac-mri.qmd)
+
 Hounsfield unit (HU)
 : The CT number scale, 1000 (μ − μ_water)/(μ_water − μ_air): water is 0 and air −1000. Values depend on the X-ray beam's energy. [m51](../modules/m51-cardiac-ct.qmd)
 
 Human approval step
 : A point in an agent's run where a person must accept or decline an action, such as any write, before it is carried out. [m44](../modules/m44-agentic-ai.qmd)
+
+Image intensity ratio (IIR)
+: An LGE wall intensity divided by the mean blood-pool intensity, used to compare scans that have no absolute intensity scale; thresholds on it define atrial fibrosis or scar. [m52](../modules/m52-cardiac-mri.qmd)
 
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
@@ -196,6 +211,9 @@ Intracardiac echocardiography (ICE)
 
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Inversion recovery
+: An MRI preparation that flips the longitudinal magnetization with a 180° pulse and reads the image while it recovers; a tissue has no signal at T1 ln 2. [m52](../modules/m52-cardiac-mri.qmd)
 
 Iodinated contrast
 : An iodine-containing agent injected into the blood; iodine attenuates X-rays strongly, so the blood pool stands out from the heart wall on CT. [m51](../modules/m51-cardiac-ct.qmd)
@@ -215,8 +233,11 @@ Kerma-area product (KAP)
 Large language model (LLM)
 : A transformer trained on very large amounts of text to predict the next token; it can follow instructions and answer questions in text. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Larmor frequency
+: The frequency at which nuclear magnetization precesses in a magnetic field: 42.58 MHz per tesla for protons, about 64 MHz at 1.5 T. [m52](../modules/m52-cardiac-mri.qmd)
+
 Late gadolinium enhancement (LGE)
-: MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd)
+: MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd) [m52](../modules/m52-cardiac-mri.qmd)
 
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -236,6 +257,9 @@ Local activation time
 Low-voltage area
 : A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
 
+Magnetic resonance imaging (MRI)
+: Imaging of hydrogen nuclei in a strong magnetic field, with contrast from how their magnetization relaxes and position encoded by field gradients. [m52](../modules/m52-cardiac-mri.qmd)
+
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
 
@@ -251,6 +275,9 @@ Normalized surface Dice (NSD)
 Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
 
+Otsu's threshold
+: The intensity cut that splits a histogram into two classes with the largest between-class variance; used as a data-driven threshold for scar. [m52](../modules/m52-cardiac-mri.qmd)
+
 Out-of-distribution (OOD) input
 : An input unlike the data a model was trained on, such as a recording from a new device or with heavy noise, for which its outputs are not reliable. [m46](../modules/m46-trustworthy-ai.qmd)
 
@@ -265,6 +292,9 @@ Pacing
 
 Partial-volume effect
 : A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd)
+
+Phase-sensitive inversion recovery (PSIR)
+: An LGE reconstruction that keeps the sign of the recovering magnetization, so it is much less sensitive to the chosen inversion time than a magnitude image. [m52](../modules/m52-cardiac-mri.qmd)
 
 Phased array
 : A row of transducer elements whose firing delays steer and focus the beam electronically, without moving the probe. [m50](../modules/m50-intracardiac-echo.qmd)
@@ -355,6 +385,9 @@ Speed-of-sound assumption
 
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
+
+T1 (longitudinal relaxation time)
+: The time constant with which magnetization along the field recovers after it is disturbed; gadolinium shortens it. [m52](../modules/m52-cardiac-mri.qmd)
 
 Temporal resolution
 : How short a time span one image represents. In cardiac CT it is about half the gantry rotation time with one X-ray source and a quarter with two. [m51](../modules/m51-cardiac-ct.qmd)

@@ -727,3 +727,45 @@ $$
 g(x) = \tfrac12\left[\operatorname{erf}\!\left(\frac{x + w/2}{\sqrt2\,\sigma}\right) - \operatorname{erf}\!\left(\frac{x - w/2}{\sqrt2\,\sigma}\right)\right], \qquad
 g(0) = \operatorname{erf}\!\left(\frac{w}{2\sqrt2\,\sigma}\right)
 $$
+
+## m52 · Cardiac MRI
+
+Symbols: $\gamma$ gyromagnetic ratio, $B_0$ static field, $f$ Larmor frequency, $M_z$ longitudinal magnetization ($M_0$ at equilibrium), $T_1$ longitudinal relaxation time ($T_{1m}$ myocardium, $T_{1s}$ scar, $T_{1,0}$ native), $r_1$ relaxivity, $[\mathrm{Gd}]$ concentration, $R_1 = 1/T_1$, ECV extracellular volume fraction, Hct hematocrit, TI inversion time, $I$ image intensity, $\theta$ threshold, $B$ burden.
+Model: ideal inversion; readout ignored; gadolinium at equilibrium between blood and extracellular space.
+
+**Larmor relation** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-larmor))
+
+$$
+f = \frac{\gamma}{2\pi}\,B_0
+$$
+
+**Inversion recovery** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-ir))
+
+$$
+M_z(t) = M_0\left(1 - 2e^{-t/T_1}\right), \qquad M_z = 0 \ \text{at}\ t = T_1 \ln 2
+$$
+
+**Relaxivity** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-relaxivity))
+
+$$
+\frac{1}{T_1} = \frac{1}{T_{1,0}} + r_1\,[\mathrm{Gd}]
+$$
+
+**Extracellular volume** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-ecv))
+
+$$
+\mathrm{ECV} = (1 - \mathrm{Hct})\,\frac{\Delta R_{1,\text{myo}}}{\Delta R_{1,\text{blood}}}
+$$
+
+**Inversion time for LGE** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-lge))
+
+$$
+\mathrm{TI}^* = \frac{\ln(T_{1m}/T_{1s})}{1/T_{1s} - 1/T_{1m}}
+$$
+
+**Image intensity ratio and burden** ([derivation](../modules/m52-cardiac-mri.qmd#eq-m52-iir))
+
+$$
+\mathrm{IIR}_i = \frac{I_{\text{wall},i}}{\bar I_{\text{blood}}}, \qquad
+B(\theta) = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[\mathrm{IIR}_i > \theta\right]
+$$
