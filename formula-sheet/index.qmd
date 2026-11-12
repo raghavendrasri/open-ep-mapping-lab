@@ -769,3 +769,23 @@ $$
 \mathrm{IIR}_i = \frac{I_{\text{wall},i}}{\bar I_{\text{blood}}}, \qquad
 B(\theta) = \frac{1}{N}\sum_{i=1}^{N} \mathbf{1}\!\left[\mathrm{IIR}_i > \theta\right]
 $$
+
+## m53 · Lesion imaging and real-time MRI
+
+Symbols: $w$ lesion line width, $g$ gap width, $\sigma$ blur standard deviation, $\theta$ threshold, $B, G$ blurred box profiles, $N_{\text{lines}}$ lines per frame, TR repetition time, $R$ acceleration factor, $v$ speed, $d$ motion per frame.
+Model: straight line, rectangular gap, isotropic Gaussian blur; line-by-line acquisition.
+
+**A gap in a blurred lesion line** ([derivation](../modules/m53-lesion-imaging-interventional-mri.qmd#eq-m53-gap))
+
+$$
+I(x, y) = B(y)\,\bigl[1 - G(x)\bigr], \qquad
+I_{\text{line}} = \operatorname{erf}\!\left(\frac{w}{2\sqrt2\,\sigma}\right), \qquad
+I_{\text{gap}} = I_{\text{line}}\left[1 - \operatorname{erf}\!\left(\frac{g}{2\sqrt2\,\sigma}\right)\right]
+$$
+
+**Real-time frame time** ([derivation](../modules/m53-lesion-imaging-interventional-mri.qmd#eq-m53-frame))
+
+$$
+T_{\text{frame}} = \frac{N_{\text{lines}}\,\mathrm{TR}}{R}, \qquad \text{frame rate} = \frac{1}{T_{\text{frame}}}, \qquad
+d = v\,T_{\text{frame}}
+$$

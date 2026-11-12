@@ -14,6 +14,9 @@ Action potential
 Activation wavefront
 : The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
 
+Active catheter tracking
+: Locating small receiver coils at a catheter's tip from MR signals so the scanner can follow it and steer the imaging plane; reported at up to 50 updates per second. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Adversarial example
 : An input changed slightly, often invisibly, so that a model gives a different output; for ECG models, a small added waveform. [m46](../modules/m46-trustworthy-ai.qmd)
 
@@ -59,6 +62,9 @@ Central-slice theorem
 Clique
 : A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
 
+Cohen's kappa
+: Agreement between two raters or methods beyond what chance would give: (observed − expected agreement) / (1 − expected agreement). [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Collocation point
 : A point where a governing equation is checked during fitting; it needs no measurement. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -103,6 +109,9 @@ Dice coefficient
 
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
+
+Edema (myocardial)
+: Excess water in heart tissue after injury such as ablation; bright on T2-weighted MRI, it includes reversible injury and fades over time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
 Eikonal equation
 : The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd)
@@ -206,6 +215,9 @@ Implantable loop recorder (ILR)
 Integrated gradients
 : A feature-attribution method that averages the model's gradient along a straight path from a baseline input to the actual input; the attributions add up to the change in output. [m46](../modules/m46-trustworthy-ai.qmd)
 
+Interventional MRI
+: Performing a procedure, such as catheter ablation, inside an MRI scanner with real-time images instead of fluoroscopy. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Intracardiac echocardiography (ICE)
 : Ultrasound imaging from a catheter inside the heart, used during procedures to see anatomy and build shells. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -245,6 +257,9 @@ Leave-one-patient-out
 Left atrial appendage occlusion (LAAO)
 : A catheter procedure that closes the left atrial appendage with an implanted device. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Lesion gap
+: A segment of an intended ablation line where the tissue was not destroyed, through which conduction can recover. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Levenberg–Marquardt method
 : An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -259,6 +274,9 @@ Low-voltage area
 
 Magnetic resonance imaging (MRI)
 : Imaging of hydrogen nuclei in a strong magnetic field, with contrast from how their magnetization relaxes and position encoded by field gradients. [m52](../modules/m52-cardiac-mri.qmd)
+
+Magnetohydrodynamic voltage
+: A voltage induced when conducting blood flows across a strong magnetic field; it distorts the ECG and electrograms inside an MRI scanner. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
@@ -293,6 +311,9 @@ Pacing
 Partial-volume effect
 : A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd)
 
+Passive catheter visualization
+: Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Phase-sensitive inversion recovery (PSIR)
 : An LGE reconstruction that keeps the sign of the recovering magnetization, so it is much less sensitive to the chosen inversion time than a magnitude image. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -323,6 +344,9 @@ Prompt injection
 Pulmonary vein isolation (PVI)
 : Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Pulmonary vein reconnection
+: Recovery of conduction between a pulmonary vein and the left atrium after isolation, usually through a gap in the lesion line. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
 Quantization (integer)
 : Storing a model's weights or activations, or a signal's samples, as integers with a scale and zero point instead of floating-point numbers; it saves memory and computation at the cost of rounding error. [m47](../modules/m47-data-deployment-engineering.qmd)
 
@@ -352,6 +376,9 @@ Reference standard
 
 Remote monitoring
 : Sending data from an implanted or wearable device to a clinic, where alerts are reviewed. [m38](../modules/m38-wearables-monitoring.qmd)
+
+Repetition time (TR)
+: The time between successive excitations in an MRI sequence; a real-time frame takes about the number of lines times TR. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
 Retrieval-augmented generation (RAG)
 : Answering with a language model after giving it passages retrieved from a chosen document collection, so that the answer can rest on, and cite, those passages. [m43](../modules/m43-foundation-models-llms.qmd)
