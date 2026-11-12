@@ -53,6 +53,9 @@ Bayesian optimization
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
+C-arm
+: A fluoroscopy system with the X-ray source and detector on opposite ends of a C-shaped arm that rotates around the patient. [m55](../modules/m55-multimodal-capstone.qmd)
+
 Cardiac sarcoidosis
 : Inflammation of the heart by granulomas, which can cause conduction block and ventricular tachycardia; FDG PET can show active inflammation. [m54](../modules/m54-nuclear-imaging.qmd)
 
@@ -131,6 +134,9 @@ Endocardium
 Ensemble
 : A set of models trained with different random choices; their spread is used as an uncertainty estimate. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Error budget
+: A list of the error sources in a chain of steps with their sizes; independent, unbiased errors add in quadrature, and biases add directly. [m55](../modules/m55-multimodal-capstone.qmd)
+
 Expected improvement
 : An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
 
@@ -154,6 +160,12 @@ Federated learning
 
 Fibrosis
 : Replacement of heart muscle by connective tissue. In the atria it can be estimated on late-gadolinium MRI. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Fiducial localization error (FLE)
+: The error in locating a landmark used for registration, in either the image or the map. [m55](../modules/m55-multimodal-capstone.qmd)
+
+Fiducial registration error (FRE)
+: The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd)
 
 Filtered back-projection
 : CT reconstruction that filters each projection with a ramp in frequency and smears it back along its lines; without the filter the image is blurred. [m51](../modules/m51-cardiac-ct.qmd)
@@ -239,6 +251,9 @@ Inversion recovery
 Iodinated contrast
 : An iodine-containing agent injected into the blood; iodine attenuates X-rays strongly, so the blood pool stands out from the heart wall on CT. [m51](../modules/m51-cardiac-ct.qmd)
 
+Isocenter
+: The point a C-arm rotates about; structures there are imaged at a fixed magnification. [m55](../modules/m55-multimodal-capstone.qmd)
+
 Isthmus (VT)
 : A narrow channel of conducting tissue, bounded by scar or anatomical barriers, that a reentrant ventricular tachycardia passes through. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -289,6 +304,9 @@ Magnetic resonance imaging (MRI)
 
 Magnetohydrodynamic voltage
 : A voltage induced when conducting blood flows across a strong magnetic field; it distorts the ECG and electrograms inside an MRI scanner. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
+Magnification (projection)
+: How much larger a structure appears on the detector than its true size: source-to-detector over source-to-object distance. [m55](../modules/m55-multimodal-capstone.qmd)
 
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
@@ -439,6 +457,9 @@ Surrogate model
 
 T1 (longitudinal relaxation time)
 : The time constant with which magnetization along the field recovers after it is disturbed; gadolinium shortens it. [m52](../modules/m52-cardiac-mri.qmd)
+
+Target registration error (TRE)
+: The error after registration at a point not used for the fit, such as an ablation target; it grows with distance from the landmarks. [m55](../modules/m55-multimodal-capstone.qmd)
 
 Temporal resolution
 : How short a time span one image represents. In cardiac CT it is about half the gantry rotation time with one X-ray source and a quarter with two. [m51](../modules/m51-cardiac-ct.qmd)

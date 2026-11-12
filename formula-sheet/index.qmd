@@ -820,3 +820,28 @@ $$
 \ln R_m \sim \mathcal N\!\left(\ln R,\ 2\ln(1 + c^2)\right), \qquad
 P(\text{called a response}) = \Phi\!\left(\frac{\ln 0.75 - \ln R}{\sqrt{2\ln(1 + c^2)}}\right)
 $$
+
+## m55 · Capstone
+
+Symbols: SOD source-to-object (isocenter) distance, SID source-to-detector distance, $x, z$ lateral and head-foot positions, $y$ depth beyond the isocenter, $u, v$ detector coordinates, $M$ magnification, $N$ number of landmarks, FLE, FRE and TRE fiducial localization, fiducial registration and target registration errors, $d_k$ distance of the target from principal axis $k$ of the landmarks, $f_k^2$ mean squared distance of the landmarks from that axis, $\sigma_i$ RMS error of step $i$.
+Model: point source and flat detector; rigid registration with independent isotropic landmark error (first order); independent zero-mean errors.
+
+**C-arm projection** ([derivation](../modules/m55-multimodal-capstone.qmd#eq-m55-projection))
+
+$$
+u = \frac{\mathrm{SID}}{\mathrm{SOD} + y}\,x, \qquad v = \frac{\mathrm{SID}}{\mathrm{SOD} + y}\,z, \qquad
+M(y) = \frac{\mathrm{SID}}{\mathrm{SOD} + y}
+$$
+
+**Fiducial and target registration error** ([derivation](../modules/m55-multimodal-capstone.qmd#eq-m55-tre))
+
+$$
+\langle \mathrm{FRE}^2 \rangle = \left(1 - \frac{2}{N}\right)\langle \mathrm{FLE}^2\rangle, \qquad
+\langle \mathrm{TRE}^2(\mathbf r) \rangle \approx \frac{\langle \mathrm{FLE}^2\rangle}{N}\left(1 + \frac13\sum_{k=1}^{3}\frac{d_k^2}{f_k^2}\right)
+$$
+
+**Error budget** ([derivation](../modules/m55-multimodal-capstone.qmd#eq-m55-budget))
+
+$$
+\sigma_{\text{total}} = \sqrt{\sum_i \sigma_i^2}
+$$
