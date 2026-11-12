@@ -115,3 +115,21 @@ website:
         text: m46 · Trustworthy AI in EP
       - href: modules/m47-data-deployment-engineering.qmd
         text: m47 · Data and deployment engineering
+    - section: Part VIII · Imaging in electrophysiology
+      contents:
+      - href: modules/m48-imaging-workflow.qmd
+        text: m48 · Imaging across the EP workflow
+      - href: modules/m49-fluoroscopy-radiation.qmd
+        text: m49 · Fluoroscopy and radiation
+      - href: modules/m50-intracardiac-echo.qmd
+        text: m50 · Intracardiac echocardiography
+      - href: modules/m51-cardiac-ct.qmd
+        text: m51 · Cardiac CT
+      - href: modules/m52-cardiac-mri.qmd
+        text: m52 · Cardiac MRI
+      - href: modules/m53-lesion-imaging-interventional-mri.qmd
+        text: m53 · Lesion imaging and interventional MRI
+      - href: modules/m54-nuclear-imaging.qmd
+        text: m54 · Nuclear imaging
+      - href: modules/m55-multimodal-capstone.qmd
+        text: 'm55 · Capstone: multimodal guidance'

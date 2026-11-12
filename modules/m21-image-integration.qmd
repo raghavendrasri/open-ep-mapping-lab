@@ -23,3 +23,4 @@ See the [course map](../course-map.qmd) for every module and its status.
 
 - Mapping-system software engineer
 - Clinical mapping specialist or EP fellow
+- Imaging in EP

@@ -1,0 +1,524 @@
+---
+title: "m49 · Fluoroscopy and radiation protection: X-ray attenuation and contrast, quantum noise, dose quantities, reference levels, staff protection, low-fluoroscopy workflows"
+module-id: m49
+part: "Part VIII · Imaging in electrophysiology"
+# draft | in-review | released
+status: draft
+# pending | signed-off. Only a human reviewer changes this to signed-off.
+clinical-review: pending
+---
+
+::: {.callout-warning}
+Education only. Not for diagnosis, treatment or any clinical decision.
+:::
+
+## In 60 seconds
+
+Fluoroscopy is a moving shadow picture: X-rays pass through the patient, and each detector pixel counts the photons
+that get through. Attenuation is exponential, so a platinum electrode a fraction of a millimetre thick casts a
+dark shadow while blood and soft tissue, which attenuate almost equally, cast none [@nist126]. Photons arrive at
+random, so image noise falls only as the square root of dose. Patient dose is reported as air kerma and
+kerma-area product, and national surveys turn those into reference levels for each EP procedure
+[@greffier2026; @samara2026]. Staff dose falls with time, distance and shielding. A position paper estimated
+that an operator's lifetime attributable excess cancer risk may be around 1 in 100 [@heidbuchel2014], and mapping systems, visible
+sheaths and intracardiac echo now make low- and zero-fluoroscopy workflows feasible
+[@debreceni2023; @chen2026sheath], although the evidence is mostly observational [@kour2026].
+
+## From the field
+
+- **Still the backbone.** A position paper in Europace called fluoroscopy the cornerstone of imaging in most
+  interventional EP procedures. It estimated that an operator's lifetime attributable excess cancer risk may be
+  around 1 in 100, the same as for a patient who has repeated complex procedures, and argued that X-ray system
+  settings, workflow and shielding together could cut exposure by more than an order of magnitude
+  [@heidbuchel2014].
+- **What a procedure costs.** A survey of 4,219 patients in 33 French centres set reference levels (third
+  quartiles) for 11 EP and pacing procedures: among ablations, the lowest was for accessory-pathway ablation
+  (4.10 Gy·cm² and 10.5 minutes) and the highest for persistent AF ablation (12.65 Gy·cm² and 15.5 minutes)
+  [@greffier2026]. A Swiss update set the level for pacemaker implantation at 2 Gy·cm², down from 30
+  [@samara2026].
+- **Mapping systems.** In 25 European centres, using a 3-D mapping system for supraventricular ablations was
+  associated with less fluoroscopy time and dose but often longer procedures; for VT ablation there was no
+  difference in dose [@zormpas2023].
+- **Zero fluoroscopy.** A meta-analysis of seven studies (1,593 patients) found a zero-fluoroscopy approach to AF
+  ablation feasible in 95.1% of patients, with shorter fluoroscopy and no significant difference in success or
+  complications [@debreceni2023]. In a randomized trial of 100 patients, a sheath visible on the mapping system cut
+  fluoroscopy time from 15.37 to 11.43 minutes [@chen2026sheath]. A single-centre series of pulsed-field ablation
+  reported a median fluoroscopy time of 0.8 minutes [@borlich2025]. A 2026 review noted that no randomized trial
+  has compared zero-fluoroscopy with fluoroscopy-guided pulsed-field ablation [@kour2026].
+
+## Derivations
+
+### X-ray attenuation and the shadow image
+
+A narrow beam of photons of one energy loses a fixed fraction of its intensity per millimetre of material. Along
+a ray through the patient, the detected intensity is
+
+$$
+I = I_0 \exp\!\left(-\int \mu(s)\, ds\right), \qquad \mathrm{HVL} = \frac{\ln 2}{\mu}
+$$ {#eq-m49-beer}
+
+where $I_0$ is the intensity without the patient, $\mu$ (1/mm) is the linear attenuation coefficient along the
+path $s$, and the half-value layer (HVL) is the thickness of uniform material that halves the beam. NIST tabulates
+the mass attenuation coefficient $\mu/\rho$; times density it gives $\mu$ [@nist126]. At 60 keV, soft tissue has
+$\mu = 0.0217$/mm (HVL 32 mm), cortical bone $0.0604$/mm (HVL 11.5 mm) and platinum $9.31$/mm (HVL 0.074 mm),
+from NIST's coefficients and densities. In lab part A only 1 photon in 119 crosses 220 mm of soft tissue; the rest
+are absorbed or scattered, which is the patient's dose.
+
+**Key takeaways**
+
+- Attenuation is exponential; the image records the line integral of $\mu$.
+- Metal electrodes are opaque at fluoroscopy energies; soft tissue is not.
+- Most photons never reach the detector: image and dose are two sides of the same beam.
+
+### Contrast: why the catheter shows and the heart does not
+
+An object of thickness $t$ inside background material reduces the transmitted intensity by the fraction
+
+$$
+C = 1 - e^{-(\mu_o - \mu_b)\, t} \;\approx\; (\mu_o - \mu_b)\, t \ \text{ when small}
+$$ {#eq-m49-contrast}
+
+where $\mu_o$ and $\mu_b$ are the object's and background's attenuation coefficients; this subject contrast is
+negative for an object that attenuates less. NIST lists whole blood and soft tissue at 0.2057 and 0.2048 cm²/g at
+60 keV, both at a density of 1.06 g/cm³ [@nist126]: across the heart of the lab phantom the contrast is well under
+1%, while a platinum electrode gives nearly 100% and the spine about 75%. In a real chest, the air-filled lungs
+around the heart give its outline; the inside of the heart stays invisible without contrast agent.
+
+::: {.demo #m49-d1 badge="approximate model"}
+```{=html}
+<div id="m49-d1-root" class="demo-root" data-demo="m49-d1"></div>
+<script type="module" src="../demos/m49-d1-projection.js"></script>
+```
+
+**Assumptions**
+
+- Model: a front-to-back projection of an ellipsoid chest phantom (soft-tissue body, blood-filled heart, bone spine,
+  four platinum ring electrodes), with exact line integrals (@eq-m49-beer) and NIST attenuation coefficients at a
+  single energy of 60 keV [@nist126]. Phantom sizes and the photon range are illustrative. The JavaScript is tested
+  against `epml.fluoro`.
+- Simplifications: parallel rays (no magnification), no scattered photons, no detector blur or electronic noise,
+  and a normal approximation to Poisson counts.
+- What would change the result: a polyenergetic beam and filtration (the beam hardens as it crosses the patient),
+  scatter (which lowers contrast), lungs around the heart, iodinated contrast in the chambers, and a real detector.
+:::
+
+**Key takeaways**
+
+- Contrast depends on the difference in attenuation, not on attenuation itself.
+- Blood and soft tissue are almost the same to X-rays; catheters, bone and air are not.
+- That is why fluoroscopy shows the tools and needs other modalities to show the anatomy (m50, m51).
+
+### Quantum noise and dose
+
+Each pixel counts a random number of photons with a Poisson distribution, whose standard deviation is the square
+root of the mean. With $N$ photons expected behind the background, the contrast-to-noise ratio is
+
+$$
+\mathrm{CNR} = \frac{N_b - N_o}{\sqrt{N_b}} = C\sqrt{N}, \qquad N_{\text{needed}} = \left(\frac{\mathrm{CNR}^\ast}{C}\right)^2
+$$ {#eq-m49-cnr}
+
+where $N_b = N$ and $N_o = N(1 - C)$ are the expected counts behind the background and the object, and
+$\mathrm{CNR}^\ast$ is a target ratio. Dose is proportional to $N$, so halving the noise costs four times the dose,
+and a structure with a tenth of the contrast needs a hundred times the dose. In lab part C, seeing the heart's blood
+against tissue at a CNR of 3 needed about 23,000 times the dose needed for an electrode.
+
+**Key takeaways**
+
+- Noise falls as the square root of dose; contrast is cheaper than photons.
+- A low-dose image that still shows the catheter is often enough for the task; a soft-tissue task is not a
+  fluoroscopy task.
+
+### Dose quantities and reference levels
+
+Air kerma $K$ (kinetic energy released per unit mass of air, in gray) falls with the square of the distance $d$
+from the focal spot, while the beam's cross-section $A$ grows with it:
+
+$$
+K(d) = K(d_0)\left(\frac{d_0}{d}\right)^2, \qquad A(d) = A(d_0)\left(\frac{d}{d_0}\right)^2
+\;\Rightarrow\; P_{KA} = K\,A \ \text{ is the same at every } d
+$$ {#eq-m49-kap}
+
+so the kerma-area product $P_{KA}$ (Gy·cm²) describes the whole beam, while air kerma at a reference point is
+closer to the skin dose. Reference levels summarize what typical labs deliver: the French survey used the third
+quartile of all recorded values [@greffier2026] and the Swiss update the 75th percentile of facility medians
+[@samara2026]. In lab part F the two methods gave different levels from the same synthetic logs: the method is part
+of the number.
+
+**Key takeaways**
+
+- Kerma-area product for the beam, air kerma for the skin, fluoroscopy time only as a rough proxy.
+- Compare a lab with a reference level only with the same quantity, procedure and statistic.
+
+### Staff dose: time, distance, shielding
+
+Staff outside the primary beam are exposed to radiation scattered by the patient. Treating the scatter as a point
+source at the patient, the dose $H$ to a person at distance $r$ is
+
+$$
+H \;\propto\; \frac{f_p\, q\, \tau}{r^2}\; 2^{-n}
+$$ {#eq-m49-staff}
+
+where $f_p$ is the pulse rate, $q$ the dose per pulse, $\tau$ the fluoroscopy time and $n$ the shielding thickness
+in half-value layers. Every factor multiplies: in lab part E, stepping back from 1 to 2 m, halving the pulse rate,
+adding two half-value layers and halving the time together cut the dose 64-fold. A lower pulse rate has a cost:
+the image lags a moving catheter (lab part D).
+
+::: {.demo #m49-d2 badge="approximate model"}
+```{=html}
+<div id="m49-d2-root" class="demo-root" data-demo="m49-d2"></div>
+<script type="module" src="../demos/m49-d2-staff-dose.js"></script>
+```
+
+**Assumptions**
+
+- Model: @eq-m49-staff, relative to an illustrative reference of 1 m, 10 minutes, no shield and 15 pulses per
+  second. Slider ranges are illustrative. The JavaScript is tested against `epml.fluoro`.
+- Simplifications: scatter from a point at the patient, falling as $1/r^2$; shielding as whole half-value layers
+  covering the person; dose per pulse fixed.
+- What would change the result: beam angle and the side of the patient a person stands on, the size of the irradiated
+  field, shields that cover only part of the body, and automatic dose-rate control changing the dose per pulse.
+:::
+
+**Key takeaways**
+
+- Distance is the strongest free factor: twice as far, a quarter of the dose.
+- Time, pulse rate and shielding each multiply; small changes compound.
+- Reducing fluoroscopy shifts work to other guidance (mapping, ICE), which has its own costs and evidence.
+
+## Clinical correlate
+
+::: {.callout-note title="Pending clinical review"}
+This section describes published findings only. It is not guidance for patient care, and it has
+not yet been reviewed by an EP physician.
+:::
+
+**Where this shows up in EP.** Fluoroscopy is used in diagnostic EP studies, ablation and device implantation
+[@heidbuchel2014]; national surveys record its dose for each procedure type and set reference levels
+[@greffier2026; @samara2026].
+Low- and zero-fluoroscopy workflows replace part of that guidance with the mapping system, visible sheaths and
+intracardiac echo [@zormpas2023; @chen2026sheath; @borlich2025].
+
+**What the evidence is.** Most comparisons of zero- and conventional-fluoroscopy ablation are observational and
+were pooled without non-inferiority designs [@debreceni2023; @kour2026]; one randomized trial compared visible and
+conventional sheaths [@chen2026sheath]. The cancer risk to operators is an estimate from a position paper
+[@heidbuchel2014], not a measured outcome of these studies.
+
+**What a reader should ask:**
+
+- **Which dose quantity?** Fluoroscopy time, kerma-area product or air kerma, and for which procedures.
+- **Compared with what?** The same procedure type and the same reference-level method.
+- **At what cost?** Procedure time, complications and the experience of the operators who achieved the reduction.
+
+## Visual summary
+
+:::: {.demo badge="schematic"}
+::: {#fig-m49-chain}
+```{=html}
+<svg class="sketch" viewBox="0 0 720 230" role="img" aria-label="An X-ray tube below the patient sends a diverging beam through the patient to a detector above; air kerma and kerma-area product describe the beam, scattered radiation reaches a person standing beside the table, and time, distance and shielding reduce that person's dose." style="width:100%;max-width:720px">
+  <defs><marker id="m49a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6e7781"/></marker></defs>
+  <g font-family="IBM Plex Sans, system-ui, sans-serif" font-size="12" fill="#1f2328">
+    <rect x="200" y="190" width="120" height="28" rx="4" fill="#eef4fa" stroke="#0072B2"/><text x="260" y="208" text-anchor="middle">X-ray tube</text>
+    <path d="M250,190 L195,30 L325,30 L270,190 Z" fill="#fdf1e8" stroke="#D55E00" stroke-opacity="0.6"/>
+    <ellipse cx="260" cy="115" rx="80" ry="28" fill="#e9f5ef" stroke="#009E73"/><text x="260" y="119" text-anchor="middle">patient</text>
+    <rect x="180" y="10" width="160" height="20" rx="4" fill="#eef4fa" stroke="#0072B2"/><text x="260" y="24" text-anchor="middle">detector: photon counts</text>
+    <text x="345" y="175">air kerma, kerma-area product</text>
+    <path d="M335,110 L500,110" stroke="#6e7781" stroke-dasharray="5 4" marker-end="url(#m49a)"/><text x="360" y="102">scattered radiation</text>
+    <rect x="505" y="80" width="200" height="60" rx="6" fill="#eef4fa" stroke="#0072B2"/><text x="605" y="103" text-anchor="middle">person beside the table</text><text x="605" y="122" text-anchor="middle">dose ∝ time × pulses / r² × 2⁻ⁿ</text>
+    <text x="20" y="80">image: e^(−∫μ ds)</text><text x="20" y="98">contrast: 1 − e^(−Δμ t)</text><text x="20" y="116">noise: CNR = C√N</text>
+  </g>
+</svg>
+```
+
+The X-ray chain in one picture: what forms the image (left), what the patient receives (along the beam) and what
+reaches staff (right).
+:::
+
+**Assumptions**
+
+- Schematic: not to scale, no quantitative claim. Labels follow @eq-m49-beer to @eq-m49-staff.
+::::
+
+## How experts think
+
+Before reading a fluoroscopy image, a dose report or a low-fluoroscopy study, ask:
+
+1. **What has to be seen?** Metal and bone need few photons; soft tissue is not a fluoroscopy task
+   (@eq-m49-contrast, @eq-m49-cnr).
+2. **Which dose quantity, and whose dose?** Kerma-area product for the beam, air kerma for the skin, scatter for
+   staff (@eq-m49-kap, @eq-m49-staff).
+3. **Compared with which reference?** Same procedure and statistic [@greffier2026; @samara2026].
+4. **What replaced the fluoroscopy?** Mapping, visible sheaths, ICE, and the evidence behind each
+   [@debreceni2023; @chen2026sheath].
+5. **What did it cost?** Time, complications, learning curve.
+
+One sentence to keep: **every photon that makes the image also doses someone, so use only the photons the task
+needs.**
+
+## Cheat sheet
+
+| Quantity | Result |
+| --- | --- |
+| Attenuation (@eq-m49-beer) | $I = I_0 e^{-\int \mu\, ds}$; $\mathrm{HVL} = \ln 2/\mu$ |
+| Subject contrast (@eq-m49-contrast) | $C = 1 - e^{-\Delta\mu\, t} \approx \Delta\mu\, t$ |
+| Quantum noise (@eq-m49-cnr) | $\mathrm{CNR} = C\sqrt N$; dose for a target CNR $\propto 1/C^2$ |
+| Beam dose (@eq-m49-kap) | $K \propto 1/d^2$, $A \propto d^2$, $P_{KA} = KA$ constant along the beam |
+| Staff dose (@eq-m49-staff) | $H \propto f_p q \tau\, 2^{-n} / r^2$ |
+
+**Values used in this module** (NIST, 60 keV [@nist126])
+
+| Material | $\mu$ (1/mm) | Half-value layer |
+| --- | --- | --- |
+| Soft tissue (ICRU-44) | 0.0217 | 32 mm |
+| Whole blood (ICRU-44) | 0.0218 | 32 mm |
+| Cortical bone (ICRU-44) | 0.0604 | 11.5 mm |
+| Platinum | 9.31 | 0.074 mm |
+
+**Studies in this module**
+
+| Study | What it reports | Design |
+| --- | --- | --- |
+| @heidbuchel2014 | Dose reduction measures; operator risk estimate | Position paper |
+| @greffier2026, @samara2026 | Reference levels for EP procedures | National surveys |
+| @zormpas2023 | Mapping systems and fluoroscopy | Multicentre registry |
+| @debreceni2023 | Zero versus conventional fluoroscopy for AF ablation | Meta-analysis of observational studies |
+| @chen2026sheath | Visible versus conventional sheath | Randomized trial, 100 patients |
+
+## Interview questions
+
+Try each question before you open its model answer. In a real interview, say which assumptions you
+are making.
+
+**Q1. Why does a catheter electrode show clearly on fluoroscopy while the inside of the heart does not?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Contrast depends on the difference in attenuation (@eq-m49-contrast). Platinum attenuates hundreds of times more
+than tissue, so an electrode is nearly opaque; blood and soft tissue attenuate almost equally, so their contrast
+is a fraction of a percent [@nist126]. Air in the lungs gives the heart its outline.
+
+</details>
+
+**Q2. Define the half-value layer and give one for soft tissue.**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+The thickness that halves a narrow monoenergetic beam, $\ln 2/\mu$ (@eq-m49-beer). With NIST's coefficient and
+density for soft tissue at 60 keV it is about 32 mm [@nist126]; real, polyenergetic beams harden as they pass, so
+the effective value changes with depth.
+
+</details>
+
+**Q3. You halve the dose per frame. What happens to image noise?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+The photon count halves, so the contrast-to-noise ratio falls by $\sqrt 2$ (@eq-m49-cnr). Whether that matters
+depends on the task: a catheter with high contrast may still be clearly visible.
+
+</details>
+
+**Q4. What is the kerma-area product, and why is it independent of where you measure it along the beam?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Air kerma times beam area. Kerma falls as $1/d^2$ and area grows as $d^2$, so the product is
+constant (@eq-m49-kap). It describes the total radiation delivered; air kerma at a reference point relates more closely to
+skin dose.
+
+</details>
+
+**Q5. How is a dose reference level set, and how would you use one?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+From a survey of typical practice: for example the third quartile of all values [@greffier2026] or the 75th
+percentile of facility medians [@samara2026]. A lab compares its typical dose for the same procedure and quantity;
+a reference level is a benchmark for optimization, not a limit for an individual patient.
+
+</details>
+
+**Q6. Rank time, distance and shielding by how they change staff dose.**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+All multiply (@eq-m49-staff): dose is proportional to time, falls as $1/r^2$, and halves with each half-value layer
+of shielding. Doubling distance gives a factor of four at no cost to the image; the others combine with it.
+
+</details>
+
+**Q7. A lab lowers the pulse rate from 15 to 7.5 per second. What changes?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+At the same dose per pulse, dose rate halves (@eq-m49-staff). The image updates half as often, so a moving
+catheter lags further behind its true position (lab part D); automatic dose control may also change the dose per
+pulse.
+
+</details>
+
+**Q8. What does the evidence on zero-fluoroscopy AF ablation show, and what does it not show?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Pooled observational studies found it feasible in most patients with no significant difference in success or
+complications [@debreceni2023]. They were not designed as non-inferiority comparisons, and for pulsed-field ablation
+no randomized trial compares zero- with fluoroscopy-guided procedures [@kour2026].
+
+</details>
+
+**Q9. Why might a 3-D mapping system reduce fluoroscopy but lengthen a procedure?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+The map replaces fluoroscopy for navigation, but building it takes time. In a European registry, mapping was
+associated with less fluoroscopy and often longer procedures for supraventricular ablations, and with no dose
+difference for VT [@zormpas2023].
+
+</details>
+
+**Q10. An engineer proposes a stronger image filter so that the dose can be halved. What do you check?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+That the task still succeeds: contrast-to-noise for the structures that matter (@eq-m49-cnr), lag for moving
+catheters, and no loss of small details such as electrode spacing. Filtering trades noise for blur; test it on the
+actual task, with operators.
+
+</details>
+
+**Q11. Why does fluoroscopy time alone not describe radiation exposure well?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Dose also depends on pulse rate, dose per pulse, field size, projection angle, patient size and cine acquisitions.
+Surveys therefore report kerma-area product and air kerma alongside time [@greffier2026].
+
+</details>
+
+**Q12. Why does this module model staff dose as coming from a point at the patient?**
+
+<details class="model-answer">
+<summary>Model answer</summary>
+
+Staff stand outside the primary beam, so what reaches them is radiation scattered by the patient. At room
+distances the irradiated volume acts roughly like a point, which gives the inverse-square law of @eq-m49-staff. The
+model ignores the direction of scatter, the beam angle and partial shields, so it ranks options rather than
+predicting a dose.
+
+</details>
+
+## Code lab
+
+The lab builds a fluoroscopy image and a dose budget from first principles on our own phantom.
+
+| Part | What you do | Data |
+| --- | --- | --- |
+| A | Attenuation and half-value layers (@eq-m49-beer) | NIST attenuation coefficients |
+| B | A projection image of a chest phantom, exact and by ray marching | our own phantom |
+| C | Quantum noise and the dose needed to see a structure (@eq-m49-contrast, @eq-m49-cnr) | our own phantom |
+| D | Pulse rate: dose against motion | illustrative motion |
+| E | Distance, kerma-area product and staff dose (@eq-m49-kap, @eq-m49-staff) | illustrative settings |
+| F | Reference levels from dose logs | synthetic logs, published levels for comparison |
+
+- **Python notebook:**
+  [labs/python/m49_lab.ipynb]({{< var repo.url >}}/blob/main/labs/python/m49_lab.ipynb).
+  Run it from the course repository after `pip install -r requirements.txt`, or
+  [open it in Google Colab]({{< var repo.colab >}}/blob/main/labs/python/m49_lab.ipynb).
+- **Data:** attenuation coefficients from NIST SRD 126 [@nist126]; everything else is generated by our own code. No
+  downloads.
+
+Each part ends with **checks**: lines that pass with the code as given. If you change something
+and a check fails, that is information, not an error to hide.
+
+## Self-check
+
+Short checks you can do in your head. Open each answer after you have tried it.
+
+**S1. A beam crosses three half-value layers of tissue. What fraction gets through?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$2^{-3} = 1/8$ (@eq-m49-beer).
+
+</details>
+
+**S2. An object has 2% contrast. How many photons per pixel give a CNR of 3?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$(3/0.02)^2 = 22{,}500$ (@eq-m49-cnr).
+
+</details>
+
+**S3. Air kerma at 0.5 m from the focal spot is 4 mGy. What is it at 1 m?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+1 mGy: a quarter, by the inverse-square law (@eq-m49-kap).
+
+</details>
+
+**S4. You move from 1 m to 1.5 m from the patient. By what factor does your dose change?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$(1/1.5)^2 \approx 0.44$ (@eq-m49-staff).
+
+</details>
+
+**S5. Two half-value layers of shielding and half the fluoroscopy time: what fraction of the dose remains?**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+$\tfrac14 \times \tfrac12 = \tfrac18$ (@eq-m49-staff).
+
+</details>
+
+**S6. True or false: a lab whose median kerma-area product is below the national reference level gives every
+patient a low dose.**
+
+<details class="model-answer">
+<summary>Answer</summary>
+
+False. A reference level compares typical practice; individual procedures can still be much higher.
+
+</details>
+
+## Literature figures
+
+These figures are worth looking at alongside this module. We link to them instead of copying them:
+some licenses do not allow reuse here, and others we could not confirm. Each entry says what to
+look for and where this module explains it.
+
+- **Zero-fluoroscopy comparisons.** Debreceni and colleagues pool seven studies; compare how the fluoroscopy and
+  procedure-time comparisons differ from the success and complication comparisons [@debreceni2023;
+  [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC10313423/)]. This module: clinical correlate.
+- **A randomized sheath trial.** Chen and colleagues report fluoroscopy time and first-pass isolation with a sheath
+  visible on the map [@chen2026sheath; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC13532465/)]. This
+  module: from the field.
+- **A near-zero fluoroscopy workflow.** Borlich and colleagues describe the steps and report fluoroscopy time and dose
+  in 35 patients [@borlich2025; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC12245927/)]. This module:
+  staff dose and the evidence it rests on.
+
+## Further reading
+
+- **Physics data.** NIST attenuation tables [@nist126].
+- **Dose and protection.** @heidbuchel2014; reference levels @greffier2026, @samara2026.
+- **Low-fluoroscopy evidence.** @zormpas2023, @debreceni2023, @chen2026sheath, @borlich2025, @kour2026.
+- **Next module.** m50: intracardiac echocardiography, which carries much of the guidance that fluoroscopy gives up.
