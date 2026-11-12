@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m53 stages 1–6, lesion imaging and real-time MRI
+
+- **m53** (Imaging ablation lesions and real-time MRI-guided EP): two tested equations (a gap in a blurred lesion
+  line; real-time frame time), two exact demos (gap visibility; frame rate), clinical correlate (pending review),
+  12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Gap visibility reuses m51's blur model.** The gap is the complement of a thin wall, so the page links to
+  eq-m51-wall and derives only the 2-D separable form.
+- **Kappa stays in m35.** The lab uses `epml.ml.cohen_kappa`; the page links to eq-m35-kappa instead of re-deriving it.
+- **Electrograms in the scanner** use the filter chain reported in a review with illustrative waveforms, labeled as
+  such; no recorded data were available under an open license.
+
 ## 2026-11-11 · m52 stages 1–6, cardiac MRI
 
 - **m52** (Cardiac MRI for EP): six tested equations (Larmor, inversion recovery, relaxivity, ECV, inversion time
