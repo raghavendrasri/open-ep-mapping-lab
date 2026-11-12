@@ -272,6 +272,26 @@ def load_ptbxl_lead(n_per_class=50, codes=("SR", "AFIB"), fold=10, lead="I", see
     return np.array(signals), labels, ids, {c: len(v) for c, v in by_code.items()}
 
 
+def ptbxl_metadata(ecg_ids, fields=("age", "sex"), db=None):
+    """Selected columns of PTB-XL's ptbxl_database.csv for the given ecg ids, as {ecg_id: {field: value}}.
+    Values are returned as the database codes them (for example, sex is a 0/1 code); see the PTB-XL
+    documentation (Wagner et al. 2020) for their meaning. Uses the checksum-verified copy of the csv."""
+    import csv
+
+    db = db or PhysioNetDB("ptb-xl", "1.0.3")
+    sums = db.checksums()
+    meta = next(f for f in sums if f.endswith("ptbxl_database.csv"))
+    (path,) = db.fetch([meta])
+    want = {int(i) for i in ecg_ids}
+    out = {}
+    with open(path, newline="") as fh:
+        for row in csv.DictReader(fh):
+            i = int(float(row["ecg_id"]))
+            if i in want:
+                out[i] = {f: (float(row[f]) if row[f] not in ("", "nan") else float("nan")) for f in fields}
+    return out
+
+
 def load_afdb_rr(records=("04015", "04043", "04048", "04126", "04746"), db=None):
     """Beat times and rhythm annotations from the MIT-BIH Atrial Fibrillation Database (Moody and Mark
     1983; PhysioNet, doi:10.13026/C2MW2D, Open Data Commons Attribution v1.0). Only the header, the

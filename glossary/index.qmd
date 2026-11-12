@@ -14,6 +14,9 @@ Action potential
 Activation wavefront
 : The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
 
+Adversarial example
+: An input changed slightly, often invisibly, so that a model gives a different output; for ECG models, a small added waveform. [m46](../modules/m46-trustworthy-ai.qmd)
+
 AI agent
 : A program in which a model, usually a large language model, chooses step by step which tool to call, reads the result and continues until a goal is met or a step limit is reached. [m44](../modules/m44-agentic-ai.qmd)
 
@@ -55,6 +58,9 @@ Concordance index (C index)
 
 Conduction velocity
 : The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd)
+
+Conformal prediction
+: A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
 
 Contrastive learning
 : Self-supervised learning that pulls the embeddings of matched pairs, such as two recordings of one patient, together and pushes unmatched pairs apart. [m43](../modules/m43-foundation-models-llms.qmd)
@@ -101,6 +107,9 @@ External validation
 Far-field signal
 : Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
 
+Feature attribution
+: A score for how much each input feature, such as each sample of an ECG, contributed to a model's output for one input. [m46](../modules/m46-trustworthy-ai.qmd)
+
 Federated learning
 : Training one model across sites that keep their data; only model updates are shared. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -143,6 +152,9 @@ Human approval step
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Integrated gradients
+: A feature-attribution method that averages the model's gradient along a straight path from a baseline input to the actual input; the attributions add up to the change in output. [m46](../modules/m46-trustworthy-ai.qmd)
+
 Intracardiac echocardiography (ICE)
 : Ultrasound imaging from a catheter inside the heart, used during procedures to see anatomy and build shells. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -184,6 +196,9 @@ Normalized surface Dice (NSD)
 
 Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
+
+Out-of-distribution (OOD) input
+: An input unlike the data a model was trained on, such as a recording from a new device or with heavy noise, for which its outputs are not reliable. [m46](../modules/m46-trustworthy-ai.qmd)
 
 Outflow tract
 : The part of a ventricle leading to its great artery (pulmonary artery on the right, aorta on the left); a common origin of idiopathic premature ventricular beats. [m41](../modules/m41-ai-origin-localization.qmd)

@@ -1,8 +1,9 @@
 # Curriculum
 
-Seven parts, 45 modules. Part IV (map formation) is the core of the course and ships first.
+Seven parts, 47 modules. Part IV (map formation) is the core of the course and ships first.
 Part VII (AI in electrophysiology) was added in November 2026; its plan is in
-`docs/outlines/part7-overview.md`.
+`docs/outlines/part7-overview.md`. Modules m46 and m47 were added to Part VII on 2026-11-11 with the
+author's approval, after m45, so that no module was renumbered.
 Change this list only with the author's approval.
 
 ## Part I · Math and bioelectric foundations
@@ -84,6 +85,8 @@ Change this list only with the author's approval.
 | m43 | Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval |
 | m44 | Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight |
 | m45 | Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring |
+| m46 | Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness, out-of-distribution inputs and robustness |
+| m47 | Data and deployment engineering for AI in EP: data formats, labelling, de-identification, versioning, quantization and model cards |
 
 ## Learning paths
 
@@ -93,7 +96,7 @@ Change this list only with the author's approval.
 | Localization and hardware engineer | m01–m04, m13–m19, m34, m36, plus bench track |
 | Clinical mapping specialist or EP fellow | m03, m08–m12, m20–m29, m31 |
 | Computational modeller | m01, m02, m05–m09, m12, m24, m25, m29, m33 |
-| AI in EP (engineers and clinicians) | m03, m04, m12, m22, m35, m37–m45 |
+| AI in EP (engineers and clinicians) | m03, m04, m12, m22, m35, m37–m47 |
 | Interview prep | Interview questions across all modules |
 
 ## Release order
