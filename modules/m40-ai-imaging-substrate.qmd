@@ -603,3 +603,4 @@ look for and where this module explains it.
 - **Imaging and risk.** @popescu2022, @razeghi2023.
 - **Fibrosis and ablation.** @marrouche2014, @marrouche2022, @akoum2024.
 - **Echo AI from Stanford.** @ouyang2020, @he2023.
+- **AI competency areas.** Machine learning (segmentation). See the [AI competency map](../ai-competencies.qmd).

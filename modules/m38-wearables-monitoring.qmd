@@ -572,3 +572,5 @@ look for and where this module explains it.
 - **Device electrograms.** @rodrigo2022.
 - **Data.** @afdb, with @goldberger2000 for PhysioNet.
 - **Agents.** @feli2025 and @iwai2025, and module m44.
+- **AI competency areas.** Machine learning; Bayesian networks (chained predictive values); logic (alert rules); AI
+  and society (alert burden). See the [AI competency map](../ai-competencies.qmd).

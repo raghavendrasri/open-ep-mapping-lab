@@ -552,3 +552,5 @@ look for and where this module explains it.
 - **Deployment.** @jacob2018quant, @wu2020int8, @huang2026edgeecg, @faraone2021; federated training in m45.
 - **Documentation.** @mitchell2019modelcards, @gebru2018datasheets, @liang2024modelcards.
 - **Back to the start of Part VII:** m37, and the evidence ladder in m45.
+- **AI competency areas.** AI and society (privacy and data governance); machine learning (deployment). See the [AI
+  competency map](../ai-competencies.qmd).

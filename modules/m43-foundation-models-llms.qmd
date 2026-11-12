@@ -652,3 +652,5 @@ look for and where this module explains it.
 - **Evaluating LLMs in medicine.** Stanford's MedHELM [@bedi2025medhelm] and Almanac [@zakka2024];
   for EP signals, @chai2026, @zeljkovic2025, @bozyel2025.
 - **Next module.** m44 turns retrieval and tools into agents, with guardrails and human approval.
+- **AI competency areas.** Machine learning (self-supervised and language models); search (retrieval). See the [AI
+  competency map](../ai-competencies.qmd).

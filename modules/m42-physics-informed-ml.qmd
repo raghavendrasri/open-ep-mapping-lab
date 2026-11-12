@@ -554,3 +554,5 @@ look for and where this module explains it.
 - **Physics-informed learning.** @raissi2017pinn, @raissi2020; NVIDIA PhysicsNeMo [@physicsnemo].
 - **In electrophysiology.** @sahlicostabal2020, @herreromartin2022, @magana2025.
 - **Digital twins.** @corral2020, @gillette2021 (m33).
+- **AI competency areas.** Machine learning (physics-informed networks and surrogates). See the [AI competency
+  map](../ai-competencies.qmd).

@@ -7,6 +7,7 @@ project:
     - disclaimer.qmd
     - errata.qmd
     - course-map.qmd
+    - ai-competencies.qmd
     - glossary/index.qmd
     - formula-sheet/index.qmd
     - modules/*.qmd
@@ -37,6 +38,8 @@ website:
         text: Glossary
       - href: formula-sheet/index.qmd
         text: Formula sheet
+      - href: ai-competencies.qmd
+        text: AI competencies
       - href: errata.qmd
         text: Errata
       - href: disclaimer.qmd
