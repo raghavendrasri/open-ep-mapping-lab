@@ -577,3 +577,6 @@ look for and where this module explains it.
   by @frazier2018.
 - **Simulation-trained models and data.** @doste2022, @zheng2020otva.
 - **Small cohorts and reviews.** @botis2026, @yang2024, @antoun2026.
+- **AI competency areas.** Machine learning; Bayesian networks (Gaussian processes); search (shortest paths on the
+  mesh); Markov decision processes (choosing the next pacing site). See the [AI competency
+  map](../ai-competencies.qmd).

@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · AI competency map
+
+- **New page `ai-competencies.qmd`** (author request, 2026-11-12): maps nine AI competency areas (machine learning,
+  Bayesian networks, graphical models, logic, search, Markov decision processes, reinforcement learning, planning and
+  game playing, AI and society) to EP uses and to existing modules, and says which areas are not yet taught. Linked
+  from the navbar ("AI competencies").
+- **Author's choice: a map, not new modules.** No module was added, dropped or renumbered. Each of m35 and m37–m47
+  gets one "AI competency areas" bullet in its Further reading section, so the template headings are unchanged.
+- **New sources, looked up on PubMed or arXiv:** brugada1991 (rule-based stepwise criteria), clavier2002 (hidden
+  Markov model for P-wave delineation), muizniece2021 (Q-learning on simulated left atria; simulation only),
+  madry2018 (adversarial training as a min-max problem). No Bayesian-network study in EP was cited: PubMed searches
+  returned mostly Bayesian network meta-analyses, which are a different method.
+- **No equations on the page,** so it adds no untested formulas. Undo: delete the page, its navbar and render
+  entries, and the twelve bullets.
 ## 2026-11-12 · m48 stages 1–6, imaging across the EP workflow
 
 - **m48** (Imaging across the EP workflow): five tested equations (PSF and two-point resolution, CNR, smoothing,

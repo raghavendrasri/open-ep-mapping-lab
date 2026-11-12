@@ -609,3 +609,5 @@ look for and where this module explains it.
 - **Guardrails.** NVIDIA's NeMo Guardrails [@rebedea2023guardrails]; retrieval thresholds in Almanac
   [@zakka2024].
 - **Next module.** m45: evidence and regulation for AI in EP, including agents at higher autonomy.
+- **AI competency areas.** Planning (agent loops); search; logic (action policies and guardrails); AI and society
+  (human oversight). See the [AI competency map](../ai-competencies.qmd).

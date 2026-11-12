@@ -278,3 +278,5 @@ and a check fails, that is information, not an error to hide.
 ## Further reading
 
 *Planned in the outline.*
+- **AI competency areas.** Machine learning; Bayesian networks (Bayes' rule and predictive values); search (why
+  searching many designs leaks the validation set). See the [AI competency map](../ai-competencies.qmd).

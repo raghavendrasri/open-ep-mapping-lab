@@ -546,3 +546,5 @@ look for and where this module explains it.
 - **Trials of AI in cardiology.** @yao2021, @adedinsewo2024, @he2023, @deisenhofer2025.
 - **Regulation.** @fdapccp2024, @fdaailist; device evaluation at Stanford [@wu2021fda]; m36 for device
   regulation in general.
+- **AI competency areas.** AI and society (evidence, reporting and regulation). See the [AI competency
+  map](../ai-competencies.qmd).

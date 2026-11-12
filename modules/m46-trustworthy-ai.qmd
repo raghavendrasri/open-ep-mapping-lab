@@ -538,3 +538,5 @@ look for and where this module explains it.
 - **Fairness.** @chouldechova2017; in AI-ECG @noseworthy2020, @kaur2023, and @hsieh2026 (m43).
 - **Robustness.** @goodfellow2015fgsm, @han2020.
 - **Next module.** m47: the data and deployment engineering behind a model you can trust.
+- **AI competency areas.** AI and society (fairness and robustness); planning and game playing (adversarial min-max).
+  See the [AI competency map](../ai-competencies.qmd).

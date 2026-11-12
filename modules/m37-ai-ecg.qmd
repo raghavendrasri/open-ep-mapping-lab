@@ -673,3 +673,5 @@ look for and where this module explains it.
 - **Methods.** @saerens2002 on prior shift; @collins2024 (TRIPOD+AI) on reporting prediction
   models; [m35](m35-machine-learning.qmd) for validation basics.
 - **Training across sites.** @dayan2021 and @roth2022nvflare on federated learning.
+- **AI competency areas.** Machine learning; AI and society (external validation). See the [AI competency
+  map](../ai-competencies.qmd).

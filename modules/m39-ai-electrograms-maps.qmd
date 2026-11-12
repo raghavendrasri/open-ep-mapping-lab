@@ -581,3 +581,5 @@ look for and where this module explains it.
 - **Outcome prediction.** @tang2022 and @ganesan2025, from Stanford registries.
 - **Dispersion and trials.** @seitz2017, @deisenhofer2025 and its follow-ups
   [@deisenhofer2025women; @deisenhofer2025at], @hummel2026.
+- **AI competency areas.** Machine learning; graphical models (graph structure on the mapping mesh, without a
+  probabilistic model). See the [AI competency map](../ai-competencies.qmd).

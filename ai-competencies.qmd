@@ -1,0 +1,184 @@
+---
+title: "AI competency map: classical AI topics in EP"
+---
+
+::: {.callout-warning}
+Education only. Not for diagnosis, treatment or any clinical decision. The examples below describe research,
+much of it in simulation; none of it is a recommendation for patient care.
+:::
+
+Many AI courses organize the field into the same competency areas: machine learning, Bayesian networks and other
+graphical models, logic, search, planning and game playing, Markov decision processes, reinforcement learning, and AI
+and society. This page shows how each area connects to cardiac electrophysiology (EP) and mapping, where this course
+already teaches it, and where it does not yet. Use it to plan a reading path, or to see which parts of an AI
+curriculum an EP engineer will use first.
+
+## At a glance
+
+| Competency area | The idea in one line | Where in this course | Coverage |
+| --- | --- | --- | --- |
+| [Machine learning](#machine-learning) | Learn a mapping from data to labels or values | [m35](modules/m35-machine-learning.qmd), [m37](modules/m37-ai-ecg.qmd)–[m43](modules/m43-foundation-models-llms.qmd), [m47](modules/m47-data-deployment-engineering.qmd) | Taught in depth |
+| [Bayesian networks](#bayesian-networks) | Reason with probabilities along cause-and-effect links | [m35](modules/m35-machine-learning.qmd), [m38](modules/m38-wearables-monitoring.qmd), [m41](modules/m41-ai-origin-localization.qmd), [m48](modules/m48-imaging-workflow.qmd) | Bayes' rule and simple chains |
+| [Graphical models](#graphical-models) | Encode which variables depend on which as a graph | [m38](modules/m38-wearables-monitoring.qmd); graph structure in [m39](modules/m39-ai-electrograms-maps.qmd) | Not yet a topic |
+| [Logic](#logic) | Explicit rules that can be read and checked | [m38](modules/m38-wearables-monitoring.qmd), [m44](modules/m44-agentic-ai.qmd) | Rules and policies |
+| [Search](#search) | Explore states or options in a principled order | [m30](modules/m30-capstone-mini-mapping-system.qmd), [m41](modules/m41-ai-origin-localization.qmd), [m43](modules/m43-foundation-models-llms.qmd), [m44](modules/m44-agentic-ai.qmd) | Shortest paths, retrieval, agent loops |
+| [Markov decision processes](#markov-decision-processes) | Choose actions in sequence under uncertainty | [m41](modules/m41-ai-origin-localization.qmd) (as a greedy sequential choice) | Not yet a topic |
+| [Reinforcement learning fundamentals](#reinforcement-learning-fundamentals) | Learn a policy from reward by trial and error | Mentioned here only | Not yet a topic |
+| [Planning and game playing](#planning-and-game-playing) | Plan action sequences; reason against an adversary | [m44](modules/m44-agentic-ai.qmd), [m46](modules/m46-trustworthy-ai.qmd) | Agent plans; adversarial robustness |
+| [AI and society](#ai-and-society) | Evidence, fairness, privacy, regulation and oversight | [m36](modules/m36-prototype-to-product.qmd), [m44](modules/m44-agentic-ai.qmd)–[m47](modules/m47-data-deployment-engineering.qmd) | Taught in depth |
+
+## Machine learning
+
+**The idea.** Fit a model to examples so that it predicts labels or values for new inputs, and measure how well it
+does on data it has not seen.
+
+**Why it matters in EP.** Electrograms, ECGs, maps and images are large, labeled or labelable data sets. The course
+uses supervised learning to annotate electrograms and detect drivers ([m35](modules/m35-machine-learning.qmd)),
+classify rhythms from the surface ECG ([m37](modules/m37-ai-ecg.qmd)), triage wearable alerts
+([m38](modules/m38-wearables-monitoring.qmd)), learn on mapping meshes ([m39](modules/m39-ai-electrograms-maps.qmd)),
+segment images ([m40](modules/m40-ai-imaging-substrate.qmd)), locate arrhythmia origins
+([m41](modules/m41-ai-origin-localization.qmd)), add physics to learning
+([m42](modules/m42-physics-informed-ml.qmd)) and pretrain foundation models
+([m43](modules/m43-foundation-models-llms.qmd)).
+
+**What an EP engineer needs first.** Patient-wise splits, external validation and calibration
+([m35](modules/m35-machine-learning.qmd)). A retrospective accuracy is not evidence of clinical benefit
+([m45](modules/m45-ai-evidence-regulation.qmd)).
+
+## Bayesian networks
+
+**The idea.** A directed graph whose nodes are variables and whose arrows say what depends on what, with a
+probability table at each node. Inference runs Bayes' rule along the graph.
+
+**Why it matters in EP.** The simplest Bayesian network has two nodes, a condition and a test result. Its inference
+is the positive predictive value of [m35](modules/m35-machine-learning.qmd#eq-m35-ppv), and in odds form the
+likelihood ratios of [m48](modules/m48-imaging-workflow.qmd). A chain such as "AF present, the device alerts, a triage
+filter keeps the alert" is how [m38](modules/m38-wearables-monitoring.qmd) treats the alerts' PPV as the prior for
+the triage step. The Gaussian process in [m41](modules/m41-ai-origin-localization.qmd) is Bayesian inference
+over a whole function: it gives an estimate and an uncertainty at every candidate pacing site.
+
+**A lesson the graph makes visible.** Multiplying the likelihood ratios of two tests assumes they are independent
+given the condition. Two tests that share a failure cause, such as the same motion artifact, are not, and
+multiplying their evidence overstates certainty. A Bayesian network draws that shared cause as a node.
+
+**Not yet in the course.** Learning network structure from data, and inference in networks larger than a chain.
+
+## Graphical models
+
+**The idea.** The family that contains Bayesian networks (directed graphs), Markov random fields (undirected
+graphs) and hidden Markov models (chains of hidden states that emit observations). The graph says which variables
+are conditionally independent, which makes inference and learning tractable.
+
+**Why it matters in EP.** Signals that pass through a fixed sequence of states suit hidden Markov models. One early
+method delineated the P wave by modeling each beat with a hidden Markov model, then used P-wave features to separate
+82 patients with documented AF from 63 controls, with sensitivity and specificity between 65% and 70%
+[@clavier2002]. Neighboring sites on a map are not independent either; the graph networks of
+[m39](modules/m39-ai-electrograms-maps.qmd) use the same mesh structure but are trained as deterministic networks,
+not as probabilistic graphical models. Knowing the difference helps when a method claims calibrated uncertainty.
+
+**Not yet in the course.** Hidden Markov models, Markov random fields and their inference algorithms.
+
+## Logic
+
+**The idea.** Knowledge written as explicit rules, from if-then statements to formal logic, so that a conclusion can
+be traced to the rules that produced it and every rule can be tested.
+
+**Why it matters in EP.** Much of EP reasoning is already written as rules. A classic stepwise algorithm for a
+regular wide-QRS tachycardia applies four criteria in order; in its prospective analysis of 554 tachycardias the
+four steps together had sensitivity 0.987 and specificity 0.965 for ventricular tachycardia [@brugada1991]. Device
+and wearable alerts often fire only after a rule such as "k positive windows in a row", which changes sensitivity
+and PPV as much as the model does ([m38](modules/m38-wearables-monitoring.qmd)). AI agents run under a policy that
+says which actions run, which need a person's approval and which are refused, and guardrails written as rules sit
+outside the model ([m44](modules/m44-agentic-ai.qmd)) [@rebedea2023guardrails].
+
+**Why engineers like rules.** A rule can be read, reviewed and tested exhaustively; a learned model cannot. Systems
+in EP often combine both: a learned score and a rule-based gate around it.
+
+## Search
+
+**The idea.** Explore a space of states or options in an order that guarantees, or approximates, the best answer:
+breadth-first, shortest-path, best-first and heuristic search.
+
+**Why it matters in EP.** Activation spreading through tissue is a shortest-time problem: fast marching computes
+arrival times in a single ordered sweep, as Dijkstra's algorithm does for shortest paths on a graph
+([m30](modules/m30-capstone-mini-mapping-system.qmd)) [@sethian1996]. Distances on a mapping mesh are found by shortest paths
+along its edges ([m41](modules/m41-ai-origin-localization.qmd)). Retrieval searches a corpus for the passages a
+language model should cite ([m43](modules/m43-foundation-models-llms.qmd)), and an agent searches over tool calls
+([m44](modules/m44-agentic-ai.qmd)). Searching many model designs against one validation set is also search, and it
+leaks the validation set into the result ([m35](modules/m35-machine-learning.qmd),
+[m44](modules/m44-agentic-ai.qmd)).
+
+## Markov decision processes
+
+**The idea.** A Markov decision process (MDP) has states, actions, transition probabilities and rewards; a policy
+maps each state to an action, and the best policy maximizes expected total reward over a sequence of decisions.
+
+**Why it matters in EP.** Mapping is sequential: each new point, pacing site or image changes what is worth doing
+next. Active pace-mapping in [m41](modules/m41-ai-origin-localization.qmd) chooses the next pacing site from a
+Gaussian process; one Bayesian-optimization method reached 3.9 ± 3.6 mm with 8.0 ± 4.0 sites in simulation
+[@meisenzahl2024]. That is a one-step-ahead (greedy) answer to a sequential decision problem; an MDP formulation
+would also weigh how today's choice changes the value of later ones, and would need a model of transitions and a
+reward that someone has to choose.
+
+**Not yet in the course.** The MDP formalism, value functions and the Bellman equations.
+
+## Reinforcement learning fundamentals
+
+**The idea.** Reinforcement learning (RL) learns a policy for an MDP from reward, by trial and error, without being
+told the right action. Q-learning, for example, learns the value of each action in each state.
+
+**Why it matters in EP, and why only in simulation.** Trial and error is not acceptable on patients, so RL in EP
+research runs in simulated tissue. In one study, a Q-learning agent moved over two-dimensional left atrial models
+built from LGE MRI of AF patients and placed lesions to terminate simulated AF; it terminated AF in 84% of training
+cases and 72% of test cases, all in simulation [@muizniece2021]. Such results show what a simulator rewards, not what
+helps patients: the policy is only as good as the simulator ([m33](modules/m33-capstone-digital-twin.qmd),
+[m42](modules/m42-physics-informed-ml.qmd)) and the reward its designers chose. This course does not teach RL for
+therapy choices.
+
+**Not yet in the course.** Q-learning, policy gradients and their pitfalls (reward misspecification, simulator gaps).
+
+## Planning and game playing
+
+**The idea.** Planning finds a sequence of actions that reaches a goal; game playing searches against an opponent,
+choosing moves that are best against the opponent's best reply (min-max).
+
+**Why it matters in EP.** AI agents plan, act and observe in a loop, one tool call at a time, under a step limit and
+with human approval for any write ([m44](modules/m44-agentic-ai.qmd)) [@yao2023react]. Game playing's min-max idea
+returns in adversarial robustness: training a model to resist small malicious input changes can be written as a
+min-max problem in which an attacker maximizes the loss and the defender minimizes it [@madry2018]. The fast
+gradient sign method of [m46](modules/m46-trustworthy-ai.qmd) is the simplest such attacker
+[@goodfellow2015fgsm].
+
+## AI and society
+
+**The idea.** Who benefits and who is harmed, what evidence is enough, how data are protected, who is accountable,
+and how people stay in control.
+
+**Why it matters in EP.** The course treats this as engineering: study designs and reporting
+([m45](modules/m45-ai-evidence-regulation.qmd)), device regulation ([m36](modules/m36-prototype-to-product.qmd)),
+fairness, uncertainty and robustness ([m46](modules/m46-trustworthy-ai.qmd)), de-identification and data governance
+([m47](modules/m47-data-deployment-engineering.qmd)), and human approval for every write action of an agent
+([m44](modules/m44-agentic-ai.qmd)). For example, an AI-ECG model trained on a cohort that was 96.2% non-Hispanic
+white kept AUCs between 0.931 and 0.961 across racial and ethnic subgroups of its test cohort, and its authors
+recommended reporting performance by race, ethnicity, age and sex [@noseworthy2020].
+
+## Reading paths
+
+- **Probabilistic reasoning:** [m35](modules/m35-machine-learning.qmd) (Bayes' rule) →
+  [m48](modules/m48-imaging-workflow.qmd) (likelihood ratios) → [m38](modules/m38-wearables-monitoring.qmd) (chained
+  alerts) → [m41](modules/m41-ai-origin-localization.qmd) (Gaussian processes) →
+  [m46](modules/m46-trustworthy-ai.qmd) (uncertainty).
+- **Search and sequential decisions:** [m30](modules/m30-capstone-mini-mapping-system.qmd) (fast marching) →
+  [m41](modules/m41-ai-origin-localization.qmd) (shortest paths, active pace-mapping) →
+  [m44](modules/m44-agentic-ai.qmd) (agent loops and plans).
+- **Rules, robustness and society:** [m38](modules/m38-wearables-monitoring.qmd) (alert rules) →
+  [m44](modules/m44-agentic-ai.qmd) (policies and guardrails) → [m46](modules/m46-trustworthy-ai.qmd) (adversarial
+  min-max, fairness) → [m45](modules/m45-ai-evidence-regulation.qmd) and
+  [m47](modules/m47-data-deployment-engineering.qmd).
+
+## What the course does not cover yet
+
+Graphical models beyond Bayes' rule and simple chains, the MDP formalism, and reinforcement learning are named on
+this page but not taught in a module. Adding modules for them would change the curriculum and needs the author's
+approval.
+
