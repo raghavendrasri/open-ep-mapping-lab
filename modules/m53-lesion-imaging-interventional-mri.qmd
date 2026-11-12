@@ -1,5 +1,5 @@
 ---
-title: "m53 · Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and oedema, interventional MRI and its limits"
+title: "m53 · Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and edema, interventional MRI and its limits"
 module-id: m53
 part: "Part VIII · Imaging in electrophysiology"
 # planned | draft | in-review | released
@@ -17,7 +17,7 @@ See the [course map](../course-map.qmd) for every module and its status.
 ## Planned topics {.unnumbered}
 
 - Lesions
-- Gaps and oedema
+- Gaps and edema
 - Interventional MRI and its limits
 
 ## Learning paths {.unnumbered}

@@ -53,11 +53,17 @@ Bipolar electrogram
 Cavotricuspid isthmus (CTI)
 : The strip of right atrial tissue between the inferior vena cava and the tricuspid valve; the usual ablation target for typical atrial flutter. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Central-slice theorem
+: The 1-D Fourier transform of a projection equals the 2-D Fourier transform of the image along the line through the origin at the same angle; it is why projections at enough angles determine a CT slice. [m51](../modules/m51-cardiac-ct.qmd)
+
 Clique
 : A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
 
 Collocation point
 : A point where a governing equation is checked during fitting; it needs no measurement. [m42](../modules/m42-physics-informed-ml.qmd)
+
+Computed tomography (CT)
+: Imaging that measures X-ray attenuation along many lines through the body and reconstructs cross-sectional slices from those measurements. [m51](../modules/m51-cardiac-ct.qmd)
 
 Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -92,6 +98,9 @@ Decapolar catheter
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+ECG gating
+: Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
+
 Eikonal equation
 : The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -125,6 +134,9 @@ Federated learning
 Fibrosis
 : Replacement of heart muscle by connective tissue. In the atria it can be estimated on late-gadolinium MRI. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Filtered back-projection
+: CT reconstruction that filters each projection with a ramp in frequency and smears it back along its lines; without the filter the image is blurred. [m51](../modules/m51-cardiac-ct.qmd)
+
 Fluoroscopy
 : Continuous or pulsed X-ray imaging that shows a moving shadow image, used to guide catheters, sheaths and leads. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
@@ -150,7 +162,7 @@ Geodesic distance
 : The length of the shortest path between two points that stays on a surface. [m41](../modules/m41-ai-origin-localization.qmd)
 
 Graph convolution
-: A network layer that mixes each point's features with those of its neighbours on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
+: A network layer that mixes each point's features with those of its neighbors on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Grating lobe
 : A false, full-strength copy of an array's beam that appears when its elements are spaced more than half a wavelength apart for the steering used; echoes from it are drawn in the wrong direction. [m50](../modules/m50-intracardiac-echo.qmd)
@@ -167,6 +179,9 @@ Hallucination
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Hounsfield unit (HU)
+: The CT number scale, 1000 (μ − μ_water)/(μ_water − μ_air): water is 0 and air −1000. Values depend on the X-ray beam's energy. [m51](../modules/m51-cardiac-ct.qmd)
+
 Human approval step
 : A point in an agent's run where a person must accept or decline an action, such as any write, before it is carried out. [m44](../modules/m44-agentic-ai.qmd)
 
@@ -181,6 +196,12 @@ Intracardiac echocardiography (ICE)
 
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Iodinated contrast
+: An iodine-containing agent injected into the blood; iodine attenuates X-rays strongly, so the blood pool stands out from the heart wall on CT. [m51](../modules/m51-cardiac-ct.qmd)
+
+Isthmus (VT)
+: A narrow channel of conducting tissue, bounded by scar or anatomical barriers, that a reentrant ventricular tachycardia passes through. [m51](../modules/m51-cardiac-ct.qmd)
 
 Jaccard index
 : Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -242,6 +263,9 @@ Pace mapping
 Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
+Partial-volume effect
+: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd)
+
 Phased array
 : A row of transducer elements whose firing delays steer and focus the beam electronically, without moving the probe. [m50](../modules/m50-intracardiac-echo.qmd)
 
@@ -281,6 +305,9 @@ Quasi-identifier
 Radial basis function
 : A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Radon transform
+: The set of line integrals of an image over all lines in the plane, indexed by angle and offset; a CT scanner measures it. [m51](../modules/m51-cardiac-ct.qmd)
+
 Randomized controlled trial (RCT)
 : A study that assigns participants at random to an intervention or a comparison, so that differences in outcome can be attributed to the intervention. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
@@ -311,6 +338,9 @@ Segmentation
 Self-supervised learning
 : Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Sinogram
+: The Radon transform drawn as an image: one row of line integrals per projection angle. A point traces a sine curve in it. [m51](../modules/m51-cardiac-ct.qmd)
+
 Sinus rhythm
 : The normal heartbeat, started by the heart's own pacemaker. [m03](../modules/m03-electrograms.qmd)
 
@@ -325,6 +355,12 @@ Speed-of-sound assumption
 
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
+
+Temporal resolution
+: How short a time span one image represents. In cardiac CT it is about half the gantry rotation time with one X-ray source and a quarter with two. [m51](../modules/m51-cardiac-ct.qmd)
+
+Tetralogy of Fallot
+: A congenital heart defect affecting the right ventricular outflow and the ventricular septum. After surgical repair, ventricular tachycardia can use isthmuses bounded by patches and scars. [m51](../modules/m51-cardiac-ct.qmd)
 
 TF-IDF
 : Term frequency times inverse document frequency: a word weight that grows with how often the word appears in a document and with how rare it is across the collection. [m43](../modules/m43-foundation-models-llms.qmd)

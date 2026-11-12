@@ -2,6 +2,26 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m51 stages 1–6, cardiac CT
+
+- **m51** (Cardiac CT for EP): ten tested equations (Hounsfield units, iodine, Radon transform, central-slice
+  theorem, filtered back-projection, Ram-Lak kernel, quantum noise, gating window, smeared disk, blurred thin wall),
+  a simulation demo (sinogram and reconstruction) and an approximate-model demo (motion during the gating window),
+  clinical correlate on pre-procedural CT (pending review), 12 interview and 6 self-check questions, glossary and
+  formula-sheet entries.
+- **Monoenergetic attenuation at 60 keV** (NIST), the same energy as m49, so the two modules share one table. Real
+  CT is polyenergetic; the page says so. Undo: replace the constants in `epml.ct` with spectrum-weighted values.
+- **Gating as T_rot/(2 N_src)**, checked against three published windows (within 6%), instead of a scanner-specific
+  model. Coronary speeds stand in for cardiac motion because a published left atrial wall speed was not found.
+- **Thin walls are owned by m51** (eq-m51-wall). m48's planned thin-wall equation will link here instead of
+  re-deriving it.
+- **Registration stays in m21** (author decision): m51 only contrasts the error a system reports with the error at a
+  target, using the published studies.
+- **No dose conversion factors.** The plan listed them "to verify"; noise against photon count is derived instead and
+  dose quantities stay in m49.
+- **Spelling in `docs/curriculum.md`:** "oesophagus" and "oedema" became "esophagus" and "edema" (American English,
+  CLAUDE.md §9); the m51 and m53 titles changed only in spelling. Also "neighbours" in one glossary entry.
+
 ## 2026-11-11 · m50 stages 1–6, intracardiac echocardiography
 
 - **m50** (ICE with TEE and TTE): five tested equations (echo time to depth with the speed-of-sound assumption,

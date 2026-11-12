@@ -97,9 +97,9 @@ Change this list only with the author's approval.
 | m48 | Imaging across the EP workflow: which modality answers which question, resolution, contrast, noise and dose, accuracy of imaging tests |
 | m49 | Fluoroscopy and radiation protection: X-ray attenuation and contrast, quantum noise, dose quantities, reference levels, staff protection, low-fluoroscopy workflows |
 | m50 | Intracardiac echocardiography with TEE and TTE: ultrasound essentials for ICE, phased-array steering, frame rate, transseptal guidance, evidence |
-| m51 | Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, anatomy, thrombus, oesophagus and wall thickness |
+| m51 | Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, anatomy, thrombus, esophagus and wall thickness |
 | m52 | Cardiac MRI for EP: relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis, ventricular scar, MRI with implanted devices |
-| m53 | Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and oedema, interventional MRI and its limits |
+| m53 | Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and edema, interventional MRI and its limits |
 | m54 | Nuclear imaging in EP: PET and SPECT, standardized uptake and partial volume, inflammation and device infection |
 | m55 | Capstone: a multimodal image-guided procedure on a digital phantom, from segmentation and registration to overlay and an error and dose budget |
 
