@@ -5,7 +5,23 @@ why imaging belongs in the course, what each modality is used for in EP, and eac
 planned equations, demos, labs and sources, so that the author can approve the plan before any stage-1
 outline is written. `docs/curriculum.md` is not changed until the module list is approved.
 
-Status: **draft, awaiting author review.**
+Status: **module list approved by the author on 2026-11-11** (answers below); module content is built stage by
+stage, one pull request per module, starting with m49 and m50.
+
+### Author decisions (2026-11-11)
+
+1. **Eight modules,** m48–m55, as listed.
+2. **Registration stays where it is.** Part VIII does not re-derive registration mathematics; it links to the
+   existing modules (the author wrote "stay in m40"; m21 is where landmark and ICP registration are listed in
+   the curriculum, and m40 covers segmentation and what boundary errors do to registration).
+3. **Ultrasound stays lightweight** in m50: only what ICE needs, written from scratch.
+4. **Open sources only:** synthetic phantoms from our own code and openly licensed data sets; no proprietary
+   data or software.
+5. **Review:** modules stay `draft` with clinical review pending; an imaging collaborator will review them later.
+   No new reviewer role for now.
+6. **Order and path:** build m49 and m50 first; add an "Imaging in EP" learning path.
+
+Not yet decided: the release that carries Part VIII.
 
 ## Why a Part VIII
 
