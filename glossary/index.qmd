@@ -53,6 +53,9 @@ Bayesian optimization
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
+Cardiac sarcoidosis
+: Inflammation of the heart by granulomas, which can cause conduction block and ventricular tachycardia; FDG PET can show active inflammation. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Cavotricuspid isthmus (CTI)
 : The strip of right atrial tissue between the inferior vena cava and the tricuspid valve; the usual ablation target for typical atrial flutter. [m50](../modules/m50-intracardiac-echo.qmd)
 
@@ -140,6 +143,9 @@ Extracellular volume (ECV)
 Far-field signal
 : Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
 
+FDG (fluorodeoxyglucose)
+: A glucose analog labeled with fluorine-18; cells that use much glucose, including inflammatory cells, take it up and show on PET. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Feature attribution
 : A score for how much each input feature, such as each sample of an ECG, contributed to a model's output for one input. [m46](../modules/m46-trustworthy-ai.qmd)
 
@@ -187,6 +193,9 @@ Grating lobe
 
 Guardrail
 : A rule enforced outside the model that limits what an agent may do, such as a tool allowlist, a schema check or a human approval step. [m44](../modules/m44-agentic-ai.qmd)
+
+Half-life
+: The time for a radioactive tracer's activity to halve; 109.73 minutes for fluorine-18. [m54](../modules/m54-nuclear-imaging.qmd)
 
 Half-value layer (HVL)
 : The thickness of a material that halves the intensity of an X-ray beam; for a narrow beam of one energy it is ln 2 divided by the attenuation coefficient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
@@ -260,6 +269,9 @@ Left atrial appendage occlusion (LAAO)
 Lesion gap
 : A segment of an intended ablation line where the tissue was not destroyed, through which conduction can recover. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
+Lesion metabolic activity
+: A PET measure of a lesion: its partial-volume-corrected mean uptake times its volume. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Levenberg–Marquardt method
 : An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -309,7 +321,7 @@ Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
 Partial-volume effect
-: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd)
+: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd)
 
 Passive catheter visualization
 : Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
@@ -328,6 +340,9 @@ Physics-informed neural network (PINN)
 
 Positive predictive value (PPV)
 : The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd)
+
+Positron emission tomography (PET)
+: Imaging of a tracer that emits positrons; each annihilation sends two photons in opposite directions, detected together to define a line through the source. [m54](../modules/m54-nuclear-imaging.qmd)
 
 Predetermined change control plan (PCCP)
 : A plan, authorized with an AI-enabled device's marketing submission, that describes planned changes to the device and how each will be validated, so those changes need no new submission. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -368,6 +383,9 @@ Randomized controlled trial (RCT)
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
 
+Recovery coefficient
+: The fraction of a structure's true uptake (or contrast) that a blurred image measures; well below 1 for structures about as thin as the resolution. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Reference level (radiation dose)
 : A benchmark for the typical dose of a procedure type, set from surveys (for example the third quartile of recorded doses); used to compare and optimize practice, not as a limit for one patient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
@@ -395,6 +413,9 @@ Segmentation
 Self-supervised learning
 : Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Single-photon emission computed tomography (SPECT)
+: Tomographic imaging of a tracer that emits single gamma photons, whose direction is set by a collimator. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Sinogram
 : The Radon transform drawn as an image: one row of line integrals per projection angle. A point traces a sine curve in it. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -410,6 +431,9 @@ Spatial frequency
 Speed-of-sound assumption
 : Ultrasound systems convert echo time to depth with one assumed speed of sound, commonly 1540 m/s; tissue that is faster or slower is drawn shorter or longer. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Standardized uptake value (SUV)
+: PET activity concentration divided by the injected activity per unit body weight, after decay correction; 1 means uniform distribution. [m54](../modules/m54-nuclear-imaging.qmd)
+
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -418,6 +442,9 @@ T1 (longitudinal relaxation time)
 
 Temporal resolution
 : How short a time span one image represents. In cardiac CT it is about half the gantry rotation time with one X-ray source and a quarter with two. [m51](../modules/m51-cardiac-ct.qmd)
+
+Test-retest variability
+: How much a measurement changes when repeated on the same subject with nothing changed; it sets the smallest change that can be trusted. [m54](../modules/m54-nuclear-imaging.qmd)
 
 Tetralogy of Fallot
 : A congenital heart defect affecting the right ventricular outflow and the ventricular septum. After surgical repair, ventricular tachycardia can use isthmuses bounded by patches and scars. [m51](../modules/m51-cardiac-ct.qmd)
