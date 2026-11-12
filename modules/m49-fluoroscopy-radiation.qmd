@@ -15,7 +15,7 @@ Education only. Not for diagnosis, treatment or any clinical decision.
 ## In 60 seconds
 
 Fluoroscopy is a moving shadow picture: X-rays pass through the patient, and each detector pixel counts the photons
-that get through. Attenuation is exponential, so a platinum electrode a fraction of a millimetre thick casts a
+that get through. Attenuation is exponential, so a platinum electrode a fraction of a millimeter thick casts a
 dark shadow while blood and soft tissue, which attenuate almost equally, cast none [@nist126]. Photons arrive at
 random, so image noise falls only as the square root of dose. Patient dose is reported as air kerma and
 kerma-area product, and national surveys turn those into reference levels for each EP procedure
@@ -31,18 +31,18 @@ sheaths and intracardiac echo now make low- and zero-fluoroscopy workflows feasi
   around 1 in 100, the same as for a patient who has repeated complex procedures, and argued that X-ray system
   settings, workflow and shielding together could cut exposure by more than an order of magnitude
   [@heidbuchel2014].
-- **What a procedure costs.** A survey of 4,219 patients in 33 French centres set reference levels (third
+- **What a procedure costs.** A survey of 4,219 patients in 33 French centers set reference levels (third
   quartiles) for 11 EP and pacing procedures: among ablations, the lowest was for accessory-pathway ablation
   (4.10 Gy·cm² and 10.5 minutes) and the highest for persistent AF ablation (12.65 Gy·cm² and 15.5 minutes)
   [@greffier2026]. A Swiss update set the level for pacemaker implantation at 2 Gy·cm², down from 30
   [@samara2026].
-- **Mapping systems.** In 25 European centres, using a 3-D mapping system for supraventricular ablations was
+- **Mapping systems.** In 25 European centers, using a 3-D mapping system for supraventricular ablations was
   associated with less fluoroscopy time and dose but often longer procedures; for VT ablation there was no
   difference in dose [@zormpas2023].
 - **Zero fluoroscopy.** A meta-analysis of seven studies (1,593 patients) found a zero-fluoroscopy approach to AF
   ablation feasible in 95.1% of patients, with shorter fluoroscopy and no significant difference in success or
   complications [@debreceni2023]. In a randomized trial of 100 patients, a sheath visible on the mapping system cut
-  fluoroscopy time from 15.37 to 11.43 minutes [@chen2026sheath]. A single-centre series of pulsed-field ablation
+  fluoroscopy time from 15.37 to 11.43 minutes [@chen2026sheath]. A single-center series of pulsed-field ablation
   reported a median fluoroscopy time of 0.8 minutes [@borlich2025]. A 2026 review noted that no randomized trial
   has compared zero-fluoroscopy with fluoroscopy-guided pulsed-field ablation [@kour2026].
 
@@ -50,7 +50,7 @@ sheaths and intracardiac echo now make low- and zero-fluoroscopy workflows feasi
 
 ### X-ray attenuation and the shadow image
 
-A narrow beam of photons of one energy loses a fixed fraction of its intensity per millimetre of material. Along
+A narrow beam of photons of one energy loses a fixed fraction of its intensity per millimeter of material. Along
 a ray through the patient, the detected intensity is
 
 $$
@@ -279,7 +279,7 @@ needs.**
 | --- | --- | --- |
 | @heidbuchel2014 | Dose reduction measures; operator risk estimate | Position paper |
 | @greffier2026, @samara2026 | Reference levels for EP procedures | National surveys |
-| @zormpas2023 | Mapping systems and fluoroscopy | Multicentre registry |
+| @zormpas2023 | Mapping systems and fluoroscopy | Multicenter registry |
 | @debreceni2023 | Zero versus conventional fluoroscopy for AF ablation | Meta-analysis of observational studies |
 | @chen2026sheath | Visible versus conventional sheath | Randomized trial, 100 patients |
 

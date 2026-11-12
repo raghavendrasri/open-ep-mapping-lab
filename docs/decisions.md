@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m50 stages 1–6, intracardiac echocardiography
+
+- **m50** (ICE with TEE and TTE): five tested equations (echo time to depth with the speed-of-sound assumption,
+  axial resolution, attenuation and reach, phased-array steering, frame rate), two exact demos (array factor;
+  loss, reach and frame rate), clinical correlate on transseptal access and ICE-versus-TEE evidence (pending
+  review), 12 interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Lightweight ultrasound** (author decision): no Doppler, harmonics or transducer design; the physics is written
+  from scratch and limited to what explains an ICE image.
+- **`epml.ice`**: ranging, n-cycle Hann bursts and echo overlap, attenuation budget, array factor and grating
+  lobes, a small delay-and-sum simulator (single unfocused transmit, a stated simplification), a synthetic septum
+  with tenting, and shells from tracked planes. Default values come from published sources (1540 m/s, ICE
+  frequencies, myocardial attenuation); the rest is labelled illustrative.
+- **No open ICE images** were found, so the lab is synthetic, in line with "open sources only".
+
 ## 2026-11-11 · Part VIII added (m48–m55), and m49 stages 1–6
 
 - **Curriculum: 47 → 55 modules, eight parts.** The author approved Part VIII, imaging in electrophysiology, with

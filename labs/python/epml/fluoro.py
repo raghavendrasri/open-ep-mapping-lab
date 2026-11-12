@@ -84,7 +84,7 @@ class Ellipsoid:
 def chest_phantom(n_electrodes=4, spacing=5.0, electrode_length=2.0, electrode_radius=1.2):
     """A thorax-like phantom for an anterior-posterior view (all sizes illustrative): a soft-tissue body, a
     blood-filled heart, a cortical-bone spine behind it, and platinum ring electrodes of a catheter in the heart
-    (each modelled as a short ellipsoid). x is left-right, y is the beam direction, z is head-foot (mm)."""
+    (each modeled as a short ellipsoid). x is left-right, y is the beam direction, z is head-foot (mm)."""
     parts = [
         Ellipsoid("body", (0, 0, 0), (160, 110, 200), "soft tissue"),
         Ellipsoid("heart", (15, -10, 10), (55, 45, 60), "blood", parent="soft tissue"),
