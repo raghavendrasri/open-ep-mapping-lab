@@ -26,7 +26,7 @@ Not yet decided: the release that carries Part VIII.
 ## Why a Part VIII
 
 A mapping system knows where its catheter is and what the electrograms say. It does not see the wall, the
-scar inside it, the oesophagus behind it, a thrombus in the appendage, or a pericardial effusion. Imaging
+scar inside it, the esophagus behind it, a thrombus in the appendage, or a pericardial effusion. Imaging
 answers those questions, before, during and after a procedure:
 
 - **Before:** anatomy for planning, substrate (fibrosis and scar), thrombus, neighbouring structures.
@@ -74,8 +74,8 @@ accuracy). Each module lists its own.
 | --- | --- | --- | --- | --- | --- | --- |
 | Fluoroscopy | X-ray transmission, projection | — | Catheter and sheath position, transseptal access, device leads | — | Ionizing radiation for patient and staff; 2-D projection; poor soft-tissue contrast | m49 |
 | Intracardiac echo (ICE) | Ultrasound from a catheter | — | Transseptal puncture, catheter–tissue contact, effusion, anatomy shells | — | Field of view; operator skill; an extra venous catheter | m50 |
-| Transoesophageal and transthoracic echo | Ultrasound | Appendage thrombus, function | Guidance of appendage occlusion | Effusion, function | Oesophageal probe and sedation (TEE); acoustic windows (TTE) | m50 |
-| Cardiac CT | X-ray attenuation, tomography | Atrial and venous anatomy, appendage thrombus, oesophagus, wall thickness, coronary arteries | Fused with the map | Pulmonary vein stenosis, complications | Radiation and iodinated contrast; motion; tissue characterization limited | m51 |
+| Transesophageal and transthoracic echo | Ultrasound | Appendage thrombus, function | Guidance of appendage occlusion | Effusion, function | Esophageal probe and sedation (TEE); acoustic windows (TTE) | m50 |
+| Cardiac CT | X-ray attenuation, tomography | Atrial and venous anatomy, appendage thrombus, esophagus, wall thickness, coronary arteries | Fused with the map | Pulmonary vein stenosis, complications | Radiation and iodinated contrast; motion; tissue characterization limited | m51 |
 | Cardiac MRI | Nuclear magnetic resonance, relaxation contrast | Atrial fibrosis, ventricular scar, function | Fused with the map; real-time MRI-guided ablation (early) | Lesions and gaps, oedema | Time, cost; thresholds not standard; implanted devices and artefacts | m52, m53 |
 | PET and SPECT | Radioactive tracers | Inflammation (for example cardiac sarcoidosis) | — | Response to treatment; device infection | Radiation; low spatial resolution; partial volume | m54 |
 
@@ -88,7 +88,7 @@ The rows summarize the use-case catalogue below; in the modules every clinical c
 | m48 | Imaging across the EP workflow | Which modality answers which question; resolution, contrast, noise and dose as one vocabulary; diagnostic accuracy of imaging tests | m04, m21, m35 |
 | m49 | Fluoroscopy and radiation protection | The X-ray image chain, dose quantities, reference levels, staff protection, low- and zero-fluoroscopy workflows | m48 |
 | m50 | Intracardiac echocardiography, with TEE and TTE | Phased-array physics for a catheter probe, views, transseptal guidance, complication monitoring, ICE-built anatomy, evidence against TEE | m48, m20 |
-| m51 | Cardiac CT for EP | Attenuation and Hounsfield units, reconstruction, ECG gating, contrast and dose; anatomy, thrombus, oesophagus and wall thickness | m48, m21 |
+| m51 | Cardiac CT for EP | Attenuation and Hounsfield units, reconstruction, ECG gating, contrast and dose; anatomy, thrombus, esophagus and wall thickness | m48, m21 |
 | m52 | Cardiac MRI for EP | Relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis and ventricular scar, why thresholds matter, MRI with implanted devices | m48, m21, m40 |
 | m53 | Imaging ablation lesions and real-time MRI-guided EP | Lesions, gaps and oedema after ablation; interventional MRI, its physics and its current limits | m27, m28, m52 |
 | m54 | Nuclear imaging in EP | PET and SPECT physics, standardized uptake and partial volume; inflammation and device infection | m48 |
@@ -103,25 +103,25 @@ what kind of study it is.
 
 | Question | Modality | What was found | Evidence | Module |
 | --- | --- | --- | --- | --- |
-| How much radiation does an EP procedure give? | Fluoroscopy | Reference levels (third quartile of kerma-area product) ranged from 4.10 Gy·cm² for accessory-pathway ablation to 12.65 Gy·cm² for persistent AF ablation across 33 French centres [greffier2026] | National multicentre survey | m49 |
+| How much radiation does an EP procedure give? | Fluoroscopy | Reference levels (third quartile of kerma-area product) ranged from 4.10 Gy·cm² for accessory-pathway ablation to 12.65 Gy·cm² for persistent AF ablation across 33 French centers [greffier2026] | National multicenter survey | m49 |
 | Can AF ablation be done without fluoroscopy? | Mapping system and ICE | In seven studies (1,593 patients) the zero-fluoroscopy approach was feasible in 95.1% of patients, with no significant difference in success or complications [debreceni2023] | Meta-analysis of observational studies | m49, m50 |
-| Do mapping systems reduce radiation? | Mapping system | Lower fluoroscopy time and dose for supraventricular ablations, often with longer procedures; no difference for VT [zormpas2023] | Multicentre registry | m49 |
+| Do mapping systems reduce radiation? | Mapping system | Lower fluoroscopy time and dose for supraventricular ablations, often with longer procedures; no difference for VT [zormpas2023] | Multicenter registry | m49 |
 | Does seeing the sheath on the map help? | Mapping system | Fluoroscopy time 11.43 vs 15.37 min with a sheath visualized on the map [chen2026sheath] | Randomized trial, 100 patients | m49 |
 | Can ICE replace fluoroscopy or TEE for transseptal puncture? | ICE | Less fluoroscopy (mean difference −2.07 min) with similar first-pass success and no increase in safety events [abdalla2026] | Meta-analysis of randomized and observational studies | m50 |
 | ICE or TEE for AF ablation? | ICE, TEE | No significant difference in complications, shorter fluoroscopy with ICE; certainty low to very low [kanniyan2026] | Meta-analysis (5 cohorts, 1 trial) | m50 |
 | ICE or TEE for appendage occlusion? | ICE, TEE | Similar success; shorter procedures in adjusted analyses, but more effusions needing intervention and more residual septal defects with ICE [yaser2026] | Meta-analysis of observational studies | m50 |
-| Is ICE use associated with outcomes? | ICE | 90-day readmission lower with ICE (hazard ratio 0.88) in a US database [deshpande2022]; less tamponade in VT ablation in a Japanese database [kitamura2021]; no improvement in procedural metrics with pulsed-field ablation [dellorusso2023] | Administrative databases; multicentre cohort | m50 |
+| Is ICE use associated with outcomes? | ICE | 90-day readmission lower with ICE (hazard ratio 0.88) in a US database [deshpande2022]; less tamponade in VT ablation in a Japanese database [kitamura2021]; no improvement in procedural metrics with pulsed-field ablation [dellorusso2023] | Administrative databases; multicenter cohort | m50 |
 | Is there a thrombus in the appendage? | CT, TEE | CT sensitivity 96%, specificity 92%, but positive predictive value 41% at 8.9% prevalence; with delayed imaging 100%, 99% and 92% [romero2013] | Meta-analysis, TEE as reference | m48, m51 |
-| Where is the oesophagus? | CT | Two main courses behind the left atrium; the oesophagus touched the mid posterior wall in every patient [tsao2005] | Cross-sectional CT study | m51 |
+| Where is the esophagus? | CT | Two main courses behind the left atrium; the esophagus touched the mid posterior wall in every patient [tsao2005] | Cross-sectional CT study | m51 |
 | How thick is the wall, and does it matter? | CT | Atrial wall 1.89 mm on average, 0.5–3.5 mm [beinart2011]; ventricular wall thinning and its gradient near VT isthmuses [ciaccio2024; moore2024] | Small observational studies | m51 |
 | How accurate is CT fused with the map? | CT + mapping | Registration error 2.3 mm with surface registration against 6.4 mm with landmarks [kistler2006]; ablation at CT-marked targets in dogs missed by 1.8–2.7 mm [dong2006] | Clinical series; animal study | m51, m55 |
 | Does atrial fibrosis on MRI matter? | MRI | Associated with recurrence [marrouche2014]; ablating it added no benefit in a randomized trial [marrouche2022]; lesions did not uniformly become scar [akoum2024] | Cohort; randomized trial | m52 |
 | Is "fibrosis" a stable measurement? | MRI | Average fibrosis burden ranged from 5.0% to 37.4% of the wall surface depending on the threshold [boyle2022]; reproducibility depended on the thresholding method [kamali2020]; thresholds defined from healthy volunteers [gunturiz2022] | Methods studies | m52 |
-| Where are the VT channels? | MRI | Conducting channels on MRI colocalized with functional mapping targets [guichard2024]; ring-like scar was associated with VT recurrence [pittorru2026] | Single-centre cohorts | m52 |
+| Where are the VT channels? | MRI | Conducting channels on MRI colocalized with functional mapping targets [guichard2024]; ring-like scar was associated with VT recurrence [pittorru2026] | Single-center cohorts | m52 |
 | Can patients with devices have MRI? | MRI | With devices not labelled MRI-conditional, scanned under a protocol: no device or lead failure when the protocol was followed, in 1,500 nonthoracic scans at 1.5 T [russo2017]; no long-term clinically significant adverse events in 2,103 scans [nazarian2017] | Prospective registries | m52 |
 | Did the ablation leave gaps? | MRI | Scar gaps predicted the extent of vein reconnection but not its location (kappa 0.37) [aljefairi2019] | Prospective cohort | m53 |
-| Can ablation be done inside the MRI scanner? | Real-time MRI | Acute isthmus block in 32 of 35 patients; technical challenges in 54% [hopman2026]; automatic meshes in about 16 s [jahnke2024] | Single-centre series | m53 |
-| Is there active inflammation? | FDG PET | In cardiac sarcoidosis with VT, lack of improvement on serial PET was associated with events [muser2016; muser2018] | Single-centre cohorts | m54 |
+| Can ablation be done inside the MRI scanner? | Real-time MRI | Acute isthmus block in 32 of 35 patients; technical challenges in 54% [hopman2026]; automatic meshes in about 16 s [jahnke2024] | Single-center series | m53 |
+| Is there active inflammation? | FDG PET | In cardiac sarcoidosis with VT, lack of improvement on serial PET was associated with events [muser2016; muser2018] | Single-center cohorts | m54 |
 | Is a device infected? | FDG PET/CT, SPECT | Multisociety consensus on uptake at device pockets and leads [bourque2024] | Expert consensus | m54 |
 
 ## How Part VIII fits the rest of the course
@@ -231,7 +231,7 @@ cited studies describe them.
 **In 60 seconds.** CT measures attenuation along many rays and reconstructs slices; Hounsfield units put
 water at 0 and air at −1000. ECG gating freezes the heart, contrast fills the chambers, and dose is part of
 the cost. Before ablation CT shows atrial and venous anatomy, appendage thrombus [romero2013], the course of
-the oesophagus [tsao2005] and wall thickness [beinart2011]; in VT, wall thinning and its gradient have been
+the esophagus [tsao2005] and wall thickness [beinart2011]; in VT, wall thinning and its gradient have been
 studied as markers of isthmuses [ciaccio2024; moore2024]. Fused with the map, CT registered with surface
 methods to within a few millimetres in early studies [kistler2006; dong2006].
 
@@ -378,7 +378,7 @@ Bib entries are added to `references.bib` at stage 2, when a module first cites 
 | Key | Source | Status |
 | --- | --- | --- |
 | heidbuchel2014 | Heidbuchel et al., Practical ways to reduce radiation dose for patients and staff during device implantations and electrophysiological procedures. Europace 16:946–964 (2014). DOI 10.1093/europace/eut409, PMID 24792380 | Verified (PubMed) |
-| greffier2026 | Greffier et al., Radiation dose reference levels for the most common image-guided interventional cardiac electrophysiology and pacing procedures: a French multicentre survey. Phys Med 148:105898 (2026). DOI 10.1016/j.ejmp.2026.105898, PMID 42472521 | Verified (PubMed) |
+| greffier2026 | Greffier et al., Radiation dose reference levels for the most common image-guided interventional cardiac electrophysiology and pacing procedures: a French multicenter survey. Phys Med 148:105898 (2026). DOI 10.1016/j.ejmp.2026.105898, PMID 42472521 | Verified (PubMed) |
 | samara2026 | Samara et al., Updating national diagnostic reference levels for adult cardiac interventional procedures in Switzerland. Phys Med 148:105869 (2026). DOI 10.1016/j.ejmp.2026.105869, PMID 42378754 | Verified (PubMed) |
 | debreceni2023 | Debreceni et al., Zero fluoroscopy catheter ablation for atrial fibrillation: a systematic review and meta-analysis. Front Cardiovasc Med 10:1178783 (2023). DOI 10.3389/fcvm.2023.1178783, PMID 37396578 | Verified (PubMed) |
 | zormpas2023 | Zormpas et al., Utilization of 3D mapping systems in interventional electrophysiology and its impact on procedure time and fluoroscopy: insights from the "Go for Zero Fluoroscopy" project. Pacing Clin Electrophysiol 46:875–881 (2023). DOI 10.1111/pace.14788, PMID 37483154 | Verified (PubMed) |
