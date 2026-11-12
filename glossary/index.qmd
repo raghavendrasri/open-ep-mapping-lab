@@ -89,6 +89,9 @@ Conduction velocity
 Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
 
+Contrast-to-noise ratio (CNR)
+: The difference between two tissues' mean signals divided by the noise standard deviation; it decides whether they can be told apart, and averaging n independent samples multiplies it by the square root of n. [m48](../modules/m48-imaging-workflow.qmd) [m49](../modules/m49-fluoroscopy-radiation.qmd)
+
 Contrastive learning
 : Self-supervised learning that pulls the embeddings of matched pairs, such as two recordings of one patient, together and pushes unmatched pairs apart. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -184,6 +187,9 @@ Fossa ovalis
 
 Foundation model
 : A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Full width at half maximum (FWHM)
+: The width of a blur between the two points where it falls to half its peak; for a Gaussian, about 2.355 standard deviations. Used to quote the spatial resolution of scanners. [m48](../modules/m48-imaging-workflow.qmd) [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd)
 
 Gadolinium contrast
 : An MRI contrast agent that shortens T1 in proportion to its concentration and stays outside cells, so it accumulates where there is more extracellular space. [m52](../modules/m52-cardiac-mri.qmd)
@@ -290,6 +296,9 @@ Lesion metabolic activity
 Levenberg–Marquardt method
 : An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Likelihood ratio
+: How much a test result changes the odds of disease: for a positive result, sensitivity divided by one minus specificity; for a negative result, one minus sensitivity divided by specificity. Post-test odds are pre-test odds times the likelihood ratio. [m48](../modules/m48-imaging-workflow.qmd)
+
 Linear probe
 : A linear classifier trained on the frozen features of a pretrained model, used to measure how much those features already encode. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -313,6 +322,9 @@ Model card
 
 Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
+
+Negative predictive value (NPV)
+: The share of negative results that are truly negative; like the positive predictive value, it depends on prevalence. [m48](../modules/m48-imaging-workflow.qmd) [m35](../modules/m35-machine-learning.qmd)
 
 Net benefit
 : In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -339,7 +351,7 @@ Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
 Partial-volume effect
-: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd)
+: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd) [m48](../modules/m48-imaging-workflow.qmd)
 
 Passive catheter visualization
 : Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
@@ -356,11 +368,17 @@ Photoplethysmography (PPG)
 Physics-informed neural network (PINN)
 : A neural network trained on a loss that adds the residual of a governing equation to the data misfit. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Point-spread function (PSF)
+: The image an imaging system makes of a single point: the blur it applies to everything it shows. [m48](../modules/m48-imaging-workflow.qmd)
+
 Positive predictive value (PPV)
-: The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd)
+: The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd) [m48](../modules/m48-imaging-workflow.qmd)
 
 Positron emission tomography (PET)
 : Imaging of a tracer that emits positrons; each annihilation sends two photons in opposite directions, detected together to define a line through the source. [m54](../modules/m54-nuclear-imaging.qmd)
+
+Pre-test probability
+: The probability of a condition before a test result is known, for example its prevalence in the group tested. [m48](../modules/m48-imaging-workflow.qmd)
 
 Predetermined change control plan (PCCP)
 : A plan, authorized with an AI-enabled device's marketing submission, that describes planned changes to the device and how each will be validated, so those changes need no new submission. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -445,6 +463,9 @@ Softmax
 
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
+
+Spatial resolution
+: How close two structures can be and still appear separate in an image; often quoted as the FWHM of the point-spread function. [m48](../modules/m48-imaging-workflow.qmd)
 
 Speed-of-sound assumption
 : Ultrasound systems convert echo time to depth with one assumed speed of sound, commonly 1540 m/s; tissue that is faster or slower is drawn shorter or longer. [m50](../modules/m50-intracardiac-echo.qmd)

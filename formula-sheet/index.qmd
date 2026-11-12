@@ -588,6 +588,44 @@ $$
 \mathrm{SQNR} = 10 \log_{10} \frac{\overline{x^2}}{S^2/12}\ \text{dB} \;\approx\; 6.02\,b + 1.76\ \text{dB for a full-scale sine}
 $$
 
+## m48 · Imaging across the EP workflow
+
+Symbols: $\sigma$ blur standard deviation (mm), $\Gamma$ FWHM (mm), $d$ separation (mm), $S_A, S_B$ mean signals, $\sigma_n$ noise standard deviation, $n$ samples averaged, $\Delta$ pixel spacing (mm), $\sigma_s$ smoothing standard deviation (mm), $C$ contrast, $w$ wall thickness (mm), $k$ required CNR, Se sensitivity, Sp specificity, $\pi$ prevalence, $p_{\text{post}}$ post-test probability.
+Model: Gaussian blur; white noise; sensitivity and specificity that do not change with prevalence.
+
+**Point-spread function, FWHM and two-point resolution** ([derivation](../modules/m48-imaging-workflow.qmd#eq-m48-psf))
+
+$$
+h(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\,e^{-x^2/(2\sigma^2)}, \qquad \Gamma = 2\sqrt{2\ln 2}\;\sigma \approx 2.355\,\sigma,
+\qquad \text{dip between two points} \iff d > 2\sigma \approx 0.85\,\Gamma
+$$
+
+**Contrast-to-noise ratio** ([derivation](../modules/m48-imaging-workflow.qmd#eq-m48-cnr))
+
+$$
+\mathrm{CNR} = \frac{|S_A - S_B|}{\sigma_n}, \qquad \mathrm{CNR}_n = \sqrt{n}\;\mathrm{CNR}_1
+$$
+
+**Smoothing white noise** ([derivation](../modules/m48-imaging-workflow.qmd#eq-m48-smooth))
+
+$$
+\sigma_n' = \frac{\sigma_n\,\Delta}{2\sqrt{\pi}\,\sigma_s}, \qquad \sigma_{\text{tot}}^2 = \sigma^2 + \sigma_s^2
+$$
+
+**Visibility of a thin wall** ([derivation](../modules/m48-imaging-workflow.qmd#eq-m48-visibility))
+
+$$
+\mathrm{CNR}_{\text{wall}} = \frac{C}{\sigma_n}\operatorname{erf}\!\left(\frac{w}{2\sqrt2\,\sigma}\right), \qquad
+w_{\min} = 2\sqrt2\,\sigma\,\operatorname{erf}^{-1}\!\left(\frac{k\,\sigma_n}{C}\right)
+$$
+
+**Likelihood ratios** ([derivation](../modules/m48-imaging-workflow.qmd#eq-m48-lr))
+
+$$
+\mathrm{LR}^+ = \frac{\mathrm{Se}}{1 - \mathrm{Sp}}, \qquad \mathrm{LR}^- = \frac{1 - \mathrm{Se}}{\mathrm{Sp}},
+\qquad \frac{p_{\text{post}}}{1 - p_{\text{post}}} = \frac{\pi}{1 - \pi}\,\mathrm{LR}
+$$
+
 ## m49 · Fluoroscopy and radiation protection
 
 Symbols: $I_0$ incident and $I$ transmitted intensity, $\mu$ linear attenuation coefficient (1/mm), HVL half-value layer, $C$ subject contrast of an object of thickness $t$ with attenuation $\mu_o$ in background $\mu_b$, $N$ photons per pixel, CNR contrast-to-noise ratio, $K$ air kerma, $A$ beam area, $d$ distance from the focal spot, $P_{KA}$ kerma-area product, $H$ staff dose, $f_p$ pulse rate, $q$ dose per pulse, $\tau$ time, $r$ distance from the patient, $n$ shielding in half-value layers.
