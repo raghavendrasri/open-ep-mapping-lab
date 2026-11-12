@@ -789,3 +789,34 @@ $$
 T_{\text{frame}} = \frac{N_{\text{lines}}\,\mathrm{TR}}{R}, \qquad \text{frame rate} = \frac{1}{T_{\text{frame}}}, \qquad
 d = v\,T_{\text{frame}}
 $$
+
+## m54 · Nuclear imaging
+
+Symbols: $A$ activity ($A_0$ at injection, $A'$ net injected and decay-corrected), $\lambda$ decay constant, $T_{1/2}$ half-life, $C$ activity concentration, $W$ body weight, $w$ wall thickness, $\sigma$ blur standard deviation, RC recovery coefficient, $R$ true ratio of follow-up to baseline, $R_m$ measured ratio, $c$ per-scan coefficient of variation, $\Phi$ standard normal distribution function.
+Model: physical decay only; 1 mL of tissue = 1 g; slab with Gaussian blur; independent log-normal noise per scan.
+
+**Radioactive decay** ([derivation](../modules/m54-nuclear-imaging.qmd#eq-m54-decay))
+
+$$
+A(t) = A_0\,e^{-\lambda t}, \qquad \lambda = \frac{\ln 2}{T_{1/2}}
+$$
+
+**Standardized uptake value** ([derivation](../modules/m54-nuclear-imaging.qmd#eq-m54-suv))
+
+$$
+\mathrm{SUV} = \frac{C}{A'/W}
+$$
+
+**Recovery coefficients of a wall** ([derivation](../modules/m54-nuclear-imaging.qmd#eq-m54-recovery))
+
+$$
+\mathrm{RC}_{\max} = \operatorname{erf}\!\left(\frac{w}{2\sqrt2\,\sigma}\right), \qquad
+\mathrm{RC}_{\text{mean}} = \operatorname{erf}(b) - \frac{1 - e^{-b^2}}{b\sqrt\pi}, \quad b = \frac{w}{\sqrt2\,\sigma}
+$$
+
+**Noise and a response rule** ([derivation](../modules/m54-nuclear-imaging.qmd#eq-m54-change))
+
+$$
+\ln R_m \sim \mathcal N\!\left(\ln R,\ 2\ln(1 + c^2)\right), \qquad
+P(\text{called a response}) = \Phi\!\left(\frac{\ln 0.75 - \ln R}{\sqrt{2\ln(1 + c^2)}}\right)
+$$

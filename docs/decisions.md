@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-11 · m54 stages 1–6, nuclear imaging
+
+- **m54** (Nuclear imaging in EP): four tested equations (decay, SUV, recovery coefficients of a wall, noise and a
+  response rule), two exact demos (partial volume; decay and timing), clinical correlate (pending review), 12
+  interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Recovery of the mean, not only the peak.** The plan named one recovery coefficient; the module derives both the
+  maximum (the m51 wall formula) and the mean over the wall, because the cited sarcoidosis study used corrected means.
+- **Response-rule statistics** added as eq-m54-change: the published 25% rule and the published ~10% test-retest
+  figure give misclassification rates in closed form, checked by simulation.
+- **birnie2014 cited by title only** (no abstract on PubMed), as the plan said.
+
 ## 2026-11-11 · m53 stages 1–6, lesion imaging and real-time MRI
 
 - **m53** (Imaging ablation lesions and real-time MRI-guided EP): two tested equations (a gap in a blurred lesion

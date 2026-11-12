@@ -100,7 +100,7 @@ Status shows how far each module has got.
 | m51 | [Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, anatomy, thrombus, esophagus and wall thickness](modules/m51-cardiac-ct.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m52 | [Cardiac MRI for EP: relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis, ventricular scar, MRI with implanted devices](modules/m52-cardiac-mri.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m53 | [Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and edema, interventional MRI and its limits](modules/m53-lesion-imaging-interventional-mri.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
-| m54 | [Nuclear imaging in EP: PET and SPECT, standardized uptake and partial volume, inflammation and device infection](modules/m54-nuclear-imaging.qmd) | [Planned]{.status .status-planned} | not yet scheduled |
+| m54 | [Nuclear imaging in EP: PET and SPECT, standardized uptake and partial volume, inflammation and device infection](modules/m54-nuclear-imaging.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m55 | [Capstone: a multimodal image-guided procedure on a digital phantom, from segmentation and registration to overlay and an error and dose budget](modules/m55-multimodal-capstone.qmd) | [Planned]{.status .status-planned} | not yet scheduled |
 
 ## Learning paths
