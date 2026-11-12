@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m55 stages 1–6, capstone
+
+- **m55** (Capstone): three tested equations (C-arm projection, FRE and TRE, error budget), an approximate-model demo
+  (predicted TRE over a plane) and an exact demo (overlay on a projection), clinical correlate (pending review), 12
+  interview and 6 self-check questions, glossary and formula-sheet entries.
+- **Registration is used, not derived** (author decision 2): `epml.capstone` has a least-squares rigid fit and ICP for
+  the lab, and the page points to m21 for the derivation.
+- **TRE formula** from Fitzpatrick et al. 1998, checked against the restatement in Danilchenko and Fitzpatrick 2011;
+  the lab shows where the first-order formula starts to underestimate (about 12% at 3 mm FLE on a clustered layout).
+- **No scikit-image.** Surfaces are boundary voxels (`epml.imaging.surface`) rather than marching cubes, so no new
+  dependency is needed.
+
 ## 2026-11-11 · m54 stages 1–6, nuclear imaging
 
 - **m54** (Nuclear imaging in EP): four tested equations (decay, SUV, recovery coefficients of a wall, noise and a
