@@ -77,6 +77,9 @@ Data augmentation
 Dataset shift
 : Any difference between the data a model was trained on and the data where it is used: in class mix (prior shift), in the recordings (covariate shift) or in what labels mean. [m37](../modules/m37-ai-ecg.qmd)
 
+De-identification
+: Removing or coarsening information in health data so that it no longer identifies a person, for example by removing direct identifiers and grouping quasi-identifiers; the rules differ by country. [m47](../modules/m47-data-deployment-engineering.qmd)
+
 Decapolar catheter
 : A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd), [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -164,6 +167,9 @@ Intrinsic deflection
 Jaccard index
 : Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+k-anonymity
+: A property of a released table: every record shares its quasi-identifier values with at least k − 1 others, so a match by those values points to at least k records. [m47](../modules/m47-data-deployment-engineering.qmd)
+
 Large language model (LLM)
 : A transformer trained on very large amounts of text to predict the next token; it can follow instructions and answer questions in text. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -184,6 +190,9 @@ Local activation time
 
 Low-voltage area
 : A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
+
+Model card
+: A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
 
 Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
@@ -232,6 +241,12 @@ Prompt injection
 
 Pulmonary vein isolation (PVI)
 : Ablation that encircles the pulmonary veins so that their electrical activity cannot reach the left atrium. [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Quantization (integer)
+: Storing a model's weights or activations, or a signal's samples, as integers with a scale and zero point instead of floating-point numbers; it saves memory and computation at the cost of rounding error. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Quasi-identifier
+: A field that does not name a person on its own but can identify them in combination with others, such as age, sex, region or a procedure date. [m47](../modules/m47-data-deployment-engineering.qmd)
 
 Radial basis function
 : A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
@@ -301,3 +316,6 @@ Ventricular tachycardia
 
 Volume conductor
 : The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd)
+
+WFDB format
+: The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
