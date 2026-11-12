@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m48 stages 1–6, imaging across the EP workflow
+
+- **m48** (Imaging across the EP workflow): five tested equations (PSF and two-point resolution, CNR, smoothing,
+  wall visibility, likelihood ratios), two exact demos (thin walls at published resolutions; predictive values
+  against prevalence), a question-to-modality table, clinical correlate (pending review), 12 interview and 6
+  self-check questions, glossary and formula-sheet entries.
+- **Thin-wall equation linked, not repeated.** The overview planned eq-m48-thin-wall; it is the same result as
+  eq-m51-wall, so m48 links to it and adds the noise side (eq-m48-visibility) instead.
+- **"Which modality for which question" is a table, not a demo.** Every interactive demo must have a slider and a
+  readout that changes (render check); a filterable table had no natural slider. The table sits at the top of the
+  derivations, and the second demo shows predictive values against prevalence. Undo: add a filter demo with a
+  slider and restore the overview's plan.
+- **CT resolution from one photon-counting system** (Rajendran et al. 2022, section-sensitivity FWHM 0.34 and
+  0.64 mm). No source for conventional CT resolution was read; m51 keeps its illustrative 1-mm blur.
+- **Pooled PPV against the formula.** The page and lab say the 41% reported and 54% from the formula need not agree,
+  give PPV's concavity in prevalence as one reason, and do not attribute it to the meta-analysis.
+
 ## 2026-11-12 · m55 stages 1–6, capstone
 
 - **m55** (Capstone): three tested equations (C-arm projection, FRE and TRE, error budget), an approximate-model demo

@@ -94,7 +94,7 @@ Status shows how far each module has got.
 
 | ID | Module | Status | Release |
 | --- | --- | --- | --- |
-| m48 | [Imaging across the EP workflow: which modality answers which question, resolution, contrast, noise and dose, accuracy of imaging tests](modules/m48-imaging-workflow.qmd) | [Planned]{.status .status-planned} | not yet scheduled |
+| m48 | [Imaging across the EP workflow: which modality answers which question, resolution, contrast, noise and dose, accuracy of imaging tests](modules/m48-imaging-workflow.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m49 | [Fluoroscopy and radiation protection: X-ray attenuation and contrast, quantum noise, dose quantities, reference levels, staff protection, low-fluoroscopy workflows](modules/m49-fluoroscopy-radiation.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m50 | [Intracardiac echocardiography with TEE and TTE: ultrasound essentials for ICE, phased-array steering, frame rate, transseptal guidance, evidence](modules/m50-intracardiac-echo.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
 | m51 | [Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, anatomy, thrombus, esophagus and wall thickness](modules/m51-cardiac-ct.qmd) | [Draft]{.status .status-draft} | not yet scheduled |
