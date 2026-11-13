@@ -17,7 +17,7 @@ Status shows how far each module has got.
 | m03 | [Unipolar, bipolar and omnipolar electrograms as spatial filters](modules/m03-electrograms.qmd) | [Draft]{.status .status-draft} | Pilot |
 | m04 | [Sampling, filtering and the EP recording chain](modules/m04-recording-chain.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m05 | [Time–frequency tools: dominant frequency, Hilbert phase, wavelets](modules/m05-time-frequency.qmd) | [Draft]{.status .status-draft} | v0.5 |
-| m06 | [Triangle meshes, Laplace–Beltrami operators and geodesics](modules/m06-meshes-geodesics.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m06 | [Triangle meshes, Laplace–Beltrami operators and geodesics](modules/m06-meshes-geodesics.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m07 | [Inverse problems and regularization (Tikhonov, L-curve)](modules/m07-inverse-problems.qmd) | [Planned]{.status .status-planned} | v0.5 |
 
 ## Part II · Cardiac electrophysiology for engineers
