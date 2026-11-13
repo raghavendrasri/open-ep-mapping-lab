@@ -223,6 +223,54 @@ H(z) = g\,\frac{1 - 2\cos\omega_0\,z^{-1} + z^{-2}}{1 - 2g\cos\omega_0\,z^{-1} +
 \omega_0 = \frac{2\pi f_0}{f_s}, \qquad g = \frac{1}{1 + \tan(\omega_0/2Q)}
 $$
 
+## m05 · Time–frequency tools
+
+Symbols: $f_s$ sampling rate, $N$ samples, $T$ record length, $X$ Fourier transform, $W$ window transform, $K$ averaged segments, $T_0$ cycle length, $p$ one deflection, $z$ analytic signal, $\mathcal H$ Hilbert transform, $\varphi$ phase, $f_i$ instantaneous frequency, $\sigma_t$, $\sigma_f$ RMS duration and bandwidth, $\psi$ wavelet, $s$ scale, $\omega_0$ wavelet frequency parameter.
+Model: stationary records unless stated; synthetic signals.
+
+**Frequency resolution** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-resolution))
+
+$$
+f_k = \frac{k f_s}{N} = \frac{k}{T}, \qquad \Delta f = \frac{1}{T}
+$$
+
+**Windowing and leakage** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-leakage))
+
+$$
+X_w(f) = \int X(\nu)\,W(f - \nu)\,d\nu
+$$
+
+**Welch averaging** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-welch))
+
+$$
+\frac{\operatorname{std}\hat P(f)}{\operatorname{E}\hat P(f)} = \frac{1}{\sqrt K}, \qquad \Delta f = \frac{K}{T}
+$$
+
+**Spectrum of a pulse train** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-pulse-train))
+
+$$
+x(t) = \sum_k p(t - kT_0) \quad\Longrightarrow\quad X(f) = \frac{1}{T_0}\sum_m P\!\left(\frac{m}{T_0}\right)\delta\!\left(f - \frac{m}{T_0}\right)
+$$
+
+**Analytic signal and instantaneous frequency** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-analytic))
+
+$$
+z(t) = x(t) + j\,\mathcal H[x](t), \qquad \varphi(t) = \arg z(t), \qquad f_i(t) = \frac{1}{2\pi}\frac{d\varphi}{dt}
+$$
+
+**Time-frequency uncertainty** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-uncertainty))
+
+$$
+\sigma_t\,\sigma_f \ge \frac{1}{4\pi}
+$$
+
+**Morlet wavelet transform** ([derivation](../modules/m05-time-frequency.qmd#eq-m05-morlet))
+
+$$
+\psi(t) = \pi^{-1/4}\,e^{j\omega_0 t}\,e^{-t^2/2}, \qquad
+W(s, \tau) = \frac1s\int x(t)\,\psi^*\!\left(\frac{t - \tau}{s}\right)dt, \qquad f = \frac{\omega_0}{2\pi s}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

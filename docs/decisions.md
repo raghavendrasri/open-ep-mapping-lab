@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m05 stages 1–6, time–frequency tools
+
+- **m05** (Time–frequency tools): seven tested equations (resolution, leakage, Welch variance, pulse-train spectrum,
+  analytic signal, uncertainty, Morlet), two exact demos (resolution and leakage; Hilbert phase against activations),
+  clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–F) and an Octave copy
+  (A–E).
+- **Definitions stay in m29.** DF, OI and sinusoidal recomposition are linked, not repeated; m05 supplies the reasons
+  they work and fail.
+- **m29's TODO(source) on the preprocessing chain is not resolved here.** Botteron and Smith 1995 was checked on
+  PubMed and its abstract does not describe the chain.
+
 ## 2026-11-12 · m04 stages 1–6, recording chain
 
 - **m04** (Sampling, filtering and the EP recording chain): six tested equations (aliasing, quantization, RC
