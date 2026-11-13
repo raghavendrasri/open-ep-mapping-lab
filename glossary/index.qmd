@@ -26,6 +26,9 @@ AI agent
 Air kerma
 : The kinetic energy that X-rays release per unit mass of air, in gray (Gy); measured at a reference point it relates to the dose at the patient's skin. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
+Anisotropy
+: Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd)
+
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
@@ -95,8 +98,14 @@ Contrast-to-noise ratio (CNR)
 Contrastive learning
 : Self-supervised learning that pulls the embeddings of matched pairs, such as two recordings of one patient, together and pushes unmatched pairs apart. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Core-conductor model
+: A model of a cell strand in which intracellular current flows along the strand and leaks out through the membrane; it gives membrane current as the second derivative of transmembrane voltage. [m01](../modules/m01-bioelectric-sources.qmd)
+
 Cross-entropy
 : The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
+
+Current dipole
+: A current source and an equal sink very close together; its strength is current times separation, and its potential falls as one over distance squared. [m01](../modules/m01-bioelectric-sources.qmd)
 
 CUSUM
 : Cumulative sum: a running sum of deviations above a target, reset at zero, that raises an alarm when it crosses a threshold. Used to detect a lasting shift in a monitored quantity. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -115,6 +124,9 @@ Decapolar catheter
 
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Double layer
+: A surface covered with current dipoles pointing normal to it; a uniform double layer's potential is proportional to the solid angle it subtends. [m01](../modules/m01-bioelectric-sources.qmd)
 
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
@@ -150,7 +162,7 @@ Extracellular volume (ECV)
 : The fraction of a tissue's volume outside cells. MRI estimates it from T1 before and after gadolinium and the hematocrit; scar and fibrosis raise it. [m52](../modules/m52-cardiac-mri.qmd)
 
 Far-field signal
-: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd)
+: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd)
 
 FDG (fluorodeoxyglucose)
 : A glucose analog labeled with fluorine-18; cells that use much glucose, including inflammatory cells, take it up and show on PET. [m54](../modules/m54-nuclear-imaging.qmd)
@@ -317,6 +329,9 @@ Magnetohydrodynamic voltage
 Magnification (projection)
 : How much larger a structure appears on the detector than its true size: source-to-detector over source-to-object distance. [m55](../modules/m55-multimodal-capstone.qmd)
 
+Membrane current
+: Current crossing the cell membrane, positive outward; ahead of a wavefront it flows out (a source) and behind it flows in (a sink). [m01](../modules/m01-bioelectric-sources.qmd)
+
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
 
@@ -461,6 +476,12 @@ Sinus rhythm
 Softmax
 : The function that turns a vector of scores into probabilities that are positive and sum to one. [m37](../modules/m37-ai-ecg.qmd)
 
+Solid angle
+: The area a surface covers on a unit sphere centered on the observer, in steradians; a full sphere is 4 pi. [m01](../modules/m01-bioelectric-sources.qmd)
+
+Source and sink
+: Places where current leaves cells into the extracellular space (source) or enters them from it (sink); every source has a matching sink. [m01](../modules/m01-bioelectric-sources.qmd)
+
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
 
@@ -525,7 +546,7 @@ Ventricular tachycardia
 : A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd), [m41](../modules/m41-ai-origin-localization.qmd)
 
 Volume conductor
-: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd)
+: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd)
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
