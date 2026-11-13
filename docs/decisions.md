@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m07 stages 1–6, inverse problems
+
+- **m07** (Inverse problems and regularization): seven tested equations (model and condition number, continuation
+  across a source-free layer, naive SVD inverse, filters, error budget, parameter choice, Bayesian reading), an exact
+  error-budget demo and a simulation deblurring demo, clinical correlate (pending review), 12 interview and 6
+  self-check questions, a Python lab (A–E) and an Octave copy (A–E).
+- **Worked example is harmonic continuation, not a torso model.** It is exact, one-dimensional and diagonal in the
+  Fourier basis, and it reproduces the m03 front shape (width $w$ continued by $h$ gives $w + h$), so the module needs
+  no boundary-element code. m32 keeps the torso problem.
+- **Discrepancy principle left unattributed.** Its original source was not looked up; the rule is described and its
+  behavior shown with our own code.
+
 ## 2026-11-12 · m06 stages 1–6, meshes and geodesics
 
 - **m06** (Triangle meshes, Laplace–Beltrami operators and geodesics): five tested equations (Euler's formula, per-face

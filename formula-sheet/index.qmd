@@ -306,6 +306,53 @@ $$
 (\mathbf A - t\,L_C)\,\mathbf u = \boldsymbol\delta_s, \qquad \mathbf X = -\frac{\nabla u}{\lvert\nabla u\rvert}, \qquad L_C\,\boldsymbol\phi = \nabla\!\cdot\mathbf X
 $$
 
+## m07 · Inverse problems and regularization
+
+Symbols: $\mathbf x$ sources, $\mathbf b$ data, $A$ forward matrix, $\mathbf e$ noise ($\sigma$ per sample); $s_i$, $\mathbf u_i$, $\mathbf v_i$ singular values and vectors; $\kappa$ condition number; $\hat\phi(k, z)$ Fourier coefficient at wavenumber $k$ and height $z$; $h$ height; $\varepsilon$ relative noise; $f_i$ filter factors; $k_c$ truncation index; $\lambda$ regularization parameter; $\tau$ safety factor; $\sigma_x$, $\sigma_e$ prior and noise spreads.
+Model: linear forward model with white noise; continuation across a source-free layer as the worked example.
+
+**Linear model and condition number** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-model))
+
+$$
+\mathbf b = A\mathbf x + \mathbf e, \qquad \frac{\lVert\delta\mathbf x\rVert}{\lVert\mathbf x\rVert} \le \kappa(A)\,\frac{\lVert\delta\mathbf b\rVert}{\lVert\mathbf b\rVert}, \qquad \kappa(A) = \frac{s_1}{s_n}
+$$
+
+**Continuation across a source-free layer** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-continuation))
+
+$$
+\hat\phi(k, h) = e^{-\lvert k\rvert h}\,\hat\phi(k, 0), \qquad \lvert k\rvert < k_{\max} = \frac{\ln(1/\varepsilon)}{h}
+$$
+
+**Naive inverse in the SVD** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-svd))
+
+$$
+\mathbf x_{\text{naive}} = \sum_{i} \frac{\mathbf u_i^\top\mathbf b}{s_i}\,\mathbf v_i = \mathbf x + \sum_{i} \frac{\mathbf u_i^\top\mathbf e}{s_i}\,\mathbf v_i
+$$
+
+**Filter factors: truncated SVD and Tikhonov** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-filters))
+
+$$
+\mathbf x_{\text{filt}} = \sum_i f_i\,\frac{\mathbf u_i^\top\mathbf b}{s_i}\,\mathbf v_i, \qquad f_i^{\text{TSVD}} = \begin{cases} 1, & i \le k_c \\ 0, & i > k_c \end{cases}, \qquad f_i^{\text{Tikh}} = \frac{s_i^2}{s_i^2 + \lambda^2}
+$$
+
+**Expected error: bias and noise** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-error))
+
+$$
+\operatorname{E}\lVert\mathbf x_{\text{filt}} - \mathbf x\rVert^2 = \sum_i (1 - f_i)^2\,(\mathbf v_i^\top\mathbf x)^2 + \sigma^2 \sum_i \frac{f_i^2}{s_i^2}
+$$
+
+**Choosing λ: discrepancy and GCV** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-choice))
+
+$$
+\text{discrepancy: } \lVert A\mathbf x_\lambda - \mathbf b\rVert = \tau\lVert\mathbf e\rVert; \qquad \text{GCV: } \min_\lambda \frac{\lVert A\mathbf x_\lambda - \mathbf b\rVert^2}{\left[m - \sum_i f_i\right]^2}
+$$
+
+**Bayesian reading of Tikhonov** ([derivation](../modules/m07-inverse-problems.qmd#eq-m07-bayes))
+
+$$
+\mathbf x \sim \mathcal N(0, \sigma_x^2 I),\ \mathbf e \sim \mathcal N(0, \sigma_e^2 I) \;\Longrightarrow\; \operatorname{E}[\mathbf x \mid \mathbf b] = (A^\top A + \lambda^2 I)^{-1}A^\top\mathbf b, \quad \operatorname{Cov}[\mathbf x \mid \mathbf b] = \sigma_e^2 (A^\top A + \lambda^2 I)^{-1}, \quad \lambda = \frac{\sigma_e}{\sigma_x}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

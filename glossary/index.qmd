@@ -89,6 +89,9 @@ Computed tomography (CT)
 Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Condition number
+: The ratio of a matrix's largest to smallest singular value; it bounds how much a relative error in the data can grow in the solution. [m07](../modules/m07-inverse-problems.qmd)
+
 Conducting channel
 : A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -133,6 +136,12 @@ Decapolar catheter
 
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Discrepancy principle
+: Choosing a regularization parameter so that the model fits the data only as closely as the noise level allows. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
+
+Discrete Picard condition
+: The requirement that the data's coefficients in the singular vectors fall faster than the singular values; without it no regularized solution is good. [m07](../modules/m07-inverse-problems.qmd)
 
 Dominant frequency
 : The frequency of the largest spectral peak in a search band; for electrograms it tracks the activation rate only after suitable preprocessing. [m05](../modules/m05-time-frequency.qmd), [m29](../modules/m29-complex-maps.qmd)
@@ -200,6 +209,9 @@ Fiducial localization error (FLE)
 Fiducial registration error (FRE)
 : The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd)
 
+Filter factor
+: The weight a regularization method gives each singular component of the solution: 1 or 0 for truncated SVD, s²/(s² + λ²) for Tikhonov. [m07](../modules/m07-inverse-problems.qmd)
+
 Filtered back-projection
 : CT reconstruction that filters each projection with a ramp in frequency and smears it back along its lines; without the filter the image is blurred. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -229,6 +241,9 @@ Gaussian mixture model
 
 Gaussian process
 : A probability model over functions; given measurements, it gives a mean estimate and an uncertainty at every other point. [m41](../modules/m41-ai-origin-localization.qmd)
+
+Generalized cross-validation (GCV)
+: Choosing a regularization parameter by minimizing a predicted-error function of the data, without a noise estimate. [m07](../modules/m07-inverse-problems.qmd)
 
 Geodesic distance
 : The length of the shortest path between two points that stays on a surface. [m41](../modules/m41-ai-origin-localization.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
@@ -269,6 +284,9 @@ Hounsfield unit (HU)
 Human approval step
 : A point in an agent's run where a person must accept or decline an action, such as any write, before it is carried out. [m44](../modules/m44-agentic-ai.qmd)
 
+Ill-posed problem
+: A problem whose solution fails to exist, to be unique or to depend continuously on the data; small data errors then cause large solution errors. [m07](../modules/m07-inverse-problems.qmd)
+
 Image intensity ratio (IIR)
 : An LGE wall intensity divided by the mean blood-pool intensity, used to compare scans that have no absolute intensity scale; thresholds on it define atrial fibrosis or scar. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -286,6 +304,9 @@ Intracardiac echocardiography (ICE)
 
 Intrinsic deflection
 : The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+
+Inverse problem
+: Recovering sources from measurements, the reverse of the forward problem that predicts measurements from sources. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
 
 Inversion recovery
 : An MRI preparation that flips the longitudinal magnetization with a 180° pulse and reads the image while it recovers; a tissue has no signal at T1 ln 2. [m52](../modules/m52-cardiac-mri.qmd)
@@ -307,6 +328,9 @@ k-anonymity
 
 Kerma-area product (KAP)
 : Air kerma times the area of the X-ray beam, in Gy·cm²; the same at any distance along the beam, so it describes the total radiation delivered. Also called dose-area product. [m49](../modules/m49-fluoroscopy-radiation.qmd)
+
+L-curve
+: A log-log plot of solution size against residual size over all regularization parameters; its corner is one way to choose the parameter. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
 
 Laplace–Beltrami operator
 : The Laplacian on a curved surface: the divergence of the surface gradient. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -379,6 +403,9 @@ Negative predictive value (NPV)
 
 Net benefit
 : In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
+
+Noncontact mapping
+: Reconstructing endocardial potentials from a multielectrode probe that floats in the cavity, by solving an inverse problem. [m07](../modules/m07-inverse-problems.qmd)
 
 Normalized surface Dice (NSD)
 : The share of two surfaces lying within a chosen tolerance of each other. [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -497,6 +524,9 @@ Reference level (radiation dose)
 Reference standard
 : The best available method for deciding whether a condition is present, against which a test or model is judged; its own errors limit any measured accuracy. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
+Regularization
+: Adding information or constraints, such as a penalty on solution size, so that an ill-posed problem gives a stable answer. [m07](../modules/m07-inverse-problems.qmd)
+
 Remote monitoring
 : Sending data from an implanted or wearable device to a clinic, where alerts are reviewed. [m38](../modules/m38-wearables-monitoring.qmd)
 
@@ -520,6 +550,9 @@ Self-supervised learning
 
 Single-photon emission computed tomography (SPECT)
 : Tomographic imaging of a tracer that emits single gamma photons, whose direction is set by a collimator. [m54](../modules/m54-nuclear-imaging.qmd)
+
+Singular value decomposition (SVD)
+: Writing a matrix as a sum of rank-one terms s u vᵀ with orthonormal vectors and non-negative singular values s. [m07](../modules/m07-inverse-problems.qmd)
 
 Sinogram
 : The Radon transform drawn as an image: one row of line integrals per projection angle. A point traces a sine curve in it. [m51](../modules/m51-cardiac-ct.qmd)
@@ -572,6 +605,9 @@ Tetralogy of Fallot
 TF-IDF
 : Term frequency times inverse document frequency: a word weight that grows with how often the word appears in a document and with how rare it is across the collection. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Tikhonov regularization
+: Least squares plus a penalty λ² times the squared size of the solution (or of its derivatives). [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
+
 Token
 : A unit of text, often a word or part of a word, that a language model reads and writes. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -595,6 +631,9 @@ Transthoracic echocardiography (TTE)
 
 Triangle mesh
 : A surface stored as vertices, edges and triangular faces; mapping systems store the chamber geometry this way. [m06](../modules/m06-meshes-geodesics.qmd)
+
+Truncated SVD
+: Regularization that keeps only the components of the largest singular values. [m07](../modules/m07-inverse-problems.qmd)
 
 Unipolar electrogram
 : The signal of one electrode measured against a distant reference electrode. It sees local and far-field activity. [m03](../modules/m03-electrograms.qmd)
