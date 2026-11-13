@@ -181,6 +181,48 @@ $$
 c \approx \frac{\mathrm{pp}\left( dU/dt \right)}{\mathrm{pp}\left( \hat n \cdot \hat{\mathbf E} \right)}
 $$
 
+## m04 · Sampling, filtering and the EP recording chain
+
+Symbols: $f$ frequency, $f_s$ sampling rate, $T = 1/f_s$, $N$ bits, $V_{FS}$ full scale, $q$ quantization step, $f_c$ cutoff, $n$ order, $\tau_g$ group delay, $f_0$ notch frequency, $Q$ quality factor, $\omega_0 = 2\pi f_0/f_s$.
+Model: ideal sampler, uniform rounding error, Butterworth filters, bilinear transform with prewarping.
+
+**Aliasing** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-sampling))
+
+$$
+f_{\text{alias}} = \left\lvert f - f_s\,\operatorname{round}\!\left(\frac{f}{f_s}\right)\right\rvert
+$$
+
+**Quantization noise** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-quantization))
+
+$$
+\mathrm{SQNR} = 10\log_{10}\frac{V_{FS}^2/2}{q^2/12} = 20\log_{10}\!\left(2^N\sqrt{3/2}\right) \approx 6.02N + 1.76\ \text{dB}
+$$
+
+**First-order high-pass** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-highpass))
+
+$$
+H(f) = \frac{jf/f_c}{1 + jf/f_c}
+$$
+
+**Butterworth magnitude** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-butterworth))
+
+$$
+\lvert H(f)\rvert^2 = \frac{1}{1 + (f/f_c)^{2n}}
+$$
+
+**Group delay of a low-pass** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-delay))
+
+$$
+\tau_g = \frac{1}{2\pi f_c}\ (n = 1), \qquad \tau_g = \frac{\sqrt2}{2\pi f_c}\ (n = 2)
+$$
+
+**Second-order notch** ([derivation](../modules/m04-recording-chain.qmd#eq-m04-notch))
+
+$$
+H(z) = g\,\frac{1 - 2\cos\omega_0\,z^{-1} + z^{-2}}{1 - 2g\cos\omega_0\,z^{-1} + (2g - 1)\,z^{-2}}, \qquad
+\omega_0 = \frac{2\pi f_0}{f_s}, \qquad g = \frac{1}{1 + \tan(\omega_0/2Q)}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
