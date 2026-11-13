@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m01 stages 1–6, bioelectric sources
+
+- **Part I started** (author request, 2026-11-12: "lets start with m01–m07"). One pull request per module, stacked;
+  m03 is left as the existing pilot.
+- **m01** (Bioelectric sources): six tested equations (point source, dipole, double layer, core conductor, dipole moment
+  of a front, front as a line of dipoles), two exact demos, clinical correlate (pending review), 12 interview and 6 self-check questions,
+  a Python lab (parts A–F) and an Octave copy (parts A–E), as CLAUDE.md §7 asks for Part I.
+- **Relative units, as in m03.** No absolute conductivity or capacitance values: the PubMed records found for them
+  had no abstracts with numbers. The only quantitative values are Clerc's anisotropy ratios (abstract).
+- **The front's dipole moment and the m03 closed form.** m01 shows that a front of width w at height h equals a line
+  of dipoles at height w + h, so m03's result follows from m01 without repeating its derivation.
+
 ## 2026-11-12 · AI competency map
 
 - **New page `ai-competencies.qmd`** (author request, 2026-11-12): maps nine AI competency areas (machine learning,

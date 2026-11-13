@@ -6,6 +6,48 @@ The main results of each module, with links to their derivations. Each result ho
 module's assumptions; read those before using it. Every formula here is checked by a test in
 `tests/`.
 
+## m01 · Bioelectric sources
+
+Symbols: $I$ point-source current, $\sigma$ conductivity, $\mathbf p$ dipole moment, $\tau$ double-layer strength, $\Omega$ solid angle, $V_m$ transmembrane voltage, $\beta$ intracellular conductance, $I_i$ intracellular current, $i_m$ membrane current, $s$ distance from the front, $h$ electrode height.
+Model: an infinite homogeneous isotropic conductor, quasi-static fields, a thin strand or sheet.
+
+**Point current source** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-point))
+
+$$
+\phi(\mathbf r) = \frac{I}{4\pi\sigma\,\lvert\mathbf r - \mathbf r'\rvert}
+$$
+
+**Current dipole** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-dipole))
+
+$$
+\phi(\mathbf r) = \frac{\mathbf p\cdot(\mathbf r - \mathbf r_0)}{4\pi\sigma\,\lvert\mathbf r - \mathbf r_0\rvert^3}
+$$
+
+**Uniform double layer** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-double-layer))
+
+$$
+\phi = \frac{\tau\,\Omega}{4\pi\sigma}
+$$
+
+**Core conductor: membrane current** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-core))
+
+$$
+I_i = -\beta\,\frac{\partial V_m}{\partial x}, \qquad
+i_m = -\frac{\partial I_i}{\partial x} = \beta\,\frac{\partial^2 V_m}{\partial x^2}
+$$
+
+**Dipole moment of a front** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-moment))
+
+$$
+p = \int s\,i_m\,ds = \beta\,\Delta V
+$$
+
+**A front as a line of dipoles** ([derivation](../modules/m01-bioelectric-sources.qmd#eq-m01-front-dipole))
+
+$$
+\phi(s) = \frac{p\,s}{2\pi\sigma\,(s^2 + h^2)}
+$$
+
 ## m03 · Unipolar, bipolar and omnipolar electrograms
 
 Symbols: $\sigma$ conductivity, $i_m$ membrane current per area, $V_m$ transmembrane voltage,
