@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m04 stages 1–6, recording chain
+
+- **m04** (Sampling, filtering and the EP recording chain): six tested equations (aliasing, quantization, RC
+  high-pass, Butterworth, group delay, notch), an exact aliasing demo and an approximate-model filter demo on the m03
+  unipolar electrogram, clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab
+  (A–E) and an Octave copy (A–E) with core functions only.
+- **Filters built by hand.** First- and second-order Butterworth sections via the bilinear transform, identical in
+  Python, JS and Octave and checked against scipy, so no signal-processing package is needed in the labs or demos.
+- **Published bands only from one study** (Delacretaz et al. 2001). No vendor defaults are described.
+
 ## 2026-11-12 · m02 stages 1–6, volume conduction
 
 - **m02** (Volume conduction and Poisson's equation): five tested equations (Poisson, interface conditions, images,

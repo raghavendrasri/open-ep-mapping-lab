@@ -26,6 +26,9 @@ AI agent
 Air kerma
 : The kinetic energy that X-rays release per unit mass of air, in gray (Gy); measured at a reference point it relates to the dose at the patient's skin. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
+Aliasing
+: The folding of frequencies above half the sampling rate onto lower ones; once sampled, the two cannot be told apart. [m04](../modules/m04-recording-chain.qmd)
+
 Anisotropy
 : Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd)
 
@@ -221,6 +224,9 @@ Graph convolution
 Grating lobe
 : A false, full-strength copy of an array's beam that appears when its elements are spaced more than half a wavelength apart for the steering used; echoes from it are drawn in the wrong direction. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Group delay
+: How long a filter delays the envelope of a signal at a given frequency; causal filters shift features such as activation times by it. [m04](../modules/m04-recording-chain.qmd)
+
 Guardrail
 : A rule enforced outside the model that limits what an agent may do, such as a tool allowlist, a schema check or a human approval step. [m44](../modules/m44-agentic-ai.qmd)
 
@@ -353,6 +359,12 @@ Net benefit
 Normalized surface Dice (NSD)
 : The share of two surfaces lying within a chosen tolerance of each other. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Notch filter
+: A narrow band-stop filter used to remove mains interference at 50 or 60 Hz. [m04](../modules/m04-recording-chain.qmd)
+
+Nyquist frequency
+: Half the sampling rate: the highest frequency a sampled signal can represent without aliasing. [m04](../modules/m04-recording-chain.qmd)
+
 Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
 
@@ -424,6 +436,9 @@ Pulmonary vein reconnection
 
 Quantization (integer)
 : Storing a model's weights or activations, or a signal's samples, as integers with a scale and zero point instead of floating-point numbers; it saves memory and computation at the cost of rounding error. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Quantization noise
+: The rounding error of an analog-to-digital converter, with standard deviation one step over the square root of 12. [m04](../modules/m04-recording-chain.qmd)
 
 Quantum noise
 : Image noise caused by the random arrival of photons; with Poisson counts its standard deviation is the square root of the mean, so noise falls only as the square root of dose. [m49](../modules/m49-fluoroscopy-radiation.qmd)
@@ -565,3 +580,6 @@ Volume conductor
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Zero-phase filtering
+: Filtering a record forward and then backward so that phase shifts cancel; it removes filter delay but needs the whole record, so it is offline only. [m04](../modules/m04-recording-chain.qmd)
