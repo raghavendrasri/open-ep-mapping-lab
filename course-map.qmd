@@ -13,7 +13,7 @@ Status shows how far each module has got.
 | ID | Module | Status | Release |
 | --- | --- | --- | --- |
 | m01 | [Bioelectric sources: transmembrane current, dipoles and double layers](modules/m01-bioelectric-sources.qmd) | [Draft]{.status .status-draft} | v0.5 |
-| m02 | [Volume conduction and Poisson's equation](modules/m02-volume-conduction.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m02 | [Volume conduction and Poisson's equation](modules/m02-volume-conduction.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m03 | [Unipolar, bipolar and omnipolar electrograms as spatial filters](modules/m03-electrograms.qmd) | [Draft]{.status .status-draft} | Pilot |
 | m04 | [Sampling, filtering and the EP recording chain](modules/m04-recording-chain.qmd) | [Planned]{.status .status-planned} | v0.1 |
 | m05 | [Time–frequency tools: dominant frequency, Hilbert phase, wavelets](modules/m05-time-frequency.qmd) | [Planned]{.status .status-planned} | v0.5 |

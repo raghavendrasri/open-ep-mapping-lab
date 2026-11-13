@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m02 stages 1–6, volume conduction
+
+- **m02** (Volume conduction and Poisson's equation): five tested equations (Poisson, interface conditions, images,
+  flux-conserving finite differences, reciprocity), an exact demo (images) and a simulation demo (SOR solver checked
+  against images), clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–D)
+  and an Octave copy (A–D).
+- **Conductivity ratios are parameters.** No blood or tissue value is asserted; none was verifiable from PubMed
+  abstracts.
+- **Octave copy is Octave-specific.** Named functions inside a script must come before use in Octave and at the end in
+  MATLAB, so the solver is written with anonymous functions, which needs Octave's `merge` and chained indexing.
+
 ## 2026-11-12 · m01 stages 1–6, bioelectric sources
 
 - **Part I started** (author request, 2026-11-12: "lets start with m01–m07"). One pull request per module, stacked;
