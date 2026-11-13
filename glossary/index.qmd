@@ -93,19 +93,22 @@ Conducting channel
 : A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
 
 Conduction velocity
-: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd)
+: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
 
 Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
 
 Contrast-to-noise ratio (CNR)
-: The difference between two tissues' mean signals divided by the noise standard deviation; it decides whether they can be told apart, and averaging n independent samples multiplies it by the square root of n. [m48](../modules/m48-imaging-workflow.qmd) [m49](../modules/m49-fluoroscopy-radiation.qmd)
+: The difference between two tissues' mean signals divided by the noise standard deviation; it decides whether they can be told apart, and averaging n independent samples multiplies it by the square root of n. [m48](../modules/m48-imaging-workflow.qmd), [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
 Contrastive learning
 : Self-supervised learning that pulls the embeddings of matched pairs, such as two recordings of one patient, together and pushes unmatched pairs apart. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Core-conductor model
 : A model of a cell strand in which intracellular current flows along the strand and leaks out through the membrane; it gives membrane current as the second derivative of transmembrane voltage. [m01](../modules/m01-bioelectric-sources.qmd)
+
+Cotangent Laplacian
+: The standard discretization of the Laplace–Beltrami operator on a triangle mesh: each edge is weighted by half the sum of the cotangents of the two angles opposite it. [m06](../modules/m06-meshes-geodesics.qmd)
 
 Cross-entropy
 : The loss most classifiers minimize: minus the log of the probability given to the true class. [m37](../modules/m37-ai-ecg.qmd)
@@ -132,7 +135,7 @@ Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Dominant frequency
-: The frequency of the largest spectral peak in a search band; for electrograms it tracks the activation rate only after suitable preprocessing. [m05](../modules/m05-time-frequency.qmd) [m29](../modules/m29-complex-maps.qmd)
+: The frequency of the largest spectral peak in a search band; for electrograms it tracks the activation rate only after suitable preprocessing. [m05](../modules/m05-time-frequency.qmd), [m29](../modules/m29-complex-maps.qmd)
 
 Double layer
 : A surface covered with current dipoles pointing normal to it; a uniform double layer's potential is proportional to the solid angle it subtends. [m01](../modules/m01-bioelectric-sources.qmd)
@@ -144,7 +147,7 @@ Edema (myocardial)
 : Excess water in heart tissue after injury such as ablation; bright on T2-weighted MRI, it includes reversible injury and fades over time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
 Eikonal equation
-: The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd)
+: The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
 
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
@@ -161,6 +164,9 @@ Ensemble
 Error budget
 : A list of the error sources in a chain of steps with their sizes; independent, unbiased errors add in quadrature, and biases add directly. [m55](../modules/m55-multimodal-capstone.qmd)
 
+Euler characteristic
+: V − E + F for a mesh with V vertices, E edges and F faces; 2 for a closed surface without handles, one less for each hole cut into it. [m06](../modules/m06-meshes-geodesics.qmd)
+
 Expected improvement
 : An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
 
@@ -171,7 +177,10 @@ Extracellular volume (ECV)
 : The fraction of a tissue's volume outside cells. MRI estimates it from T1 before and after gadolinium and the hematocrit; scar and fibrosis raise it. [m52](../modules/m52-cardiac-mri.qmd)
 
 Far-field signal
-: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd)
+: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd)
+
+Fast marching method
+: An algorithm that solves the eikonal equation by advancing a front from the source in order of arrival, on grids or triangle meshes. [m06](../modules/m06-meshes-geodesics.qmd)
 
 FDG (fluorodeoxyglucose)
 : A glucose analog labeled with fluorine-18; cells that use much glucose, including inflammatory cells, take it up and show on PET. [m54](../modules/m54-nuclear-imaging.qmd)
@@ -210,7 +219,7 @@ Foundation model
 : A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Full width at half maximum (FWHM)
-: The width of a blur between the two points where it falls to half its peak; for a Gaussian, about 2.355 standard deviations. Used to quote the spatial resolution of scanners. [m48](../modules/m48-imaging-workflow.qmd) [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd)
+: The width of a blur between the two points where it falls to half its peak; for a Gaussian, about 2.355 standard deviations. Used to quote the spatial resolution of scanners. [m48](../modules/m48-imaging-workflow.qmd), [m51](../modules/m51-cardiac-ct.qmd), [m54](../modules/m54-nuclear-imaging.qmd)
 
 Gadolinium contrast
 : An MRI contrast agent that shortens T1 in proportion to its concentration and stays outside cells, so it accumulates where there is more extracellular space. [m52](../modules/m52-cardiac-mri.qmd)
@@ -222,7 +231,7 @@ Gaussian process
 : A probability model over functions; given measurements, it gives a mean estimate and an uncertainty at every other point. [m41](../modules/m41-ai-origin-localization.qmd)
 
 Geodesic distance
-: The length of the shortest path between two points that stays on a surface. [m41](../modules/m41-ai-origin-localization.qmd)
+: The length of the shortest path between two points that stays on a surface. [m41](../modules/m41-ai-origin-localization.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
 
 Graph convolution
 : A network layer that mixes each point's features with those of its neighbors on a graph, such as the vertices of a mapping mesh. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -247,6 +256,9 @@ Hallucination
 
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Heat method
+: A way to compute geodesic distance on a mesh: diffuse heat briefly from the source, normalize its gradient, then solve a Poisson equation. [m06](../modules/m06-meshes-geodesics.qmd)
 
 Hematocrit
 : The fraction of blood volume made up of red cells; gadolinium in blood is confined to the rest, the plasma. [m52](../modules/m52-cardiac-mri.qmd)
@@ -296,6 +308,9 @@ k-anonymity
 Kerma-area product (KAP)
 : Air kerma times the area of the X-ray beam, in Gy·cm²; the same at any distance along the beam, so it describes the total radiation delivered. Also called dose-area product. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
+Laplace–Beltrami operator
+: The Laplacian on a curved surface: the divergence of the surface gradient. [m06](../modules/m06-meshes-geodesics.qmd)
+
 Large language model (LLM)
 : A transformer trained on very large amounts of text to predict the next token; it can follow instructions and answer questions in text. [m43](../modules/m43-foundation-models-llms.qmd)
 
@@ -303,7 +318,7 @@ Larmor frequency
 : The frequency at which nuclear magnetization precesses in a magnetic field: 42.58 MHz per tesla for protons, about 64 MHz at 1.5 T. [m52](../modules/m52-cardiac-mri.qmd)
 
 Late gadolinium enhancement (LGE)
-: MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd) [m52](../modules/m52-cardiac-mri.qmd)
+: MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd), [m52](../modules/m52-cardiac-mri.qmd)
 
 Lead field
 : An electrode's sensitivity to sources everywhere: by reciprocity, the gradient of the potential it would create by injecting unit current. [m02](../modules/m02-volume-conduction.qmd)
@@ -332,6 +347,9 @@ Linear probe
 Local activation time
 : The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)
 
+Locally Delaunay edge
+: A mesh edge whose two opposite angles add up to at most 180°; its cotangent weight is then not negative. [m06](../modules/m06-meshes-geodesics.qmd)
+
 Low-voltage area
 : A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
 
@@ -357,7 +375,7 @@ Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
 
 Negative predictive value (NPV)
-: The share of negative results that are truly negative; like the positive predictive value, it depends on prevalence. [m48](../modules/m48-imaging-workflow.qmd) [m35](../modules/m35-machine-learning.qmd)
+: The share of negative results that are truly negative; like the positive predictive value, it depends on prevalence. [m48](../modules/m48-imaging-workflow.qmd), [m35](../modules/m35-machine-learning.qmd)
 
 Net benefit
 : In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -390,7 +408,7 @@ Pacing
 : Stimulating the heart electrically from an electrode at a chosen site. [m03](../modules/m03-electrograms.qmd)
 
 Partial-volume effect
-: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd) [m54](../modules/m54-nuclear-imaging.qmd) [m48](../modules/m48-imaging-workflow.qmd)
+: A voxel, or a region blurred by the scanner, that holds more than one tissue reads a mixture of their values, so thin or small structures lose contrast and change apparent size. [m51](../modules/m51-cardiac-ct.qmd), [m54](../modules/m54-nuclear-imaging.qmd), [m48](../modules/m48-imaging-workflow.qmd)
 
 Passive catheter visualization
 : Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
@@ -414,7 +432,7 @@ Poisson's equation
 : The equation the potential obeys in a volume conductor, div(sigma grad phi) = -I_v: Ohm's law plus current conservation. [m02](../modules/m02-volume-conduction.qmd)
 
 Positive predictive value (PPV)
-: The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd) [m48](../modules/m48-imaging-workflow.qmd)
+: The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd), [m48](../modules/m48-imaging-workflow.qmd)
 
 Positron emission tomography (PET)
 : Imaging of a tracer that emits positrons; each annihilation sends two photons in opposite directions, detected together to define a line through the source. [m54](../modules/m54-nuclear-imaging.qmd)
@@ -575,6 +593,9 @@ Transseptal puncture
 Transthoracic echocardiography (TTE)
 : Ultrasound imaging of the heart from a probe on the chest wall. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Triangle mesh
+: A surface stored as vertices, edges and triangular faces; mapping systems store the chamber geometry this way. [m06](../modules/m06-meshes-geodesics.qmd)
+
 Unipolar electrogram
 : The signal of one electrode measured against a distant reference electrode. It sees local and far-field activity. [m03](../modules/m03-electrograms.qmd)
 
@@ -585,7 +606,7 @@ Ventricular tachycardia
 : A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd), [m41](../modules/m41-ai-origin-localization.qmd)
 
 Volume conductor
-: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd) [m02](../modules/m02-volume-conduction.qmd)
+: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd), [m02](../modules/m02-volume-conduction.qmd)
 
 Wavelet transform
 : A time-frequency analysis that correlates the signal with scaled copies of a short wavelet, using short windows for high frequencies and long ones for low. [m05](../modules/m05-time-frequency.qmd)

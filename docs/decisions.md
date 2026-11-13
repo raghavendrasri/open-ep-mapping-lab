@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-12 · m06 stages 1–6, meshes and geodesics
+
+- **m06** (Triangle meshes, Laplace–Beltrami operators and geodesics): five tested equations (Euler's formula, per-face
+  gradient and conduction velocity, cotangent Laplacian, sphere spectrum, heat method), two exact demos (lattice edge
+  paths; cotangent edge weights), clinical correlate (pending review), 12 interview and 6 self-check questions, a
+  Python lab (A–E) and an Octave copy (A–E).
+- **Convergence is tested on typical, not worst, error.** With barycentric vertex areas the cotangent Laplacian's
+  worst pointwise error on the icosphere stays near 0.25 at the 12 five-neighbor vertices; the tests check the median
+  and integrated errors and assert that the worst error does not fall, and the page says so.
+- **Heat method written from the paper**, with $t = h^2$ and the source vertex pinned in the Poisson step; no geometry
+  package is used, so Python, Octave and the tests share one small implementation.
+
 ## 2026-11-12 · m05 stages 1–6, time–frequency tools
 
 - **m05** (Time–frequency tools): seven tested equations (resolution, leakage, Welch variance, pulse-train spectrum,

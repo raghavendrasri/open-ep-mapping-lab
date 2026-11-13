@@ -271,6 +271,41 @@ $$
 W(s, \tau) = \frac1s\int x(t)\,\psi^*\!\left(\frac{t - \tau}{s}\right)dt, \qquad f = \frac{\omega_0}{2\pi s}
 $$
 
+## m06 · Triangle meshes, Laplace–Beltrami operators and geodesics
+
+Symbols: $V$, $E$, $F$ vertices, edges, faces; $g$ genus; $u_i$ vertex value; $T$ activation time; $A_f$, $\mathbf N_f$ face area and unit normal; $\mathbf e_i$ edge opposite vertex $i$; $\mathbf v$ conduction velocity; $\alpha_{ij}$, $\beta_{ij}$ angles opposite edge $ij$; $A_i$ vertex area; $L_C$ cotangent matrix; $\mathbf A$ diagonal of vertex areas; $\lambda$, $\phi$ eigenpair; $R$ sphere radius; $l$ degree; $t$ diffusion time; $\boldsymbol\delta_s$ unit source.
+Model: piecewise-linear functions on triangle meshes; test surfaces are flat lattices and icospheres.
+
+**Euler's formula** ([derivation](../modules/m06-meshes-geodesics.qmd#eq-m06-euler))
+
+$$
+\chi = V - E + F = 2 - 2g, \qquad 2E = 3F
+$$
+
+**Gradient on a face and conduction velocity** ([derivation](../modules/m06-meshes-geodesics.qmd#eq-m06-gradient))
+
+$$
+\nabla u\big|_f = \frac{1}{2A_f}\sum_{i \in f} u_i\,(\mathbf N_f \times \mathbf e_i), \qquad \mathbf v = \frac{\nabla T}{\lvert\nabla T\rvert^2}
+$$
+
+**Cotangent Laplacian** ([derivation](../modules/m06-meshes-geodesics.qmd#eq-m06-cotan))
+
+$$
+(\Delta u)_i \approx \frac{1}{A_i}\sum_{j \in \mathcal N(i)} \frac{\cot\alpha_{ij} + \cot\beta_{ij}}{2}\,(u_j - u_i)
+$$
+
+**Laplace–Beltrami spectrum** ([derivation](../modules/m06-meshes-geodesics.qmd#eq-m06-spectrum))
+
+$$
+-\Delta \phi = \lambda\,\phi, \qquad \lambda_l = \frac{l(l+1)}{R^2}\ \ (l = 0, 1, 2, \dots,\ \text{multiplicity } 2l + 1), \qquad -L_C\,\boldsymbol\phi = \lambda\,\mathbf A\,\boldsymbol\phi
+$$
+
+**Heat method for geodesic distance** ([derivation](../modules/m06-meshes-geodesics.qmd#eq-m06-geodesic))
+
+$$
+(\mathbf A - t\,L_C)\,\mathbf u = \boldsymbol\delta_s, \qquad \mathbf X = -\frac{\nabla u}{\lvert\nabla u\rvert}, \qquad L_C\,\boldsymbol\phi = \nabla\!\cdot\mathbf X
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
