@@ -29,6 +29,9 @@ Air kerma
 Aliasing
 : The folding of frequencies above half the sampling rate onto lower ones; once sampled, the two cannot be told apart. [m04](../modules/m04-recording-chain.qmd)
 
+Analytic signal
+: A complex signal whose real part is the original and whose imaginary part is its Hilbert transform; its angle gives an instantaneous phase, meaningful when the signal is narrowband. [m05](../modules/m05-time-frequency.qmd)
+
 Anisotropy
 : Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd)
 
@@ -127,6 +130,9 @@ Decapolar catheter
 
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Dominant frequency
+: The frequency of the largest spectral peak in a search band; for electrograms it tracks the activation rate only after suitable preprocessing. [m05](../modules/m05-time-frequency.qmd) [m29](../modules/m29-complex-maps.qmd)
 
 Double layer
 : A surface covered with current dipoles pointing normal to it; a uniform double layer's potential is proportional to the solid angle it subtends. [m01](../modules/m01-bioelectric-sources.qmd)
@@ -518,6 +524,9 @@ Spatial frequency
 Spatial resolution
 : How close two structures can be and still appear separate in an image; often quoted as the FWHM of the point-spread function. [m48](../modules/m48-imaging-workflow.qmd)
 
+Spectral leakage
+: Power from one frequency spreading into others because a finite record is a windowed signal; window choice controls it. [m05](../modules/m05-time-frequency.qmd)
+
 Speed-of-sound assumption
 : Ultrasound systems convert echo time to depth with one assumed speed of sound, commonly 1540 m/s; tissue that is faster or slower is drawn shorter or longer. [m50](../modules/m50-intracardiac-echo.qmd)
 
@@ -577,6 +586,12 @@ Ventricular tachycardia
 
 Volume conductor
 : The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd) [m02](../modules/m02-volume-conduction.qmd)
+
+Wavelet transform
+: A time-frequency analysis that correlates the signal with scaled copies of a short wavelet, using short windows for high frequencies and long ones for low. [m05](../modules/m05-time-frequency.qmd)
+
+Welch's method
+: Estimating a power spectrum by averaging the spectra of several segments, which lowers the variance at the cost of resolution. [m05](../modules/m05-time-frequency.qmd)
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
