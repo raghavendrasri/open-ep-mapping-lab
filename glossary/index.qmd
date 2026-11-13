@@ -293,6 +293,9 @@ Larmor frequency
 Late gadolinium enhancement (LGE)
 : MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd) [m52](../modules/m52-cardiac-mri.qmd)
 
+Lead field
+: An electrode's sensitivity to sources everywhere: by reciprocity, the gradient of the potential it would create by injecting unit current. [m02](../modules/m02-volume-conduction.qmd)
+
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -331,6 +334,9 @@ Magnification (projection)
 
 Membrane current
 : Current crossing the cell membrane, positive outward; ahead of a wavefront it flows out (a source) and behind it flows in (a sink). [m01](../modules/m01-bioelectric-sources.qmd)
+
+Method of images
+: Solving a problem with a flat boundary by adding mirror sources that make the boundary conditions hold; for two conductors the mirror source has strength (sigma1 - sigma2)/(sigma1 + sigma2) times the original. [m02](../modules/m02-volume-conduction.qmd)
 
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
@@ -386,6 +392,9 @@ Physics-informed neural network (PINN)
 Point-spread function (PSF)
 : The image an imaging system makes of a single point: the blur it applies to everything it shows. [m48](../modules/m48-imaging-workflow.qmd)
 
+Poisson's equation
+: The equation the potential obeys in a volume conductor, div(sigma grad phi) = -I_v: Ohm's law plus current conservation. [m02](../modules/m02-volume-conduction.qmd)
+
 Positive predictive value (PPV)
 : The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd) [m48](../modules/m48-imaging-workflow.qmd)
 
@@ -422,6 +431,9 @@ Quantum noise
 Quasi-identifier
 : A field that does not name a person on its own but can identify them in combination with others, such as age, sex, region or a procedure date. [m47](../modules/m47-data-deployment-engineering.qmd)
 
+Quasi-static approximation
+: Treating bioelectric fields as if they followed their sources instantly, neglecting capacitive, inductive and propagation effects in the volume conductor. [m02](../modules/m02-volume-conduction.qmd)
+
 Radial basis function
 : A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -433,6 +445,9 @@ Randomized controlled trial (RCT)
 
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
+
+Reciprocity
+: Helmholtz's result that the potential a source produces at an electrode equals the source dotted with the field the electrode would create by injecting unit current. [m02](../modules/m02-volume-conduction.qmd)
 
 Recovery coefficient
 : The fraction of a structure's true uptake (or contrast) that a blurred image measures; well below 1 for structures about as thin as the resolution. [m54](../modules/m54-nuclear-imaging.qmd)
@@ -546,7 +561,7 @@ Ventricular tachycardia
 : A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd), [m41](../modules/m41-ai-origin-localization.qmd)
 
 Volume conductor
-: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd)
+: The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd) [m01](../modules/m01-bioelectric-sources.qmd) [m02](../modules/m02-volume-conduction.qmd)
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)

@@ -48,6 +48,44 @@ $$
 \phi(s) = \frac{p\,s}{2\pi\sigma\,(s^2 + h^2)}
 $$
 
+## m02 · Volume conduction and Poisson's equation
+
+Symbols: $\phi$ potential, $\sigma$ conductivity ($\sigma_1$, $\sigma_2$ either side of an interface), $I_v$ current source density, $I$ point-source current, $k$ reflection coefficient, $r$, $r'$ distances to a source and its image, $h$ grid spacing, $\psi$ potential from unit current injected at an electrode, $\mathbf p$ dipole moment.
+Model: quasi-static fields, isotropic piecewise-uniform conductors.
+
+**Poisson's equation** ([derivation](../modules/m02-volume-conduction.qmd#eq-m02-poisson))
+
+$$
+\nabla\cdot\left(\sigma\,\nabla\phi\right) = -I_v
+$$
+
+**Interface conditions** ([derivation](../modules/m02-volume-conduction.qmd#eq-m02-interface))
+
+$$
+\phi_1 = \phi_2, \qquad \sigma_1\,\frac{\partial\phi_1}{\partial n} = \sigma_2\,\frac{\partial\phi_2}{\partial n}
+$$
+
+**Method of images, flat interface** ([derivation](../modules/m02-volume-conduction.qmd#eq-m02-images))
+
+$$
+k = \frac{\sigma_1 - \sigma_2}{\sigma_1 + \sigma_2}, \qquad
+\phi_1 = \frac{I}{4\pi\sigma_1}\left(\frac1r + \frac{k}{r'}\right), \qquad
+\phi_2 = \frac{I}{2\pi(\sigma_1 + \sigma_2)\,r}
+$$
+
+**Flux-conserving finite differences** ([derivation](../modules/m02-volume-conduction.qmd#eq-m02-fd))
+
+$$
+\frac{1}{h^2}\sum_{\text{4 neighbors } j} \sigma_{ij}\left(\phi_j - \phi_i\right) = -I_{v,i},
+\qquad \sigma_{ij} = \frac{2\sigma_i\sigma_j}{\sigma_i + \sigma_j}
+$$
+
+**Reciprocity and the lead field** ([derivation](../modules/m02-volume-conduction.qmd#eq-m02-reciprocity))
+
+$$
+V = \mathbf p\cdot\nabla\psi(\mathbf r_0)
+$$
+
 ## m03 · Unipolar, bipolar and omnipolar electrograms
 
 Symbols: $\sigma$ conductivity, $i_m$ membrane current per area, $V_m$ transmembrane voltage,

@@ -33,8 +33,8 @@ electrogram of m03. Uniformly resting or uniformly activated tissue makes no pot
   activated drives no membrane current and so produces no potential (@eq-m01-core; lab part F). Solid-angle theory
   reads the ECG this way [@holland1977]. A quiet electrogram means no front nearby, not necessarily no tissue.
 - **A steeper front is not a stronger source.** The front's dipole moment is $\beta\,\Delta V$ whatever its
-  width (@eq-m01-moment). What width changes is how far the source seems to be from the electrode
-  (@eq-m01-front-dipole).
+  width (@eq-m01-moment). What width changes is how far the source seems to be from the
+  electrode (@eq-m01-front-dipole).
 - **Tissue is not isotropic.** In calf trabecular muscle, conduction was 3.0 times faster along fibers than across
   them, and the intracellular resistance across fibers was 9.4 times that along them, while the extracellular ratio
   was 2.7 [@clerc1976]. Because the two ratios differ, the uniform double layer used here is an approximation; m09
