@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m12 stages 1–6, the surface ECG
+
+- **m12** (The surface ECG and the forward problem): seven tested equations (centric dipole in a sphere, off-center
+  series, lead vector, Einthoven's law, augmented leads and WCT, frontal axis, forward problem), two exact demos
+  (limb leads and axis; lead vectors of an off-center heart), clinical correlate (pending review), 12 interview and 6
+  self-check questions, a Python lab (A–E).
+- **Spherical torso, not a realistic one.** It gives closed forms and an exact series; inhomogeneous torsos stay in
+  m32.
+- **No real-data part.** PhysioNet was not reachable from the build environment, so a PTB-XL part could not be tested
+  before CI; m37 already uses PTB-XL.
+
 ## 2026-11-14 · m11 stages 1–6, the EP study
 
 - **m11** (The EP study): four tested equations (intervals, AV nodal recovery curve, Wenckebach point, post-pacing

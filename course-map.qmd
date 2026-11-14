@@ -28,7 +28,7 @@ Status shows how far each module has got.
 | m09 | [Propagation: cable theory, monodomain and bidomain, anisotropy](modules/m09-propagation.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m10 | [Arrhythmia mechanisms: focal, macro-reentry, rotors, atrial fibrillation](modules/m10-arrhythmia-mechanisms.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m11 | [The EP study: catheters, pacing protocols, intervals, entrainment](modules/m11-ep-study.qmd) | [Draft]{.status .status-draft} | v0.5 |
-| m12 | [The surface ECG and the forward problem](modules/m12-surface-ecg.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m12 | [The surface ECG and the forward problem](modules/m12-surface-ecg.qmd) | [Draft]{.status .status-draft} | v0.5 |
 
 ## Part III · Hardware and localization
 
