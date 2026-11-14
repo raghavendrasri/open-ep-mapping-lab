@@ -353,6 +353,53 @@ $$
 \mathbf x \sim \mathcal N(0, \sigma_x^2 I),\ \mathbf e \sim \mathcal N(0, \sigma_e^2 I) \;\Longrightarrow\; \operatorname{E}[\mathbf x \mid \mathbf b] = (A^\top A + \lambda^2 I)^{-1}A^\top\mathbf b, \quad \operatorname{Cov}[\mathbf x \mid \mathbf b] = \sigma_e^2 (A^\top A + \lambda^2 I)^{-1}, \quad \lambda = \frac{\sigma_e}{\sigma_x}
 $$
 
+## m08 · Action potentials and ionic models
+
+Symbols: $V$ voltage; $C_m$ capacitance; $I_{\text{ion}}$, $I_{\text{stim}}$ currents; $R$, $T$, $F$, $z$ gas constant, temperature, Faraday constant, valence; $m$, $h$ gates; $\alpha$, $\beta$ rates; FitzHugh–Nagumo $v$, $w$, $I$, $a$, $b$, $\varepsilon$; Mitchell–Schaeffer $v$, $h$, $\tau_{\text{in}}$, $\tau_{\text{out}}$, $\tau_{\text{open}}$, $\tau_{\text{close}}$, $v_{\text{gate}}$; DI diastolic interval; APD action potential duration.
+Model: single cells, no coupling; FitzHugh–Nagumo and Mitchell–Schaeffer are dimensionless in voltage.
+
+**Membrane equation** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-membrane))
+
+$$
+C_m \frac{dV}{dt} = -I_{\text{ion}} + I_{\text{stim}}
+$$
+
+**Nernst potential** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-nernst))
+
+$$
+E_X = \frac{RT}{zF}\ln\frac{[X]_o}{[X]_i}
+$$
+
+**Gating** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-gating))
+
+$$
+\frac{dm}{dt} = \alpha_m(V)(1 - m) - \beta_m(V)\,m, \qquad m_\infty = \frac{\alpha_m}{\alpha_m + \beta_m}, \quad \tau_m = \frac{1}{\alpha_m + \beta_m}, \qquad I_{\text{Na}} = \bar g_{\text{Na}}\,m^3 h\,(V - E_{\text{Na}})
+$$
+
+**FitzHugh–Nagumo model** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-fhn))
+
+$$
+\frac{dv}{dt} = v - \frac{v^3}{3} - w + I, \qquad \frac{dw}{dt} = \varepsilon\,(v + a - b\,w)
+$$
+
+**Onset of repetitive firing** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-hopf))
+
+$$
+1 - v_*^2 - \varepsilon b = 0 \;\Longrightarrow\; v_* = -\sqrt{1 - \varepsilon b}, \qquad I_H = \frac{v_*^3}{3} - v_* + \frac{v_* + a}{b}
+$$
+
+**Mitchell–Schaeffer model** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-ms))
+
+$$
+\frac{dv}{dt} = \frac{h\,v^2(1 - v)}{\tau_{\text{in}}} - \frac{v}{\tau_{\text{out}}} + J_{\text{stim}}, \qquad \frac{dh}{dt} = \begin{cases} (1 - h)/\tau_{\text{open}}, & v < v_{\text{gate}} \\ -h/\tau_{\text{close}}, & v \ge v_{\text{gate}} \end{cases}
+$$
+
+**APD and restitution (closed form)** ([derivation](../modules/m08-action-potentials.qmd#eq-m08-apd))
+
+$$
+\text{APD} \approx \tau_{\text{close}}\ln\frac{h_0}{h_{\min}}, \qquad h_{\min} = \frac{4\tau_{\text{in}}}{\tau_{\text{out}}}, \qquad h_0 = 1 - (1 - h_{\min})\,e^{-\text{DI}/\tau_{\text{open}}}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
