@@ -505,6 +505,53 @@ $$
 \text{PPI} - \text{TCL} \approx \frac{2d}{\text{CV}}, \qquad \text{PPI} \approx \text{TCL} \text{ on the circuit}
 $$
 
+## m12 · The surface ECG and the forward problem
+
+Symbols: $\mathbf p$ heart vector; $\sigma$ conductivity; $R$ torso radius; $\hat{\mathbf r}$ surface direction; $\theta$ angle to $\mathbf p$; $\mathbf r_0$ source position; $I$ point current; $\gamma$ angle to $\mathbf r_0$; $P_l$ Legendre polynomials; $\Phi_R$, $\Phi_L$, $\Phi_F$ limb potentials; I, II, III, aVR, aVL, aVF limb leads; WCT Wilson central terminal; $\mathbf L$ lead vector; $\alpha$ frontal axis.
+Model: homogeneous, insulated spherical torso; limb electrodes at Einthoven's equilateral positions.
+
+**Centric dipole in a sphere** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-sphere))
+
+$$
+\varphi(r, \theta) = \frac{p\cos\theta}{4\pi\sigma}\left(\frac{1}{r^2} + \frac{2r}{R^3}\right), \qquad \varphi(R, \theta) = \frac{3\,\mathbf p\cdot\hat{\mathbf r}}{4\pi\sigma R^2}
+$$
+
+**Off-center source in a sphere** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-series))
+
+$$
+\varphi(R, \gamma) = \frac{I}{4\pi\sigma}\sum_{l \ge 1}\frac{2l + 1}{l}\,\frac{r_0^l}{R^{l+1}}\,P_l(\cos\gamma) + \text{const}
+$$
+
+**Lead vector** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-lead))
+
+$$
+V = \mathbf L\cdot\mathbf p, \qquad \mathbf L_{ab} = \frac{3}{4\pi\sigma R^2}\left(\hat{\mathbf a} - \hat{\mathbf b}\right) \text{ for a centric dipole}
+$$
+
+**Einthoven's law** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-einthoven))
+
+$$
+\text{I} = \Phi_L - \Phi_R, \quad \text{II} = \Phi_F - \Phi_R, \quad \text{III} = \Phi_F - \Phi_L \;\Longrightarrow\; \text{I} + \text{III} = \text{II}
+$$
+
+**Augmented leads and WCT** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-augmented))
+
+$$
+\text{WCT} = \frac{\Phi_R + \Phi_L + \Phi_F}{3}, \qquad \text{aVR} = -\frac{\text{I} + \text{II}}{2}, \quad \text{aVL} = \frac{\text{I} - \text{III}}{2}, \quad \text{aVF} = \frac{\text{II} + \text{III}}{2}
+$$
+
+**Frontal axis** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-axis))
+
+$$
+\alpha = \operatorname{atan2}\!\left(\frac{2\,\text{aVF}}{\sqrt3},\ \text{I}\right)
+$$
+
+**Forward problem** ([derivation](../modules/m12-surface-ecg.qmd#eq-m12-forward))
+
+$$
+V(t) = \mathbf L\cdot\mathbf p(t), \qquad \mathbf p(t) = \int \text{dipole density of the activation fronts at time } t
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

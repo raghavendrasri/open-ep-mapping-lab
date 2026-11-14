@@ -59,6 +59,9 @@ Attention
 Audit log
 : An append-only record of every step an agent took: the tool, its arguments, the policy decision and the result, so a person can check the run afterwards. [m44](../modules/m44-agentic-ai.qmd)
 
+Augmented limb leads
+: aVR, aVL and aVF: each limb electrode measured against the mean of the other two. [m12](../modules/m12-surface-ecg.qmd)
+
 Average precision (PR AUC)
 : The area under the precision–recall curve, averaged over thresholds. Unlike the ROC AUC it falls when positives are rare. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -185,6 +188,9 @@ Effective refractory period (ERP)
 Eikonal equation
 : The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
 
+Einthoven triangle
+: The idealization in which the three limb leads have lead vectors 60 degrees apart around a centric heart vector. [m12](../modules/m12-surface-ecg.qmd)
+
 Electrical remodeling
 : Changes in ion channels and action potentials caused by an arrhythmia itself, such as shorter atrial refractoriness during atrial fibrillation. [m08](../modules/m08-action-potentials.qmd)
 
@@ -266,11 +272,17 @@ Focal loss
 Focal source
 : A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd), [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
+Forward problem
+: Computing body-surface (or electrode) potentials from known cardiac sources and a model of the torso. [m12](../modules/m12-surface-ecg.qmd)
+
 Fossa ovalis
 : The thin central part of the wall between the two atria, where a needle usually crosses from the right atrium to the left. [m50](../modules/m50-intracardiac-echo.qmd)
 
 Foundation model
 : A large model pretrained on broad, mostly unlabeled data and then adapted to many downstream tasks. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Frontal axis
+: The direction of the heart vector in the frontal plane, usually from leads I and aVF; 0 degrees toward the left arm, +90 toward the feet. [m12](../modules/m12-surface-ecg.qmd)
 
 Full width at half maximum (FWHM)
 : The width of a blur between the two points where it falls to half its peak; for a Gaussian, about 2.355 standard deviations. Used to quote the spatial resolution of scanners. [m48](../modules/m48-imaging-workflow.qmd), [m51](../modules/m51-cardiac-ct.qmd), [m54](../modules/m54-nuclear-imaging.qmd)
@@ -316,6 +328,9 @@ Hallucination
 
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Heart vector
+: The single equivalent dipole that sums the heart's current sources at one instant. [m12](../modules/m12-surface-ecg.qmd)
 
 Heat method
 : A way to compute geodesic distance on a mesh: diffuse heat briefly from the source, normalize its gradient, then solve a Poisson equation. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -399,7 +414,10 @@ Late gadolinium enhancement (LGE)
 : MRI taken some minutes after a gadolinium contrast injection, when scar and fibrosis appear bright. [m40](../modules/m40-ai-imaging-substrate.qmd), [m52](../modules/m52-cardiac-mri.qmd)
 
 Lead field
-: An electrode's sensitivity to sources everywhere: by reciprocity, the gradient of the potential it would create by injecting unit current. [m02](../modules/m02-volume-conduction.qmd)
+: An electrode's sensitivity to sources everywhere: by reciprocity, the gradient of the potential it would create by injecting unit current. [m02](../modules/m02-volume-conduction.qmd), [m12](../modules/m12-surface-ecg.qmd)
+
+Lead vector
+: The vector L for which a lead's voltage equals L . p for a dipole p; it depends on the electrodes and the torso. [m12](../modules/m12-surface-ecg.qmd)
 
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -757,6 +775,9 @@ Wenckebach periodicity
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Wilson central terminal (WCT)
+: The average of the three limb-electrode potentials, used as the reference for unipolar chest leads. [m12](../modules/m12-surface-ecg.qmd)
 
 Zero-phase filtering
 : Filtering a record forward and then backward so that phase shifts cancel; it removes filter delay but needs the whole record, so it is offline only. [m04](../modules/m04-recording-chain.qmd)
