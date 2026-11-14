@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m11 stages 1–6, the EP study
+
+- **m11** (The EP study): four tested equations (intervals, AV nodal recovery curve, Wenckebach point, post-pacing
+  interval), two exact demos (Wenckebach ladder; PPI against distance), clinical correlate (pending review), 12
+  interview and 6 self-check questions, a Python lab (A–E).
+- **No human normal intervals are quoted.** No accessible primary source for them was verified; the AV node uses
+  rabbit values from Reid et al. 2003 with an illustrative recovery time constant, labelled as such.
+- **Entrainment is simulated on the m10 ring with a dead-end branch**, which reproduces PPI − TCL ≈ 2d/CV and the
+  rate-related lengthening Stevenson et al. describe.
+
 ## 2026-11-14 · m10 stages 1–6, arrhythmia mechanisms
 
 - **m10** (Arrhythmia mechanisms): five tested equations (wavelength, circuit, restitution map, closed-form alternans
