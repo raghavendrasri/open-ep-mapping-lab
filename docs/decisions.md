@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m10 stages 1–6, arrhythmia mechanisms
+
+- **m10** (Arrhythmia mechanisms): five tested equations (wavelength, circuit, restitution map, closed-form alternans
+  onset, focal activation) plus a tested phase-singularity count, two exact demos (restitution cobweb; ring with
+  wavelength and gap), clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab
+  (A–E).
+- **Topological charge is linked to m29**, not given a new label.
+- **Ring reentry is started from a fully developed pulse.** Starting from an excited segment with a refractory block
+  launched a backward wave when the block recovered before the segment repolarized; cutting a window from a
+  traveling pulse avoids that.
+- **Spirals use Barkley's model with illustrative parameters.** A Mitchell–Schaeffer spiral with the m08 parameters
+  needs a domain of tens of centimeters; the topology is the same.
+- **The rotor debate is reported from both sides** (CONFIRM and a later two-center series), with no verdict.
+
 ## 2026-11-14 · m09 stages 1–6, propagation
 
 - **m09** (Propagation): six tested equations (cable, bidomain, monodomain, velocity scaling, anisotropy, curvature),

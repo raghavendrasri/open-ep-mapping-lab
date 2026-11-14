@@ -441,6 +441,41 @@ $$
 c(\kappa) \approx c_0 - D\,\kappa
 $$
 
+## m10 · Arrhythmia mechanisms
+
+Symbols: CV velocity; ERP refractory period; $\lambda$ wavelength; $L$ circuit length; CL cycle length; APD, DI action potential duration and diastolic interval; $f$ restitution function; $\delta$ deviation from the steady state; $\tau_{\text{open}}$, $\tau_{\text{close}}$, $h_{\min}$ m08 constants; $\mathbf x_0$ focus; $T$ activation time.
+Model: uniform tissue; one-beat memory for the restitution map.
+
+**Wavelength** ([derivation](../modules/m10-arrhythmia-mechanisms.qmd#eq-m10-wavelength))
+
+$$
+\lambda = \text{CV}\times\text{ERP}
+$$
+
+**Reentrant circuit** ([derivation](../modules/m10-arrhythmia-mechanisms.qmd#eq-m10-circuit))
+
+$$
+\text{CL} = \frac{L}{\text{CV}}, \qquad L > \lambda, \qquad \text{gap} = L - \lambda = \text{CV}\,(\text{CL} - \text{ERP})
+$$
+
+**Restitution map** ([derivation](../modules/m10-arrhythmia-mechanisms.qmd#eq-m10-restitution))
+
+$$
+\text{APD}_{n+1} = f(\text{CL} - \text{APD}_n), \qquad \delta_{n+1} = -f'(\text{DI}^*)\,\delta_n
+$$
+
+**Alternans onset (closed form)** ([derivation](../modules/m10-arrhythmia-mechanisms.qmd#eq-m10-alternans))
+
+$$
+\text{DI}_c = \tau_{\text{open}}\ln\!\Big[(1 - h_{\min})\Big(1 + \frac{\tau_{\text{close}}}{\tau_{\text{open}}}\Big)\Big]
+$$
+
+**Focal activation** ([derivation](../modules/m10-arrhythmia-mechanisms.qmd#eq-m10-focal))
+
+$$
+T(\mathbf x) = T_0 + \frac{\lvert\mathbf x - \mathbf x_0\rvert}{\text{CV}}, \qquad \text{span} = \frac{\max T - \min T}{\text{CL}} < 1
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

@@ -32,6 +32,9 @@ Air kerma
 Aliasing
 : The folding of frequencies above half the sampling rate onto lower ones; once sampled, the two cannot be told apart. [m04](../modules/m04-recording-chain.qmd)
 
+Alternans
+: Beat-to-beat alternation of action potential duration (or another quantity) at a steady pacing rate. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
+
 Analytic signal
 : A complex signal whose real part is the original and whose imaginary part is its Hilbert transform; its angle gives an instantaneous phase, meaningful when the signal is narrowband. [m05](../modules/m05-time-frequency.qmd)
 
@@ -42,7 +45,7 @@ Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
 Atrial fibrillation (AF)
-: A fast, irregular rhythm of the upper chambers, without organized atrial activity. [m37](../modules/m37-ai-ecg.qmd)
+: A fast, irregular rhythm of the upper chambers, without organized atrial activity. [m37](../modules/m37-ai-ecg.qmd), [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
 Atrium (plural atria)
 : One of the two upper chambers of the heart. [m03](../modules/m03-electrograms.qmd)
@@ -197,6 +200,9 @@ Euler characteristic
 Excitability
 : The ability of a membrane to respond to a stimulus above threshold with a full action potential. [m08](../modules/m08-action-potentials.qmd)
 
+Excitable gap
+: The recovered tissue ahead of a reentrant front: circuit length minus wavelength, or cycle length minus refractory period. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
+
 Expected improvement
 : An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
 
@@ -246,7 +252,7 @@ Focal loss
 : A cross-entropy that down-weights examples the model already gets right, so training attends to rare and hard ones. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Focal source
-: A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd)
+: A small region from which activation spreads outward. [m03](../modules/m03-electrograms.qmd), [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
 Fossa ovalis
 : The thin central part of the wall between the two atria, where a needle usually crosses from the right atrium to the left. [m50](../modules/m50-intracardiac-echo.qmd)
@@ -410,6 +416,9 @@ Locally Delaunay edge
 Low-voltage area
 : A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
 
+Macro-reentry
+: Reentry around a large circuit set by anatomy or scar, such as typical atrial flutter. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
+
 Magnetic resonance imaging (MRI)
 : Imaging of hydrogen nuclei in a strong magnetic field, with contrast from how their magnetization relaxes and position encoded by field gradients. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -481,6 +490,9 @@ Partial-volume effect
 
 Passive catheter visualization
 : Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
+Phase singularity
+: A point around which the phase of activation takes every value; a spiral wave turns around one. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
 Phase-sensitive inversion recovery (PSIR)
 : An LGE reconstruction that keeps the sign of the recovering magnetization, so it is much less sensitive to the chosen inversion time than a magnitude image. [m52](../modules/m52-cardiac-mri.qmd)
@@ -560,6 +572,9 @@ Reciprocity
 Recovery coefficient
 : The fraction of a structure's true uptake (or contrast) that a blurred image measures; well below 1 for structures about as thin as the resolution. [m54](../modules/m54-nuclear-imaging.qmd)
 
+Reentry
+: A wave that keeps re-exciting tissue by travelling around a circuit, fixed or functional, back to where it started. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
+
 Reference level (radiation dose)
 : A benchmark for the typical dose of a procedure type, set from surveys (for example the third quartile of recorded doses); used to compare and optimize practice, not as a limit for one patient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
@@ -583,6 +598,9 @@ Restitution
 
 Retrieval-augmented generation (RAG)
 : Answering with a language model after giving it passages retrieved from a chosen document collection, so that the answer can rest on, and cite, those passages. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Rotor
+: A spiral wave of excitation turning around a phase singularity. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
 RR interval
 : The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
@@ -700,6 +718,9 @@ Volume conductor
 
 Wavefront curvature
 : How sharply an activation front bends; convex fronts travel more slowly than flat ones. [m09](../modules/m09-propagation.qmd)
+
+Wavelength of excitation
+: Conduction velocity times refractory period: the length of tissue a wave keeps refractory. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
 Wavelet transform
 : A time-frequency analysis that correlates the signal with scaled copies of a short wavelet, using short windows for high frequencies and long ones for low. [m05](../modules/m05-time-frequency.qmd)
