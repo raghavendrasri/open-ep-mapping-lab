@@ -400,6 +400,47 @@ $$
 \text{APD} \approx \tau_{\text{close}}\ln\frac{h_0}{h_{\min}}, \qquad h_{\min} = \frac{4\tau_{\text{in}}}{\tau_{\text{out}}}, \qquad h_0 = 1 - (1 - h_{\min})\,e^{-\text{DI}/\tau_{\text{open}}}
 $$
 
+## m09 · Propagation: cable theory, monodomain and bidomain, anisotropy
+
+Symbols: $V$ transmembrane voltage; $\varphi_e$ extracellular potential; $r_m$, $r_i$, $r_e$, $c_m$ cable constants; $\lambda$ length constant; $\tau_m$ membrane time constant; $\sigma_i$, $\sigma_e$, $\sigma_m$ conductivities; $\chi$ area per volume; $C_m$ capacitance; $D$ diffusion coefficient; CV velocity, L and T along and across fibers; $\theta$ angle to fibers; $\kappa$ curvature; $c_0$ plane-wave velocity.
+Model: continuum tissue; Mitchell–Schaeffer kinetics in the simulations.
+
+**Passive cable** ([derivation](../modules/m09-propagation.qmd#eq-m09-cable))
+
+$$
+\lambda^2\frac{\partial^2 V}{\partial x^2} = \tau_m\frac{\partial V}{\partial t} + V, \qquad \lambda = \sqrt{\frac{r_m}{r_i + r_e}}, \quad \tau_m = r_m c_m
+$$
+
+**Bidomain equations** ([derivation](../modules/m09-propagation.qmd#eq-m09-bidomain))
+
+$$
+\nabla\cdot\big(\sigma_i\nabla(V + \varphi_e)\big) = \chi\Big(C_m\frac{\partial V}{\partial t} + I_{\text{ion}}\Big), \qquad \nabla\cdot\big((\sigma_i + \sigma_e)\nabla\varphi_e\big) = -\nabla\cdot(\sigma_i\nabla V)
+$$
+
+**Monodomain equation** ([derivation](../modules/m09-propagation.qmd#eq-m09-monodomain))
+
+$$
+\chi\Big(C_m\frac{\partial V}{\partial t} + I_{\text{ion}}\Big) = \nabla\cdot(\sigma_m\nabla V), \qquad \sigma_m = \sigma_i(\sigma_i + \sigma_e)^{-1}\sigma_e
+$$
+
+**Velocity scaling** ([derivation](../modules/m09-propagation.qmd#eq-m09-cv))
+
+$$
+\text{CV} \propto \sqrt{D}, \qquad \frac{\text{CV}_L}{\text{CV}_T} = \sqrt{\frac{\sigma_{m,L}}{\sigma_{m,T}}}
+$$
+
+**Anisotropic spread from a point** ([derivation](../modules/m09-propagation.qmd#eq-m09-anisotropy))
+
+$$
+T(\mathbf x) = \sqrt{\frac{x_L^2}{\text{CV}_L^2} + \frac{x_T^2}{\text{CV}_T^2}}, \qquad c(\theta) = \frac{\text{CV}_L\,\text{CV}_T}{\sqrt{\text{CV}_T^2\cos^2\theta + \text{CV}_L^2\sin^2\theta}}
+$$
+
+**Curvature** ([derivation](../modules/m09-propagation.qmd#eq-m09-curvature))
+
+$$
+c(\kappa) \approx c_0 - D\,\kappa
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

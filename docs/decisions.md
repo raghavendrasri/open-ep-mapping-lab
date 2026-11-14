@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m09 stages 1–6, propagation
+
+- **m09** (Propagation): six tested equations (cable, bidomain, monodomain, velocity scaling, anisotropy, curvature),
+  a simulation demo (cable velocity against conductivity and grid) and an exact demo (elliptical isochrones and
+  apparent velocity), clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **Mitchell–Schaeffer kinetics with the m08 parameters** in every simulation, so velocities and $D$ values connect
+  across Part II. m33 keeps its own illustrative constants.
+- **Clerc's resistance ratios are used as relative conductivities** (intracellular longitudinal = 1); no absolute
+  conductivities are quoted.
+
 ## 2026-11-14 · m08 stages 1–6, action potentials
 
 - **m08** (Action potentials and ionic models): seven tested equations, two simulation demos (FitzHugh–Nagumo phase

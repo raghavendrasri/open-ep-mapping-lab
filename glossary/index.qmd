@@ -9,7 +9,7 @@ Ablation
 : Destroying a small area of heart tissue on purpose, for example by radiofrequency heating, to stop an arrhythmia. [m03](../modules/m03-electrograms.qmd)
 
 Action potential
-: The rise and fall of the transmembrane voltage when a heart cell is excited. [m03](../modules/m03-electrograms.qmd) [m08](../modules/m08-action-potentials.qmd)
+: The rise and fall of the transmembrane voltage when a heart cell is excited. [m03](../modules/m03-electrograms.qmd), [m08](../modules/m08-action-potentials.qmd)
 
 Action potential duration (APD)
 : How long a cell stays depolarized after an upstroke, measured at a stated repolarization level. [m08](../modules/m08-action-potentials.qmd)
@@ -36,7 +36,7 @@ Analytic signal
 : A complex signal whose real part is the original and whose imaginary part is its Hilbert transform; its angle gives an instantaneous phase, meaningful when the signal is narrowband. [m05](../modules/m05-time-frequency.qmd)
 
 Anisotropy
-: Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd)
+: Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd), [m09](../modules/m09-propagation.qmd)
 
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
@@ -62,11 +62,17 @@ Average symmetric surface distance (ASSD)
 Bayesian optimization
 : Choosing where to measure next by modelling an unknown function with a probabilistic surrogate, such as a Gaussian process, and maximizing an acquisition function. [m41](../modules/m41-ai-origin-localization.qmd)
 
+Bidomain model
+: A tissue model with separate intracellular and extracellular potentials and conductivities, coupled through the membrane. [m09](../modules/m09-propagation.qmd)
+
 Bipolar electrogram
 : The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
 
 C-arm
 : A fluoroscopy system with the X-ray source and detector on opposite ends of a C-shaped arm that rotates around the patient. [m55](../modules/m55-multimodal-capstone.qmd)
+
+Cable equation
+: The equation for voltage along a passive fiber with leaky membrane and axial resistance. [m09](../modules/m09-propagation.qmd)
 
 Cardiac sarcoidosis
 : Inflammation of the heart by granulomas, which can cause conduction block and ventricular tachycardia; FDG PET can show active inflammation. [m54](../modules/m54-nuclear-imaging.qmd)
@@ -99,7 +105,7 @@ Conducting channel
 : A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
 
 Conduction velocity
-: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
+: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd), [m09](../modules/m09-propagation.qmd)
 
 Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
@@ -377,6 +383,9 @@ Leave-one-patient-out
 Left atrial appendage occlusion (LAAO)
 : A catheter procedure that closes the left atrial appendage with an implanted device. [m50](../modules/m50-intracardiac-echo.qmd)
 
+Length constant
+: The distance over which a held voltage decays to 1/e along a passive cable, the square root of membrane over axial resistance. [m09](../modules/m09-propagation.qmd)
+
 Lesion gap
 : A segment of an intended ablation line where the tissue was not destroyed, through which conduction can recover. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
@@ -421,6 +430,9 @@ Mitchell–Schaeffer model
 
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
+
+Monodomain model
+: A tissue model with one potential and one effective conductivity; exact in 1D or when both domains are equally anisotropic. [m09](../modules/m09-propagation.qmd)
 
 Myocardial infarction
 : Death of an area of heart muscle caused by loss of its blood supply. [m03](../modules/m03-electrograms.qmd)
@@ -605,6 +617,9 @@ Solid angle
 Source and sink
 : Places where current leaves cells into the extracellular space (source) or enters them from it (sink); every source has a matching sink. [m01](../modules/m01-bioelectric-sources.qmd)
 
+Source–sink mismatch
+: Too little depolarizing current from an excited region to bring a larger region of resting tissue to threshold, as when a wave leaves a narrow channel. [m09](../modules/m09-propagation.qmd)
+
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
 
@@ -682,6 +697,9 @@ Ventricular tachycardia
 
 Volume conductor
 : The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd), [m02](../modules/m02-volume-conduction.qmd)
+
+Wavefront curvature
+: How sharply an activation front bends; convex fronts travel more slowly than flat ones. [m09](../modules/m09-propagation.qmd)
 
 Wavelet transform
 : A time-frequency analysis that correlates the signal with scaled copies of a short wavelet, using short windows for high frequencies and long ones for low. [m05](../modules/m05-time-frequency.qmd)
