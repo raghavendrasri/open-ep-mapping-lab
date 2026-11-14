@@ -476,6 +476,35 @@ $$
 T(\mathbf x) = T_0 + \frac{\lvert\mathbf x - \mathbf x_0\rvert}{\text{CV}}, \qquad \text{span} = \frac{\max T - \min T}{\text{CL}} < 1
 $$
 
+## m11 · The EP study
+
+Symbols: $t_A$, $t_H$, $t_V$ local activation times; AH, HV intervals; NCT nodal conduction time; RT recovery time; $\text{ERP}_N$ nodal refractory period; $\text{NCT}_{\min}$, $\text{NCT}_{\max}$, $\tau$ recovery-curve constants; CL pacing cycle length; TCL tachycardia cycle length; PPI post-pacing interval; $d$ distance to the circuit; CV velocity.
+Model: one-variable AV nodal model; uniform conduction for the PPI.
+
+**AH and HV intervals** ([derivation](../modules/m11-ep-study.qmd#eq-m11-intervals))
+
+$$
+\text{AH} = t_H - t_A, \qquad \text{HV} = t_V - t_H
+$$
+
+**AV nodal recovery curve** ([derivation](../modules/m11-ep-study.qmd#eq-m11-avnode))
+
+$$
+\text{NCT}(\text{RT}) = \text{NCT}_{\min} + (\text{NCT}_{\max} - \text{NCT}_{\min})\,e^{-(\text{RT} - \text{ERP}_N)/\tau}, \qquad \text{RT} \ge \text{ERP}_N
+$$
+
+**Wenckebach point** ([derivation](../modules/m11-ep-study.qmd#eq-m11-wenckebach))
+
+$$
+\text{CL}_W = \text{ERP}_N + \text{NCT}_{\max}, \qquad \text{stable if } \frac{\text{NCT}_{\max} - \text{NCT}_{\min}}{\tau} < 1
+$$
+
+**Post-pacing interval** ([derivation](../modules/m11-ep-study.qmd#eq-m11-ppi))
+
+$$
+\text{PPI} - \text{TCL} \approx \frac{2d}{\text{CV}}, \qquad \text{PPI} \approx \text{TCL} \text{ on the circuit}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

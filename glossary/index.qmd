@@ -23,6 +23,9 @@ Active catheter tracking
 Adversarial example
 : An input changed slightly, often invisibly, so that a model gives a different output; for ECG models, a small added waveform. [m46](../modules/m46-trustworthy-ai.qmd)
 
+AH interval
+: Time from the atrial to the His deflection on the His-bundle recording; mostly conduction through the AV node. [m11](../modules/m11-ep-study.qmd)
+
 AI agent
 : A program in which a model, usually a large language model, chooses step by step which tool to call, reads the result and continues until a goal is met or a step limit is reached. [m44](../modules/m44-agentic-ai.qmd)
 
@@ -97,6 +100,12 @@ Collocation point
 
 Computed tomography (CT)
 : Imaging that measures X-ray attenuation along many lines through the body and reconstructs cross-sectional slices from those measurements. [m51](../modules/m51-cardiac-ct.qmd)
+
+Concealed conduction
+: An impulse that is blocked but still resets the excitability of the tissue it entered, so it affects the next beat. [m11](../modules/m11-ep-study.qmd)
+
+Concealed fusion
+: Entrainment of a tachycardia with no change in the surface QRS (or P wave) morphology during pacing. [m11](../modules/m11-ep-study.qmd)
 
 Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
@@ -190,6 +199,9 @@ Endocardium
 
 Ensemble
 : A set of models trained with different random choices; their spread is used as an uncertainty estimate. [m42](../modules/m42-physics-informed-ml.qmd)
+
+Entrainment
+: Capture of a reentrant circuit by pacing slightly faster than the tachycardia, without stopping it. [m11](../modules/m11-ep-study.qmd)
 
 Error budget
 : A list of the error sources in a chain of steps with their sizes; independent, unbiased errors add in quadrature, and biases add directly. [m55](../modules/m55-multimodal-capstone.qmd)
@@ -311,6 +323,9 @@ Heat method
 Hematocrit
 : The fraction of blood volume made up of red cells; gadolinium in blood is confined to the rest, the plasma. [m52](../modules/m52-cardiac-mri.qmd)
 
+His bundle
+: The bundle of conducting fibers that carries activation from the AV node to the bundle branches and Purkinje system. [m11](../modules/m11-ep-study.qmd)
+
 Hopf bifurcation
 : The point at which a steady state loses stability and small oscillations appear; in excitable cells, the onset of repetitive firing. [m08](../modules/m08-action-potentials.qmd)
 
@@ -319,6 +334,9 @@ Hounsfield unit (HU)
 
 Human approval step
 : A point in an agent's run where a person must accept or decline an action, such as any write, before it is carried out. [m44](../modules/m44-agentic-ai.qmd)
+
+HV interval
+: Time from the His deflection to the earliest ventricular activation; conduction through the His–Purkinje system. [m11](../modules/m11-ep-study.qmd)
 
 Ill-posed problem
 : A problem whose solution fails to exist, to be unique or to depend continuously on the data; small data errors then cause large solution errors. [m07](../modules/m07-inverse-problems.qmd)
@@ -518,6 +536,9 @@ Positive predictive value (PPV)
 Positron emission tomography (PET)
 : Imaging of a tracer that emits positrons; each annihilation sends two photons in opposite directions, detected together to define a line through the source. [m54](../modules/m54-nuclear-imaging.qmd)
 
+Post-pacing interval (PPI)
+: Time from the last pacing stimulus to the next local activation at the pacing site after entrainment. [m11](../modules/m11-ep-study.qmd)
+
 Pre-test probability
 : The probability of a condition before a test result is known, for example its prevalence in the group tested. [m48](../modules/m48-imaging-workflow.qmd)
 
@@ -571,6 +592,9 @@ Reciprocity
 
 Recovery coefficient
 : The fraction of a structure's true uptake (or contrast) that a blurred image measures; well below 1 for structures about as thin as the resolution. [m54](../modules/m54-nuclear-imaging.qmd)
+
+Recovery curve
+: Conduction time (or another response) against the time since the tissue last conducted, measured with premature beats. [m11](../modules/m11-ep-study.qmd)
 
 Reentry
 : A wave that keeps re-exciting tissue by travelling around a circuit, fixed or functional, back to where it started. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
@@ -727,6 +751,9 @@ Wavelet transform
 
 Welch's method
 : Estimating a power spectrum by averaging the spectra of several segments, which lowers the variance at the cost of resolution. [m05](../modules/m05-time-frequency.qmd)
+
+Wenckebach periodicity
+: Progressive lengthening of conduction time over successive beats until one beat is blocked, then repetition. [m11](../modules/m11-ep-study.qmd)
 
 WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
