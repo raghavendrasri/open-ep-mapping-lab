@@ -24,8 +24,8 @@ Status shows how far each module has got.
 
 | ID | Module | Status | Release |
 | --- | --- | --- | --- |
-| m08 | [Action potentials and ionic models, from FitzHugh–Nagumo to detailed atrial models](modules/m08-action-potentials.qmd) | [Planned]{.status .status-planned} | v0.5 |
-| m09 | [Propagation: cable theory, monodomain and bidomain, anisotropy](modules/m09-propagation.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m08 | [Action potentials and ionic models, from FitzHugh–Nagumo to detailed atrial models](modules/m08-action-potentials.qmd) | [Draft]{.status .status-draft} | v0.5 |
+| m09 | [Propagation: cable theory, monodomain and bidomain, anisotropy](modules/m09-propagation.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m10 | [Arrhythmia mechanisms: focal, macro-reentry, rotors, atrial fibrillation](modules/m10-arrhythmia-mechanisms.qmd) | [Planned]{.status .status-planned} | v0.5 |
 | m11 | [The EP study: catheters, pacing protocols, intervals, entrainment](modules/m11-ep-study.qmd) | [Planned]{.status .status-planned} | v0.5 |
 | m12 | [The surface ECG and the forward problem](modules/m12-surface-ecg.qmd) | [Planned]{.status .status-planned} | v0.5 |
