@@ -9,7 +9,10 @@ Ablation
 : Destroying a small area of heart tissue on purpose, for example by radiofrequency heating, to stop an arrhythmia. [m03](../modules/m03-electrograms.qmd)
 
 Action potential
-: The rise and fall of the transmembrane voltage when a heart cell is excited. [m03](../modules/m03-electrograms.qmd)
+: The rise and fall of the transmembrane voltage when a heart cell is excited. [m03](../modules/m03-electrograms.qmd) [m08](../modules/m08-action-potentials.qmd)
+
+Action potential duration (APD)
+: How long a cell stays depolarized after an upstroke, measured at a stated repolarization level. [m08](../modules/m08-action-potentials.qmd)
 
 Activation wavefront
 : The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
@@ -134,6 +137,9 @@ De-identification
 Decapolar catheter
 : A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd), [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Diastolic interval (DI)
+: The time from the end of one action potential to the start of the next. [m08](../modules/m08-action-potentials.qmd)
+
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
 
@@ -155,8 +161,14 @@ ECG gating
 Edema (myocardial)
 : Excess water in heart tissue after injury such as ablation; bright on T2-weighted MRI, it includes reversible injury and fades over time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
+Effective refractory period (ERP)
+: The shortest coupling interval at which a premature stimulus still captures the tissue. [m08](../modules/m08-action-potentials.qmd)
+
 Eikonal equation
 : The equation v |grad T| = 1 linking an activation-time map T to the local conduction speed v. [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd)
+
+Electrical remodeling
+: Changes in ion channels and action potentials caused by an arrhythmia itself, such as shorter atrial refractoriness during atrial fibrillation. [m08](../modules/m08-action-potentials.qmd)
 
 Electrogram
 : The voltage an electrode records from currents crossing cell membranes nearby. [m03](../modules/m03-electrograms.qmd)
@@ -175,6 +187,9 @@ Error budget
 
 Euler characteristic
 : V − E + F for a mesh with V vertices, E edges and F faces; 2 for a closed surface without handles, one less for each hole cut into it. [m06](../modules/m06-meshes-geodesics.qmd)
+
+Excitability
+: The ability of a membrane to respond to a stimulus above threshold with a full action potential. [m08](../modules/m08-action-potentials.qmd)
 
 Expected improvement
 : An acquisition function: the average amount by which a new measurement is expected to beat the best value so far. [m41](../modules/m41-ai-origin-localization.qmd)
@@ -215,6 +230,9 @@ Filter factor
 Filtered back-projection
 : CT reconstruction that filters each projection with a ramp in frequency and smears it back along its lines; without the filter the image is blurred. [m51](../modules/m51-cardiac-ct.qmd)
 
+FitzHugh–Nagumo model
+: A two-variable model of an excitable membrane, with a fast voltage-like variable and a slow recovery variable. [m08](../modules/m08-action-potentials.qmd)
+
 Fluoroscopy
 : Continuous or pulsed X-ray imaging that shows a moving shadow image, used to guide catheters, sheaths and leads. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
@@ -235,6 +253,9 @@ Full width at half maximum (FWHM)
 
 Gadolinium contrast
 : An MRI contrast agent that shortens T1 in proportion to its concentration and stays outside cells, so it accumulates where there is more extracellular space. [m52](../modules/m52-cardiac-mri.qmd)
+
+Gating variable
+: A number between 0 and 1 for the open fraction of one kind of channel gate, opening and closing at voltage-dependent rates. [m08](../modules/m08-action-potentials.qmd)
 
 Gaussian mixture model
 : A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -277,6 +298,9 @@ Heat method
 
 Hematocrit
 : The fraction of blood volume made up of red cells; gadolinium in blood is confined to the rest, the plasma. [m52](../modules/m52-cardiac-mri.qmd)
+
+Hopf bifurcation
+: The point at which a steady state loses stability and small oscillations appear; in excitable cells, the onset of repetitive firing. [m08](../modules/m08-action-potentials.qmd)
 
 Hounsfield unit (HU)
 : The CT number scale, 1000 (μ − μ_water)/(μ_water − μ_air): water is 0 and air −1000. Values depend on the X-ray beam's energy. [m51](../modules/m51-cardiac-ct.qmd)
@@ -392,6 +416,9 @@ Membrane current
 Method of images
 : Solving a problem with a flat boundary by adding mirror sources that make the boundary conditions hold; for two conductors the mirror source has strength (sigma1 - sigma2)/(sigma1 + sigma2) times the original. [m02](../modules/m02-volume-conduction.qmd)
 
+Mitchell–Schaeffer model
+: A two-variable cardiac membrane model with one gated inward current and one outward current; its action potential duration has a closed form. [m08](../modules/m08-action-potentials.qmd)
+
 Model card
 : A short document released with a trained model that states its intended use, out-of-scope uses, training and evaluation data, metrics overall and by group, and limitations. [m47](../modules/m47-data-deployment-engineering.qmd)
 
@@ -400,6 +427,9 @@ Myocardial infarction
 
 Negative predictive value (NPV)
 : The share of negative results that are truly negative; like the positive predictive value, it depends on prevalence. [m48](../modules/m48-imaging-workflow.qmd), [m35](../modules/m35-machine-learning.qmd)
+
+Nernst potential
+: The voltage at which an ion's diffusion and electrical drift balance: (RT/zF) ln of the outside-to-inside concentration ratio. [m08](../modules/m08-action-potentials.qmd)
 
 Net benefit
 : In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
@@ -524,6 +554,9 @@ Reference level (radiation dose)
 Reference standard
 : The best available method for deciding whether a condition is present, against which a test or model is judged; its own errors limit any measured accuracy. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
+Refractory period
+: The time after an action potential during which a stimulus cannot start another one, or starts only a weaker one. [m08](../modules/m08-action-potentials.qmd)
+
 Regularization
 : Adding information or constraints, such as a penalty on solution size, so that an ill-posed problem gives a stable answer. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -532,6 +565,9 @@ Remote monitoring
 
 Repetition time (TR)
 : The time between successive excitations in an MRI sequence; a real-time frame takes about the number of lines times TR. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
+Restitution
+: The dependence of action potential duration (or conduction velocity) on the preceding diastolic interval. [m08](../modules/m08-action-potentials.qmd)
 
 Retrieval-augmented generation (RAG)
 : Answering with a language model after giving it passages retrieved from a chosen document collection, so that the answer can rest on, and cite, those passages. [m43](../modules/m43-foundation-models-llms.qmd)
