@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-15 · m24 stages 1–6, interpolation, activation maps and isochrones
+
+- **m24** (Interpolation, activation maps and isochrones): five tested equations (linear interpolation error, IDW,
+  harmonic interpolation, isochrones, block and coverage), one exact and one simulation demo, clinical correlate
+  (pending review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **Harmonic interpolation as the mesh method.** It reuses the m06 cotangent Laplacian, needs no tuning, and shows the
+  free-boundary artifact clearly. Radial basis functions (m18) and Gaussian processes (m26) are left to those modules.
+- **Coverage shares a label with block.** Both are short consequences of sampling, so `eq-m24-block` carries both
+  results.
+
 ## 2026-11-15 · m23 stages 1–6, voltage mapping
 
 - **m23** (Voltage mapping): four tested equations (amplitude against height and spacing, direction, noise floor,

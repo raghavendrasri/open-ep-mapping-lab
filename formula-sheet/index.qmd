@@ -985,6 +985,41 @@ $$
 \text{sensitivity} = \Phi\Bigl(\frac{\ln t - \ln m_s}{\sigma_s}\Bigr), \qquad \text{specificity} = 1 - \Phi\Bigl(\frac{\ln t - \ln m_n}{\sigma_n}\Bigr), \qquad t^* = \sqrt{m_s m_n} \text{ if } \sigma_s = \sigma_n
 $$
 
+## m24 · Interpolation, activation maps and isochrones
+
+Symbols: $T$ activation time; $T_i$ at mapped point $i$; $h$ spacing; $\lambda_i$ barycentric weights; $d_i$ distance; $p$ IDW power; $L$ cotangent Laplacian; $\tau$ isochrone time; $\Delta\tau$ step; $c$ conduction velocity; $\Delta T$ delay across a block; $\rho$ point density; $r$ fill radius.
+Model: piecewise-linear meshes; activation from mapped points only.
+
+**Linear interpolation** ([derivation](../modules/m24-activation-maps.qmd#eq-m24-linear))
+
+$$
+T(\mathbf x) = \sum_{i=1}^{3}\lambda_i(\mathbf x)\,T_i, \qquad \lvert T - I_h T\rvert \le \frac{h^2}{8}\max\lvert T''\rvert
+$$
+
+**Inverse-distance weighting** ([derivation](../modules/m24-activation-maps.qmd#eq-m24-idw))
+
+$$
+T(\mathbf x) = \frac{\sum_i d_i^{-p}\,T_i}{\sum_i d_i^{-p}}, \qquad \min_i T_i \le T \le \max_i T_i, \qquad \nabla T(\mathbf x_i) = \mathbf 0 \text{ for } p > 1
+$$
+
+**Harmonic interpolation** ([derivation](../modules/m24-activation-maps.qmd#eq-m24-harmonic))
+
+$$
+(L\,T)_j = 0 \text{ at unmapped vertices } j, \qquad T_i \text{ fixed at mapped vertices } i
+$$
+
+**Isochrones** ([derivation](../modules/m24-activation-maps.qmd#eq-m24-isochrone))
+
+$$
+\mathbf x = \mathbf x_i + \frac{\tau - T_i}{T_j - T_i}(\mathbf x_j - \mathbf x_i), \qquad \text{spacing between isochrones } \Delta x = c\,\Delta\tau
+$$
+
+**Block and coverage** ([derivation](../modules/m24-activation-maps.qmd#eq-m24-block))
+
+$$
+c_{\text{apparent}} = \frac{h}{\Delta T}, \qquad f_{\text{covered}} = 1 - e^{-\rho\pi r^2}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
