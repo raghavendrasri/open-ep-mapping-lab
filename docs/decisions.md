@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m21 stages 1–6, image integration
+
+- **m21** (Image integration): five tested equations (Otsu's threshold, Dice and Jaccard, landmark least squares,
+  ICP, point-to-plane linearization), one simulation and one exact demo, clinical correlate (pending review), 12
+  interview and 6 self-check questions, a Python lab (A–E).
+- **Global threshold as the baseline.** Segmentation is shown with Otsu's threshold, smoothing and the largest connected
+  component; learned segmentation stays in m40.
+- **Exact correspondences in the ICP experiments.** Mapped points are samples of the image surface, so failures come
+  only from local minima, not from noise or deformation. This isolates the starting-pose effect.
+- **2D ICP in the demo.** The demo runs brute-force nearest neighbors in the browser; 3D is in the lab.
+
 ## 2026-11-14 · m20 stages 1–6, geometry from catheter positions
 
 - **m20** (Geometry from catheter positions): five tested equations (convex hull, inflate–fill–shrink closing,

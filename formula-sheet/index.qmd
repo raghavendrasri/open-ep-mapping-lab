@@ -880,6 +880,41 @@ $$
 \bar d(A, B) = \frac{\sum_{\mathbf a\in A} d(\mathbf a, B) + \sum_{\mathbf b\in B} d(\mathbf b, A)}{\lvert A\rvert + \lvert B\rvert}
 $$
 
+## m21 · Image integration
+
+Symbols: $t$ threshold; $\omega_0$, $\omega_1$ class fractions; $\mu_0$, $\mu_1$ class means; $\sigma_B^2$, $\sigma_W^2$, $\sigma_T^2$ between-class, within-class and total variance; $A$, $B$ segmentations; $D$ Dice; $J$ Jaccard; $\mathbf p_i$, $\mathbf q_i$ points; $R$ rotation; $\mathbf t$ translation; $s$ scale; $H = UDV^\top$ cross-covariance; $S$ sign matrix; $\mathbf n_i$ normals; $\boldsymbol\omega$ small rotation; $J_s$ point-to-plane Jacobian.
+Model: two-class intensity images; rigid or similarity transforms between image and map.
+
+**Otsu's threshold** ([derivation](../modules/m21-image-integration.qmd#eq-m21-threshold))
+
+$$
+\sigma_T^2 = \sigma_W^2(t) + \sigma_B^2(t), \qquad \sigma_B^2(t) = \omega_0\omega_1(\mu_0 - \mu_1)^2, \qquad t^* = \arg\max_t \sigma_B^2(t)
+$$
+
+**Dice and Jaccard** ([derivation](../modules/m21-image-integration.qmd#eq-m21-dice))
+
+$$
+D(A, B) = \frac{2\lvert A\cap B\rvert}{\lvert A\rvert + \lvert B\rvert}, \qquad J(A, B) = \frac{\lvert A\cap B\rvert}{\lvert A\cup B\rvert}, \qquad D = \frac{2J}{1 + J}
+$$
+
+**Landmark least squares** ([derivation](../modules/m21-image-integration.qmd#eq-m21-procrustes))
+
+$$
+R = U S V^\top, \quad S = \operatorname{diag}\bigl(1, \ldots, 1, \operatorname{sign}\det(UV^\top)\bigr), \quad s = \frac{\operatorname{tr}(DS)}{\frac1N\sum_i\lVert\mathbf p_i - \bar{\mathbf p}\rVert^2}, \quad \mathbf t = \bar{\mathbf q} - sR\bar{\mathbf p}
+$$
+
+**Iterative closest point** ([derivation](../modules/m21-image-integration.qmd#eq-m21-icp))
+
+$$
+j(i) = \arg\min_j \lVert R_k\mathbf p_i + \mathbf t_k - \mathbf q_j\rVert, \qquad (R_{k+1}, \mathbf t_{k+1}) = \arg\min_{R,\mathbf t}\sum_i\lVert R\mathbf p_i + \mathbf t - \mathbf q_{j(i)}\rVert^2
+$$
+
+**Point-to-plane linearization** ([derivation](../modules/m21-image-integration.qmd#eq-m21-sliding))
+
+$$
+r_i = \mathbf n_i\cdot(\boldsymbol\omega\times\mathbf p_i + \mathbf t) = (\mathbf p_i\times\mathbf n_i)\cdot\boldsymbol\omega + \mathbf n_i\cdot\mathbf t, \qquad J_s^\top J_s \text{ has a zero eigenvalue for every motion that slides the surface along itself}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

@@ -183,7 +183,7 @@ Diastolic interval (DI)
 : The time from the end of one action potential to the start of the next. [m08](../modules/m08-action-potentials.qmd)
 
 Dice coefficient
-: Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+: Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Dielectric imaging
 : Building anatomy and tissue information from how electrical fields are shaped by the conductivity and permittivity of what surrounds the electrodes. [m18](../modules/m18-hybrid-localization.qmd)
@@ -285,10 +285,10 @@ Fibrosis
 : Replacement of heart muscle by connective tissue. In the atria it can be estimated on late-gadolinium MRI. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Fiducial localization error (FLE)
-: The error in locating a landmark used for registration, in either the image or the map. [m55](../modules/m55-multimodal-capstone.qmd)
+: The error in locating a landmark used for registration, in either the image or the map. [m55](../modules/m55-multimodal-capstone.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Fiducial registration error (FRE)
-: The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd)
+: The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Field generator
 : The set of coils of known position and orientation that a magnetic localization system drives to create its reference fields. [m16](../modules/m16-magnetic-localization.qmd)
@@ -407,6 +407,9 @@ Hybrid localization
 Ill-posed problem
 : A problem whose solution fails to exist, to be unique or to depend continuously on the data; small data errors then cause large solution errors. [m07](../modules/m07-inverse-problems.qmd)
 
+Image integration
+: Bringing a CT or MRI anatomy into a mapping system's coordinates by segmentation and registration, so the catheter can be shown in it. [m21](../modules/m21-image-integration.qmd)
+
 Image intensity ratio (IIR)
 : An LGE wall intensity divided by the mean blood-pool intensity, used to compare scans that have no absolute intensity scale; thresholds on it define atrial fibrosis or scar. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -452,8 +455,11 @@ Isolation barrier
 Isthmus (VT)
 : A narrow channel of conducting tissue, bounded by scar or anatomical barriers, that a reentrant ventricular tachycardia passes through. [m51](../modules/m51-cardiac-ct.qmd)
 
+Iterative closest point (ICP)
+: Surface registration that alternately pairs each point with its nearest point on the other surface and fits a rigid transform to those pairs; it converges to the nearest local minimum. [m21](../modules/m21-image-integration.qmd)
+
 Jaccard index
-: Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd)
+: Overlap of two regions as intersection over union; Dice = 2J/(1 + J). [m40](../modules/m40-ai-imaging-substrate.qmd), [m21](../modules/m21-image-integration.qmd)
 
 k-anonymity
 : A property of a released table: every record shares its quasi-identifier values with at least k − 1 others, so a match by those values points to at least k records. [m47](../modules/m47-data-deployment-engineering.qmd)
@@ -463,6 +469,9 @@ Kerma-area product (KAP)
 
 L-curve
 : A log-log plot of solution size against residual size over all regularization parameters; its corner is one way to choose the parameter. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
+
+Landmark registration
+: Registration from paired points located in both coordinate systems, solved in closed form by least squares with an SVD. [m21](../modules/m21-image-integration.qmd)
 
 Laplace–Beltrami operator
 : The Laplacian on a curved surface: the divergence of the surface gradient. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -591,7 +600,7 @@ Omnipolar electrogram
 : A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
 
 Otsu's threshold
-: The intensity cut that splits a histogram into two classes with the largest between-class variance; used as a data-driven threshold for scar. [m52](../modules/m52-cardiac-mri.qmd)
+: The intensity cut that splits a histogram into two classes with the largest between-class variance; used as a data-driven threshold for scar. [m52](../modules/m52-cardiac-mri.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Out-of-distribution (OOD) input
 : An input unlike the data a model was trained on, such as a recording from a new device or with heavy noise, for which its outputs are not reliable. [m46](../modules/m46-trustworthy-ai.qmd)
@@ -751,7 +760,7 @@ Scar
 : Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd)
 
 Segmentation
-: Labelling which voxels of an image belong to a structure, such as the left atrium. [m40](../modules/m40-ai-imaging-substrate.qmd)
+: Labelling which voxels of an image belong to a structure, such as the left atrium. [m40](../modules/m40-ai-imaging-substrate.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Self-supervised learning
 : Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
@@ -807,6 +816,9 @@ Spreading resistance
 Standardized uptake value (SUV)
 : PET activity concentration divided by the injected activity per unit body weight, after decay correction; 1 means uniform distribution. [m54](../modules/m54-nuclear-imaging.qmd)
 
+Surface registration
+: Registration that fits one surface to another without paired points, for example by ICP; some motions slide a surface along itself without changing the fit. [m21](../modules/m21-image-integration.qmd)
+
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
 
@@ -817,7 +829,7 @@ T1 (longitudinal relaxation time)
 : The time constant with which magnetization along the field recovers after it is disturbed; gadolinium shortens it. [m52](../modules/m52-cardiac-mri.qmd)
 
 Target registration error (TRE)
-: The error after registration at a point not used for the fit, such as an ablation target; it grows with distance from the landmarks. [m55](../modules/m55-multimodal-capstone.qmd)
+: The error after registration at a point not used for the fit, such as an ablation target; it grows with distance from the landmarks. [m55](../modules/m55-multimodal-capstone.qmd), [m21](../modules/m21-image-integration.qmd)
 
 Taubin smoothing
 : Mesh smoothing that alternates a shrinking and an inflating Laplacian step, so noise is removed without the overall shrinkage of plain Laplacian smoothing. [m20](../modules/m20-geometry.qmd)
