@@ -14,6 +14,9 @@ Action potential
 Action potential duration (APD)
 : How long a cell stays depolarized after an upstroke, measured at a stated repolarization level. [m08](../modules/m08-action-potentials.qmd)
 
+Activation map
+: A map colored by local activation time, interpolated between the mapped points. [m24](../modules/m24-activation-maps.qmd)
+
 Activation wavefront
 : The moving boundary between excited and resting tissue. Also called the front. [m03](../modules/m03-electrograms.qmd)
 
@@ -182,6 +185,9 @@ De-identification
 Decapolar catheter
 : A catheter with ten electrodes along its shaft. [m03](../modules/m03-electrograms.qmd), [m39](../modules/m39-ai-electrograms-maps.qmd)
 
+Deceleration zone
+: A region of crowded isochrones on an activation map, defined in one study as more than 3 isochrones within a 1-cm radius. [m24](../modules/m24-activation-maps.qmd)
+
 Diastolic interval (DI)
 : The time from the end of one action potential to the start of the next. [m08](../modules/m08-action-potentials.qmd)
 
@@ -305,6 +311,9 @@ Field scaling
 Fill distance
 : The largest distance from any point of a surface to its nearest sample point or electrode; a measure of coverage. [m13](../modules/m13-catheter-design.qmd)
 
+Fill threshold
+: The distance from the nearest mapped point beyond which a mapping system leaves the surface uncolored. [m24](../modules/m24-activation-maps.qmd)
+
 Filter factor
 : The weight a regularization method gives each singular component of the solution: 1 or 0 for truncated SVD, s²/(s² + λ²) for Tikhonov. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -377,6 +386,9 @@ Half-value layer (HVL)
 Hallucination
 : Output of a language model that reads as fluent and confident but is false or unsupported, such as an invented number or reference. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Harmonic interpolation
+: Filling in values on a mesh by solving Laplace's equation between the known vertices; it cannot overshoot the data. [m24](../modules/m24-activation-maps.qmd)
+
 Hausdorff distance
 : The largest distance from any point of one surface to the other surface, in either direction; one stray island sets it. [m40](../modules/m40-ai-imaging-substrate.qmd), [m20](../modules/m20-geometry.qmd)
 
@@ -443,6 +455,9 @@ Intrinsic deflection
 Inverse problem
 : Recovering sources from measurements, the reverse of the forward problem that predicts measurements from sources. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
 
+Inverse-distance weighting (IDW)
+: Interpolation by a weighted mean of the data with weights proportional to distance to the power -p; for p > 1 it is flat at each data point. [m24](../modules/m24-activation-maps.qmd)
+
 Inverse-variance weighting
 : Combining independent unbiased estimates with weights proportional to one over their variances; the result is at least as precise as the best one. [m18](../modules/m18-hybrid-localization.qmd)
 
@@ -454,6 +469,9 @@ Iodinated contrast
 
 Isocenter
 : The point a C-arm rotates about; structures there are imaged at a fixed magnification. [m55](../modules/m55-multimodal-capstone.qmd)
+
+Isochrone
+: A line joining sites activated at the same time; isochrones a fixed time step apart are closer where conduction is slower. [m24](../modules/m24-activation-maps.qmd)
 
 Isolation barrier
 : The insulation and spacing that separate patient-connected circuits from mains-powered circuits; its capacitance still passes a small leakage current. [m15](../modules/m15-patient-safety.qmd)
@@ -520,6 +538,9 @@ Levenberg–Marquardt method
 
 Likelihood ratio
 : How much a test result changes the odds of disease: for a positive result, sensitivity divided by one minus specificity; for a negative result, one minus sensitivity divided by specificity. Post-test odds are pre-test odds times the likelihood ratio. [m48](../modules/m48-imaging-workflow.qmd)
+
+Line of block
+: A line across which activation does not pass directly, so sites on either side activate at very different times. [m24](../modules/m24-activation-maps.qmd)
 
 Linear probe
 : A linear classifier trained on the frozen features of a pretrained model, used to measure how much those features already encode. [m43](../modules/m43-foundation-models-llms.qmd)
