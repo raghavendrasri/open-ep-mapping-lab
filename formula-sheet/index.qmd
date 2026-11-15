@@ -845,6 +845,41 @@ $$
 \lvert H(f)\rvert = \left\lvert\frac{\sin(\pi f W)}{\pi f W}\right\rvert, \qquad \text{delay} = \frac{W}{2}
 $$
 
+## m20 · Geometry from catheter positions
+
+Symbols: $P$ positions; $H(P)$ convex hull; $B_r$ ball of radius $r$; $\oplus$, $\ominus$ dilation and erosion; $\mathbf x_i$ vertices with neighbors $N(i)$; $\lambda$, $\mu$ smoothing steps; $n$ polygon vertices, $a = 1 - \cos(2\pi/n)$; $\mathbf v_a$, $\mathbf v_b$, $\mathbf v_c$ triangle vertices; $V$ volume; $A$, $B$ surfaces; $d$ distance.
+Model: catheter positions near the wall; closed, outward-oriented meshes.
+
+**Convex hull** ([derivation](../modules/m20-geometry.qmd#eq-m20-hull))
+
+$$
+H(P) = \Bigl\{\textstyle\sum_i w_i\mathbf p_i : w_i \ge 0,\ \sum_i w_i = 1\Bigr\}, \qquad d(\mathbf w, \partial H) = \text{depth of the concavity at a wall point } \mathbf w
+$$
+
+**Inflate, fill, shrink** ([derivation](../modules/m20-geometry.qmd#eq-m20-closing))
+
+$$
+S_r(P) = \operatorname{fill}\bigl(P \oplus B_r\bigr) \ominus B_r
+$$
+
+**Smoothing** ([derivation](../modules/m20-geometry.qmd#eq-m20-smoothing))
+
+$$
+\mathbf x_i \leftarrow \mathbf x_i + \lambda\Bigl(\tfrac{1}{\lvert N(i)\rvert}\textstyle\sum_{j\in N(i)}\mathbf x_j - \mathbf x_i\Bigr), \qquad \rho \leftarrow (1 - \lambda a)\rho, \qquad \text{Taubin: } \rho \leftarrow (1 - \lambda a)(1 - \mu a)\rho
+$$
+
+**Volume and Hausdorff distance** ([derivation](../modules/m20-geometry.qmd#eq-m20-volume))
+
+$$
+V = \frac16\sum_{\text{triangles}}\mathbf v_a\cdot(\mathbf v_b\times\mathbf v_c), \qquad d_H(A, B) = \max\Bigl\{\sup_{\mathbf a\in A} d(\mathbf a, B),\ \sup_{\mathbf b\in B} d(\mathbf b, A)\Bigr\}
+$$
+
+**Mean surface distance** ([derivation](../modules/m20-geometry.qmd#eq-m20-distance))
+
+$$
+\bar d(A, B) = \frac{\sum_{\mathbf a\in A} d(\mathbf a, B) + \sum_{\mathbf b\in B} d(\mathbf b, A)}{\lvert A\rvert + \lvert B\rvert}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m20 stages 1–6, geometry from catheter positions
+
+- **m20** (Geometry from catheter positions): five tested equations (convex hull, inflate–fill–shrink closing,
+  Laplacian and Taubin smoothing, mesh volume and Hausdorff distance, mean surface distance), two simulation demos,
+  clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **2D reconstruction in the lab and demo.** A 3D closing needs many thousands of positions and large arrays, too slow
+  and memory-hungry for CI, so the reconstruction is shown on a 2D slice. Volumes and smoothing are checked in 3D.
+- **No marching cubes in code.** It would need scikit-image, which is not a course dependency; surfaces are compared on
+  voxel boundaries, and marching cubes is cited.
+
 ## 2026-11-14 · m19 stages 1–6, motion and drift
 
 - **m19** (Motion and drift): six tested equations (breathing model, gating duty cycle, reference subtraction,
