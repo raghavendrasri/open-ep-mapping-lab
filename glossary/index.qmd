@@ -278,6 +278,9 @@ Fiducial registration error (FRE)
 Field generator
 : The set of coils of known position and orientation that a magnetic localization system drives to create its reference fields. [m16](../modules/m16-magnetic-localization.qmd)
 
+Field scaling
+: Calibrating an impedance-based localization field with electrodes of known spacing, so measured potential differences give true distances. [m17](../modules/m17-impedance-localization.qmd)
+
 Fill distance
 : The largest distance from any point of a surface to its nearest sample point or electrode; a measure of coverage. [m13](../modules/m13-catheter-design.qmd)
 
@@ -388,6 +391,9 @@ Ill-posed problem
 
 Image intensity ratio (IIR)
 : An LGE wall intensity divided by the mean blood-pool intensity, used to compare scans that have no absolute intensity scale; thresholds on it define atrial fibrosis or scar. [m52](../modules/m52-cardiac-mri.qmd)
+
+Impedance localization
+: Locating catheter electrodes from the potentials that high-frequency currents between skin patches make at them. [m17](../modules/m17-impedance-localization.qmd)
 
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
@@ -580,6 +586,9 @@ Partial-volume effect
 
 Passive catheter visualization
 : Seeing a catheter on real-time MR images through the signal void or artifact its materials cause; it shows one plane at a time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
+Patch pair
+: Two skin electrodes that drive a localization current through the chest; three roughly orthogonal pairs give three coordinates. [m17](../modules/m17-impedance-localization.qmd)
 
 Phase singularity
 : A point around which the phase of activation takes every value; a spiral wave turns around one. [m10](../modules/m10-arrhythmia-mechanisms.qmd)

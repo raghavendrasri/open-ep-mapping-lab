@@ -728,6 +728,47 @@ $$
 \mathbf m_{q,k} = \alpha\,\mathbf B_k(\mathbf q), \qquad V_k = \hat{\mathbf n}\cdot\bigl[\mathbf B_k(\mathbf p) + \mathbf B(\mathbf m_{q,k};\, \mathbf p - \mathbf q)\bigr], \qquad \delta\theta \approx (J^\top J)^{-1}J^\top\,\delta\mathbf V
 $$
 
+## m17 · Impedance localization
+
+Symbols: $I$ current; $\sigma$ conductivity; $k = I/(4\pi\sigma)$; $\mathbf a$, $\mathbf b$ patches; $\phi$ potential; $d$ patch half-separation; $x$ axial position; $E_0$ central field; $\boldsymbol\phi$ three potentials; $J$ local Jacobian; $M$ metric; $\ell$ known spacing; $\sigma_{\text{ref}}$, $\sigma_{\text{local}}$ conductivities; $\delta\phi$ voltage noise.
+Model: point patches in an unbounded homogeneous medium unless stated; locally linear fields for scaling.
+
+**Patch pair** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-pair))
+
+$$
+\phi(\mathbf r) = k\left(\frac{1}{\lvert\mathbf r - \mathbf a\rvert} - \frac{1}{\lvert\mathbf r - \mathbf b\rvert}\right), \qquad k = \frac{I}{4\pi\sigma}
+$$
+
+**Axis nonlinearity** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-axis))
+
+$$
+\phi(x) = \frac{2kx}{d^2 - x^2}, \qquad E_0 = \frac{2k}{d^2}, \qquad \frac{\phi(x)/E_0 - x}{x} = \frac{x^2}{d^2 - x^2} \approx \frac{x^2}{d^2}
+$$
+
+**Linear map** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-linear))
+
+$$
+\hat x_i = \frac{\phi_i(\mathbf r)}{E_0}, \qquad i = 1, 2, 3
+$$
+
+**Field scaling** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-metric))
+
+$$
+\ell^2 = \lvert\Delta\mathbf x\rvert^2 = \Delta\boldsymbol\phi^\top M\,\Delta\boldsymbol\phi, \qquad M = (JJ^\top)^{-1}
+$$
+
+**Interface** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-interface))
+
+$$
+\frac{E_{\text{local}}}{E_{\text{ref}}} = \frac{\sigma_{\text{ref}}}{\sigma_{\text{local}}}
+$$
+
+**Precision** ([derivation](../modules/m17-impedance-localization.qmd#eq-m17-precision))
+
+$$
+\delta x = \frac{\delta\phi}{\lvert E\rvert}, \qquad \lvert E_0\rvert = \frac{2k}{d^2}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
