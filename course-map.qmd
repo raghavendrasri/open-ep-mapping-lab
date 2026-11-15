@@ -40,7 +40,7 @@ Status shows how far each module has got.
 | m16 | [Magnetic localization: field generators, sensor coils, pose solvers](modules/m16-magnetic-localization.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m17 | [Impedance (current-based) localization: patch fields, nonlinearity, field scaling](modules/m17-impedance-localization.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m18 | [Hybrid and dielectric localization concepts](modules/m18-hybrid-localization.qmd) | [Draft]{.status .status-draft} | v0.5 |
-| m19 | [Motion and drift: respiration, cardiac gating, reference catheters](modules/m19-motion-drift.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m19 | [Motion and drift: respiration, cardiac gating, reference catheters](modules/m19-motion-drift.qmd) | [Draft]{.status .status-draft} | v0.5 |
 
 ## Part IV · Map formation
 

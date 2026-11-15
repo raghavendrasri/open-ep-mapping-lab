@@ -804,6 +804,47 @@ $$
 \sigma^*(\omega) = \sigma + j\omega\varepsilon_0\varepsilon_r(\omega), \qquad \varepsilon_r(\omega) = \varepsilon_\infty + \frac{\Delta\varepsilon}{1 + j\omega\tau}, \qquad \arg Z = -\arg\sigma^*
 $$
 
+## m19 · Motion and drift
+
+Symbols: $z$ displacement from exhale; $b$ excursion; $T$ period; $n$ shape; $\delta$ gating window; $D$ duty cycle; $\sigma_x$, $\sigma_r$ SDs of point and reference motion; $\rho$ correlation; $k$ slope; $t_i$, $x_i$ landmark visits; $v$ drift rate; $\sigma$ noise; $W$ averaging window; $f$ frequency.
+Model: periodic breathing; jointly Gaussian motions; linear drift; white noise.
+
+**Breathing** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-breathing))
+
+$$
+z(t) = -b\cos^{2n}\!\left(\frac{\pi t}{T}\right)
+$$
+
+**Gating** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-gating))
+
+$$
+D = 1 - \frac{2}{\pi}\arccos\!\left[\left(\frac{\delta}{b}\right)^{1/(2n)}\right], \qquad \lvert z\rvert \le \delta \text{ for every accepted point}
+$$
+
+**Reference subtraction** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-reference))
+
+$$
+\operatorname{SD}(x - r) = \sqrt{\sigma_x^2 + \sigma_r^2 - 2\rho\sigma_x\sigma_r} < \sigma_x \iff \rho > \frac{\sigma_r}{2\sigma_x}
+$$
+
+**Surrogate regression** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-surrogate))
+
+$$
+\operatorname{SD}(x - kr - c) = \sigma_x\sqrt{1 - \rho^2}
+$$
+
+**Drift** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-drift))
+
+$$
+\hat v = \frac{\sum_i (t_i - \bar t)(x_i - \bar x)}{\sum_i (t_i - \bar t)^2}, \qquad \operatorname{SE}(\hat v) = \frac{\sigma}{\sqrt{\sum_i (t_i - \bar t)^2}}
+$$
+
+**Averaging** ([derivation](../modules/m19-motion-drift.qmd#eq-m19-average))
+
+$$
+\lvert H(f)\rvert = \left\lvert\frac{\sin(\pi f W)}{\pi f W}\right\rvert, \qquad \text{delay} = \frac{W}{2}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

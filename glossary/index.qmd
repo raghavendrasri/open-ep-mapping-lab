@@ -197,8 +197,14 @@ Dominant frequency
 Double layer
 : A surface covered with current dipoles pointing normal to it; a uniform double layer's potential is proportional to the solid angle it subtends. [m01](../modules/m01-bioelectric-sources.qmd)
 
+Drift
+: Slow change of reported positions over a procedure, for example from changing chest impedance; estimated by revisiting landmarks. [m19](../modules/m19-motion-drift.qmd)
+
 Driven right leg
 : A circuit that senses the body's common-mode voltage, inverts and amplifies it, and drives it back through the right-leg electrode to reduce it. [m14](../modules/m14-biopotential-front-ends.qmd)
+
+Duty cycle
+: The fraction of time a gate accepts data. [m19](../modules/m19-motion-drift.qmd)
 
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
@@ -696,6 +702,9 @@ Recovery curve
 Reentry
 : A wave that keeps re-exciting tissue by travelling around a circuit, fixed or functional, back to where it started. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
+Reference catheter
+: A catheter left in a stable position whose motion is used to correct other positions for shared motion. [m19](../modules/m19-motion-drift.qmd)
+
 Reference level (radiation dose)
 : A benchmark for the typical dose of a procedure type, set from surveys (for example the third quartile of recorded doses); used to compare and optimize practice, not as a limit for one patient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
 
@@ -713,6 +722,9 @@ Remote monitoring
 
 Repetition time (TR)
 : The time between successive excitations in an MRI sequence; a real-time frame takes about the number of lines times TR. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
+
+Respiratory gating
+: Accepting positions or signals only within a window of the breathing cycle, usually near end expiration. [m19](../modules/m19-motion-drift.qmd)
 
 Restitution
 : The dependence of action potential duration (or conduction velocity) on the preceding diastolic interval. [m08](../modules/m08-action-potentials.qmd)
@@ -788,6 +800,9 @@ Standardized uptake value (SUV)
 
 Surrogate model
 : A fast approximation of a slow model, fitted to runs of it and valid only in the range it was trained on. [m42](../modules/m42-physics-informed-ml.qmd)
+
+Surrogate signal
+: A measurable signal, such as diaphragm or reference-catheter motion, used to estimate motion that cannot be measured directly. [m19](../modules/m19-motion-drift.qmd)
 
 T1 (longitudinal relaxation time)
 : The time constant with which magnetization along the field recovers after it is disturbed; gadolinium shortens it. [m52](../modules/m52-cardiac-mri.qmd)
