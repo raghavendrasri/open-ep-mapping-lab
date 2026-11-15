@@ -153,8 +153,13 @@ def spectrum(V, F, k=16):
     """eq-m06-spectrum: the k smallest eigenvalues of -L_C phi = lambda A phi."""
     L = -cotan_matrix(V, F)
     M = sparse.diags(vertex_areas(V, F))
-    vals = eigsh(L.tocsc(), k=k, M=M.tocsc(), sigma=-1e-8, which="LM", return_eigenvectors=False)
-    return np.sort(vals)
+    # Ask for a few extra eigenvalues and use a fixed start vector: when k ends exactly at the edge of a degenerate
+    # cluster (as on a sphere), Lanczos can otherwise miss one member of the cluster on some runs.
+    n = L.shape[0]
+    kk = min(k + 8, n - 2)
+    vals = eigsh(L.tocsc(), k=kk, M=M.tocsc(), sigma=-1e-8, which="LM", return_eigenvectors=False,
+                 v0=np.ones(n) / np.sqrt(n))
+    return np.sort(vals)[:k]
 
 
 # ---------------------------------------------------------------- distances (eq-m06-geodesic)

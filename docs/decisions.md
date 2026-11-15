@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-15 · m22 stages 1–6, electrogram annotation
+
+- **m22** (Electrogram annotation): six tested equations (LAT and reference error, steepest downstroke and bipolar
+  peak, onset bias, threshold jitter, window of interest, far-field sharpness and template), one exact and one
+  approximate-model demo, clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab
+  (A–E).
+- **One electrogram model throughout.** Annotation rules are compared on the m03 arctangent front, so their offsets are
+  exact for that model; real signals add curvature, fractionation and filtering.
+- **Smooth noise in the jitter checks.** Noise is low-pass filtered so the threshold-crossing formula applies; the lab
+  also shows how fast noise breaks the derivative-based rule.
+- **m06 spectrum made deterministic.** CI on #97 failed once in `test_m06_meshes.py::test_spectrum`: asking for exactly
+  16 eigenvalues ends at the edge of the sphere's 7-fold l = 3 cluster, and Lanczos sometimes missed one member.
+  `meshes.spectrum` now computes 8 extra eigenvalues from a fixed start vector and returns the smallest k.
+
 ## 2026-11-14 · m21 stages 1–6, image integration
 
 - **m21** (Image integration): five tested equations (Otsu's threshold, Dice and Jaccard, landmark least squares,
