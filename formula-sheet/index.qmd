@@ -915,6 +915,47 @@ $$
 r_i = \mathbf n_i\cdot(\boldsymbol\omega\times\mathbf p_i + \mathbf t) = (\mathbf p_i\times\mathbf n_i)\cdot\boldsymbol\omega + \mathbf n_i\cdot\mathbf t, \qquad J_s^\top J_s \text{ has a zero eigenvalue for every motion that slides the surface along itself}
 $$
 
+## m22 · Electrogram annotation
+
+Symbols: $t_i$ local time; $t_{\mathrm{ref}}$ reference time; $\sigma_a$, $\sigma_r$ annotation and reference SDs; $U$ unipolar potential with strength $A$; $s$ front distance; $c$ conduction velocity; $a = w + h$; $B$ bipolar potential; $d$ spacing; $\theta$ bipole angle; $t_{\mathrm{mid}}$ midpoint activation; $f$ onset fraction; $\sigma_n$ noise SD; $x$ signal; $T$ cycle length; $w_0$, $W$ window start and width; $l$ local signal; $\phi$ far-field template; $g$ gain.
+Model: the m03 arctangent front; planar propagation; a stable reference and cycle.
+
+**Local activation time** ([derivation](../modules/m22-annotation.qmd#eq-m22-lat))
+
+$$
+\mathrm{LAT}_i = t_i - t_{\mathrm{ref}}, \qquad \operatorname{Var}(\mathrm{LAT}_i - \mathrm{LAT}_j) = 2\sigma_a^2 + \begin{cases} 0 & \text{same beat} \\ 2\sigma_r^2 & \text{different beats} \end{cases}
+$$
+
+**Steepest downstroke and bipolar peak** ([derivation](../modules/m22-annotation.qmd#eq-m22-intrinsic))
+
+$$
+\frac{dU}{ds} = A\frac{a^2 - s^2}{(s^2 + a^2)^2} \text{ is largest at } s = 0, \qquad B(t_{\mathrm{mid}} + \tau) = B(t_{\mathrm{mid}} - \tau), \quad \lvert B\rvert \text{ peaks at } t_{\mathrm{mid}} \text{ if } d\cos\theta < 2\sqrt3\,a
+$$
+
+**Onset bias** ([derivation](../modules/m22-annotation.qmd#eq-m22-onset))
+
+$$
+t_{\mathrm{mid}} - t_{\mathrm{on}} = \frac{a}{c}\sqrt{x_f}, \qquad \frac{1 - x_f}{(1 + x_f)^2} = f
+$$
+
+**Threshold jitter** ([derivation](../modules/m22-annotation.qmd#eq-m22-jitter))
+
+$$
+\sigma_t = \frac{\sigma_n}{\lvert x'(t_c)\rvert}
+$$
+
+**Window of interest** ([derivation](../modules/m22-annotation.qmd#eq-m22-woi))
+
+$$
+\mathrm{LAT}_W = w_0 + \bigl((t - t_{\mathrm{ref}} - w_0) \bmod T\bigr), \quad \text{kept only if } \mathrm{LAT}_W < w_0 + W
+$$
+
+**Far-field sharpness and template** ([derivation](../modules/m22-annotation.qmd#eq-m22-farfield))
+
+$$
+\frac{\max\lvert dU/dt\rvert}{\operatorname{pp}(U)} = \frac{c}{a}, \qquad x = l + g\phi \;\Rightarrow\; \hat g = \frac{\langle x, \phi\rangle}{\langle \phi, \phi\rangle} = g + \frac{\langle l, \phi\rangle}{\langle \phi, \phi\rangle}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

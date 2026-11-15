@@ -167,6 +167,9 @@ Current dipole
 CUSUM
 : Cumulative sum: a running sum of deviations above a target, reset at zero, that raises an alarm when it crosses a threshold. Used to detect a lasting shift in a monitored quantity. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
+Cycle length
+: The time between successive activations in a repeating rhythm, in ms. [m22](../modules/m22-annotation.qmd)
+
 Data augmentation
 : Training on altered copies of the data (for example, flipped or noisier signals) so a model ignores the alteration. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -208,6 +211,9 @@ Driven right leg
 
 Duty cycle
 : The fraction of time a gate accepts data. [m19](../modules/m19-motion-drift.qmd)
+
+Early meets late
+: In an activation map of a reentry, the place where the earliest and latest times sit side by side; it marks where the window of interest wraps, not necessarily a block line. [m22](../modules/m22-annotation.qmd)
 
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
@@ -267,7 +273,7 @@ Extracellular volume (ECV)
 : The fraction of a tissue's volume outside cells. MRI estimates it from T1 before and after gadolinium and the hematocrit; scar and fibrosis raise it. [m52](../modules/m52-cardiac-mri.qmd)
 
 Far-field signal
-: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd)
+: Activity that an electrode picks up from tissue that is not directly under it. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd), [m22](../modules/m22-annotation.qmd)
 
 Fast marching method
 : An algorithm that solves the eikonal equation by advancing a front from the source in order of arrival, on grids or triangle meshes. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -432,7 +438,7 @@ Intracardiac echocardiography (ICE)
 : Ultrasound imaging from a catheter inside the heart, used during procedures to see anatomy and build shells. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Intrinsic deflection
-: The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd)
+: The steepest downstroke of a unipolar electrogram, used to mark local activation. [m03](../modules/m03-electrograms.qmd), [m22](../modules/m22-annotation.qmd)
 
 Inverse problem
 : Recovering sources from measurements, the reverse of the forward problem that predicts measurements from sources. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
@@ -519,7 +525,7 @@ Linear probe
 : A linear classifier trained on the frozen features of a pretrained model, used to measure how much those features already encode. [m43](../modules/m43-foundation-models-llms.qmd)
 
 Local activation time
-: The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd)
+: The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd), [m22](../modules/m22-annotation.qmd)
 
 Locally Delaunay edge
 : A mesh edge whose two opposite angles add up to at most 180°; its cotangent weight is then not negative. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -718,10 +724,13 @@ Recovery curve
 : Conduction time (or another response) against the time since the tissue last conducted, measured with premature beats. [m11](../modules/m11-ep-study.qmd)
 
 Reentry
-: A wave that keeps re-exciting tissue by travelling around a circuit, fixed or functional, back to where it started. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
+: A wave that keeps re-exciting tissue by travelling around a circuit, fixed or functional, back to where it started. [m10](../modules/m10-arrhythmia-mechanisms.qmd), [m22](../modules/m22-annotation.qmd)
 
 Reference catheter
 : A catheter left in a stable position whose motion is used to correct other positions for shared motion. [m19](../modules/m19-motion-drift.qmd)
+
+Reference electrogram
+: A stable electrogram, often from the coronary sinus, whose annotated time on each beat is subtracted from local times to give local activation times. [m22](../modules/m22-annotation.qmd)
 
 Reference level (radiation dose)
 : A benchmark for the typical dose of a procedure type, set from surveys (for example the third quartile of recorded doses); used to compare and optimize practice, not as a limit for one patient. [m49](../modules/m49-fluoroscopy-radiation.qmd)
@@ -911,6 +920,9 @@ WFDB format
 
 Wilson central terminal (WCT)
 : The average of the three limb-electrode potentials, used as the reference for unipolar chest leads. [m12](../modules/m12-surface-ecg.qmd), [m14](../modules/m14-biopotential-front-ends.qmd)
+
+Window of interest
+: The span of time around the reference within which local activations are annotated; in a reentry it selects which cycle's activation each site shows. [m22](../modules/m22-annotation.qmd)
 
 Zero-phase filtering
 : Filtering a record forward and then backward so that phase shifts cancel; it removes filter delay but needs the whole record, so it is offline only. [m04](../modules/m04-recording-chain.qmd)
