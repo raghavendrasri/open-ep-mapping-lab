@@ -102,7 +102,7 @@ Central-slice theorem
 : The 1-D Fourier transform of a projection equals the 2-D Fourier transform of the image along the line through the origin at the same angle; it is why projections at enough angles determine a CT slice. [m51](../modules/m51-cardiac-ct.qmd)
 
 Clique
-: A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd)
+: A small group of electrodes, such as a triangle or a square, whose bipoles are combined to estimate the local electric field. [m03](../modules/m03-electrograms.qmd), [m25](../modules/m25-conduction-velocity.qmd)
 
 Cohen's kappa
 : Agreement between two raters or methods beyond what chance would give: (observed − expected agreement) / (1 − expected agreement). [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
@@ -138,7 +138,7 @@ Conducting channel
 : A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
 
 Conduction velocity
-: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd), [m09](../modules/m09-propagation.qmd)
+: The speed at which the activation wavefront travels through tissue, in m/s (1 m/s = 1 mm/ms). [m03](../modules/m03-electrograms.qmd), [m42](../modules/m42-physics-informed-ml.qmd), [m06](../modules/m06-meshes-geodesics.qmd), [m09](../modules/m09-propagation.qmd), [m25](../modules/m25-conduction-velocity.qmd)
 
 Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
@@ -548,6 +548,9 @@ Linear probe
 Local activation time
 : The moment the activation wavefront reaches a given site. [m03](../modules/m03-electrograms.qmd), [m22](../modules/m22-annotation.qmd)
 
+Local plane fit
+: Estimating the activation-time gradient by fitting a plane to the activation times of nearby points by least squares; more points reduce noise, a larger radius adds bias where activation curves. [m25](../modules/m25-conduction-velocity.qmd)
+
 Locally Delaunay edge
 : A mesh edge whose two opposite angles add up to at most 180°; its cotangent weight is then not negative. [m06](../modules/m06-meshes-geodesics.qmd)
 
@@ -627,7 +630,7 @@ Nyquist frequency
 : Half the sampling rate: the highest frequency a sampled signal can represent without aliasing. [m04](../modules/m04-recording-chain.qmd)
 
 Omnipolar electrogram
-: A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd)
+: A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd), [m25](../modules/m25-conduction-velocity.qmd)
 
 Otsu's threshold
 : The intensity cut that splits a histogram into two classes with the largest between-class variance; used as a data-driven threshold for scar. [m52](../modules/m52-cardiac-mri.qmd), [m21](../modules/m21-image-integration.qmd)
@@ -915,11 +918,17 @@ Transthoracic echocardiography (TTE)
 Triangle mesh
 : A surface stored as vertices, edges and triangular faces; mapping systems store the chamber geometry this way. [m06](../modules/m06-meshes-geodesics.qmd)
 
+Triangulation (conduction velocity)
+: Estimating the activation-time gradient from three points by solving two linear equations; thin triangles amplify timing error. [m25](../modules/m25-conduction-velocity.qmd)
+
 Truncated SVD
 : Regularization that keeps only the components of the largest singular values. [m07](../modules/m07-inverse-problems.qmd)
 
 Unipolar electrogram
 : The signal of one electrode measured against a distant reference electrode. It sees local and far-field activity. [m03](../modules/m03-electrograms.qmd)
+
+Velocity vector
+: Conduction speed with direction: the activation-time gradient divided by its squared magnitude. [m25](../modules/m25-conduction-velocity.qmd)
 
 Ventricle
 : One of the two lower chambers of the heart. [m03](../modules/m03-electrograms.qmd)

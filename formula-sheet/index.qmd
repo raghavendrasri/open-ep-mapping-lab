@@ -1020,6 +1020,41 @@ $$
 c_{\text{apparent}} = \frac{h}{\Delta T}, \qquad f_{\text{covered}} = 1 - e^{-\rho\pi r^2}
 $$
 
+## m25 · Conduction velocity estimation
+
+Symbols: $T$ activation time; $\mathbf g = \nabla T$; $\mathbf v$ velocity; $c$ speed; $\sigma$ timing SD; $\sigma_g$ gradient SD; $h$ spacing; $E$ edge matrix; $S$ difference covariance pattern; $X_c$ centered coordinates; $n$ points; $R$ fit radius; $\phi$ potential; $\phi_t$ its time derivative; $a$ m03 length scale; $d$ clique spacing.
+Model: independent timing errors; plane waves for the potential-based result.
+
+**Speed from a gradient** ([derivation](../modules/m25-conduction-velocity.qmd#eq-m25-gradient))
+
+$$
+\mathbf v = \frac{\nabla T}{\lvert\nabla T\rvert^2}, \qquad c = \frac{1}{\lvert\nabla T\rvert}, \qquad \mathrm E\lvert\hat{\mathbf g}\rvert^2 = \lvert\mathbf g\rvert^2 + 2\sigma_g^2 \text{ (2D)}
+$$
+
+**Two points** ([derivation](../modules/m25-conduction-velocity.qmd#eq-m25-pair))
+
+$$
+\frac{\sigma_c}{c} = \frac{\sqrt2\,\sigma\,c}{h}
+$$
+
+**Triangle** ([derivation](../modules/m25-conduction-velocity.qmd#eq-m25-triangle))
+
+$$
+E = \begin{pmatrix} (\mathbf x_2 - \mathbf x_1)^\top \\ (\mathbf x_3 - \mathbf x_1)^\top \end{pmatrix}, \qquad E\,\mathbf g = \begin{pmatrix} T_2 - T_1 \\ T_3 - T_1 \end{pmatrix}, \qquad \operatorname{Cov}(\hat{\mathbf g}) = \sigma^2 E^{-1} S E^{-\top}, \quad S = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}
+$$
+
+**Local plane fit** ([derivation](../modules/m25-conduction-velocity.qmd#eq-m25-planefit))
+
+$$
+\hat{\mathbf g} = \arg\min_{\mathbf g, t_0}\sum_i\bigl(T_i - t_0 - \mathbf g\cdot\mathbf x_i\bigr)^2, \qquad \operatorname{Cov}(\hat{\mathbf g}) = \sigma^2(X_c^\top X_c)^{-1} \approx \Bigl(\frac{2\sigma}{R\sqrt n}\Bigr)^2 I \text{ for a disk}
+$$
+
+**Potential-based velocity** ([derivation](../modules/m25-conduction-velocity.qmd#eq-m25-omnipolar))
+
+$$
+\mathbf v = -\frac{\phi_t\,\nabla\phi}{\lvert\nabla\phi\rvert^2}, \qquad \frac{\hat c}{c} = 1 + \frac{(d/2)^2}{a^2} \text{ for a cross-shaped clique at the front's arrival along an axis}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
