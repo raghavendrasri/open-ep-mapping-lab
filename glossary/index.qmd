@@ -68,6 +68,9 @@ Average precision (PR AUC)
 Average symmetric surface distance (ASSD)
 : The mean distance between two surfaces, measured from each to the other; a typical-error measure for segmentations. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
+Basket catheter
+: A catheter whose electrodes sit on flexible splines that open into a cage filling a chamber, for simultaneous recording over a wide area. [m13](../modules/m13-catheter-design.qmd)
+
 Bayesian optimization
 : Choosing where to measure next by modelling an unknown function with a probabilistic surrogate, such as a Gaussian process, and maximizing an acquisition function. [m41](../modules/m41-ai-origin-localization.qmd)
 
@@ -75,7 +78,7 @@ Bidomain model
 : A tissue model with separate intracellular and extracellular potentials and conductivities, coupled through the membrane. [m09](../modules/m09-propagation.qmd)
 
 Bipolar electrogram
-: The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd)
+: The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd), [m13](../modules/m13-catheter-design.qmd)
 
 C-arm
 : A fluoroscopy system with the X-ray source and detector on opposite ends of a C-shaped arm that rotates around the patient. [m55](../modules/m55-multimodal-capstone.qmd)
@@ -114,7 +117,7 @@ Concordance index (C index)
 : For a risk score, the share of comparable patient pairs in which the patient with the earlier event had the higher score; 0.5 is chance. [m40](../modules/m40-ai-imaging-substrate.qmd)
 
 Condition number
-: The ratio of a matrix's largest to smallest singular value; it bounds how much a relative error in the data can grow in the solution. [m07](../modules/m07-inverse-problems.qmd)
+: The ratio of a matrix's largest to smallest singular value; it bounds how much a relative error in the data can grow in the solution. [m07](../modules/m07-inverse-problems.qmd), [m13](../modules/m13-catheter-design.qmd)
 
 Conducting channel
 : A corridor of surviving tissue through scar that may carry a reentrant ventricular tachycardia; post-processing software can identify candidate channels on LGE. [m52](../modules/m52-cardiac-mri.qmd)
@@ -124,6 +127,9 @@ Conduction velocity
 
 Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
+
+Contact force
+: The force between a catheter tip and the tissue, measured from the deformation of a small spring element near the tip. [m13](../modules/m13-catheter-design.qmd)
 
 Contrast-to-noise ratio (CNR)
 : The difference between two tissues' mean signals divided by the noise standard deviation; it decides whether they can be told apart, and averaging n independent samples multiplies it by the square root of n. [m48](../modules/m48-imaging-workflow.qmd), [m49](../modules/m49-fluoroscopy-radiation.qmd)
@@ -254,6 +260,9 @@ Fiducial localization error (FLE)
 Fiducial registration error (FRE)
 : The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd)
 
+Fill distance
+: The largest distance from any point of a surface to its nearest sample point or electrode; a measure of coverage. [m13](../modules/m13-catheter-design.qmd)
+
 Filter factor
 : The weight a regularization method gives each singular component of the solution: 1 or 0 for truncated SVD, s²/(s² + λ²) for Tikhonov. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -337,6 +346,9 @@ Heat method
 
 Hematocrit
 : The fraction of blood volume made up of red cells; gadolinium in blood is confined to the rest, the plasma. [m52](../modules/m52-cardiac-mri.qmd)
+
+High-density grid
+: A catheter whose electrodes form a planar array, so bipoles can be formed along two perpendicular directions. [m13](../modules/m13-catheter-design.qmd)
 
 His bundle
 : The bundle of conducting fibers that carries activation from the AV node to the bundle branches and Purkinje system. [m11](../modules/m11-ep-study.qmd)
@@ -683,6 +695,9 @@ Source–sink mismatch
 Spatial frequency
 : How quickly a pattern varies in space, in rad/mm. Fine detail has high spatial frequency. [m03](../modules/m03-electrograms.qmd)
 
+Spatial Nyquist limit
+: The highest spatial wavenumber, pi divided by the electrode spacing, that a regular array of electrodes can represent without aliasing. [m13](../modules/m13-catheter-design.qmd)
+
 Spatial resolution
 : How close two structures can be and still appear separate in an image; often quoted as the FWHM of the point-spread function. [m48](../modules/m48-imaging-workflow.qmd)
 
@@ -691,6 +706,9 @@ Spectral leakage
 
 Speed-of-sound assumption
 : Ultrasound systems convert echo time to depth with one assumed speed of sound, commonly 1540 m/s; tissue that is faster or slower is drawn shorter or longer. [m50](../modules/m50-intracardiac-echo.qmd)
+
+Spreading resistance
+: The resistance between a small electrode and a distant return, concentrated in the medium near the electrode; it scales as one over the electrode's size. [m13](../modules/m13-catheter-design.qmd)
 
 Standardized uptake value (SUV)
 : PET activity concentration divided by the injected activity per unit body weight, after decay correction; 1 means uniform distribution. [m54](../modules/m54-nuclear-imaging.qmd)

@@ -2,6 +2,19 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m13 stages 1–6, catheter design
+
+- **m13** (Catheter design): six tested equations (spreading resistance, bipole direction, spatial aliasing against
+  height, basket spacing, least-squares contact force and its noise), two exact demos, clinical correlate (pending
+  review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **Spacing rule from the Poisson kernel.** The sharpest gradient signal a planar front can make at height h has
+  spectrum exp(-|k|h), which gives a closed-form aliased-energy fraction exp(-2 pi h / spacing). It makes the point
+  that spacing must scale with height without a simulation.
+- **Contact force as least squares.** Sensing is described generically (a spring element and a few strain sensors);
+  the three-sensor model matches the published optical design without using any vendor's calibration.
+- **Fill distance measured over the electrode band.** No basket electrode reaches the poles, so whole-sphere fill
+  distance is dominated by the polar gap and hides spline spacing.
+
 ## 2026-11-14 · m12 stages 1–6, the surface ECG
 
 - **m12** (The surface ECG and the forward problem): seven tested equations (centric dipole in a sphere, off-center

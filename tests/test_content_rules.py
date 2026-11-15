@@ -297,6 +297,15 @@ def test_no_line_starts_with_a_cross_reference(path):
     assert not bad, f"{path.name}: lines start with a cross-reference: {bad}"
 
 
+@pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
+def test_equation_cross_references_stay_in_their_page(path):
+    """Quarto resolves @eq-... only within one page. Another module's equation needs a link,
+    [eq-m08-apd](m08-action-potentials.qmd#eq-m08-apd), or it renders as "?@eq-m08-apd"."""
+    own = path.name[:3]
+    other = sorted({m for m in re.findall(r"@eq-(m\d\d)-", path.read_text()) if m != own})
+    assert not other, f"{path.name}: @eq references to other modules {other}; use a link instead"
+
+
 def display_equations(text):
     """Map label -> normalized LaTeX for every labelled display equation $$ ... $$ {#eq-...}."""
     norm = lambda tex: re.sub(r"\s+", "", tex)

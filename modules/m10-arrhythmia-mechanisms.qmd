@@ -116,7 +116,7 @@ rate, and a small further acceleration produced unidirectional block, reentry an
 
 **Assumptions**
 
-- Model: the restitution map @eq-m10-restitution with the m08 closed-form restitution (@eq-m08-apd), starting 5 ms
+- Model: the restitution map @eq-m10-restitution with the m08 closed-form restitution ([eq-m08-apd](m08-action-potentials.qmd#eq-m08-apd)), starting 5 ms
   away from the steady state. Tested against `epml.arrhythmia`.
 - Parameters: Mitchell–Schaeffer constants as in m08 [@nietoramos2023]; the cycle length is adjustable.
 - What it ignores: memory beyond one beat, calcium-driven alternans, coupling to neighboring cells, and the gap between
