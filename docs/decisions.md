@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m17 stages 1–6, impedance localization
+
+- **m17** (Impedance localization): six tested equations (patch-pair potential, axis nonlinearity, linear map, field
+  scaling as a local metric, interface stretch, precision), two exact demos, clinical correlate (pending review),
+  12 interview and 6 self-check questions, a Python lab (A–E).
+- **Field scaling as a metric tensor.** Known electrode spacings give l^2 = dphi^T M dphi, linear in the six entries
+  of M = (J J^T)^-1. This is our own formalization of the principle; the page says products do not publish theirs in
+  this form.
+- **Unbounded homogeneous torso.** It gives closed forms for the nonlinearity; inhomogeneity is shown with a 1D layered
+  model rather than a full torso solve.
+
 ## 2026-11-14 · m16 stages 1–6, magnetic localization
 
 - **m16** (Magnetic localization): seven tested equations (dipole field, coil voltage, measurement model and least
