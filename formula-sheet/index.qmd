@@ -593,6 +593,59 @@ $$
 \operatorname{cov}(\hat{\mathbf F}) = \sigma_s^2\,(C^\top C)^{-1}, \qquad \operatorname{SD}(\hat F_x) = \operatorname{SD}(\hat F_y) = \sqrt{\tfrac{2}{3}}\,\frac{\sigma_s}{\beta}, \qquad \operatorname{SD}(\hat F_z) = \frac{\sigma_s}{\sqrt3\,\alpha}
 $$
 
+## m14 · Biopotential front ends
+
+Symbols: $v_d$, $v_{cm}$ differential and common-mode voltages; $A_d$, $A_{cm}$ their gains; $R_1$–$R_4$ difference-stage resistors; $G$ stage gain; $t$ tolerance; $G_1$ input-stage gain; $Z_1$, $Z_2$ electrode impedances; $Z_{cm}$ common-mode input impedance; $i_d$ displacement current; $Z_{RL}$ right-leg impedance; $G_{RL}$ loop gain; $k$ Boltzmann's constant; $T$ temperature; $R_s$ source resistance; $e_n$, $i_n$ amplifier noise densities; $B$ bandwidth; $\Phi_i$ limb potentials; $R_W$ Wilson resistors; $N$ bits; $m$ samples averaged.
+Model: ideal op amps; resistive electrodes; white noise.
+
+**Differential and common mode** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-cmrr))
+
+$$
+v_d = v_+ - v_-, \quad v_{cm} = \frac{v_+ + v_-}{2}, \qquad v_{out} = A_d v_d + A_{cm} v_{cm}, \qquad \text{CMRR} = \left\lvert\frac{A_d}{A_{cm}}\right\rvert
+$$
+
+**Difference amplifier** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-diffamp))
+
+$$
+v_{out} = v_+\frac{R_4}{R_3 + R_4}\left(1 + \frac{R_2}{R_1}\right) - v_-\frac{R_2}{R_1}, \qquad \text{CMRR}_{\text{worst}} \approx \frac{1 + G}{4t}
+$$
+
+**Instrumentation amplifier** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-inamp))
+
+$$
+G_1 = 1 + \frac{2R}{R_G}, \qquad \text{CMRR}_{\text{total}} = G_1 \times \text{CMRR}_{\text{difference stage}}
+$$
+
+**Electrode impedance mismatch** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-imbalance))
+
+$$
+v_{d,\text{error}} = v_{cm}\left(\frac{Z_{cm}}{Z_{cm} + Z_2} - \frac{Z_{cm}}{Z_{cm} + Z_1}\right) \approx v_{cm}\frac{Z_1 - Z_2}{Z_{cm}}, \qquad \text{CMRR}_{\text{imbalance}} = \left\lvert\frac{Z_{cm}}{\Delta Z}\right\rvert
+$$
+
+**Driven right leg** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-drl))
+
+$$
+v_{cm} = i_d Z_{RL} - G_{RL}\,v_{cm} \;\Longrightarrow\; v_{cm} = \frac{i_d Z_{RL}}{1 + G_{RL}}
+$$
+
+**Noise** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-noise))
+
+$$
+e_{\text{total}}^2 = 4kTR_s + e_n^2 + (i_n R_s)^2, \qquad v_{\text{rms}} = e_{\text{total}}\sqrt{B}, \qquad R_{s,\text{opt}} = \frac{e_n}{i_n}
+$$
+
+**Wilson central terminal** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-wct))
+
+$$
+\Phi_{\text{WCT}} = \frac{\sum_i \Phi_i/(R_W + Z_i)}{\sum_i 1/(R_W + Z_i)}
+$$
+
+**Converter and oversampling** ([derivation](../modules/m14-biopotential-front-ends.qmd#eq-m14-oversampling))
+
+$$
+q_{\text{in}} = \frac{V_{FS}}{G\,2^N}, \qquad N \ge \log_2\frac{\text{span}}{\text{step}}, \qquad \Delta\text{SNR} = 10\log_{10} m \text{ dB}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

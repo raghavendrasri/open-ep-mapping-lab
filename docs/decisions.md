@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m14 stages 1–6, biopotential front ends
+
+- **m14** (Biopotential front ends): eight tested equations (modes and CMRR, difference amplifier, instrumentation
+  amplifier, electrode mismatch, driven right leg, noise, Wilson central terminal, converter and oversampling), two
+  exact demos, clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **No product values.** Amplifier noise densities, resistor tolerances, input capacitances and the common-mode
+  voltage are adjustable illustrative choices; the page says so. No standard's limits are quoted because the standards
+  could not be read.
+- **Title-only citations.** The two classic Webster papers have no abstracts on PubMed; they are cited as pointers,
+  and the derivations stand on our own SymPy checks.
+
 ## 2026-11-14 · m13 stages 1–6, catheter design
 
 - **m13** (Catheter design): six tested equations (spreading resistance, bipole direction, spatial aliasing against

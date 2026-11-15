@@ -104,6 +104,12 @@ Cohen's kappa
 Collocation point
 : A point where a governing equation is checked during fitting; it needs no measurement. [m42](../modules/m42-physics-informed-ml.qmd)
 
+Common-mode rejection ratio (CMRR)
+: The ratio of an amplifier's gain for the difference between its inputs to its gain for their mean, often in decibels. [m14](../modules/m14-biopotential-front-ends.qmd)
+
+Common-mode voltage
+: The mean of the voltages at a differential amplifier's two inputs; on the body it is mostly picked up from the mains. [m14](../modules/m14-biopotential-front-ends.qmd)
+
 Computed tomography (CT)
 : Imaging that measures X-ray attenuation along many lines through the body and reconstructs cross-sectional slices from those measurements. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -181,6 +187,9 @@ Dominant frequency
 
 Double layer
 : A surface covered with current dipoles pointing normal to it; a uniform double layer's potential is proportional to the solid angle it subtends. [m01](../modules/m01-bioelectric-sources.qmd)
+
+Driven right leg
+: A circuit that senses the body's common-mode voltage, inverts and amplifies it, and drives it back through the right-leg electrode to reduce it. [m14](../modules/m14-biopotential-front-ends.qmd)
 
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
@@ -374,6 +383,9 @@ Image intensity ratio (IIR)
 Implantable loop recorder (ILR)
 : A small device placed under the skin that records the ECG for years and sends alerts when its detector fires. [m38](../modules/m38-wearables-monitoring.qmd)
 
+Instrumentation amplifier
+: A differential amplifier with a high-impedance, gain-setting input stage ahead of a difference stage, which multiplies its common-mode rejection. [m14](../modules/m14-biopotential-front-ends.qmd)
+
 Integrated gradients
 : A feature-attribution method that averages the model's gradient along a straight path from a baseline input to the actual input; the attributions add up to the change in output. [m46](../modules/m46-trustworthy-ai.qmd)
 
@@ -503,6 +515,9 @@ Nernst potential
 Net benefit
 : In decision-curve analysis, true positives minus false positives weighted by the odds of the threshold probability, per patient. It compares a model with acting on everyone or no one. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
+Noise factor
+: Total input-referred noise power divided by the noise power of the source resistance alone; it is lowest when the source resistance equals the amplifier's voltage noise over its current noise. [m14](../modules/m14-biopotential-front-ends.qmd)
+
 Noncontact mapping
 : Reconstructing endocardial potentials from a multielectrode probe that floats in the cavity, by solving an inverse problem. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -526,6 +541,9 @@ Out-of-distribution (OOD) input
 
 Outflow tract
 : The part of a ventricle leading to its great artery (pulmonary artery on the right, aorta on the left); a common origin of idiopathic premature ventricular beats. [m41](../modules/m41-ai-origin-localization.qmd)
+
+Oversampling
+: Sampling faster than needed and averaging; for white noise each doubling of the averaged samples gains about 3 dB, half a bit. [m14](../modules/m14-biopotential-front-ends.qmd)
 
 Pace mapping
 : Pacing from a catheter at candidate sites and comparing the paced 12-lead ECG with the ECG of the arrhythmia, to find where the arrhythmia starts. [m41](../modules/m41-ai-origin-localization.qmd)
@@ -734,6 +752,9 @@ Tetralogy of Fallot
 TF-IDF
 : Term frequency times inverse document frequency: a word weight that grows with how often the word appears in a document and with how rare it is across the collection. [m43](../modules/m43-foundation-models-llms.qmd)
 
+Thermal noise
+: Voltage noise of a resistance R at temperature T, with density sqrt(4kTR) per root hertz (Johnson-Nyquist noise). [m14](../modules/m14-biopotential-front-ends.qmd)
+
 Tikhonov regularization
 : Least squares plus a penalty λ² times the squared size of the solution (or of its derivatives). [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
 
@@ -795,7 +816,7 @@ WFDB format
 : The Waveform Database format used by PhysioNet: integer samples in a signal file and a text header that gives the sampling rate, gain, baseline and units needed to convert them to physical values. [m47](../modules/m47-data-deployment-engineering.qmd)
 
 Wilson central terminal (WCT)
-: The average of the three limb-electrode potentials, used as the reference for unipolar chest leads. [m12](../modules/m12-surface-ecg.qmd)
+: The average of the three limb-electrode potentials, used as the reference for unipolar chest leads. [m12](../modules/m12-surface-ecg.qmd), [m14](../modules/m14-biopotential-front-ends.qmd)
 
 Zero-phase filtering
 : Filtering a record forward and then backward so that phase shifts cancel; it removes filter delay but needs the whole record, so it is offline only. [m04](../modules/m04-recording-chain.qmd)
