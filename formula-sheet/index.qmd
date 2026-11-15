@@ -1055,6 +1055,41 @@ $$
 \mathbf v = -\frac{\phi_t\,\nabla\phi}{\lvert\nabla\phi\rvert^2}, \qquad \frac{\hat c}{c} = 1 + \frac{(d/2)^2}{a^2} \text{ for a cross-shaped clique at the front's arrival along an axis}
 $$
 
+## m26 · Map quality and uncertainty
+
+Symbols: $\mathbf x$ site; $\mathbf y$ measured times; $m$ prior mean; $k$ kernel with variance $s^2$ and length scale $\ell$; $K$ kernel matrix; $\mathbf k_*$ covariances with a new site; $\sigma_n$ per-point error; $A = K + \sigma_n^2 I$; $r_i$ leave-one-out residual; $\sigma_a$, $\sigma_r$, $\sigma_x$ annotation, reference and position SDs; $c$ speed; $\rho$ point density; $D$ nearest-point distance.
+Model: Gaussian-process interpolation with independent per-point errors; random point placement for the density result.
+
+**Gaussian-process map** ([derivation](../modules/m26-map-quality.qmd#eq-m26-gp))
+
+$$
+\mu(\mathbf x) = m + \mathbf k_*^\top A^{-1}(\mathbf y - m), \qquad \sigma^2(\mathbf x) = s^2 - \mathbf k_*^\top A^{-1}\mathbf k_*, \qquad A = K + \sigma_n^2 I
+$$
+
+**Leave-one-out** ([derivation](../modules/m26-map-quality.qmd#eq-m26-loo))
+
+$$
+r_i = y_i - \mu_{-i}(\mathbf x_i) = \frac{\bigl[A^{-1}(\mathbf y - m)\bigr]_i}{\bigl[A^{-1}\bigr]_{ii}}, \qquad \sigma^2_{-i} = \frac{1}{\bigl[A^{-1}\bigr]_{ii}}
+$$
+
+**Per-point error budget** ([derivation](../modules/m26-map-quality.qmd#eq-m26-budget))
+
+$$
+\sigma_n^2 = \sigma_a^2 + \sigma_r^2 + \Bigl(\frac{\sigma_x}{c}\Bigr)^2
+$$
+
+**Point density** ([derivation](../modules/m26-map-quality.qmd#eq-m26-density))
+
+$$
+\mathrm E[D] = \frac{1}{2\sqrt\rho}, \qquad \operatorname{median}(D) = \sqrt{\frac{\ln 2}{\pi\rho}}
+$$
+
+**Next point** ([derivation](../modules/m26-map-quality.qmd#eq-m26-adaptive))
+
+$$
+\mathbf x_{n+1} = \arg\max_{\mathbf x}\,\sigma_n^2(\mathbf x)
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
