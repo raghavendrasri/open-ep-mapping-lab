@@ -681,6 +681,53 @@ $$
 y = x + \beta x^2, \quad x = A\cos\omega t \;\Longrightarrow\; \overline{y} = \frac{\beta A^2}{2}
 $$
 
+## m16 · Magnetic localization
+
+Symbols: $\mathbf m$ dipole moment; $\mathbf r$, $r$, $\hat{\mathbf r}$ displacement, distance, direction; $\mathbf B$ field; $\mu_0$ permeability; $f$ frequency; $N$ turns; $A$ area; $\hat{\mathbf n}$ sensor axis; $\mathbf p$ sensor position; $\mathbf s_k$, $\mathbf m_k$ generator coils; $V_k$ readings; $\theta$ pose; $J$ Jacobian; $\sigma$ noise; $\mathbf q$, $\alpha$ conductor position and response.
+Model: point dipoles; quasi-static fields; independent Gaussian reading noise.
+
+**Dipole field** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-dipole))
+
+$$
+\mathbf B(\mathbf r) = \frac{\mu_0}{4\pi}\,\frac{3(\mathbf m\cdot\hat{\mathbf r})\hat{\mathbf r} - \mathbf m}{r^3}
+$$
+
+**Sensor coil voltage** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-emf))
+
+$$
+V = 2\pi f\,N A\,\hat{\mathbf n}\cdot\mathbf B
+$$
+
+**Readings and pose** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-coupling))
+
+$$
+V_k = \hat{\mathbf n}\cdot\mathbf B_k(\mathbf p - \mathbf s_k), \qquad \hat\theta = \arg\min_\theta \sum_k \bigl(V_k^{\text{measured}} - V_k(\theta)\bigr)^2, \quad \theta = (\mathbf p, \hat{\mathbf n})
+$$
+
+**Precision** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-crlb))
+
+$$
+\operatorname{cov}(\hat\theta) \approx \sigma^2\,(J^\top J)^{-1}
+$$
+
+**Range sensitivity** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-sensitivity))
+
+$$
+\lvert\mathbf B\rvert = \frac{2m}{r^3} \;\Longrightarrow\; \delta r = \frac{r\,\delta B}{3\lvert\mathbf B\rvert} \propto r^4\,\delta B
+$$
+
+**Degrees of freedom** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-5dof))
+
+$$
+V_k\bigl(R_{\hat{\mathbf n}}(\psi)\,\hat{\mathbf n}\bigr) = V_k(\hat{\mathbf n}) \;\Longrightarrow\; \operatorname{rank} \frac{\partial \mathbf V}{\partial(\mathbf p, \boldsymbol\omega)} = 5
+$$
+
+**Distortion** ([derivation](../modules/m16-magnetic-localization.qmd#eq-m16-distortion))
+
+$$
+\mathbf m_{q,k} = \alpha\,\mathbf B_k(\mathbf q), \qquad V_k = \hat{\mathbf n}\cdot\bigl[\mathbf B_k(\mathbf p) + \mathbf B(\mathbf m_{q,k};\, \mathbf p - \mathbf q)\bigr], \qquad \delta\theta \approx (J^\top J)^{-1}J^\top\,\delta\mathbf V
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

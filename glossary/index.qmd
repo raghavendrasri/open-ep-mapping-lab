@@ -197,6 +197,9 @@ Driven right leg
 ECG gating
 : Using the electrocardiogram to keep only imaging data from a chosen part of the cardiac cycle, so that the moving heart appears still. [m51](../modules/m51-cardiac-ct.qmd)
 
+Eddy currents
+: Currents induced in a conductor by a changing magnetic field; their own field distorts magnetic localization. [m16](../modules/m16-magnetic-localization.qmd)
+
 Edema (myocardial)
 : Excess water in heart tissue after injury such as ablation; bright on T2-weighted MRI, it includes reversible injury and fades over time. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
 
@@ -271,6 +274,9 @@ Fiducial localization error (FLE)
 
 Fiducial registration error (FRE)
 : The residual distance between registered landmarks after a fit; its expected value depends on the number of landmarks and FLE, not on their layout. [m55](../modules/m55-multimodal-capstone.qmd)
+
+Field generator
+: The set of coils of known position and orientation that a magnetic localization system drives to create its reference fields. [m16](../modules/m16-magnetic-localization.qmd)
 
 Fill distance
 : The largest distance from any point of a surface to its nearest sample point or electrode; a measure of coverage. [m13](../modules/m13-catheter-design.qmd)
@@ -468,7 +474,7 @@ Lesion metabolic activity
 : A PET measure of a lesion: its partial-volume-corrected mean uptake times its volume. [m54](../modules/m54-nuclear-imaging.qmd)
 
 Levenberg–Marquardt method
-: An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd)
+: An iterative method for nonlinear least squares that blends Gauss–Newton steps with damped gradient steps. [m42](../modules/m42-physics-informed-ml.qmd), [m16](../modules/m16-magnetic-localization.qmd)
 
 Likelihood ratio
 : How much a test result changes the odds of disease: for a positive result, sensitivity divided by one minus specificity; for a negative result, one minus sensitivity divided by specificity. Post-test odds are pre-test odds times the likelihood ratio. [m48](../modules/m48-imaging-workflow.qmd)
@@ -490,6 +496,9 @@ Macro-reentry
 
 Macroshock
 : Electric shock from current entering and leaving through the skin, so it spreads through the body before reaching the heart. [m15](../modules/m15-patient-safety.qmd)
+
+Magnetic dipole
+: The far-field model of a small current loop, with moment m; its field falls as the cube of distance. [m16](../modules/m16-magnetic-localization.qmd)
 
 Magnetic resonance imaging (MRI)
 : Imaging of hydrogen nuclei in a strong magnetic field, with contrast from how their magnetization relaxes and position encoded by field gradients. [m52](../modules/m52-cardiac-mri.qmd)
@@ -592,6 +601,9 @@ Point-spread function (PSF)
 
 Poisson's equation
 : The equation the potential obeys in a volume conductor, div(sigma grad phi) = -I_v: Ohm's law plus current conservation. [m02](../modules/m02-volume-conduction.qmd)
+
+Pose
+: Position together with orientation; a single sensor coil gives five of its six degrees of freedom. [m16](../modules/m16-magnetic-localization.qmd)
 
 Positive predictive value (PPV)
 : The share of positive results (alerts, flags) that are truly positive; it depends on prevalence. [m37](../modules/m37-ai-ecg.qmd), [m38](../modules/m38-wearables-monitoring.qmd), [m48](../modules/m48-imaging-workflow.qmd)
@@ -700,6 +712,9 @@ Segmentation
 
 Self-supervised learning
 : Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Sensor coil
+: A small coil in a catheter whose induced voltage measures the component of an oscillating magnetic field along its axis. [m16](../modules/m16-magnetic-localization.qmd)
 
 Single-fault condition
 : Operation with one means of protection failed (for example an open protective earth), under which safety limits must still hold. [m15](../modules/m15-patient-safety.qmd)
