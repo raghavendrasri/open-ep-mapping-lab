@@ -52,7 +52,7 @@ Status shows how far each module has got.
 | m23 | [Voltage mapping: amplitude, thresholds, dependence on wavefront direction](modules/m23-voltage-mapping.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m24 | [Interpolation, activation maps and isochrones](modules/m24-activation-maps.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m25 | [Conduction velocity estimation: triangulation, surface fitting, omnipolar methods](modules/m25-conduction-velocity.qmd) | [Draft]{.status .status-draft} | v0.1 |
-| m26 | [Map quality and uncertainty: point density, annotation error, interpolation error](modules/m26-map-quality.qmd) | [Planned]{.status .status-planned} | v0.5 |
+| m26 | [Map quality and uncertainty: point density, annotation error, interpolation error](modules/m26-map-quality.qmd) | [Draft]{.status .status-draft} | v0.5 |
 
 ## Part V · Therapy and capstones
 

@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-15 · m26 stages 1–6, map quality and uncertainty
+
+- **m26** (Map quality and uncertainty): five tested equations (GP posterior, closed-form leave-one-out, per-point
+  error budget, nearest-point distance, greedy maximum-variance sampling), one simulation and one exact demo, clinical
+  correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–E). This completes Part IV.
+- **Euclidean kernels only.** GP interpolation on the atrial manifold is cited, not implemented; a geodesic kernel is
+  left as an exercise.
+- **Error budget per point.** The budget feeds the GP's observation noise, so map uncertainty combines measurement
+  error and interpolation without double counting.
+
 ## 2026-11-15 · m25 stages 1–6, conduction velocity estimation
 
 - **m25** (Conduction velocity estimation): five tested equations (velocity from the gradient and its noise bias,

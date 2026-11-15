@@ -258,7 +258,7 @@ Entrainment
 : Capture of a reentrant circuit by pacing slightly faster than the tachycardia, without stopping it. [m11](../modules/m11-ep-study.qmd)
 
 Error budget
-: A list of the error sources in a chain of steps with their sizes; independent, unbiased errors add in quadrature, and biases add directly. [m55](../modules/m55-multimodal-capstone.qmd)
+: A list of the error sources in a chain of steps with their sizes; independent, unbiased errors add in quadrature, and biases add directly. [m55](../modules/m55-multimodal-capstone.qmd), [m26](../modules/m26-map-quality.qmd)
 
 Euler characteristic
 : V − E + F for a mesh with V vertices, E edges and F faces; 2 for a closed surface without handles, one less for each hole cut into it. [m06](../modules/m06-meshes-geodesics.qmd)
@@ -357,7 +357,7 @@ Gaussian mixture model
 : A probability model that describes data as a weighted sum of normal distributions; fitted with the EM algorithm to find clusters without labels. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
 Gaussian process
-: A probability model over functions; given measurements, it gives a mean estimate and an uncertainty at every other point. [m41](../modules/m41-ai-origin-localization.qmd)
+: A probability model over functions; given measurements, it gives a mean estimate and an uncertainty at every other point. [m41](../modules/m41-ai-origin-localization.qmd), [m26](../modules/m26-map-quality.qmd)
 
 Generalized cross-validation (GCV)
 : Choosing a regularization parameter by minimizing a predicted-error function of the data, without a noise estimate. [m07](../modules/m07-inverse-problems.qmd)
@@ -518,6 +518,9 @@ Lead vector
 Leakage current
 : Current that flows from equipment through an unintended path, such as the patient to ground, in normal use or with a single fault. [m15](../modules/m15-patient-safety.qmd)
 
+Leave-one-out cross-validation
+: Scoring a model by predicting each data point from all the others; for a Gaussian process it needs only one matrix inverse. [m26](../modules/m26-map-quality.qmd)
+
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
 
@@ -526,6 +529,9 @@ Left atrial appendage occlusion (LAAO)
 
 Length constant
 : The distance over which a held voltage decays to 1/e along a passive cable, the square root of membrane over axial resistance. [m09](../modules/m09-propagation.qmd)
+
+Length scale (kernel)
+: The distance over which a Gaussian process's covariance falls off, which sets how far each point's influence reaches. [m26](../modules/m26-map-quality.qmd)
 
 Lesion gap
 : A segment of an intended ablation line where the tissue was not destroyed, through which conduction can recover. [m53](../modules/m53-lesion-imaging-interventional-mri.qmd)
@@ -797,6 +803,9 @@ Rotor
 
 RR interval
 : The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
+
+Sampling density
+: The number of mapped points per unit area, often given in points per cm²; it sets the typical distance to the nearest point. [m26](../modules/m26-map-quality.qmd)
 
 Scar
 : Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd)
