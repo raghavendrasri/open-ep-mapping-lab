@@ -2,6 +2,16 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-15 · m23 stages 1–6, voltage mapping
+
+- **m23** (Voltage mapping): four tested equations (amplitude against height and spacing, direction, noise floor,
+  log-normal cutoffs), one exact and one approximate-model demo, clinical correlate (pending review), 12 interview and
+  6 self-check questions, a Python lab (A–E).
+- **Exact amplitudes at 2-mm spacing.** The small-spacing formula overstates a 2-mm bipole's amplitude by about half at
+  1 mm height, so demos and the lab compute peak-to-peak on the closed-form signals instead.
+- **Log-normal tissue populations are illustrative.** No source gave distributions in a form we could use; the cutoffs
+  themselves are cited.
+
 ## 2026-11-15 · m22 stages 1–6, electrogram annotation
 
 - **m22** (Electrogram annotation): six tested equations (LAT and reference error, steepest downstroke and bipolar

@@ -49,7 +49,7 @@ Status shows how far each module has got.
 | m20 | [Geometry from catheter positions: point clouds to surfaces](modules/m20-geometry.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m21 | [Image integration: CT/MRI segmentation, landmark and ICP registration](modules/m21-image-integration.qmd) | [Draft]{.status .status-draft} | v0.5 |
 | m22 | [Electrogram annotation: local activation time, window of interest, reference, far-field rejection](modules/m22-annotation.qmd) | [Draft]{.status .status-draft} | v0.1 |
-| m23 | [Voltage mapping: amplitude, thresholds, dependence on wavefront direction](modules/m23-voltage-mapping.qmd) | [Planned]{.status .status-planned} | v0.1 |
+| m23 | [Voltage mapping: amplitude, thresholds, dependence on wavefront direction](modules/m23-voltage-mapping.qmd) | [Draft]{.status .status-draft} | v0.1 |
 | m24 | [Interpolation, activation maps and isochrones](modules/m24-activation-maps.qmd) | [Planned]{.status .status-planned} | v0.1 |
 | m25 | [Conduction velocity estimation: triangulation, surface fitting, omnipolar methods](modules/m25-conduction-velocity.qmd) | [Planned]{.status .status-planned} | v0.1 |
 | m26 | [Map quality and uncertainty: point density, annotation error, interpolation error](modules/m26-map-quality.qmd) | [Planned]{.status .status-planned} | v0.5 |
