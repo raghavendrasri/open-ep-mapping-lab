@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m16 stages 1–6, magnetic localization
+
+- **m16** (Magnetic localization): seven tested equations (dipole field, coil voltage, measurement model and least
+  squares, covariance, range sensitivity, five degrees of freedom, distortion), an exact precision demo and an
+  approximate-model distortion demo (first-order bias), clinical correlate (pending review), 12 interview and 6
+  self-check questions, a Python lab (A–E).
+- **A generic generator.** Three coil trios on a 150-mm circle and a single-coil sensor stand in for any product; the
+  layout and noise are labeled illustrative. The point is the scaling, not the numbers.
+- **The r^4 law is stated as a far-field result.** Near the coils the predicted error grows more slowly; the page and
+  demo say so.
+
 ## 2026-11-14 · m15 stages 1–6, patient safety
 
 - **m15** (Patient safety): five tested equations (capacitive leakage and its sum, current density at an electrode,
