@@ -81,7 +81,7 @@ Bidomain model
 : A tissue model with separate intracellular and extracellular potentials and conductivities, coupled through the membrane. [m09](../modules/m09-propagation.qmd)
 
 Bipolar electrogram
-: The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd), [m13](../modules/m13-catheter-design.qmd)
+: The difference between the signals of two nearby electrodes. It acts like a spatial derivative: it keeps local detail and rejects distant activity, but depends on the bipole's orientation to the wavefront. [m03](../modules/m03-electrograms.qmd), [m13](../modules/m13-catheter-design.qmd), [m23](../modules/m23-voltage-mapping.qmd)
 
 C-arm
 : A fluoroscopy system with the X-ray source and detector on opposite ends of a C-shaped arm that rotates around the patient. [m55](../modules/m55-multimodal-capstone.qmd)
@@ -141,7 +141,7 @@ Conformal prediction
 : A method that turns a model's scores into a set of possible answers that contains the true one at a chosen rate, using a held-out calibration set. [m46](../modules/m46-trustworthy-ai.qmd)
 
 Contact force
-: The force between a catheter tip and the tissue, measured from the deformation of a small spring element near the tip. [m13](../modules/m13-catheter-design.qmd)
+: The force between a catheter tip and the tissue, measured from the deformation of a small spring element near the tip. [m13](../modules/m13-catheter-design.qmd), [m23](../modules/m23-voltage-mapping.qmd)
 
 Contrast-to-noise ratio (CNR)
 : The difference between two tissues' mean signals divided by the noise standard deviation; it decides whether they can be told apart, and averaging n independent samples multiplies it by the square root of n. [m48](../modules/m48-imaging-workflow.qmd), [m49](../modules/m49-fluoroscopy-radiation.qmd)
@@ -531,7 +531,7 @@ Locally Delaunay edge
 : A mesh edge whose two opposite angles add up to at most 180°; its cotangent weight is then not negative. [m06](../modules/m06-meshes-geodesics.qmd)
 
 Low-voltage area
-: A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd)
+: A region whose bipolar voltage falls below a chosen cut-off. It is often read as scar, but the voltage also depends on the catheter and the wavefront. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd)
 
 Macro-reentry
 : Reentry around a large circuit set by anatomy or scar, such as typical atrial flutter. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
@@ -590,6 +590,9 @@ Net benefit
 Noise factor
 : Total input-referred noise power divided by the noise power of the source resistance alone; it is lowest when the source resistance equals the amplifier's voltage noise over its current noise. [m14](../modules/m14-biopotential-front-ends.qmd)
 
+Noise floor
+: The smallest amplitude a measurement can show: with no signal, the peak-to-peak of noise in the measurement window. [m23](../modules/m23-voltage-mapping.qmd)
+
 Noncontact mapping
 : Reconstructing endocardial potentials from a multielectrode probe that floats in the cavity, by solving an inverse problem. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -603,7 +606,7 @@ Nyquist frequency
 : Half the sampling rate: the highest frequency a sampled signal can represent without aliasing. [m04](../modules/m04-recording-chain.qmd)
 
 Omnipolar electrogram
-: A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd)
+: A signal built from a clique by estimating the local electric field and reading it along the direction of propagation, which removes most orientation dependence. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd)
 
 Otsu's threshold
 : The intensity cut that splits a histogram into two classes with the largest between-class variance; used as a data-driven threshold for scar. [m52](../modules/m52-cardiac-mri.qmd), [m21](../modules/m21-image-integration.qmd)
@@ -631,6 +634,9 @@ Passive catheter visualization
 
 Patch pair
 : Two skin electrodes that drive a localization current through the chest; three roughly orthogonal pairs give three coordinates. [m17](../modules/m17-impedance-localization.qmd)
+
+Peak-to-peak amplitude
+: The difference between the largest and smallest values of a signal in a window; the usual electrogram voltage. [m23](../modules/m23-voltage-mapping.qmd)
 
 Phase singularity
 : A point around which the phase of activation takes every value; a spiral wave turns around one. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
@@ -711,6 +717,9 @@ Radon transform
 Randomized controlled trial (RCT)
 : A study that assigns participants at random to an intervention or a comparison, so that differences in outcome can be attributed to the intervention. [m45](../modules/m45-ai-evidence-regulation.qmd)
 
+Receiver operating characteristic (ROC) curve
+: Sensitivity plotted against one minus specificity as a decision threshold moves; used to choose cutoffs and compare classifiers. [m23](../modules/m23-voltage-mapping.qmd)
+
 Receptive field
 : The stretch of input that one output of a network depends on. [m37](../modules/m37-ai-ecg.qmd)
 
@@ -766,7 +775,7 @@ RR interval
 : The time between two successive R peaks of the ECG, one ventricular beat to the next. [m37](../modules/m37-ai-ecg.qmd)
 
 Scar
-: Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd)
+: Fibrous tissue that has replaced heart muscle. It conducts poorly or not at all. [m03](../modules/m03-electrograms.qmd), [m23](../modules/m23-voltage-mapping.qmd)
 
 Segmentation
 : Labelling which voxels of an image belong to a structure, such as the left atrium. [m40](../modules/m40-ai-imaging-substrate.qmd), [m21](../modules/m21-image-integration.qmd)
@@ -896,6 +905,9 @@ Ventricle
 
 Ventricular tachycardia
 : A fast rhythm that starts in the ventricles. [m03](../modules/m03-electrograms.qmd), [m41](../modules/m41-ai-origin-localization.qmd)
+
+Voltage map
+: A map colored by the peak-to-peak electrogram amplitude at each site, unipolar or bipolar, often with cutoffs for low voltage. [m23](../modules/m23-voltage-mapping.qmd)
 
 Volume conductor
 : The conducting medium (tissue and blood) through which currents spread from their sources to the electrodes. [m03](../modules/m03-electrograms.qmd), [m01](../modules/m01-bioelectric-sources.qmd), [m02](../modules/m02-volume-conduction.qmd)

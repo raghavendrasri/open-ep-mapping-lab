@@ -956,6 +956,35 @@ $$
 \frac{\max\lvert dU/dt\rvert}{\operatorname{pp}(U)} = \frac{c}{a}, \qquad x = l + g\phi \;\Rightarrow\; \hat g = \frac{\langle x, \phi\rangle}{\langle \phi, \phi\rangle} = g + \frac{\langle l, \phi\rangle}{\langle \phi, \phi\rangle}
 $$
 
+## m23 · Voltage mapping
+
+Symbols: $U$ unipolar potential with strength $A$; $a = w + h$; $\operatorname{pp}$ peak-to-peak; $B$ bipolar potential; $d$ spacing; $\theta$ bipole angle; $q$ fraction of aligned amplitude; $n$ noise samples; $\sigma$ noise SD; $\phi$, $\Phi$ standard normal density and distribution; $t$ cutoff; $m_s$, $m_n$ medians; $\sigma_s$, $\sigma_n$ log SDs.
+Model: the m03 arctangent front; planar propagation; log-normal tissue voltages.
+
+**Amplitude** ([derivation](../modules/m23-voltage-mapping.qmd#eq-m23-amplitude))
+
+$$
+\operatorname{pp}(U) = \frac{A}{a}, \qquad \operatorname{pp}(B) \to \frac98\,\frac{A\,d\lvert\cos\theta\rvert}{a^2} \;\; (d\lvert\cos\theta\rvert \ll a), \qquad \operatorname{pp}(B) \to \frac{A}{a} \;\; (d\lvert\cos\theta\rvert \gg a)
+$$
+
+**Direction** ([derivation](../modules/m23-voltage-mapping.qmd#eq-m23-direction))
+
+$$
+P\bigl(\lvert\cos\theta\rvert < q\bigr) = \frac{2}{\pi}\arcsin q, \qquad \mathrm E\lvert\cos\theta\rvert = \frac2\pi, \qquad \max\bigl(\lvert\cos\theta\rvert, \lvert\sin\theta\rvert\bigr) \ge \frac{1}{\sqrt2}
+$$
+
+**Noise floor** ([derivation](../modules/m23-voltage-mapping.qmd#eq-m23-noise))
+
+$$
+\mathrm E[\operatorname{pp}] = 2\sigma\int_{-\infty}^{\infty} x\, n\,\phi(x)\,\Phi(x)^{n-1}\,dx
+$$
+
+**Cutoffs** ([derivation](../modules/m23-voltage-mapping.qmd#eq-m23-threshold))
+
+$$
+\text{sensitivity} = \Phi\Bigl(\frac{\ln t - \ln m_s}{\sigma_s}\Bigr), \qquad \text{specificity} = 1 - \Phi\Bigl(\frac{\ln t - \ln m_n}{\sigma_n}\Bigr), \qquad t^* = \sqrt{m_s m_n} \text{ if } \sigma_s = \sigma_n
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
