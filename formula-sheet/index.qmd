@@ -646,6 +646,41 @@ $$
 q_{\text{in}} = \frac{V_{FS}}{G\,2^N}, \qquad N \ge \log_2\frac{\text{span}}{\text{step}}, \qquad \Delta\text{SNR} = 10\log_{10} m \text{ dB}
 $$
 
+## m15 · Patient safety
+
+Symbols: $f$ frequency; $C$ isolation capacitance; $V$ rms voltage; $I$ rms current; $I_{\lim}$ a limit; $a$ electrode radius; $r$ distance; $A$ body cross-section; $J$ current density; $V_{in}$ input voltage; $V_c$ clamp voltage; $R$ series resistance; $T$ pulse duration; $V_b$, $R_b$ body voltage and resistance; $f_c$ corner; $n$ order; $A_{RF}$ RF amplitude; $\beta$ nonlinearity.
+Model: capacitive barriers on one mains phase; hemispherical electrode in a uniform medium; rectangular pulses; Butterworth filters; weak square-law nonlinearity.
+
+**Leakage through isolation** ([derivation](../modules/m15-patient-safety.qmd#eq-m15-leakage))
+
+$$
+I = 2\pi f C V, \qquad I_{\text{total}} = \Bigl\lvert \sum_k I_k e^{j\phi_k} \Bigr\rvert \le \sum_k I_k, \qquad C_{\max} = \frac{I_{\lim}}{2\pi f V}
+$$
+
+**Current density** ([derivation](../modules/m15-patient-safety.qmd#eq-m15-density))
+
+$$
+J(r) = \frac{I}{2\pi r^2}, \qquad \frac{J(a)}{I/A} = \frac{A}{2\pi a^2}
+$$
+
+**Defibrillation protection** ([derivation](../modules/m15-patient-safety.qmd#eq-m15-defib))
+
+$$
+I = \frac{V_{in} - V_c}{R}, \qquad E_R = \frac{(V_{in} - V_c)^2\,T}{R}, \qquad \frac{V_{in} I}{V_b^2/R_b} \;\text{(share of the body's power taken by one input)}
+$$
+
+**RF filtering** ([derivation](../modules/m15-patient-safety.qmd#eq-m15-rf-filter))
+
+$$
+\lvert H(f)\rvert = \frac{1}{\sqrt{1 + (f/f_c)^{2n}}} \approx \left(\frac{f_c}{f}\right)^n, \qquad n \ge \frac{\log(A_{RF}/V_{\text{allowed}})}{\log(f/f_c)}
+$$
+
+**Demodulation** ([derivation](../modules/m15-patient-safety.qmd#eq-m15-demod))
+
+$$
+y = x + \beta x^2, \quad x = A\cos\omega t \;\Longrightarrow\; \overline{y} = \frac{\beta A^2}{2}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$

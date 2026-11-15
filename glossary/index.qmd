@@ -44,6 +44,9 @@ Analytic signal
 Anisotropy
 : Direction dependence of a tissue property: heart muscle conducts faster, and has lower resistance, along its fibers than across them. [m01](../modules/m01-bioelectric-sources.qmd), [m09](../modules/m09-propagation.qmd)
 
+Applied part
+: The part of medical electrical equipment that contacts the patient in normal use; IEC 60601-1 classes include CF (cardiac floating) for direct cardiac connection. [m15](../modules/m15-patient-safety.qmd)
+
 Arrhythmia
 : An abnormal heart rhythm. [m03](../modules/m03-electrograms.qmd)
 
@@ -410,6 +413,9 @@ Iodinated contrast
 Isocenter
 : The point a C-arm rotates about; structures there are imaged at a fixed magnification. [m55](../modules/m55-multimodal-capstone.qmd)
 
+Isolation barrier
+: The insulation and spacing that separate patient-connected circuits from mains-powered circuits; its capacitance still passes a small leakage current. [m15](../modules/m15-patient-safety.qmd)
+
 Isthmus (VT)
 : A narrow channel of conducting tissue, bounded by scar or anatomical barriers, that a reentrant ventricular tachycardia passes through. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -442,6 +448,9 @@ Lead field
 
 Lead vector
 : The vector L for which a lead's voltage equals L . p for a dipole p; it depends on the electrodes and the torso. [m12](../modules/m12-surface-ecg.qmd)
+
+Leakage current
+: Current that flows from equipment through an unintended path, such as the patient to ground, in normal use or with a single fault. [m15](../modules/m15-patient-safety.qmd)
 
 Leave-one-patient-out
 : A test scheme that trains on all patients but one and tests on that one, in turn, so no patient is in both sets. [m39](../modules/m39-ai-electrograms-maps.qmd)
@@ -479,6 +488,9 @@ Low-voltage area
 Macro-reentry
 : Reentry around a large circuit set by anatomy or scar, such as typical atrial flutter. [m10](../modules/m10-arrhythmia-mechanisms.qmd)
 
+Macroshock
+: Electric shock from current entering and leaving through the skin, so it spreads through the body before reaching the heart. [m15](../modules/m15-patient-safety.qmd)
+
 Magnetic resonance imaging (MRI)
 : Imaging of hydrogen nuclei in a strong magnetic field, with contrast from how their magnetization relaxes and position encoded by field gradients. [m52](../modules/m52-cardiac-mri.qmd)
 
@@ -493,6 +505,9 @@ Membrane current
 
 Method of images
 : Solving a problem with a flat boundary by adding mirror sources that make the boundary conditions hold; for two conductors the mirror source has strength (sigma1 - sigma2)/(sigma1 + sigma2) times the original. [m02](../modules/m02-volume-conduction.qmd)
+
+Microshock
+: Electric shock from current delivered directly to the heart, for example through a catheter, where microamperes can capture or fibrillate the ventricles. [m15](../modules/m15-patient-safety.qmd)
 
 Mitchell–Schaeffer model
 : A two-variable cardiac membrane model with one gated inward current and one outward current; its action potential duration has a closed form. [m08](../modules/m08-action-potentials.qmd)
@@ -685,6 +700,9 @@ Segmentation
 
 Self-supervised learning
 : Learning representations from unlabeled data with a training task built from the data themselves, such as matching two views of one recording. [m43](../modules/m43-foundation-models-llms.qmd)
+
+Single-fault condition
+: Operation with one means of protection failed (for example an open protective earth), under which safety limits must still hold. [m15](../modules/m15-patient-safety.qmd)
 
 Single-photon emission computed tomography (SPECT)
 : Tomographic imaging of a tracer that emits single gamma photons, whose direction is set by a collimator. [m54](../modules/m54-nuclear-imaging.qmd)

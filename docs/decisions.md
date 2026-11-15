@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m15 stages 1–6, patient safety
+
+- **m15** (Patient safety): five tested equations (capacitive leakage and its sum, current density at an electrode,
+  defibrillation protection network, RF filter order, demodulation), two exact demos, clinical correlate (pending
+  review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **Physics, not standard limits.** IEC 60601-1 could not be read. The only numeric limit used is the 50 µA
+  single-fault value as reported in peer-reviewed papers (Swerdlow 1999, Jonsson 2005). The normal-condition CF limit
+  appears only in vendor and training web pages, so it is not quoted. Clinical thresholds come from Swerdlow et al.
+  (1999).
+- **Illustrative values are labeled.** Capacitances, mains voltages, defibrillation voltages, RF amplitudes and the
+  nonlinearity coefficient are free choices for teaching, listed as illustrative on the page.
+
 ## 2026-11-14 · m14 stages 1–6, biopotential front ends
 
 - **m14** (Biopotential front ends): eight tested equations (modes and CMRR, difference amplifier, instrumentation
