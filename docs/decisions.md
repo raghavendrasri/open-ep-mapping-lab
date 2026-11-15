@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m19 stages 1–6, motion and drift
+
+- **m19** (Motion and drift): six tested equations (breathing model, gating duty cycle, reference subtraction,
+  surrogate regression, drift estimation, averaging), two exact demos, clinical correlate (pending review), 12
+  interview and 6 self-check questions, a Python lab (A–E).
+- **A cos^(2n) breathing model.** It is periodic and asymmetric, as Lujan et al. describe breathing, and gives a
+  closed-form gating duty cycle. The page does not attribute this exact form to the paper, whose full text was not
+  read.
+- **Cardiac gating by analogy.** It is treated as the same duty-cycle trade with the cardiac cycle in place of the
+  breath, rather than with a separate model.
+
 ## 2026-11-14 · m18 stages 1–6, hybrid and dielectric localization
 
 - **m18** (Hybrid and dielectric localization concepts): five tested equations (affine correction, radial-basis
