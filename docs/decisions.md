@@ -2,6 +2,15 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-15 · m25 stages 1–6, conduction velocity estimation
+
+- **m25** (Conduction velocity estimation): five tested equations (velocity from the gradient and its noise bias,
+  two-point error, triangle covariance, plane-fit covariance, potential-based velocity and the cross-clique bias), two
+  exact demos, clinical correlate (pending review), 12 interview and 6 self-check questions, a Python lab (A–E).
+- **A cross-shaped clique stands for omnipolar methods.** It isolates the finite-difference bias in closed form.
+  Published omnipolar methods add field-loop and fitting steps that are described, not reproduced.
+- **The velocity map uses the m30 eikonal solver** with speeds of 1.0 and 0.6 m/s from Heil and colleagues.
+
 ## 2026-11-15 · m24 stages 1–6, interpolation, activation maps and isochrones
 
 - **m24** (Interpolation, activation maps and isochrones): five tested equations (linear interpolation error, IDW,
