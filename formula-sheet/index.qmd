@@ -552,6 +552,47 @@ $$
 V(t) = \mathbf L\cdot\mathbf p(t), \qquad \mathbf p(t) = \int \text{dipole density of the activation fronts at time } t
 $$
 
+## m13 · Catheter design
+
+Symbols: $a$ electrode radius; $\sigma$ conductivity; $R_s$ spreading resistance; $\theta$ bipole angle to propagation; $A_0$ aligned amplitude; $h$ height above the activated layer; $k$ wavenumber; $\Delta$ spacing; $E$ energy above Nyquist; $R$ basket radius; $n$ splines; $\vartheta$ polar angle; $\varphi_i$ sensor angle; $\mathbf F$ force; $\alpha$, $\beta$ axial and lateral sensitivity; $\sigma_s$ sensor noise.
+Model: homogeneous medium; planar front; ideal spherical basket; linear force sensors with independent noise.
+
+**Spreading resistance** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-spreading))
+
+$$
+R_s^{\text{disk}} = \frac{1}{4\sigma a}, \qquad R_s^{\text{hemisphere}} = \frac{1}{2\pi\sigma a}, \qquad R_s^{\text{sphere}} = \frac{1}{4\pi\sigma a}
+$$
+
+**Bipole direction** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-orthogonal))
+
+$$
+A(\theta) = A_0\,\lvert\cos\theta\rvert, \qquad \max\bigl(\lvert\cos\theta\rvert, \lvert\sin\theta\rvert\bigr) \ge \tfrac{1}{\sqrt2}, \qquad \sqrt{A(\theta)^2 + A(\theta - \tfrac{\pi}{2})^2} = A_0
+$$
+
+**Spacing, height and aliasing** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-alias))
+
+$$
+g(x) = \frac{h/\pi}{x^2 + h^2}, \quad \hat g(k) = e^{-\lvert k\rvert h}, \qquad E = \frac{\int_{\pi/\Delta}^{\infty} e^{-2kh}\,dk}{\int_0^{\infty} e^{-2kh}\,dk} = e^{-2\pi h/\Delta}, \qquad \Delta_{\max} = \frac{2\pi h}{\ln(1/E)}
+$$
+
+**Basket spline spacing** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-basket))
+
+$$
+s(\vartheta) = \frac{2\pi R\sin\vartheta}{n}
+$$
+
+**Contact-force estimate** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-force))
+
+$$
+s_i = \alpha F_z + \beta\,(F_x\cos\varphi_i + F_y\sin\varphi_i) + \text{noise}, \qquad \mathbf s = C\mathbf F, \qquad \hat{\mathbf F} = (C^\top C)^{-1}C^\top\mathbf s
+$$
+
+**Contact-force noise** ([derivation](../modules/m13-catheter-design.qmd#eq-m13-force-noise))
+
+$$
+\operatorname{cov}(\hat{\mathbf F}) = \sigma_s^2\,(C^\top C)^{-1}, \qquad \operatorname{SD}(\hat F_x) = \operatorname{SD}(\hat F_y) = \sqrt{\tfrac{2}{3}}\,\frac{\sigma_s}{\beta}, \qquad \operatorname{SD}(\hat F_z) = \frac{\sigma_s}{\sqrt3\,\alpha}
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
