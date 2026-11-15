@@ -113,6 +113,9 @@ Common-mode rejection ratio (CMRR)
 Common-mode voltage
 : The mean of the voltages at a differential amplifier's two inputs; on the body it is mostly picked up from the mains. [m14](../modules/m14-biopotential-front-ends.qmd)
 
+Complex conductivity
+: Conductivity plus the displacement-current term, sigma + j omega epsilon0 epsilon_r; its phase grows with frequency and differs between tissues. [m18](../modules/m18-hybrid-localization.qmd)
+
 Computed tomography (CT)
 : Imaging that measures X-ray attenuation along many lines through the body and reconstructs cross-sectional slices from those measurements. [m51](../modules/m51-cardiac-ct.qmd)
 
@@ -178,6 +181,9 @@ Diastolic interval (DI)
 
 Dice coefficient
 : Overlap of a predicted and a true region: twice the shared area over the sum of the two areas, from 0 (no overlap) to 1 (identical). [m39](../modules/m39-ai-electrograms-maps.qmd), [m40](../modules/m40-ai-imaging-substrate.qmd)
+
+Dielectric imaging
+: Building anatomy and tissue information from how electrical fields are shaped by the conductivity and permittivity of what surrounds the electrodes. [m18](../modules/m18-hybrid-localization.qmd)
 
 Discrepancy principle
 : Choosing a regularization parameter so that the model fits the data only as closely as the noise level allows. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
@@ -386,6 +392,9 @@ Human approval step
 HV interval
 : Time from the His deflection to the earliest ventricular activation; conduction through the His–Purkinje system. [m11](../modules/m11-ep-study.qmd)
 
+Hybrid localization
+: Correcting impedance-based electrode positions with points where a magnetic sensor gives the true position, so every electrode can be shown accurately. [m18](../modules/m18-hybrid-localization.qmd)
+
 Ill-posed problem
 : A problem whose solution fails to exist, to be unique or to depend continuously on the data; small data errors then cause large solution errors. [m07](../modules/m07-inverse-problems.qmd)
 
@@ -415,6 +424,9 @@ Intrinsic deflection
 
 Inverse problem
 : Recovering sources from measurements, the reverse of the forward problem that predicts measurements from sources. [m07](../modules/m07-inverse-problems.qmd), [m32](../modules/m32-capstone-ecg-imaging.qmd)
+
+Inverse-variance weighting
+: Combining independent unbiased estimates with weights proportional to one over their variances; the result is at least as precise as the best one. [m18](../modules/m18-hybrid-localization.qmd)
 
 Inversion recovery
 : An MRI preparation that flips the longitudinal magnetization with a 180° pulse and reads the image while it recovers; a tissue has no signal at T1 ln 2. [m52](../modules/m52-cardiac-mri.qmd)
@@ -660,7 +672,8 @@ Quasi-static approximation
 : Treating bioelectric fields as if they followed their sources instantly, neglecting capacitive, inductive and propagation effects in the volume conductor. [m02](../modules/m02-volume-conduction.qmd)
 
 Radial basis function
-: A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd)
+: A function of the distance to a centre, such as a Gaussian; sums of them represent smooth maps. [m42](../modules/m42-physics-informed-ml.qmd), [m18](../modules/m18-hybrid-localization.qmd)
+
 
 Radon transform
 : The set of line integrals of an image over all lines in the plane, indexed by angle and offset; a CT scanner measures it. [m51](../modules/m51-cardiac-ct.qmd)

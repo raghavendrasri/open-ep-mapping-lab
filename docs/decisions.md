@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-14 · m18 stages 1–6, hybrid and dielectric localization
+
+- **m18** (Hybrid and dielectric localization concepts): five tested equations (affine correction, radial-basis
+  correction, coverage, inverse-variance fusion, complex conductivity), a simulation demo of a hybrid correction and an
+  approximate-model dielectric demo, clinical correlate (pending review), 12 interview and 6 self-check questions, a
+  Python lab (A–E).
+- **A generic hybrid correction.** No peer-reviewed description of a commercial algorithm was found. The module uses a
+  Gaussian radial-basis correction with an affine part, and says products do not publish theirs.
+- **Illustrative tissues.** Single-relaxation parameters for "blood-like" and "wall-like" tissue are chosen to show the
+  idea, not taken from measurements; the page points to Gabriel et al. (1996) for real spectra.
+- **Glossary.** The existing "Radial basis function" entry gained an m18 link instead of a new plural entry.
+
 ## 2026-11-14 · m17 stages 1–6, impedance localization
 
 - **m17** (Impedance localization): six tested equations (patch-pair potential, axis nonlinearity, linear map, field

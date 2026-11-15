@@ -769,6 +769,41 @@ $$
 \delta x = \frac{\delta\phi}{\lvert E\rvert}, \qquad \lvert E_0\rvert = \frac{2k}{d^2}
 $$
 
+## m18 · Hybrid and dielectric localization
+
+Symbols: $\mathbf u$ impedance coordinates; $\mathbf x$ true coordinates; $A$, $\mathbf b$ affine map; $\varphi$ radial basis function of width $s$; $\mathbf w_j$ weights; $\lambda$ regularization; $h$ gap to the nearest reference point; $v_1$, $v_2$ variances; $\sigma$ conductivity; $\varepsilon_0$, $\varepsilon_r$ permittivities; $\omega$ angular frequency; $\tau$ relaxation time; $\varepsilon_\infty$, $\Delta\varepsilon$ dispersion parameters.
+Model: smooth distortion of impedance coordinates; independent unbiased estimates; one Debye relaxation per tissue.
+
+**Affine correction** ([derivation](../modules/m18-hybrid-localization.qmd#eq-m18-affine))
+
+$$
+(\hat A, \hat{\mathbf b}) = \arg\min_{A,\mathbf b}\sum_{i=1}^N \lVert \mathbf x_i - A\mathbf u_i - \mathbf b\rVert^2
+$$
+
+**Smooth correction** ([derivation](../modules/m18-hybrid-localization.qmd#eq-m18-rbf))
+
+$$
+\mathbf x(\mathbf u) = A\mathbf u + \mathbf b + \sum_{j=1}^N \mathbf w_j\,\varphi(\lVert\mathbf u - \mathbf u_j\rVert), \qquad \varphi(r) = e^{-r^2/(2s^2)}, \qquad \begin{bmatrix}\Phi + \lambda I & P\\ P^\top & 0\end{bmatrix}\begin{bmatrix}W\\ C\end{bmatrix} = \begin{bmatrix}X\\ 0\end{bmatrix}
+$$
+
+**Coverage** ([derivation](../modules/m18-hybrid-localization.qmd#eq-m18-coverage))
+
+$$
+\lvert f(x) - f_{\text{lin}}(x)\rvert \le \frac{h^2}{8}\max\lvert f''\rvert
+$$
+
+**Fusion** ([derivation](../modules/m18-hybrid-localization.qmd#eq-m18-fusion))
+
+$$
+\hat{\mathbf x} = \frac{\hat{\mathbf x}_1/v_1 + \hat{\mathbf x}_2/v_2}{1/v_1 + 1/v_2}, \qquad \operatorname{var}(\hat{\mathbf x}) = \frac{1}{1/v_1 + 1/v_2} \le \min(v_1, v_2)
+$$
+
+**Complex conductivity** ([derivation](../modules/m18-hybrid-localization.qmd#eq-m18-dielectric))
+
+$$
+\sigma^*(\omega) = \sigma + j\omega\varepsilon_0\varepsilon_r(\omega), \qquad \varepsilon_r(\omega) = \varepsilon_\infty + \frac{\Delta\varepsilon}{1 + j\omega\tau}, \qquad \arg Z = -\arg\sigma^*
+$$
+
 ## m37 · AI on the surface ECG
 
 Symbols: $z_c$ class score, $p_c$ probability, $y_c$ label, $w[k]$ kernel weight, $f_s$ sampling rate, $k_l$ and $s_l$
