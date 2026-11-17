@@ -2,6 +2,22 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Custom domain changed to openepengineering.org
+
+- **Decision (author):** serve the site at `https://openepengineering.org/`, the domain the author
+  registered, instead of `https://open-ep-mapping-lab.org/` (2026-11-05 entry below). The course
+  keeps its name, Open EP Mapping Lab; only the address changes.
+- **Change:** `site.url` in `_variables.yml`, `site-url` in `_quarto.yml`, the site link in
+  `README.md` and the comment in `.github/workflows/deploy-pages.yml`. The repo and Colab URLs do not
+  change. The address test in `tests/test_content_rules.py` checks that these agree.
+- **Needs the author:** in Settings → Pages → Custom domain, replace the old domain with
+  `openepengineering.org`. At the registrar, add four A records for the apex (185.199.108.153,
+  185.199.109.153, 185.199.110.153, 185.199.111.153), optional AAAA records (2606:50c0:8000::153
+  to 2606:50c0:8003::153), and a `www` CNAME to `raghavendrasri.github.io`. Then verify the domain
+  and tick "Enforce HTTPS". Deployment is by GitHub Actions, so no `CNAME` file is needed.
+- **Undo:** restore `https://open-ep-mapping-lab.org/` in the same four files and in Settings →
+  Pages.
+
 ## 2026-11-15 · m26 stages 1–6, map quality and uncertainty
 
 - **m26** (Map quality and uncertainty): five tested equations (GP posterior, closed-form leave-one-out, per-point
