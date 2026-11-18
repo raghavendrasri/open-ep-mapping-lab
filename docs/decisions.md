@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-18 · Fix: module counts on the home page and README
+
+- **Problem:** the home page button said "See all 45 modules", and the README said "45 modules in
+  seven parts". Both were written by hand before Part VIII took the course to 55 modules in eight
+  parts. The status text was also out of date: it said only the pilot was being written and that
+  the other 35 modules were planned. In fact all 55 have a draft, none has been reviewed, and every
+  clinical section is pending. The course map was already right, because it is generated from
+  `docs/curriculum.md`.
+- **Fix:** corrected the counts and the status text. `test_hand_written_counts_match_the_curriculum`
+  checks every "N modules" and "N parts" in `index.qmd` and `README.md` against the curriculum.
+- **Undo:** revert the text and remove the test.
+
 ## 2026-11-17 · Site icon from the author's logo
 
 - **Decision (author):** use the author's heart-and-gears logo as the browser-tab icon instead of the

@@ -5,13 +5,13 @@ localize catheters, process electrograms and build activation and voltage maps.
 
 **Site (pilot):** https://openepengineering.org/
 
-**Status:** pilot. The first module (m03) is planned and in progress; no modules are complete yet.
+**Status:** draft. All 55 modules have a draft; none has been reviewed yet, so none is complete.
 
 **Education only.** Nothing here is for diagnosis, treatment or any clinical decision.
 
 ## What it will include
 
-- 45 modules in seven parts (see [docs/curriculum.md](docs/curriculum.md))
+- 55 modules in eight parts (see [docs/curriculum.md](docs/curriculum.md))
 - Live in-browser figures, each labeled as exact, simulation, approximate model or schematic
 - Runnable Python labs, with GNU Octave versions for the math foundations
 - A formula sheet, glossary, interview questions and a public errata log
