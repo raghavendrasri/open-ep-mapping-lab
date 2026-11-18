@@ -124,3 +124,16 @@ def test_joule_heating_bound():
     for _ in range(steps):
         T[1:-1] += dt * (alpha * (T[2:] - 2 * T[1:-1] + T[:-2]) / dx**2 + source[1:-1])
     assert T.max() <= pfa.joule_bound(sig, Ev, pulse_on * n_pulses, rho_c) + 1e-12
+
+
+def test_membrane_time_constant_per_micrometer_quoted_in_text():
+    """Page values: with Cm = 1 uF/cm^2, sigma_i = 0.8 S/m and sigma_e = 1.4 S/m [scuderi2023],
+    rho_i = 1.25 ohm m, rho_e = 0.71 ohm m, and tau_m grows by about 16 ns per micrometer of radius;
+    ten times that with Cm = 10 uF/cm^2."""
+    rho_i, rho_e = 1 / 0.8, 1 / 1.4
+    assert rho_i == pytest.approx(1.25)
+    assert round(rho_e, 2) == 0.71
+    cm_base, cm_tt = 1e-6 / 1e-4, 10e-6 / 1e-4  # F/m^2
+    tau_per_um = pfa.membrane_tau(1e-6, cm_base, rho_i, rho_e)
+    assert round(tau_per_um * 1e9) == 16
+    assert pfa.membrane_tau(1e-6, cm_tt, rho_i, rho_e) == pytest.approx(10 * tau_per_um)

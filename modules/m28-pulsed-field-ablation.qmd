@@ -77,8 +77,12 @@ $$
 $$ {#eq-m28-charging}
 
 A pulse much shorter than $\tau_m$ charges the membrane only partly; a pulse much longer than
-$\tau_m$ reaches the steady value of @eq-m28-schwan. Values of $C_m$, $\rho_i$ and $\rho_e$ for
-heart cells: `TODO(source)`.
+$\tau_m$ reaches the steady value of @eq-m28-schwan. A cardiomyocyte electroporation model used
+$C_m$ = 1 µF/cm², an intracellular conductivity of 0.8 S/m ($\rho_i$ = 1.25 Ω·m) and an
+extracellular conductivity of 1.4 S/m ($\rho_e \approx$ 0.71 Ω·m). It raised $C_m$ to 5–10 µF/cm²
+to represent the extra membrane of t-tubules [@scuderi2023]. With the base values in
+@eq-m28-charging, $\tau_m$ grows by about 16 ns for each micrometer of radius, and ten times faster
+if $C_m$ is 10 µF/cm².
 
 **Key takeaways**
 
@@ -113,7 +117,11 @@ monophasic pulses, cardiomyocyte and neuronal lines had less than 20 % viability
 at least 30 pulses, and cardiac fibroblasts needed 1250 V/cm with at least 50 pulses
 [@avazzadeh2021]. In a culture model, neurons were more susceptible than cardiomyocytes at
 1250 V/cm, and a significant share of cardiomyocytes recovered by 24 hours [@avazzadeh2022]. These
-are bench values; tissue thresholds in the beating heart: `TODO(source)`.
+are bench values. In ex vivo perfused hearts, lethal thresholds were estimated by fitting a
+numerical model to lesion images. For a proprietary biphasic waveform the median was 535 V/cm in
+porcine left ventricles (51 lesions in 6 hearts) and 416 V/cm in human donor hearts (21 lesions in
+3 hearts); for 48 monophasic 100-µs pulses it was 368 V/cm in porcine hearts (35 lesions in
+9 hearts). The authors call these findings preliminary, from a limited number of hearts [@kos2023].
 
 **Reversible and irreversible zones.** The increase in permeability can be transient
 [@kotnik2019], and in suspension some cell membranes resealed within hours of the pulses
