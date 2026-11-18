@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Electrophysiology Mapping System — Learning Hub &amp; Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f2f5f4; --bg2:#e8eeee; --surface:#ffffff; --surface2:#eef3f2;
+  --ink:#102326; --ink2:#3d5457; --muted:#687d80;
+  --line:#d3dddb; --line2:#bccbc9;
+  --teal:#0b7668; --teal-bright:#0e9484; --teal-soft:#d9ece8;
+  --amber:#b45309; --red:#c2410c; --navy:#0c2b33;
+  --hero-bg:#081a1f;
+  --shadow:0 10px 30px rgba(12,43,51,.10);
+  --radius:14px;
+  --font-sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  --font-serif:"IBM Plex Serif",Georgia,serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0a1416; --bg2:#0e1b1e; --surface:#122226; --surface2:#162a2e;
+    --ink:#e8f1ef;
+    --ink2:#b7cbc9; --muted:#8aa3a0;
+    --line:#243a3e; --line2:#2f4a4e;
+    --teal:#2dd4bf; --teal-bright:#5eead4; --teal-soft:#123a36;
+    --amber:#fbbf24; --red:#fb923c;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+a{color:var(--teal)}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--font-serif);line-height:1.15;margin:0}
+h2{font-size:clamp(1.65rem,3.4vw,2.3rem);font-weight:600;letter-spacing:-.01em}
+h3{font-size:1.18rem;font-weight:600}
+p{margin:0}
+.section{padding:64px 0 8px}
+.section-head{max-width:760px;margin-bottom:26px}
+.section-head p{color:var(--ink2);margin-top:10px;font-size:1.02rem}
+.kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:10px}
+.mono{font-family:var(--font-mono)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:18px;min-height:56px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-brand{font-family:var(--font-mono);font-weight:600;font-size:.82rem;letter-spacing:.06em;white-space:nowrap;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:conic-gradient(#ef4444,#f59e0b,#84cc16,#06b6d4,#8b5cf6,#ef4444);flex:none}
+.nav-links{display:flex;gap:2px;margin-left:auto}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:.88rem;font-weight:500;padding:8px 11px;border-radius:8px;white-space:nowrap;min-height:36px;display:flex;align-items:center}
+.nav-links a:hover{background:var(--surface2);color:var(--ink)}
+
+/* Hero */
+.hero{background:var(--hero-bg);color:#eaf4f2;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+.hero-copy{padding:58px 44px 54px 0;display:flex;flex-direction:column;justify-content:center}
+.hero .kicker{color:#5eead4}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:600;letter-spacing:-.015em;color:#fff}
+.hero h1 em{font-style:normal;color:#5eead4}
+.hero-sub{margin-top:18px;font-size:1.08rem;color:#bcd6d2;max-width:56ch}
+.hero-points{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:28px}
+.hero-point{border-top:1px solid rgba(255,255,255,.16);padding-top:10px}
+.hero-point b{display:block;font-size:.92rem;color:#fff;font-weight:600}
+.hero-point span{font-size:.85rem;color:#9fc0bb}
+.hero-img{position:relative;min-height:340px}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-img figcaption{position:absolute;left:14px;bottom:12px;font-family:var(--font-mono);font-size:.68rem;color:rgba(255,255,255,.75);background:rgba(4,20,24,.55);padding:5px 9px;border-radius:6px}
+.lat-scale{margin-top:30px;max-width:420px}
+.lat-scale .bar{height:10px;border-radius:5px;background:linear-gradient(90deg,#d73027,#f46d43,#fdae61,#fee08b,#d9ef8b,#66bd63,#3288bd,#5e4fa2)}
+.lat-scale .lbls{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.68rem;color:#9fc0bb;margin-top:6px;letter-spacing:.05em}
+
+/* Signal chain */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:6px}
+.chain-step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 15px;position:relative}
+.chain-step .n{font-family:var(--font-mono);font-size:.7rem;color:var(--teal);font-weight:600;letter-spacing:.1em}
+.chain-step h3{font-size:.98rem;margin:7px 0 5px;font-family:var(--font-sans);font-weight:600}
+.chain-step p{font-size:.84rem;color:var(--ink2);line-height:1.5}
+.chain-step::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--muted);z-index:2;font-weight:600}
+.chain-step:last-child::after{display:none}
+.lede{font-size:1.06rem;color:var(--ink2);max-width:78ch}
+.lede b{color:var(--ink)}
+
+/* Simulator */
+.sim{background:var(--navy);border-radius:18px;padding:22px;color:#e6f2f0;box-shadow:var(--shadow)}
+@media (prefers-color-scheme: dark){.sim{background:#0d2027;border:1px solid var(--line)}}
+.sim-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:space-between}
+.sim-head h3{color:#fff;font-size:1.3rem}
+.sim-head p{color:#a9c8c3;font-size:.92rem;max-width:62ch;margin-top:6px}
+.sim-controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 14px}
+.chip{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#dceeea;border-radius:999px;padding:8px 15px;font-family:var(--font-sans);font-size:.86rem;font-weight:500;cursor:pointer;min-height:38px}
+.chip:hover{background:rgba(255,255,255,.13)}
+.chip[aria-pressed="true"]{background:#0e9484;border-color:#0e9484;color:#fff}
+.chip.alt[aria-pressed="true"]{background:#b45309;border-color:#b45309}
+.sim-body{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
+.sim-canvas-wrap{background:#061418;border-radius:12px;padding:10px}
+canvas#simCanvas{width:100%;height:auto;display:block}
+.sim-side{display:flex;flex-direction:column;gap:12px}
+.sim-readout{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:15px 16px}
+.sim-readout h4{margin:0 0 6px;font-size:.95rem;color:#fff;font-family:var(--font-sans)}
+.sim-readout p{font-size:.88rem;color:#bcd6d2;line-height:1.55}
+.sim-readout .val{font-family:var(--font-mono);color:#5eead4;font-size:.82rem}
+.sim-legend{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:.68rem;color:#a9c8c3}
+.sim-legend .bar{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#d73027,#f46d43,#fdae61,#fee08b,#d9ef8b,#66bd63,#3288bd,#5e4fa2)}
+
+/* Steps */
+.steps-layout{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:start}
+.step-list{display:flex;flex-direction:column;gap:8px}
+.step-btn{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;font-family:var(--font-sans);display:flex;gap:12px;align-items:baseline;color:var(--ink)}
+.step-btn .sn{font-family:var(--font-mono);font-size:.75rem;color:var(--teal);font-weight:600;flex:none}
+.step-btn b{font-size:.95rem;font-weight:600}
+.step-btn[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.step-detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.step-detail h3{margin-bottom:10px}
+.step-detail p{color:var(--ink2)}
+.step-detail ul{margin:14px 0 0;padding-left:19px;color:var(--ink2)}
+.step-detail li{margin-bottom:6px}
+.step-detail li b{color:var(--ink)}
+
+/* Tabs / explorer */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tab{border:1px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 16px;font-family:var(--font-sans);font-size:.9rem;font-weight:600;cursor:pointer;min-height:40px}
+.tab small{display:block;font-weight:400;color:var(--muted);font-size:.74rem}
+.tab[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab[aria-selected="true"] small{color:#9fc0bb}
+@media (prefers-color-scheme: dark){.tab[aria-selected="true"]{background:#e8f1ef;color:#0a1416}.tab[aria-selected="true"] small{color:#3d5457}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.panel-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+.panel h3{font-size:1.45rem;margin-bottom:4px}
+.panel .maker{font-family:var(--font-mono);font-size:.78rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.panel p{color:var(--ink2);margin-top:10px}
+.spec-list{margin:0;padding:0;list-style:none}
+.spec-list li{border-top:1px solid var(--line);padding:10px 0;font-size:.9rem}
+.spec-list li:first-child{border-top:none;padding-top:2px}
+.spec-list b{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-size:.74rem;font-family:var(--font-mono);background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink2)}
+
+/* Comparison table -> stacked on mobile */
+.cmp{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:.9rem}
+.cmp th,.cmp td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{background:var(--surface2);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.cmp tbody th{font-weight:600;white-space:nowrap}
+.cmp td{color:var(--ink2)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:none}
+
+/* Cards grid */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h3{font-size:1.02rem;font-family:var(--font-sans);font-weight:600;margin-bottom:7px}
+.card p{font-size:.9rem;color:var(--ink2)}
+.card .mono-tag{font-family:var(--font-mono);font-size:.68rem;color:var(--teal);letter-spacing:.09em;text-transform:uppercase;font-weight:600}
+
+/* EGM lab */
+.egm{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.egm-screen{background:#07130f;border-radius:10px;padding:12px;margin-top:14px}
+canvas#egmCanvas{width:100%;height:auto;display:block}
+.egm-note{font-size:.9rem;color:var(--ink2);margin-top:12px}
+.egm-note b{color:var(--ink)}
+
+/* Glossary */
+.search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.search-row input[type="search"]{flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--line2);border-radius:10px;background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:.95rem;min-height:44px}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gloss-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.gloss-item h3{font-family:var(--font-sans);font-size:.98rem;font-weight:600}
+.gloss-item .cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.gloss-item p{font-size:.88rem;color:var(--ink2);margin-top:5px}
+.empty-msg{color:var(--muted);font-size:.92rem;padding:8px 0}
+
+/* Quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.q-block{margin-bottom:22px}
+.q-block:last-of-type{margin-bottom:6px}
+.q-block h3{font-family:var(--font-sans);font-size:1rem;font-weight:600;margin-bottom:10px}
+.q-opts{display:flex;flex-wrap:wrap;gap:8px}
+.q-opt{border:1px solid var(--line2);background:var(--bg);color:var(--ink);border-radius:10px;padding:9px 14px;font-size:.88rem;cursor:pointer;font-family:var(--font-sans);min-height:40px}
+.q-opt[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.quiz-result{display:none;margin-top:20px;background:var(--teal-soft);border-radius:12px;padding:20px}
+.quiz-result.show{display:block}
+.quiz-result h3{margin-bottom:6px}
+.quiz-result p{color:var(--ink2);font-size:.94rem}
+
+/* Roadmap */
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:19px}
+.phase .pn{font-family:var(--font-mono);font-size:.7rem;color:var(--teal);font-weight:600;letter-spacing:.1em}
+.phase h3{font-family:var(--font-sans);font-size:.99rem;font-weight:600;margin:7px 0 6px}
+.phase p,.phase li{font-size:.86rem;color:var(--ink2)}
+.phase ul{margin:8px 0 0;padding-left:17px}
+.phase li{margin-bottom:4px}
+.checklist{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin-top:14px}
+.checklist h3{margin-bottom:12px}
+.checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 28px}
+.checklist li{font-size:.92rem;color:var(--ink2);padding-left:26px;position:relative}
+.checklist li::before{content:"";position:absolute;left:0;top:4px;width:15px;height:15px;border:1.5px solid var(--teal);border-radius:4px}
+.checklist li b{color:var(--ink)}
+
+footer{margin-top:70px;border-top:1px solid var(--line);padding:28px 0 44px;color:var(--muted);font-size:.85rem}
+footer a{color:var(--ink2)}
+.sources{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-copy{padding:42px 0 34px}
+  .hero-img{min-height:280px;order:2}
+  .chain{grid-template-columns:1fr 1fr}
+  .chain-step::after{display:none}
+  .sim-body{grid-template-columns:1fr}
+  .steps-layout{grid-template-columns:1fr}
+  .step-list{flex-direction:row;flex-wrap:wrap}
+  .step-btn{flex:1 1 44%}
+  .panel-grid{grid-template-columns:1fr}
+  .grid3,.road{grid-template-columns:1fr 1fr}
+  .gloss,.grid2{grid-template-columns:1fr}
+  .checklist ul{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .section{padding:46px 0 4px}
+  .hero-points{grid-template-columns:1fr}
+  .chain{grid-template-columns:1fr}
+  .grid3,.road{grid-template-columns:1fr}
+  .cmp thead{display:none}
+  .cmp,.cmp tbody,.cmp tr,.cmp td,.cmp th{display:block;width:100%}
+  .cmp tr{border-bottom:2px solid var(--line2);padding:8px 0}
+  .cmp td,.cmp th{border-bottom:none;padding:5px 14px}
+  .cmp tbody th{font-family:var(--font-serif);font-size:1.02rem}
+  .panel,.step-detail,.quiz,.egm{padding:19px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap nav-in">
+    <a class="nav-brand" href="#top"><span class="nav-dot" aria-hidden="true"></span>EP MAPPING</a>
+    <div class="nav-links">
+      <a href="#simulator">Simulator</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#systems">Systems</a>
+      <a href="#modes">Map types</a>
+      <a href="#egm">Electrogram lab</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">Learning hub · Part 1 of 2 — Concepts</p>
+      <h1>Seeing the heart's <em>electricity</em> in 3D</h1>
+      <p class="hero-sub">An electrophysiology (EP) mapping system turns the tiny electrical signals picked up by catheters inside the heart into a live, colour-coded 3D map — so a clinician can find exactly where an abnormal rhythm starts, how it travels, and where to treat it.</p>
+      <div class="hero-points">
+        <div class="hero-point"><b>What it maps</b><span>Activation timing, voltage, and anatomy of a heart chamber</span></div>
+        <div class="hero-point"><b>What it guides</b><span>Catheter navigation and ablation, often with little or no X-ray</span></div>
+        <div class="hero-point"><b>What it treats</b><span>AF, atrial flutter, SVT, PVCs and ventricular tachycardia</span></div>
+        <div class="hero-point"><b>How this hub works</b><span>Learn the concepts here, then compare the real systems below</span></div>
+      </div>
+      <div class="lat-scale" aria-hidden="true">
+        <div class="bar"></div>
+        <div class="lbls"><span>EARLIEST ACTIVATION</span><span>LATEST</span></div>
+      </div>
+    </div>
+    <figure class="hero-img" style="margin:0">
+      <img src="data:image/webp;base64,REMOVED-SEE-README" alt="Illustration of a heart coloured with a rainbow activation map, touched by a multi-spline mapping catheter covered in glowing electrode points" />
+      <figcaption>ILLUSTRATION — ACTIVATION MAP + MAPPING CATHETER</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how">
+    <div class="section-head">
+      <p class="kicker">The core idea</p>
+      <h2>From heartbeat to map, in five links</h2>
+    </div>
+    <p class="lede">Every mapping system — whatever the brand — is the same chain: <b>sense</b> the heart's local electrical signal, <b>locate</b> the electrode that sensed it in 3D space, and repeat that thousands of times until the points merge into a map. The differences between systems are in how they locate, how densely they sample, and how cleverly they interpret.</p>
+    <div class="chain" style="margin-top:24px">
+      <div class="chain-step"><span class="n">01 · SENSE</span><h3>Electrogram</h3><p>Electrodes on a catheter inside the chamber record the local activation signal — the electrogram (EGM) — at each spot they touch.</p></div>
+      <div class="chain-step"><span class="n">02 · LOCATE</span><h3>3D position</h3><p>A magnetic field, impedance field, or dielectric field tells the system where each electrode is, several times per second.</p></div>
+      <div class="chain-step"><span class="n">03 · BUILD</span><h3>Geometry</h3><p>Sweeping the catheter over the chamber wall traces its shape, building a 3D shell of the atrium or ventricle.</p></div>
+      <div class="chain-step"><span class="n">04 · COLOUR</span><h3>Activation &amp; voltage</h3><p>Each point is coloured by when it fired (LAT) or how strong its signal was (voltage) — the map a clinician actually reads.</p></div>
+      <div class="chain-step"><span class="n">05 · TREAT</span><h3>Ablation target</h3><p>The map pinpoints the source or circuit. An ablation catheter delivers RF, cryo or pulsed-field energy there, and the map confirms the result.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ SIMULATOR ============ -->
+  <section class="section" id="simulator">
+    <div class="section-head">
+      <p class="kicker">Interactive · Try it</p>
+      <h2>Activation map simulator</h2>
+      <p>This is a schematic chamber, not a real heart — but the reading skill is the same. Pick a rhythm and watch how the wavefront moves. Red fires first, purple last. In a re-entrant rhythm the colours chase each other in a circle and never finish; in a focal rhythm they spread out from one early spot.</p>
+    </div>
+    <div class="sim">
+      <div class="sim-head">
+        <div>
+          <h3 id="simTitle">Focal atrial tachycardia</h3>
+          <p id="simDesc">One irritable spot fires early and the wave spreads outward in rings — the map shows a single red “bullseye” with colours radiating away from it.</p>
+        </div>
+      </div>
+      <div class="sim-controls" role="group" aria-label="Rhythm pattern">
+        <button class="chip" data-rhythm="focal" aria-pressed="true">Focal tachycardia</button>
+        <button class="chip" data-rhythm="flutter" aria-pressed="false">Typical flutter (re-entry)</button>
+        <button class="chip" data-rhythm="sinus" aria-pressed="false">Sinus rhythm</button>
+        <button class="chip" data-rhythm="af" aria-pressed="false">Atrial fibrillation</button>
+        <button class="chip alt" data-rhythm="voltage" aria-pressed="false">Voltage map (scar)</button>
+      </div>
+      <div class="sim-body">
+        <div class="sim-canvas-wrap">
+          <canvas id="simCanvas" width="640" height="460" aria-label="Animated schematic activation map"></canvas>
+          <div class="sim-legend" style="margin-top:8px"><span id="legendL">EARLY</span><div class="bar" id="legendBar"></div><span id="legendR">LATE</span></div>
+        </div>
+        <div class="sim-side">
+          <div class="sim-readout">
+            <h4>What to look for</h4>
+            <p id="simLook">Find the earliest (red) point first — that is the source. Everything else is just the wave leaving it. Ablation targets the red spot itself, not the tissue it spreads into.</p>
+          </div>
+          <div class="sim-readout">
+            <h4>Key numbers</h4>
+            <p><span class="val" id="simStat1">Cycle length ≈ 300 ms</span><br><span id="simStat2">A single source drives the whole chamber, so one well-placed lesion can end it.</span></p>
+          </div>
+          <div class="sim-readout">
+            <h4>Colour scale</h4>
+            <p id="simScale">Colours encode <b style="color:#fff">local activation time (LAT)</b> — milliseconds relative to a reference electrogram, usually from a stable catheter in the coronary sinus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKFLOW ============ -->
+  <section class="section" id="workflow">
+    <div class="section-head">
+      <p class="kicker">In the EP lab</p>
+      <h2>How a mapping case actually runs</h2>
+      <p>Six stages, in order. Select each stage to see what the team is doing and what the mapping system contributes at that moment.</p>
+    </div>
+    <div class="steps-layout">
+      <div class="step-list" id="stepList" role="group" aria-label="Procedure stages"></div>
+      <div class="step-detail" id="stepDetail"></div>
+    </div>
+  </section>
+
+  <!-- ============ SYSTEMS EXPLORER ============ -->
+  <section class="section" id="systems">
+    <div class="section-head">
+      <p class="kicker">Explorer · Part 2 of 2 — The systems</p>
+      <h2>The major mapping platforms, compared</h2>
+      <p>Five platforms dominate modern EP labs. They all build the same kinds of maps — what differs is the localisation physics, the signature catheter, and the philosophy: closed and integrated, open to other brands' catheters, or built for maximum point density.</p>
+    </div>
+    <div class="tabs" id="sysTabs" role="tablist" aria-label="Mapping systems"></div>
+    <div class="panel" id="sysPanel" role="tabpanel"></div>
+
+    <div style="overflow-x:auto;margin-top:18px;border-radius:14px">
+    <table class="cmp" aria-label="System comparison">
+      <thead><tr><th scope="col">System</th><th scope="col">Localisation</th><th scope="col">Signature mapping catheter</th><th scope="col">Known for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">CARTO 3</th><td>Magnetic sensor + current-based (impedance) hybrid</td><td>OCTARAY &amp; PentaRay multi-spline</td><td>Integrated ecosystem, contact-force ablation, ICE integration</td></tr>
+        <tr><th scope="row">EnSite X</th><td>Impedance (VoXel) + magnetic hybrid, open architecture</td><td>Advisor HD Grid paddle</td><td>Omnipolar mapping — voltage independent of wavefront direction</td></tr>
+        <tr><th scope="row">OPAL HDx <span style="color:var(--muted);font-weight:400">(formerly Rhythmia HDx)</span></th><td>Magnetic + impedance hybrid</td><td>IntellaMap Orion mini-basket (64 electrodes)</td><td>Ultra-high-density automated mapping</td></tr>
+        <tr><th scope="row">KODEX-EPD</th><td>Dielectric sensing — no magnetic field generator</td><td>Works with validated catheters from any maker</td><td>Fast, detailed anatomy imaging, strong for cryoballoon cases</td></tr>
+        <tr><th scope="row">AcQMap</th><td>Ultrasound anatomy + non-contact charge-density sensing</td><td>AcQMap balloon (48 ultrasound transducers, 48 electrodes)</td><td>Single-beat, whole-chamber mapping of unstable rhythms</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:10px">Platform names and catheter names are trademarks of their makers. Descriptions are educational summaries — see the sources at the bottom for the manufacturers' own pages.</p>
+  </section>
+
+  <!-- ============ MAP TYPES ============ -->
+  <section class="section" id="modes">
+    <div class="section-head">
+      <p class="kicker">Reading the map</p>
+      <h2>One chamber, many maps</h2>
+      <p>The geometry stays the same; what changes is the value painted onto it. Choosing the right map type is most of the diagnostic skill.</p>
+    </div>
+    <div class="tabs" id="modeTabs" role="tablist" aria-label="Map types"></div>
+    <div class="panel" id="modePanel" role="tabpanel"></div>
+  </section>
+
+  <!-- ============ EGM LAB ============ -->
+  <section class="section" id="egm">
+    <div class="section-head">
+      <p class="kicker">Signal lab</p>
+      <h2>Reading an electrogram</h2>
+      <p>The map is only as good as the signals underneath it. These schematic traces show the four electrogram shapes a mapper learns to recognise on sight. Amplitude and timing — not the picture — are what the system measures.</p>
+    </div>
+    <div class="egm">
+      <div class="tabs" id="egmTabs" role="tablist" aria-label="Electrogram types" style="margin-bottom:0"></div>
+      <div class="egm-screen"><canvas id="egmCanvas" width="900" height="240" aria-label="Schematic electrogram trace"></canvas></div>
+      <p class="egm-note" id="egmNote"></p>
+    </div>
+  </section>
+
+  <!-- ============ CATHETERS ============ -->
+  <section class="section" id="catheters">
+    <div class="section-head">
+      <p class="kicker">Hardware</p>
+      <h2>The catheters that do the sensing</h2>
+      <p>High-density mapping became possible when catheters grew from 4 electrodes to dozens of small, closely spaced ones. Smaller electrodes and tighter spacing mean sharper, more local signals.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><p class="mono-tag">Multi-spline</p><h3>PentaRay &amp; OCTARAY (CARTO)</h3><p>Flexible splines that splay against the chamber wall like a star — five splines carrying 20 electrodes on the PentaRay, eight splines carrying 48 on the OCTARAY — giving a wide footprint of points per placement.</p></div>
+      <div class="card"><p class="mono-tag">Grid paddle</p><h3>Advisor HD Grid (EnSite)</h3><p>A flat 4 × 4 paddle of 16 electrodes. Because it samples along two axes at once, the system can compute omnipolar signals — the true maximum voltage regardless of the direction the wave crosses the paddle.</p></div>
+      <div class="card"><p class="mono-tag">Mini-basket</p><h3>IntellaMap Orion (OPAL HDx)</h3><p>An expandable basket with 64 tiny electrodes on 8 splines. Paired with automated point acceptance, it collects very high-density maps quickly — the platform's defining strength.</p></div>
+      <div class="card"><p class="mono-tag">Circular</p><h3>Lasso-style circular catheters</h3><p>A loop of electrodes that sits at a pulmonary vein opening and records the vein's potentials — the classic tool for confirming pulmonary vein isolation during AF ablation.</p></div>
+      <div class="card"><p class="mono-tag">Ablation</p><h3>Contact-force ablation catheters</h3><p>The treatment catheter (e.g. ThermoCool SmartTouch, TactiFlex, IntellaNav StablePoint families) senses tip contact force in grams, so lesion tags on the map reflect pressure, power and time — not just position.</p></div>
+      <div class="card"><p class="mono-tag">Non-contact</p><h3>AcQMap balloon</h3><p>A balloon carrying ultrasound transducers and electrodes that hovers in the chamber without touching the wall, reconstructing charge density over the whole chamber from a single beat.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ GLOSSARY ============ -->
+  <section class="section" id="glossary">
+    <div class="section-head">
+      <p class="kicker">Reference</p>
+      <h2>Glossary</h2>
+      <p>The vocabulary of the EP lab, in plain language. Search any term.</p>
+    </div>
+    <div class="search-row">
+      <input type="search" id="glossSearch" placeholder="Search terms — try “scar”, “re-entry”, “LAT”…" aria-label="Search glossary" />
+    </div>
+    <div class="gloss" id="glossGrid"></div>
+    <p class="empty-msg" id="glossEmpty" style="display:none">No term matches that search. Try a shorter word.</p>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-head">
+      <p class="kicker">Check yourself</p>
+      <h2>Which map answers the question?</h2>
+      <p>Four short scenarios. Answer all four and get a read on where your mapping instincts are strong — and what to study next.</p>
+    </div>
+    <div class="quiz" id="quizBox"></div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section class="section" id="roadmap">
+    <div class="section-head">
+      <p class="kicker">Keep going</p>
+      <h2>A learning roadmap</h2>
+      <p>For a student, trainee, engineer or curious builder — the order that makes the field click.</p>
+    </div>
+    <div class="road">
+      <div class="phase"><span class="pn">PHASE 1</span><h3>Heart electricity basics</h3><p>Before any technology:</p><ul><li>Action potentials &amp; conduction</li><li>The ECG and what each wave means</li><li>Atria, ventricles &amp; the conduction system</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 2</span><h3>Arrhythmia mechanisms</h3><p>The three ways rhythms go wrong:</p><ul><li>Enhanced automaticity (focal)</li><li>Re-entry circuits</li><li>Triggered activity</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 3</span><h3>Signals &amp; maps</h3><p>The mapper's core craft:</p><ul><li>Bipolar vs unipolar EGMs</li><li>LAT annotation &amp; windows of interest</li><li>Voltage thresholds &amp; scar</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 4</span><h3>Systems &amp; cases</h3><p>Put it together:</p><ul><li>Compare the five platforms above</li><li>Follow published case reports</li><li>Entrainment &amp; ablation endpoints (PVI, block lines)</li></ul></div>
+    </div>
+    <div class="checklist">
+      <h3>Map-reading checklist</h3>
+      <ul>
+        <li><b>Reference stable?</b> — LAT is only meaningful against a steady reference signal</li>
+        <li><b>Window set right?</b> — the window of interest must cover the full cycle length</li>
+        <li><b>Early meets late?</b> — in re-entry, red should sit next to purple around the circuit</li>
+        <li><b>Density sufficient?</b> — gaps in points are guesses, not data</li>
+        <li><b>Voltage direction-checked?</b> — a wave crossing electrodes end-on reads falsely low</li>
+        <li><b>Scar or artefact?</b> — confirm low voltage with contact and a second look</li>
+        <li><b>EGMs inspected?</b> — never trust the colour without reading the underlying signals</li>
+        <li><b>Endpoint proven?</b> — isolation or block must be demonstrated, not assumed</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--ink2)">Educational use only.</b> This hub explains how electrophysiology mapping systems work in general terms. It is not medical advice, a device manual, or a guide to performing any procedure — EP studies and ablation are performed by trained specialists in equipped labs.</p>
+    <p style="margin-top:12px">Sources — manufacturers' and independent descriptions of the platforms above:</p>
+    <div class="sources">
+      <a href="https://www.cardiovascular.abbott/int/en/hcp/products/electrophysiology/mapping-systems.html" target="_blank" rel="noopener">Abbott — Cardiac Mapping Systems (EnSite)</a>
+      <a href="https://www.bostonscientific.com/en-US/products/capital-equipment--mapping-and-navigation/rhythmia-mapping-system/rhythmia-indications.html" target="_blank" rel="noopener">Boston Scientific — Rhythmia HDx indications</a>
+      <a href="https://www.nice.org.uk/advice/mib260/chapter/The-technology" target="_blank" rel="noopener">NICE — KODEX-EPD technology overview</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= SIMULATOR ================= */
+(function(){
+  var canvas=document.getElementById('simCanvas'), ctx=canvas.getContext('2d');
+  var W=canvas.width,H=canvas.height;
+  // Build point cloud inside a chamber-like blob
+  var pts=[];
+  function inside(x,y){
+    var dx=(x-W*0.5)/(W*0.40), dy=(y-H*0.52)/(H*0.42);
+    var r=Math.sqrt(dx*dx+dy*dy);
+    var ang=Math.atan2(dy,dx);
+    var edge=1+0.10*Math.sin(ang*3+0.6)+0.06*Math.sin(ang*5);
+    return r<edge;
+  }
+  for(var gx=14;gx<W;gx+=17){ for(var gy=12;gy<H;gy+=17){
+    var jx=gx+(Math.sin(gy*1.7)*3), jy=gy+(Math.cos(gx*1.3)*3);
+    if(inside(jx,jy)) pts.push({x:jx,y:jy});
+  }}
+  var focal={x:W*0.38,y:H*0.40};
+  var scar={x:W*0.66,y:H*0.60,r:W*0.17};
+  function latColor(t){ // t 0..1 -> rainbow red..purple
+    var stops=[[215,48,39],[244,109,67],[253,174,97],[254,224,139],[217,239,139],[102,189,99],[50,136,189],[94,79,162]];
+    var f=Math.max(0,Math.min(0.999,t))* (stops.length-1), i=Math.floor(f), u=f-i;
+    var a=stops[i],b=stops[i+1];
+    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*u)+','+Math.round(a[1]+(b[1]-a[1])*u)+','+Math.round(a[2]+(b[2]-a[2])*u)+')';
+  }
+  function voltageColor(v){ // 0 scar purple/grey -> healthy magenta/red like clinical voltage maps
+    if(v<0.12) return '#5e4fa2';
+    if(v<0.35) return '#3288bd';
+    if(v<0.55) return '#66bd63';
+    if(v<0.75) return '#fee08b';
+    return '#d73027';
+  }
+  var rhythms={
+    focal:{title:'Focal atrial tachycardia',desc:'One irritable spot fires early and the wave spreads outward in rings — the map shows a single red “bullseye” with colours radiating away from it.',look:'Find the earliest (red) point first — that is the source. Everything else is just the wave leaving it. Ablation targets the red spot itself, not the tissue it spreads into.',stat1:'Cycle length ≈ 300 ms',stat2:'A single source drives the whole chamber, so one well-placed lesion can end it.'},
+    flutter:{title:'Typical atrial flutter — re-entry',desc:'The wave travels in a continuous loop around the tricuspid annulus (here, a schematic obstacle). There is no beginning or end: the head of the wave forever chases its tail.',look:'Look for “early meets late” — red directly beside purple. That seam, plus a full rainbow around the loop, is the signature of re-entry. Treatment is a line of ablation across the narrow isthmus the loop must pass through.',stat1:'Cycle length ≈ 240 ms',stat2:'The whole cycle length is visible somewhere on the map — activation never stops.'},
+    sinus:{title:'Sinus rhythm — the normal reference',desc:'The impulse starts high in the right atrium at the sinus node and sweeps downward in an orderly wave. Every map is judged against this calm baseline.',look:'Notice how uniform the spread is — no bullseye low in the chamber, no circling. A sinus map is the control image that makes abnormal maps readable.',stat1:'Cycle length ≈ 800 ms (75 bpm)',stat2:'Orderly, single-direction spread from one anatomical origin.'},
+    af:{title:'Atrial fibrillation — disorganised activity',desc:'Multiple shifting wavelets collide and fragment. No single LAT map can capture it, which is why AF work leans on voltage maps, vein potentials and anatomy instead.',look:'There is no stable “earliest point” to chase — watch how the colours refuse to repeat. This is exactly why point-by-point activation mapping struggles in AF, and why pulmonary vein isolation is an anatomical strategy.',stat1:'Local cycle lengths vary, ~120–180 ms',stat2:'Chaotic and non-repeating: substrate and anatomy maps take over from LAT.'},
+    voltage:{title:'Voltage map — finding scar',desc:'Same chamber, different question. Colour now encodes electrogram amplitude: healthy muscle gives tall signals (red), scar gives tiny ones (purple). The pale patch is a schematic scar with a surviving channel through it.',look:'Scar itself is electrically silent — the target in scar-related VT is usually the border zone and the narrow channels of surviving tissue inside the scar, where re-entry loops hide.',stat1:'Common bipolar threshold: < 0.5 mV = dense scar',stat2:'0.5–1.5 mV is usually read as border zone; above that, healthy tissue. Thresholds vary by chamber and lab.'}
+  };
+  var mode='focal', start=performance.now();
+  function activation(p,time){
+    var dx=p.x-focal.x, dy=p.y-focal.y, d=Math.sqrt(dx*dx+dy*dy);
+    if(mode==='focal'){ return ((d*1.6 - time*140) % 420 + 420) % 420 / 420; }
+    if(mode==='sinus'){ var t=((p.y*0.9 + p.x*0.15) - time*130) % 460; return ((t+460)%460)/460; }
+    if(mode==='flutter'){ var a=Math.atan2(p.y-H*0.52,p.x-W*0.5); var t=(a/(Math.PI*2) - time*0.28) % 1; return (t+1)%1; }
+    if(mode==='af'){ var v=Math.sin(p.x*0.045+time*2.6)+Math.sin(p.y*0.06-time*3.4)+Math.sin((p.x+p.y)*0.03+time*1.7); return (v+3)/6; }
+    return 0;
+  }
+  function draw(now){
+    var time=(now-start)/1000;
+    ctx.clearRect(0,0,W,H);
+    // chamber outline hint
+    ctx.beginPath(); ctx.ellipse(W*0.5,H*0.52,W*0.42,H*0.44,0,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.03)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.14)'; ctx.lineWidth=1.5; ctx.stroke();
+    if(mode==='flutter'){ ctx.beginPath(); ctx.ellipse(W*0.5,H*0.52,W*0.13,H*0.15,0,0,Math.PI*2); ctx.fillStyle='rgba(0,0,0,0.35)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.2)'; ctx.stroke(); }
+    for(var i=0;i<pts.length;i++){ var p=pts[i]; var c;
+      if(mode==='voltage'){
+        var dsc=Math.sqrt((p.x-scar.x)*(p.x-scar.x)+(p.y-scar.y)*(p.y-scar.y));
+        var v=dsc<scar.r*0.55?0.05:(dsc<scar.r?0.3+0.25*Math.abs(Math.sin(p.x*0.08)*Math.cos(p.y*0.07)):1);
+        // surviving channel through scar
+        if(Math.abs(p.y-(scar.y+ (p.x-scar.x)*0.25))<9 && dsc<scar.r) v=0.45;
+        c=voltageColor(v);
+      } else {
+        var t=activation(p,time);
+        // brightness pulse near the wavefront
+        c=latColor(t);
+      }
+      ctx.beginPath(); ctx.arc(p.x,p.y,5.2,0,Math.PI*2); ctx.fillStyle=c; ctx.fill();
+    }
+    if(mode==='focal'){ ctx.beginPath(); ctx.arc(focal.x,focal.y,7,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill(); ctx.beginPath(); ctx.arc(focal.x,focal.y,4.5,0,Math.PI*2); ctx.fillStyle='#d73027'; ctx.fill(); }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+  var chips=document.querySelectorAll('[data-rhythm]');
+  chips.forEach(function(ch){
+    ch.addEventListener('click',function(){
+      chips.forEach(function(c){c.setAttribute('aria-pressed','false')});
+      ch.setAttribute('aria-pressed','true');
+      mode=ch.getAttribute('data-rhythm'); start=performance.now();
+      var r=rhythms[mode];
+      document.getElementById('simTitle').textContent=r.title;
+      document.getElementById('simDesc').textContent=r.desc;
+      document.getElementById('simLook').textContent=r.look;
+      document.getElementById('simStat1').textContent=r.stat1;
+      document.getElementById('simStat2').textContent=r.stat2;
+      document.getElementById('legendL').textContent = mode==='voltage' ? 'SCAR · LOW mV' : 'EARLY';
+      document.getElementById('legendR').textContent = mode==='voltage' ? 'HEALTHY · HIGH mV' : 'LATE';
+      document.getElementById('simScale').innerHTML = mode==='voltage'
+        ? 'Colours encode <b style="color:#fff">bipolar voltage</b> — the peak-to-peak size of the electrogram at each point, in millivolts.'
+        : 'Colours encode <b style="color:#fff">local activation time (LAT)</b> — milliseconds relative to a reference electrogram, usually from a stable catheter in the coronary sinus.';
+    });
+  });
+})();
+
+/* ================= WORKFLOW STEPS ================= */
+var steps=[
+ {t:'Access & catheters in',d:'Catheters are threaded through a vein — usually in the groin — into the heart under imaging guidance. A reference catheter is parked somewhere stable, most often the coronary sinus: its steady signal becomes the timing ruler every map point is measured against.',pts:['<b>Mapping system’s job:</b> start tracking every catheter tip in 3D','<b>Why it matters:</b> a drifting reference silently corrupts every LAT on the map']},
+ {t:'Induce the arrhythmia',d:'If the abnormal rhythm is not already running, the team provokes it with programmed stimulation — extra beats delivered in a controlled pattern — while watching for the clinical arrhythmia to start.',pts:['<b>Mapping system’s job:</b> record the 12-lead ECG and all intracardiac signals for later replay','<b>Key idea:</b> you can only map a rhythm you can start — and restart']},
+ {t:'Build the geometry',d:'The mapping catheter is swept across the chamber wall. Each position it visits adds to a 3D shell of the chamber, often merged with a pre-procedure CT or MRI, or built from intracardiac ultrasound.',pts:['<b>Mapping system’s job:</b> turn thousands of visited positions into an anatomical shell','<b>Watch out:</b> geometry built during one rhythm may shift slightly in another']},
+ {t:'Collect the map',d:'Point by point — or continuously with a high-density catheter — the system records each electrogram with its position and timing. Automated filters accept only points with good contact, stable timing and a clean signal.',pts:['<b>Mapping system’s job:</b> annotate each point’s LAT and voltage, reject noise','<b>Density matters:</b> a modern high-density map can hold thousands to tens of thousands of points']},
+ {t:'Interpret & target',d:'The electrophysiologist reads the finished map: find the focal source, trace the re-entry loop, or map the scar channels — then cross-checks with entrainment or pace mapping before committing to a lesion.',pts:['<b>Mapping system’s job:</b> replay activation as a propagation movie, overlay voltage on activation','<b>Rule of the lab:</b> never ablate on colour alone — confirm with the signals']},
+ {t:'Ablate & prove the endpoint',d:'The ablation catheter delivers energy at the target — radiofrequency heat, cryo freezing, or pulsed-field energy. Lesions are tagged on the map. The case ends only when the endpoint is demonstrated: veins isolated, a line proven blocked, or the arrhythmia no longer inducible.',pts:['<b>Mapping system’s job:</b> tag each lesion with force, power and time; re-map to prove the result','<b>Endpoint examples:</b> entrance + exit block for pulmonary vein isolation']}
+];
+(function(){
+  var list=document.getElementById('stepList'), det=document.getElementById('stepDetail');
+  steps.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='step-btn'; b.setAttribute('aria-pressed', i===0?'true':'false');
+    b.innerHTML='<span class="sn">0'+(i+1)+'</span><b>'+s.t+'</b>';
+    b.addEventListener('click',function(){
+      list.querySelectorAll('.step-btn').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true'); show(i);
+    });
+    list.appendChild(b);
+  });
+  function show(i){ var s=steps[i];
+    det.innerHTML='<p class="kicker" style="margin-bottom:6px">Stage 0'+(i+1)+' of 06</p><h3>'+s.t+'</h3><p>'+s.d+'</p><ul>'+s.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul>';
+  }
+  show(0);
+})();
+
+/* ================= SYSTEMS EXPLORER ================= */
+var systems=[
+ {name:'CARTO 3',maker:'Biosense Webster · Johnson & Johnson MedTech',desc:'The most widely installed platform and the reference point others are compared against. CARTO 3 combines a magnetic sensor in the catheter tip with current-based localisation, and wraps mapping, contact-force ablation, lesion tagging and intracardiac echo into one tightly integrated ecosystem.',loc:'Hybrid — magnetic location pad under the table + impedance/current-based tracking',cat:'OCTARAY (48 electrodes, 8 splines) and PentaRay (20 electrodes, 5 splines) multi-spline catheters',sig:'CONFIDENSE continuous mapping; VISITAG lesion tagging; CARTOSOUND ICE integration',best:'Integrated AF and VT workflows where mapping, ablation and imaging stay in one family',tags:['Magnetic + impedance','Contact force','ICE integration','Closed ecosystem']},
+ {name:'EnSite X',maker:'Abbott',desc:'Abbott’s current platform, built around an open architecture: it can visualise catheters from other manufacturers, not just Abbott’s. Its signature idea is omnipolar technology — using the HD Grid’s two-axis electrode array to compute the electrogram’s true maximum amplitude and wavefront direction, removing the classic bipolar blind spot where a wave travelling along a bipole reads falsely small.',loc:'Hybrid — impedance-based VoXel mode + magnetic sensor-enabled tracking',cat:'Advisor HD Grid — 4 × 4 paddle, 16 electrodes, purpose-built for omnipolar acquisition',sig:'EnSite Omnipolar Technology (OT); Near Field / peak-frequency tools for picking the true near-field signal',best:'Labs that value catheter choice, and voltage mapping where wavefront direction would otherwise distort the picture',tags:['Open architecture','Omnipolar','Impedance + magnetic','HD Grid']},
+ {name:'OPAL HDx',maker:'Boston Scientific · formerly Rhythmia HDx',desc:'Boston Scientific’s mapping platform — renamed from Rhythmia HDx to OPAL HDx — was built for one thing above all: density. Its Orion mini-basket carries 64 very small electrodes, and the system automatically accepts or rejects beats against stability criteria, assembling ultra-high-density maps with minimal manual point-picking.',loc:'Hybrid — magnetic + impedance localisation',cat:'IntellaMap Orion — expandable mini-basket, 64 electrodes on 8 splines',sig:'Ultra-high-density automated mapping; LUMIPOINT tools that highlight late and fragmented activity within a chosen window',best:'Complex re-do AF cases, atypical flutters and scar VT where fine detail decides the target',tags:['Ultra-high density','64-electrode basket','Automation','LUMIPOINT']},
+ {name:'KODEX-EPD',maker:'Philips (EPD Solutions)',desc:'A different physical principle altogether: dielectric sensing. Electrodes measure how the surrounding tissue and blood alter an applied field, letting KODEX-EPD reconstruct detailed anatomy in real time without a magnetic field generator — and it works with validated catheters from any manufacturer. NICE’s overview notes it can provide imaging within minutes and is aimed at reducing X-ray use.',loc:'Dielectric sensing — no magnetic generator; open platform for validated catheters',cat:'No proprietary mapping catheter — uses the lab’s existing validated EP catheters',sig:'Real-time high-definition anatomy; occlusion visualisation tools for cryoballoon procedures',best:'Cryoballoon AF ablation and labs wanting fast anatomy without importing a CT',tags:['Dielectric','Open platform','Fast anatomy','Cryoballoon workflow']},
+ {name:'AcQMap',maker:'Acutus Medical',desc:'The non-contact outlier. Instead of touching the wall point by point, its balloon catheter floats in the chamber: ultrasound transducers rebuild the anatomy while 48 electrodes sense the chamber’s electrical field, and inverse-solution mathematics reconstructs charge density on the wall — capturing an entire chamber in a single beat.',loc:'Ultrasound-based anatomy + non-contact electrical sensing (inverse solution)',cat:'AcQMap balloon — 48 ultrasound transducers and 48 electrodes on one catheter',sig:'Single-beat, whole-chamber charge-density maps — works even when the rhythm is unstable or non-sustained',best:'Unstable or constantly changing rhythms that point-by-point mapping cannot keep up with',tags:['Non-contact','Single-beat','Charge density','Ultrasound anatomy']}
+];
+(function(){
+  var tabs=document.getElementById('sysTabs'), panel=document.getElementById('sysPanel');
+  systems.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false');
+    b.innerHTML=s.name+'<small>'+s.maker.split('·')[0]+'</small>';
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); show(i); });
+    tabs.appendChild(b);
+  });
+  function show(i){ var s=systems[i];
+    panel.innerHTML='<div class="panel-grid"><div><p class="maker">'+s.maker+'</p><h3>'+s.name+'</h3><p>'+s.desc+'</p><div class="tag-row">'+s.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div></div>'
+    +'<div><ul class="spec-list"><li><b>Localisation</b>'+s.loc+'</li><li><b>Signature catheter</b>'+s.cat+'</li><li><b>Signature software</b>'+s.sig+'</li><li><b>Best known for</b>'+s.best+'</li></ul></div></div>';
+  }
+  show(0);
+})();
+
+/* ================= MAP MODES ================= */
+var modes=[
+ {name:'Activation (LAT)',q:'“Where does the rhythm start, and how does it travel?”',d:'Each point is coloured by its local activation time relative to a reference. The workhorse map for tachycardias: focal rhythms show a centrifugal bullseye, re-entry shows a full rainbow loop with early-meets-late. Its weakness is annotation — one wrongly timed point can paint a false source.',ex:'Focal AT, typical flutter, most SVTs, VT exit sites'},
+ {name:'Voltage / substrate',q:'“Where is the scar, and where are its channels?”',d:'Colour encodes electrogram amplitude instead of timing. Healthy muscle is tall-signal; dense scar is near-silent; the border zone between them is where re-entry circuits for ventricular tachycardia usually live. Read it with the direction caveat: standard bipolar voltage shrinks when the wavefront runs along the bipole — the problem omnipolar mapping was built to solve.',ex:'Ischaemic and non-ischaemic VT, atrial scar and low-voltage areas in persistent AF'},
+ {name:'Propagation',q:'“Show me the wave actually moving.”',d:'The activation map played as a movie — an animated wavefront sweeping the geometry over one cycle. Slower and more intuitive than reading static colours, and often the fastest way to spot a loop, a gap in a line, or a wave pivoting around scar.',ex:'Confirming re-entry, finding gaps in ablation lines'},
+ {name:'Entrainment',q:'“Is this spot inside the circuit, or just watching it?”',d:'Not a colour map but a pacing test layered on top of one. Pacing from a candidate site: if the paced rhythm matches the tachycardia and the post-pacing interval is within ~30 ms of the cycle length, that site is in or near the circuit. It is the classic cross-check before ablating a flutter or VT isthmus.',ex:'Flutter isthmus, VT isthmus confirmation'},
+ {name:'Pace mapping',q:'“Where does a beat that looks like this come from?”',d:'Pace from a catheter position and compare the resulting 12-lead ECG (or EGM pattern) with the clinical arrhythmia’s. A near-perfect match — often scored as a percentage by template-matching software — marks the exit region. Especially useful for PVCs and VTs that will not stay running long enough to activation-map.',ex:'Frequent PVCs, non-sustained VT'},
+ {name:'Fractionation / late potentials',q:'“Where is conduction slow, fragmented or late?”',d:'Highlights electrograms that are split, prolonged or arrive after the main wave — signatures of slow, zig-zag conduction through diseased tissue. Tools such as LUMIPOINT-style illumination surface these signals inside a chosen time window. Targets here are probabilistic, so they are usually combined with voltage and activation data.',ex:'Scar VT substrate, persistent AF substrate (as an adjunct)'}
+];
+(function(){
+  var tabs=document.getElementById('modeTabs'), panel=document.getElementById('modePanel');
+  modes.forEach(function(m,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false'); b.textContent=m.name;
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); show(i); });
+    tabs.appendChild(b);
+  });
+  function show(i){ var m=modes[i];
+    panel.innerHTML='<div class="panel-grid"><div><h3>'+m.name+'</h3><p style="font-family:var(--font-serif);font-size:1.08rem;color:var(--ink)">'+m.q+'</p><p>'+m.d+'</p></div><div><ul class="spec-list"><li><b>Typically used for</b>'+m.ex+'</li></ul></div></div>';
+  }
+  show(0);
+})();
+
+/* ================= EGM LAB ================= */
+var egms=[
+ {name:'Healthy tissue',note:'<b>Tall, sharp, single deflection</b> — a large bipolar electrogram (several mV) with a crisp downstroke. The wavefront arrives once, activates the tissue under both electrodes almost together, and leaves. This is what normal myocardium sounds like to the catheter.',fn:function(x){ return spike(x,0.5,0.012,1.0); }},
+ {name:'Fractionated (CFAE)',note:'<b>Split, prolonged, messy</b> — multiple low-amplitude deflections smeared over a long duration. Conduction here is slow and zig-zag through fibrotic tissue, so the electrodes see the wave arrive in pieces. Fractionated signals cluster at pivot points and slow zones of re-entry circuits.',fn:function(x){ return spike(x,0.38,0.008,0.35)+spike(x,0.47,0.010,0.5)+spike(x,0.56,0.008,0.3)+spike(x,0.64,0.011,0.42); }},
+ {name:'Dense scar',note:'<b>Nearly flat</b> — a tiny, blunt blip or nothing at all, well under 0.5 mV. Dead or replaced tissue generates almost no local signal. On a voltage map this paints purple. Scar alone is not the target — the channels and borders around it are.',fn:function(x){ return spike(x,0.5,0.02,0.07); }},
+ {name:'Double potentials',note:'<b>Two clean spikes, separated by silence</b> — the signature of a line of conduction block. The tissue on each side of the line activates at clearly different times, and the catheter straddling the line hears both. Mappers hunt for double potentials to prove an ablation line is truly blocked.',fn:function(x){ return spike(x,0.36,0.011,0.85)+spike(x,0.64,0.011,0.8); }}
+];
+function spike(x,c,w,a){ var d=(x-c)/w; return a*Math.exp(-d*d)*(d<0?1:-0.55); }
+(function(){
+  var tabs=document.getElementById('egmTabs'), note=document.getElementById('egmNote');
+  var cv=document.getElementById('egmCanvas'), cx=cv.getContext('2d');
+  var cur=0, phase=0;
+  egms.forEach(function(e,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false'); b.textContent=e.name;
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); cur=i; note.innerHTML=egms[i].note; });
+    tabs.appendChild(b);
+  });
+  note.innerHTML=egms[0].note;
+  function drawEgm(){
+    var W=cv.width,Hh=cv.height; cx.clearRect(0,0,W,Hh);
+    cx.strokeStyle='rgba(94,234,212,0.12)'; cx.lineWidth=1;
+    for(var gx=0;gx<W;gx+=30){ cx.beginPath(); cx.moveTo(gx,0); cx.lineTo(gx,Hh); cx.stroke(); }
+    for(var gy=0;gy<Hh;gy+=30){ cx.beginPath(); cx.moveTo(0,gy); cx.lineTo(W,gy); cx.stroke(); }
+    cx.strokeStyle='#34d399'; cx.lineWidth=2.4; cx.beginPath();
+    var sweep=(phase% (W+160))-80;
+    for(var px=0;px<W;px++){
+      var lx=((px - (sweep-260))% (W*1.4) + W*1.4)%(W*1.4) / (W*1.4);
+      var rep=lx*1.6 - 0.3;
+      var v=0;
+      if(rep>0 && rep<1) v=egms[cur].fn(rep);
+      var y=Hh*0.55 - v*Hh*0.42;
+      if(px===0) cx.moveTo(px,y); else cx.lineTo(px,y);
+    }
+    cx.stroke();
+    cx.fillStyle='rgba(232,241,239,0.75)'; cx.font='11px "IBM Plex Mono",monospace';
+    cx.fillText('BIPOLAR EGM — SCHEMATIC',14,22);
+    cx.fillText('1 mV',W-46,Hh-14);
+    phase+=3.2; requestAnimationFrame(drawEgm);
+  }
+  drawEgm();
+})();
+
+/* ================= GLOSSARY ================= */
+var gloss=[
+ ['LAT (local activation time)','Timing','The moment a point on the chamber wall activates, measured in milliseconds against a fixed reference signal. The value painted on every activation map.'],
+ ['Electrogram (EGM)','Signals','The local electrical signal recorded by catheter electrodes inside the heart — the raw data from which all maps are built. Bipolar EGMs subtract two nearby electrodes; unipolar use one against a distant reference.'],
+ ['Re-entry','Mechanism','A wave that travels in a loop, re-exciting tissue it already passed through. The mechanism behind flutter and most scar-related VT. Maps show it as a full colour cycle with early-meets-late.'],
+ ['Isthmus','Mechanism','The narrow corridor of tissue a re-entry loop must pass through — often bounded by scar or a valve ring. Ablating across the isthmus breaks the loop; it is the highest-value target in flutter and many VTs.'],
+ ['Substrate','Mechanism','The underlying tissue landscape — scar, fibrosis, slow zones — that makes an arrhythmia possible, mapped even when the rhythm itself is not running.'],
+ ['Voltage map','Map types','A map coloured by electrogram amplitude rather than timing. Low voltage marks scar or diseased tissue; thresholds are chamber- and lab-dependent.'],
+ ['Pulmonary vein isolation (PVI)','Procedure','Encircling the pulmonary veins with ablation lesions so their triggers cannot reach the left atrium — the cornerstone ablation strategy for atrial fibrillation. Proven by demonstrating entrance and exit block.'],
+ ['Contact force','Hardware','The pressure (in grams) between an ablation catheter tip and the tissue, sensed in real time. Too little gives weak lesions; too much risks injury. A key input to lesion-quality tags.'],
+ ['High-density mapping','Map types','Collecting thousands of points with multi-electrode catheters and automated acceptance criteria, producing far finer maps than one-point-at-a-time roving.'],
+ ['Omnipolar','Signals','A signal-processing method (Abbott EnSite) that uses a grid of electrodes to derive the electrogram’s maximum amplitude and direction, independent of the angle the wavefront crosses the catheter.'],
+ ['Entrainment','Technique','Pacing during a tachycardia to test whether a site is inside the re-entry circuit — judged by fusion and the post-pacing interval versus the cycle length.'],
+ ['Window of interest','Timing','The time slice of each cycle the system is allowed to annotate. Set it wrong and activation points land in the wrong beat, scrambling the map.'],
+ ['Fluoroscopy','Imaging','Live X-ray imaging. 3D mapping’s big practical win is letting teams work with minimal or near-zero fluoroscopy, cutting radiation for patient and staff.'],
+ ['ICE (intracardiac echocardiography)','Imaging','An ultrasound catheter inside the heart giving live images of anatomy, catheter contact and complications — increasingly fused into the 3D map itself.'],
+ ['Pulsed field ablation (PFA)','Procedure','Ablation using brief high-voltage electric pulses that kill heart muscle cells by electroporation rather than heat or cold. Mapping systems increasingly visualise PFA catheters and lesions alongside RF workflows.'],
+ ['Charge density','Map types','A non-contact reconstruction (AcQMap) of the electrical charge pattern on the chamber wall, computed from a floating balloon’s electrodes via an inverse solution — a whole-chamber map from a single beat.']
+];
+(function(){
+  var grid=document.getElementById('glossGrid'), empty=document.getElementById('glossEmpty');
+  function render(list){
+    grid.innerHTML=list.map(function(g){ return '<div class="gloss-item"><span class="cat">'+g[1]+'</span><h3>'+g[0]+'</h3><p>'+g[2]+'</p></div>'; }).join('');
+    empty.style.display=list.length?'none':'block';
+  }
+  render(gloss);
+  document.getElementById('glossSearch').addEventListener('input',function(e){
+    var q=e.target.value.trim().toLowerCase();
+    render(gloss.filter(function(g){ return (g[0]+' '+g[1]+' '+g[2]).toLowerCase().indexOf(q)>-1; }));
+  });
+})();
+
+/* ================= QUIZ ================= */
+var quiz=[
+ {q:'A tachycardia map shows one red spot with colours spreading outward in rings. The mechanism is most likely…',opts:['Re-entry around scar','A focal source','AV node re-entry only','It cannot be told from a map'],a:1,why:'A centrifugal bullseye is the fingerprint of a focal source — ablate the red centre.'},
+ {q:'On a flutter map, the finding that confirms a re-entry circuit is…',opts:['A single early red point','Purple everywhere','Earliest (red) directly beside latest (purple), with the full cycle length mapped','No points in the chamber'],a:2,why:'“Early meets late” with the whole cycle accounted for means the wave loops continuously.'},
+ {q:'A bipolar voltage reading looks low, but the tissue may be healthy if…',opts:['The catheter is new','The wavefront travelled along the bipole’s axis','The map is very dense','The reference is in the coronary sinus'],a:1,why:'Bipolar amplitude depends on wavefront direction — the blind spot omnipolar mapping was designed to remove.'},
+ {q:'Before ablating a VT isthmus you identified on a map, the classic cross-check is…',opts:['Ablate and see','Entrainment pacing from the site','Raise the voltage threshold','Delete half the points'],a:1,why:'Entrainment — matching fusion and a post-pacing interval within ~30 ms of the cycle length — confirms the site is in the circuit.'}
+];
+(function(){
+  var box=document.getElementById('quizBox'), answers={};
+  quiz.forEach(function(item,qi){
+    var blk=document.createElement('div'); blk.className='q-block';
+    blk.innerHTML='<h3>'+(qi+1)+'. '+item.q+'</h3>';
+    var opts=document.createElement('div'); opts.className='q-opts';
+    item.opts.forEach(function(o,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=o; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){
+        opts.querySelectorAll('.q-opt').forEach(function(x){x.setAttribute('aria-pressed','false')});
+        b.setAttribute('aria-pressed','true'); answers[qi]=oi; finish();
+      });
+      opts.appendChild(b);
+    });
+    blk.appendChild(opts); box.appendChild(blk);
+  });
+  var res=document.createElement('div'); res.className='quiz-result'; res.id='quizResult'; box.appendChild(res);
+  function finish(){
+    if(Object.keys(answers).length<quiz.length) return;
+    var score=0, notes=[];
+    quiz.forEach(function(item,qi){ if(answers[qi]===item.a) score++; else notes.push(item.why); });
+    var head = score===4 ? 'Sharp map-reading instincts.' : score>=2 ? 'Solid — a couple of refinements to make.' : 'Good start — the core ideas are worth a revisit.';
+    res.innerHTML='<h3>'+head+' ('+score+' / 4)</h3><p>'+(notes.length? 'Review these: '+notes.join(' ') : 'You nailed focal vs re-entry patterns, the bipolar direction trap, and entrainment. Next step: work through the map-types section above, then the systems explorer.')+'</p>';
+    res.classList.add('show');
+  }
+})();
+</script>
+</body>
+</html>

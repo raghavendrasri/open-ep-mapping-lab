@@ -8,5 +8,15 @@
     "description": "The external-calibration line unpacked epml.ml.calibration_slope_intercept as (slope, intercept), but the function returns (intercept, slope), so the value printed as 'external calibration slope' was the intercept. Fixed by unpacking in the documented order. No page text quoted the value.",
     "found_by": "Claude, while building m45",
     "status": "fixed, pending human review"
+  },
+  {
+    "id": "E2",
+    "date": "2026-11-17",
+    "module": "learning-hub",
+    "location": "learning-hub/index.html (built by tools/build_learning_hub.py)",
+    "kind": "open claims",
+    "description": "Product facts on the Learning Hub with no independent source found yet, tagged 'unverified' on the page: CARTO 3 current-based (impedance) localisation, integrated ecosystem, software names and typical use; PentaRay 20 electrodes on 5 splines; EnSite X open architecture, VoXel plus magnetic hybrid, Advisor HD Grid 4 x 4 with 16 electrodes, Near Field / peak-frequency tools; OPAL HDx as the new name of Rhythmia HDx, its magnetic plus impedance localisation, beat acceptance criteria, Orion 8 splines, LUMIPOINT, typical use; KODEX-EPD without a magnetic field generator and open to other makers' catheters; AcQMap 48 ultrasound transducers and 48 electrodes, single-beat capture of unstable rhythms; TactiFlex and IntellaNav StablePoint contact-force sensing. Each needs a 510(k) summary, peer-reviewed paper or patent before release (CLAUDE.md section 5).",
+    "found_by": "Claude, while adding the Learning Hub",
+    "status": "open"
   }
 ]
