@@ -5,7 +5,7 @@
 # The Colab cell in labs/python/*.ipynb and README.md hold the same address;
 # tests/test_content_rules.py checks that they agree with this file.
 site:
-  url: https://open-ep-mapping-lab.org/
+  url: https://openepengineering.org/
 repo:
   url: https://github.com/raghavendrasri/open-ep-mapping-lab
   colab: https://colab.research.google.com/github/raghavendrasri/open-ep-mapping-lab
