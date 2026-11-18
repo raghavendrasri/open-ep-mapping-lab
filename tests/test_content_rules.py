@@ -195,6 +195,14 @@ def test_citations_are_in_references_bib():
         assert not missing, f"{path.name}: cites keys missing from references.bib: {missing}"
 
 
+def test_reference_keys_are_unique():
+    """A key used twice in references.bib makes pandoc keep only the last entry, so every page citing the
+    other paper silently shows the wrong reference (m40, m48 and m51 once did). Each key must appear once."""
+    keys = re.findall(r"^@\w+\{([^,]+),", (ROOT / "references.bib").read_text(), re.M)
+    dupes = sorted({k for k in keys if keys.count(k) > 1})
+    assert not dupes, f"references.bib: duplicate keys {dupes}"
+
+
 def test_references_have_doi_or_pmid():
     """CLAUDE.md §5: every entry has a DOI or PMID. Official documents that have neither (regulations,
     regulator guidances, standards) are @misc entries with the official url and the date it was

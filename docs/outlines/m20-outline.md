@@ -34,5 +34,5 @@ A chamber and positions; B hull; C inflate–fill–shrink; D smoothing; E volum
 ## Sources
 
 - Web (no PubMed record): Lorensen and Cline 1987 (DOI 10.1145/37402.37422); Taubin 1995 (DOI 10.1145/218380.218473).
-- Already in the bib: gepstein1997, beinart2011, rottner2021.
+- Already in the bib: gepstein1997, beinart2011resp, rottner2021.
 - No PubMed source found that measures geometry from catheter positions against imaging in a way usable here.
