@@ -79,8 +79,11 @@ Raw bipolar electrograms are sharp, so most of their power sits at frequencies f
 activation rate, and preprocessing is a necessary step for them [@ng2007tech]. A common chain is
 band-pass filter, rectify, then low-pass filter, so that each activation becomes one smooth bump.
 The tests show the effect: on a regular synthetic train, DF of the preprocessed signal equals
-$1/\mathrm{CL}$. The origin of this chain and the filter values used in published work:
-`TODO(source)`.
+$1/\mathrm{CL}$. Li and colleagues describe the chain as Botteron's approach: band-pass filter at
+40–250 Hz, take the absolute value, then low-pass filter at 20 Hz [@li2016df]. The tests use these
+values. In unipolar recordings from a canine AF model, the same group found that a 20–100 Hz
+band-pass gave more accurate DF, that rectification mattered, and that the final low-pass could be
+left out [@li2016df].
 
 DF estimates depend on unipolar versus bipolar recording, bipolar spacing, preprocessing,
 far-field ventricular signals and window length; in one technical study, records longer than 2 s
