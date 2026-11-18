@@ -30,7 +30,7 @@ their **Hausdorff** and mean distances.
   sampling many endocardial sites with a located catheter, and found geometry and activation repeatable in pigs
   [@gepstein1997].
 - **Acquisition conditions change the shape.** Left atrial maps collected regardless of respiratory phase
-  overestimated pulmonary vein ostia compared with maps collected at end expiration [@beinart2011].
+  overestimated pulmonary vein ostia compared with maps collected at end expiration [@beinart2011resp].
 - **Anatomy is checked against imaging.** One study compared pulmonary vein diameters from a field-based mapping
   system with angiography, reporting the mean difference and limits of agreement [@rottner2021].
 
@@ -147,11 +147,11 @@ not yet been reviewed by an EP physician.
 
 **Where this shows up in EP.** Every activation or voltage map is drawn on a geometry built from catheter positions
 [@gepstein1997]. How positions are collected changes that geometry: respiratory phase changed pulmonary vein ostial
-dimensions in one study [@beinart2011]. Anatomy from mapping systems is validated against imaging [@rottner2021], and
+dimensions in one study [@beinart2011resp]. Anatomy from mapping systems is validated against imaging [@rottner2021], and
 registered to CT or MRI in m21.
 
 **What the evidence is.** An early validation in animals [@gepstein1997], a clinical comparison of acquisition
-methods [@beinart2011] and a comparison with angiography [@rottner2021].
+methods [@beinart2011resp] and a comparison with angiography [@rottner2021].
 
 **What a reader should ask:**
 
@@ -315,7 +315,7 @@ the spacing along the wall (@eq-m20-closing).
 <summary>Model answer</summary>
 
 Respiratory motion during collection, a large inflation radius, smoothing, localization scaling (m17) and registration
-(m21) [@beinart2011].
+(m21) [@beinart2011resp].
 
 </details>
 
@@ -434,7 +434,7 @@ look for and where this module explains it.
 ## Further reading
 
 - **Surface algorithms.** Marching cubes [@lorensen1987]; fair surface design [@taubin1995].
-- **Mapping geometry.** Early electroanatomic reconstruction [@gepstein1997]; respiration and geometry [@beinart2011];
+- **Mapping geometry.** Early electroanatomic reconstruction [@gepstein1997]; respiration and geometry [@beinart2011resp];
   anatomy against angiography [@rottner2021].
 - **Related modules.** m06 (meshes), m13 (catheters), m19 (motion), m21 (image integration), m24 (activation maps), m30
   (capstone mapping system).

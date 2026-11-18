@@ -2,6 +2,18 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Fix: duplicate citation keys in references.bib
+
+- **Problem:** three keys appeared twice. `kligfield2007` and `magtibay2019` were two copies of the same
+  paper. `beinart2011` named **two different papers**: left atrial wall thickness on CT (cited by m40,
+  m48 and m51) and respiratory compensation in mapping (cited by m19 and m20). Pandoc keeps the last
+  entry for a duplicated key, so m40, m48 and m51 showed the respiratory-compensation paper as the
+  source of their wall-thickness values. The duplicate came in with m19 (2026-11-14).
+- **Change:** the respiratory-compensation paper is now `beinart2011resp`, cited from m19 and m20 and
+  the m20 outline. The shorter copies of `kligfield2007` and `magtibay2019` are removed. A new test,
+  `test_reference_keys_are_unique`, fails on any repeated key.
+- **Undo:** not advised. Reverting brings back the wrong reference on m40, m48 and m51.
+
 ## 2026-11-17 · Custom domain changed to openepengineering.org
 
 - **Decision (author):** serve the site at `https://openepengineering.org/`, the domain the author

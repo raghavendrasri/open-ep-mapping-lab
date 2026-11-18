@@ -27,7 +27,7 @@ $\sigma_r/(2\sigma_x)$; scaling the surrogate by a fitted slope leaves $\sigma_x
 
 - **Breathing changes the map.** In 22 patients, left atrial maps collected regardless of respiratory phase
   overestimated pulmonary vein ostial dimensions compared with maps collected at end expiration, both judged against
-  pre-procedural CT or MRI. Gated mapping took 7.8 ± 2.1 min against 3.2 ± 1.0 min [@beinart2011].
+  pre-procedural CT or MRI. Gated mapping took 7.8 ± 2.1 min against 3.2 ± 1.0 min [@beinart2011resp].
 - **Surrogates need patient-specific scaling.** In 12 volunteers imaged by real-time MR, the slope relating left main
   coronary to diaphragm displacement averaged about 0.6 but ranged from 0.17 to 0.93, with $r^2$ from 0.04 to 0.87
   [@danias1999].
@@ -162,10 +162,10 @@ not yet been reviewed by an EP physician.
 
 **Where this shows up in EP.** Respiratory compensation changes left atrial maps: in one study, maps collected at end
 expiration matched CT or MRI pulmonary vein ostia better than maps collected regardless of respiration, at the cost of a
-longer collection time [@beinart2011]. The relation between the heart's motion and surrogates such as the diaphragm
+longer collection time [@beinart2011resp]. The relation between the heart's motion and surrogates such as the diaphragm
 varies between people [@danias1999]. Landmark reproducibility over hours is one measure of drift [@wittkampf1999].
 
-**What the evidence is.** A clinical comparison in 22 patients [@beinart2011], an MR study in 12 volunteers
+**What the evidence is.** A clinical comparison in 22 patients [@beinart2011resp], an MR study in 12 volunteers
 [@danias1999], a breathing-motion model from radiotherapy [@lujan1999] and a localization validation [@wittkampf1999].
 
 **What a reader should ask:**
@@ -231,7 +231,7 @@ One sentence to keep: **every correction for motion trades something: time, lag 
 
 | Value | Source |
 | --- | --- |
-| 22 patients; 7.8 ± 2.1 vs 3.2 ± 1.0 min | @beinart2011 |
+| 22 patients; 7.8 ± 2.1 vs 3.2 ± 1.0 min | @beinart2011resp |
 | Coronary–diaphragm slope about 0.6, range 0.17–0.93; $r^2$ 0.04–0.87; 12 volunteers | @danias1999 |
 | Landmark reproducible within 1.4 ± 1.1 mm after 2 h | @wittkampf1999 |
 | Breathing period and excursion, correlations, drift rate, noise | illustrative |
@@ -267,7 +267,7 @@ is $1 - (2/\pi)\arccos$ of that (@eq-m19-gating).
 <details class="model-answer">
 <summary>Model answer</summary>
 
-Ungated maps overestimated pulmonary vein ostia against CT or MRI; gated maps took longer to collect [@beinart2011].
+Ungated maps overestimated pulmonary vein ostia against CT or MRI; gated maps took longer to collect [@beinart2011resp].
 
 </details>
 
@@ -353,7 +353,7 @@ Compare with the slope's standard error from several visits, and with known repr
 <summary>Model answer</summary>
 
 Weigh residual motion against duty cycle (@eq-m19-gating) and the evidence that gating changed anatomical dimensions
-[@beinart2011]; the answer depends on what the map is for.
+[@beinart2011resp]; the answer depends on what the map is for.
 
 </details>
 
@@ -443,14 +443,14 @@ some licenses do not allow reuse here, and others we could not confirm. Each ent
 look for and where this module explains it.
 
 - **Gated and ungated maps.** Beinart and colleagues' comparison of left atrial maps with and without respiratory
-  compensation [@beinart2011]. This module: gating.
+  compensation [@beinart2011resp]. This module: gating.
 - **Heart against diaphragm.** Danias and colleagues' coronary and diaphragm displacements during free breathing
   [@danias1999]. This module: reference catheters and surrogates.
 
 ## Further reading
 
 - **Breathing motion.** An asymmetric breathing model [@lujan1999]; heart and diaphragm motion [@danias1999].
-- **Mapping.** Respiratory compensation in left atrial mapping [@beinart2011]; landmark reproducibility
+- **Mapping.** Respiratory compensation in left atrial mapping [@beinart2011resp]; landmark reproducibility
   [@wittkampf1999].
 - **Related modules.** m05 (time–frequency tools), m16 (magnetic localization), m17 (impedance localization), m20
   (geometry), m21 (image integration).
