@@ -4,12 +4,17 @@ Each test checks an equation in modules/m34-software-architecture.qmd by a route
 the closed form it is checking (counting, simulation, SymPy or brute force).
 """
 
+import re
+from pathlib import Path
+
 import numpy as np
 import pytest
 import sympy as sp
 from scipy import signal
 
 from epml import systems as sy
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_data_rate_by_counting_bytes():
@@ -138,3 +143,16 @@ def test_steep_rise_with_other_service_times():
         _, depart = sy.simulate_queue(arrivals, services)
         W[rho] = np.mean((depart - arrivals)[20_000:])
     assert W[0.9] / W[0.45] > 3
+
+
+def test_stream_alignment_demo_default_bound_quoted_in_text():
+    """Page value for m34-d3 at its defaults (v = 35 mm/s, dt = 30 ms, h = 25 ms, r = 10 mm): the readout
+    bound v|dt| + h^2 v^2 / (8 r) is about 1.06 mm, almost all of it from the offset."""
+    v, dt, h, r = 35.0, 0.030, 0.025, 10.0
+    offset_part = sy.misregistration(v, dt)
+    chord_part = sy.linear_interp_error_bound(h, v**2 / r)
+    assert round(offset_part + chord_part, 2) == 1.06
+    assert chord_part / (offset_part + chord_part) < 0.01
+    demo = (ROOT / "demos" / "m34-d3-stream-alignment.js").read_text()
+    for slider, value in (("m34-d3-v", 35), ("m34-d3-dt", 30), ("m34-d3-h", 25)):
+        assert re.search(rf'id: "{slider}"[^}}]*value: {value},', demo), slider

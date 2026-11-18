@@ -52,7 +52,9 @@ In the United States, a programmable diagnostic computer is a device that can be
 compute physiologic or blood-flow parameters from the output of electrodes, transducers or other
 measuring devices, including the programs supplied with it. It is a Class II device
 [@ecfr870]. Mapping systems are cleared under this regulation with product code DQK
-(TODO(source): cite primary FDA 510(k) records). Several requirements apply around it:
+("Computer, Diagnostic, Programmable"). For example, the FDA 510(k) database lists CARTO 3
+(K231207), EnSite X (K231415) and RHYTHMIA HDx (K241227) under regulation 870.1425 and product code
+DQK [@fdak231207; @fdak231415; @fdak241227]. Several requirements apply around it:
 
 - **Quality system.** Since 2 February 2026, FDA's quality system rule for device makers, now called
   the Quality Management System Regulation, incorporates ISO 13485:2016 by reference [@fdaqmsr2026].

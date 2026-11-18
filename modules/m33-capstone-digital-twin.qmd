@@ -176,7 +176,7 @@ regions out.
 **Assumptions**
 
 - Truth: an eikonal model on a 30 × 30 mm sheet with a 1-mm triangulated grid, paced at the middle of the left edge. Speed is 1.0 m/s, except 0.6 m/s inside a disc of radius 7 mm; these are values reported for normal-voltage and low-voltage left atrium [@heil2023]. The disc's size and place are illustrative.
-- Measurements: activation times at random grid points, plus Gaussian annotation noise and an unknown timing offset of 20 ms (any offset gives the same fit). The default noise of 1 ms and the default of 60 points are illustrative inputs; typical clinical values: `TODO(source)`.
+- Measurements: activation times at random grid points, plus Gaussian annotation noise and an unknown timing offset of 20 ms (any offset gives the same fit). The default noise of 1 ms and the default of 60 points are illustrative inputs. For scale: in simulations, electrogram activation times differed from transmembrane activation times by more than 1.8 ms under nonideal conditions [@steinhaus1989]; clinical high-density maps of atrial tachycardia had 955 ± 421 points [@depooter2018]; and in atrial tachycardia maps, adding points beyond about 1.0–1.5 points/cm² improved re-interpolated maps little [@williams2018].
 - Twin: the same eikonal solver (fast-sweeping order, same fixed point as the Python solver in the tests) with one speed per square region, fitted by Levenberg–Marquardt on log speed within 0.1–3 m/s; the offset is solved in closed form (@eq-m33-offset). Held-out error is 5-fold cross-validation (@eq-m33-holdout).
 - Ignored: anisotropy, curvature of the atrial wall, wall thickness, and errors in point position. A real twin also faces annotation bias, which noise of zero mean does not model.
 :::

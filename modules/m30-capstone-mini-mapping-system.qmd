@@ -78,7 +78,12 @@ $$ {#eq-m30-localization}
 
 a random error of spread $\sigma$ in each direction, plus a respiratory displacement of amplitude
 $A$ and period $T_{\text{resp}}$ along a direction $\hat{\mathbf{u}}$. Real localization errors and
-respiratory motion are covered in m16–m19; typical values: `TODO(source)`.
+respiratory motion are covered in m16–m19. For scale: a magnetic system had mean location errors of
+0.42 mm in vitro and 0.73 mm in vivo [@gepstein1997]. An impedance system was accurate to better
+than 2 mm, with an additional scaling error of 8–14 % [@wittkampf1999]. In 10 patients breathing
+freely, the heart moved caudally by 4.9 ± 1.9 mm (range 2.4–8.0 mm) on inspiration. It also
+rotated in every patient and moved anteriorly in 8 of 10, and a pure translation described the
+motion in only 2, so a single direction $\hat{\mathbf{u}}$ is a simplification [@shechter2004].
 
 **Key takeaways**
 
