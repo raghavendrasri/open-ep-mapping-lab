@@ -24,7 +24,15 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    # A CI run triggers a deploy of the commit it checked. When merges land close together, a slow CI run
+    # for an older commit can finish last and overwrite the newer site. For workflow_run events,
+    # github.sha is the newest commit on main when the event fires, so deploy only when CI checked that
+    # commit. Older runs are skipped; the run for the newest commit deploys when its CI passes.
+    # A manual run (workflow_dispatch) always builds the newest commit on the chosen branch.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_sha == github.sha)
     runs-on: ubuntu-latest
     environment:
       name: github-pages

@@ -2,6 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Fix: deploy only the newest commit on main
+
+- **Problem:** PRs #106, #107 and #108 merged within minutes. Each merge ran CI, and each CI run that
+  passed started a deploy of the commit it checked. The CI run for #106 finished last, so the deploy
+  that went live was built from #106, without the Learning Hub added in #108. Re-running that deploy
+  rebuilt the same old commit.
+- **Fix:** the deploy job runs only when the commit CI checked is still the newest on `main`
+  (`github.event.workflow_run.head_sha == github.sha`; for `workflow_run` events `github.sha` is the
+  newest commit on the default branch). Deploys for older commits are skipped. A manual run
+  (`workflow_dispatch`) is unchanged and always builds the newest commit.
+  `tests/test_deploy_workflow.py` keeps the guard in place.
+- **Undo:** remove the `head_sha == github.sha` clause from the `if:` in `deploy-pages.yml` and delete
+  the test.
+
 ## 2026-11-17 · Learning Hub tab
 
 - **Decision (author):** add the author's "Electrophysiology Mapping System — Learning Hub & Explorer" page,
