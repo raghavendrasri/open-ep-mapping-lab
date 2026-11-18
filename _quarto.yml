@@ -19,6 +19,9 @@ project:
     # The Learning Hub is a self-contained page built by tools/build_learning_hub.py; only the built page is
     # published, not its source folder.
     - learning-hub/index.html
+    # Site icons made from the author's logo by tools/make_favicons.py; favicon.png is linked below.
+    - favicon.ico
+    - apple-touch-icon.png
 
 # The sidebar is generated from docs/curriculum.md by tools/sync_curriculum.py.
 metadata-files:
@@ -28,6 +31,7 @@ website:
   title: "Open EP Mapping Lab"
   description: "A free, open course on cardiac electroanatomic mapping systems."
   site-url: https://openepengineering.org/
+  favicon: favicon.png
   page-navigation: true
   navbar:
     left:

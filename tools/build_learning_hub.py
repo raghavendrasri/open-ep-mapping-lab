@@ -85,6 +85,9 @@ def main(out_path: Path = OUT) -> int:
                              ("sans", 600, "normal"), ("serif", 400, "normal"), ("serif", 500, "normal"),
                              ("serif", 600, "normal"), ("mono", 400, "normal"), ("mono", 500, "normal"),
                              ("mono", 600, "normal")]))
+    # ---------------------------------------------------------------- icon: the site's logo (tools/make_favicons.py)
+    E('<link rel="icon" href="data:," />',
+      '<link rel="icon" type="image/png" href="../favicon.png" />')
     E("footer a{color:var(--ink2)}",
       "footer a{color:var(--ink2)}\n"
       ".cite{font-size:.8em;color:var(--teal);text-decoration:none;border-bottom:1px dotted currentColor;white-space:nowrap}\n"
