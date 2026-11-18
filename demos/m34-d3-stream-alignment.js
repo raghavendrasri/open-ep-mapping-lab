@@ -19,9 +19,9 @@ function mount(root) {
   root.appendChild(controls);
   const readout = addReadout(root);
 
-  const v = addSlider(controls, { id: "m34-d3-v", label: "Catheter speed v", min: 0, max: 100, step: 5, value: 20, digits: 0, unit: "mm/s", onInput: draw });
+  const v = addSlider(controls, { id: "m34-d3-v", label: "Catheter speed v", min: 0, max: 100, step: 5, value: 35, digits: 0, unit: "mm/s", onInput: draw });
   const dt = addSlider(controls, { id: "m34-d3-dt", label: "Timing offset Δt", min: -100, max: 100, step: 5, value: 30, digits: 0, unit: "ms", onInput: draw });
-  const h = addSlider(controls, { id: "m34-d3-h", label: "Location sample interval h", min: 5, max: 400, step: 5, value: 100, digits: 0, unit: "ms", onInput: draw });
+  const h = addSlider(controls, { id: "m34-d3-h", label: "Location sample interval h", min: 5, max: 400, step: 5, value: 25, digits: 0, unit: "ms", onInput: draw });
 
   function pos(t, w) {
     return [R * Math.cos(w * t), R * Math.sin(w * t)];

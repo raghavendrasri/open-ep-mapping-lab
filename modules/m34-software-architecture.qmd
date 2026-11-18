@@ -211,7 +211,8 @@ where $\ddot x$ is the acceleration of the catheter. Faster sampling helps quadr
 
 - Model: the tip moves at constant speed on a circle of radius 10 mm; location is sampled every $h$ and linearly interpolated; each point's position is read $\Delta t$ away from its true time.
 - The bound in the readout is $v\lvert\Delta t\rvert$ (@eq-m34-misregistration) plus the chord error $h^2 v^2/(8r)$ from @eq-m34-interp-error with $\lvert\ddot x\rvert = v^2/r$ on a circle.
-- Speed, offset, sampling interval and radius are illustrative inputs. TODO(source): typical catheter speeds and location update rates, for realistic defaults.
+- Default speed 35 mm/s: the tip moves with the heart wall, and on coronary arteries the peak speeds during contraction ranged from 34.5 to 130.7 mm/s, while breathing alone moved them at about 4.5–9.0 mm/s [@shechter2006]. Default sampling interval 25 ms: 40 Hz, the highest refresh rate measured for one general-purpose electromagnetic tracker (another reached 160–190 Hz) [@yaniv2009]. These sources do not give update rates of commercial mapping systems.
+- The 30-ms timing offset and the 10-mm radius are illustrative inputs. At the defaults the readout bound is about 1.06 mm, almost all of it from the offset.
 - What would change the result: clock drift (an offset that grows with time), cardiac and respiratory motion, and localization noise.
 :::
 
