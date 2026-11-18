@@ -2,6 +2,23 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Site icon from the author's logo
+
+- **Decision (author):** use the author's heart-and-gears logo as the browser-tab icon instead of the
+  browser's default globe. The logo is stored at 512 px in `assets/logo/logo.png`.
+- **How:** `tools/make_favicons.py` crops the logo to a square, places it on a white rounded tile
+  (so it stays visible on dark tabs), and widens the strokes for small sizes so the lines survive. It
+  writes `favicon.png` (64 px, linked from every page via `website.favicon`), `favicon.ico` (16, 32,
+  48 px) and `apple-touch-icon.png` (180 px) at the site root. The Learning Hub had an empty icon
+  (`data:,`); a build edit now links it to the same `favicon.png`. `tests/test_site_icons.py` checks
+  the sizes and the links.
+- **License:** the logo is supplied by the author, not drawn for the course, and it is not a
+  vendor or third-party mark. Unless the author says otherwise, it falls under CC BY 4.0 like the
+  rest of the content; many projects exclude their logo instead, which would need a line in
+  `LICENSE-CONTENT`.
+- **Undo:** remove `favicon` and the two icon resources from `_quarto.yml`, the hub build edit, the
+  icon files, the script and its test.
+
 ## 2026-11-17 · Fix: resolve every TODO(source) on the module pages
 
 - **Scope:** the ten open markers in m27, m28, m29, m30, m33, m34 and m36. One branch with one commit
