@@ -87,7 +87,12 @@ the voltage drop, and most of the heating, happen close to the electrode.
 
 A real tip is not buried in uniform tissue. Part of it touches the wall and part sits in blood,
 which has a different conductivity, so the current divides between the two; how much reaches the
-wall depends on contact and on the two conductivities (values: `TODO(source)`).
+wall depends on contact and on the two conductivities. One cardiac RF model used 0.748 S/m for
+blood and 0.281 S/m for myocardium at 500 kHz, from a tissue-property database, so blood conducts
+about 2.7 times better. In that model only about 16–18 % of the power went into the myocardium at
+the start of each pulse; the rest was dissipated in blood. The authors note that database values
+below 1 MHz are uncertain, and that in vivo studies have reported 0.54 and 0.6 S/m for myocardium
+[@perez2022rf].
 
 **Key takeaways**
 
@@ -176,8 +181,12 @@ $$ {#eq-m27-arrhenius}
 
 $\Omega = 1$ leaves $1/e$ of the tissue undamaged (63 % damaged) and is a common choice for the
 lesion edge. The rule has limits: at moderate hyperthermic temperatures, about 43–50 °C, Arrhenius
-models often overestimate early cell death [@pearce2013]. Values of $A$ and $E_a$ for myocardium:
-`TODO(source)`.
+models often overestimate early cell death [@pearce2013]. Cardiac RF models often use
+$A = 7.39 \times 10^{39}$ s$^{-1}$ and $E_a = 2.577 \times 10^{5}$ J/mol; these values are widely used in
+RF ablation modeling but were not measured in cardiac tissue [@perez2022rf]. With them, tissue held
+at 60 °C reaches $\Omega = 1$ after about 3.4 s, and tissue held at 50 °C after about 61 s
+(@eq-m27-arrhenius at constant temperature). A 10 °C change shifts the time about 18-fold: in this
+model, damage depends steeply on temperature.
 
 **Key takeaways**
 

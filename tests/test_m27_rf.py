@@ -144,6 +144,25 @@ def test_arrhenius_constant_temperature_and_damage_fraction():
     assert 1 - rf.surviving_fraction(1.0) == pytest.approx(1 - np.exp(-1))
 
 
+def test_arrhenius_times_quoted_in_text():
+    """Page values: with A = 7.39e39 1/s and Ea = 2.577e5 J/mol [perez2022rf], Omega = 1 is reached
+    after about 3.4 s at 60 C and about 61 s at 50 C, a ratio of about 18."""
+    A, Ea = 7.39e39, 2.577e5
+    t = np.linspace(0, 100, 100_001)
+    def t_omega1(T):
+        om = rf.arrhenius_omega(t, np.full_like(t, T), A, Ea)
+        return t[np.searchsorted(om, 1.0)]
+    t60, t50 = t_omega1(60.0), t_omega1(50.0)
+    assert round(t60, 1) == 3.4
+    assert round(t50) == 61
+    assert round(t50 / t60) == 18
+
+
+def test_blood_to_myocardium_conductivity_ratio_quoted_in_text():
+    """Page value: 0.748 / 0.281 S/m [perez2022rf] is about 2.7."""
+    assert round(0.748 / 0.281, 1) == 2.7
+
+
 def test_impedance_falls_when_tissue_heats():
     """eq-m27-impedance: with sigma rising linearly with temperature, the shell integral over a heated
     profile gives a lower resistance than over tissue at body temperature."""
