@@ -16,6 +16,9 @@ project:
   resources:
     - demos/
     - vendor/
+    # The Learning Hub is a self-contained page built by tools/build_learning_hub.py; only the built page is
+    # published, not its source folder.
+    - learning-hub/index.html
 
 # The sidebar is generated from docs/curriculum.md by tools/sync_curriculum.py.
 metadata-files:
@@ -38,6 +41,8 @@ website:
         text: Glossary
       - href: formula-sheet/index.qmd
         text: Formula sheet
+      - href: learning-hub/index.html
+        text: Learning hub
       - href: ai-competencies.qmd
         text: AI competencies
       - href: errata.qmd

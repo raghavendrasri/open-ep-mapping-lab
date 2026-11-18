@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Electrophysiology Mapping System — Learning Hub &amp; Explorer</title>
+<style>
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:400;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-sans-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:italic;font-weight:400;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-sans-latin-400-italic.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:500;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-sans-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-style:normal;font-weight:600;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-sans-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:400;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-serif-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:500;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-serif-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Serif";font-style:normal;font-weight:600;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-serif-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;src:url("../vendor/fonts/ibm-plex/ibm-plex-mono-latin-600-normal.woff2") format("woff2")}
+:root{
+  color-scheme: light dark;
+  --bg:#f2f5f4; --bg2:#e8eeee; --surface:#ffffff; --surface2:#eef3f2;
+  --ink:#102326; --ink2:#3d5457; --muted:#687d80;
+  --line:#d3dddb; --line2:#bccbc9;
+  --teal:#0b7668; --teal-bright:#0e9484; --teal-soft:#d9ece8;
+  --amber:#b45309; --red:#c2410c; --navy:#0c2b33;
+  --hero-bg:#081a1f;
+  --shadow:0 10px 30px rgba(12,43,51,.10);
+  --radius:14px;
+  --font-sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  --font-serif:"IBM Plex Serif",Georgia,serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0a1416; --bg2:#0e1b1e; --surface:#122226; --surface2:#162a2e;
+    --ink:#e8f1ef;
+    --ink2:#b7cbc9; --muted:#8aa3a0;
+    --line:#243a3e; --line2:#2f4a4e;
+    --teal:#2dd4bf; --teal-bright:#5eead4; --teal-soft:#123a36;
+    --amber:#fbbf24; --red:#fb923c;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,[role="button"],select,summary,input:not([type="checkbox"],[type="radio"]){min-height:2.25rem}
+a{color:var(--teal)}
+img{max-width:100%;display:block}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--font-serif);line-height:1.15;margin:0}
+h2{font-size:clamp(1.65rem,3.4vw,2.3rem);font-weight:600;letter-spacing:-.01em}
+h3{font-size:1.18rem;font-weight:600}
+p{margin:0}
+.section{padding:64px 0 8px}
+.section-head{max-width:760px;margin-bottom:26px}
+.section-head p{color:var(--ink2);margin-top:10px;font-size:1.02rem}
+.kicker{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:10px}
+.mono{font-family:var(--font-mono)}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:18px;min-height:56px;overflow-x:auto;scrollbar-width:none}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-brand{font-family:var(--font-mono);font-weight:600;font-size:.82rem;letter-spacing:.06em;white-space:nowrap;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:9px}
+.nav-dot{width:10px;height:10px;border-radius:50%;background:conic-gradient(#ef4444,#f59e0b,#84cc16,#06b6d4,#8b5cf6,#ef4444);flex:none}
+.nav-links{display:flex;gap:2px;margin-left:auto}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:.88rem;font-weight:500;padding:8px 11px;border-radius:8px;white-space:nowrap;min-height:36px;display:flex;align-items:center}
+.nav-links a:hover{background:var(--surface2);color:var(--ink)}
+
+/* Hero */
+.hero{background:var(--hero-bg);color:#eaf4f2;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch}
+.hero-copy{padding:58px 44px 54px 0;display:flex;flex-direction:column;justify-content:center}
+.hero .kicker{color:#5eead4}
+.hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:600;letter-spacing:-.015em;color:#fff}
+.hero h1 em{font-style:normal;color:#5eead4}
+.hero-sub{margin-top:18px;font-size:1.08rem;color:#bcd6d2;max-width:56ch}
+.hero-points{display:grid;grid-template-columns:1fr 1fr;gap:12px 22px;margin-top:28px}
+.hero-point{border-top:1px solid rgba(255,255,255,.16);padding-top:10px}
+.hero-point b{display:block;font-size:.92rem;color:#fff;font-weight:600}
+.hero-point span{font-size:.85rem;color:#9fc0bb}
+.hero-img{position:relative;min-height:340px}
+.hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-img figcaption{position:absolute;left:14px;bottom:12px;font-family:var(--font-mono);font-size:.68rem;color:rgba(255,255,255,.75);background:rgba(4,20,24,.55);padding:5px 9px;border-radius:6px}
+.lat-scale{margin-top:30px;max-width:420px}
+.lat-scale .bar{height:10px;border-radius:5px;background:linear-gradient(90deg,#d73027,#f46d43,#fdae61,#fee08b,#d9ef8b,#66bd63,#3288bd,#5e4fa2)}
+.lat-scale .lbls{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.68rem;color:#9fc0bb;margin-top:6px;letter-spacing:.05em}
+
+/* Signal chain */
+.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:6px}
+.chain-step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 15px;position:relative}
+.chain-step .n{font-family:var(--font-mono);font-size:.7rem;color:var(--teal);font-weight:600;letter-spacing:.1em}
+.chain-step h3{font-size:.98rem;margin:7px 0 5px;font-family:var(--font-sans);font-weight:600}
+.chain-step p{font-size:.84rem;color:var(--ink2);line-height:1.5}
+.chain-step::after{content:"→";position:absolute;right:-13px;top:50%;transform:translateY(-50%);color:var(--muted);z-index:2;font-weight:600}
+.chain-step:last-child::after{display:none}
+.lede{font-size:1.06rem;color:var(--ink2);max-width:78ch}
+.lede b{color:var(--ink)}
+
+/* Simulator */
+.sim{background:var(--navy);border-radius:18px;padding:22px;color:#e6f2f0;box-shadow:var(--shadow)}
+@media (prefers-color-scheme: dark){.sim{background:#0d2027;border:1px solid var(--line)}}
+.sim-head{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start;justify-content:space-between}
+.sim-head h3{color:#fff;font-size:1.3rem}
+.sim-head p{color:#a9c8c3;font-size:.92rem;max-width:62ch;margin-top:6px}
+.sim-controls{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 14px}
+.chip{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#dceeea;border-radius:999px;padding:8px 15px;font-family:var(--font-sans);font-size:.86rem;font-weight:500;cursor:pointer;min-height:38px}
+.chip:hover{background:rgba(255,255,255,.13)}
+.chip[aria-pressed="true"]{background:#0e9484;border-color:#0e9484;color:#fff}
+.chip.alt[aria-pressed="true"]{background:#b45309;border-color:#b45309}
+.sim-body{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start}
+.sim-canvas-wrap{background:#061418;border-radius:12px;padding:10px}
+canvas#simCanvas{width:100%;height:auto;display:block}
+.sim-side{display:flex;flex-direction:column;gap:12px}
+.sim-readout{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:15px 16px}
+.sim-readout h4{margin:0 0 6px;font-size:.95rem;color:#fff;font-family:var(--font-sans)}
+.sim-readout p{font-size:.88rem;color:#bcd6d2;line-height:1.55}
+.sim-readout .val{font-family:var(--font-mono);color:#5eead4;font-size:.82rem}
+.sim-legend{display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:.68rem;color:#a9c8c3}
+.sim-legend .bar{flex:1;height:8px;border-radius:4px;background:linear-gradient(90deg,#d73027,#f46d43,#fdae61,#fee08b,#d9ef8b,#66bd63,#3288bd,#5e4fa2)}
+
+/* Steps */
+.steps-layout{display:grid;grid-template-columns:300px 1fr;gap:18px;align-items:start}
+.step-list{display:flex;flex-direction:column;gap:8px}
+.step-btn{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 15px;cursor:pointer;font-family:var(--font-sans);display:flex;gap:12px;align-items:baseline;color:var(--ink)}
+.step-btn .sn{font-family:var(--font-mono);font-size:.75rem;color:var(--teal);font-weight:600;flex:none}
+.step-btn b{font-size:.95rem;font-weight:600}
+.step-btn[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
+.step-detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.step-detail h3{margin-bottom:10px}
+.step-detail p{color:var(--ink2)}
+.step-detail ul{margin:14px 0 0;padding-left:19px;color:var(--ink2)}
+.step-detail li{margin-bottom:6px}
+.step-detail li b{color:var(--ink)}
+
+/* Tabs / explorer */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.tab{border:1px solid var(--line2);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 16px;font-family:var(--font-sans);font-size:.9rem;font-weight:600;cursor:pointer;min-height:40px}
+.tab small{display:block;font-weight:400;color:var(--muted);font-size:.74rem}
+.tab[aria-selected="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.tab[aria-selected="true"] small{color:#9fc0bb}
+@media (prefers-color-scheme: dark){.tab[aria-selected="true"]{background:#e8f1ef;color:#0a1416}.tab[aria-selected="true"] small{color:#3d5457}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.panel-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:26px}
+.panel h3{font-size:1.45rem;margin-bottom:4px}
+.panel .maker{font-family:var(--font-mono);font-size:.78rem;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.panel p{color:var(--ink2);margin-top:10px}
+.spec-list{margin:0;padding:0;list-style:none}
+.spec-list li{border-top:1px solid var(--line);padding:10px 0;font-size:.9rem}
+.spec-list li:first-child{border-top:none;padding-top:2px}
+.spec-list b{display:block;font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.tag{font-size:.74rem;font-family:var(--font-mono);background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--ink2)}
+
+/* Comparison table -> stacked on mobile */
+.cmp{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:.9rem}
+.cmp th,.cmp td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.cmp thead th{background:var(--surface2);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+.cmp tbody th{font-weight:600;white-space:nowrap}
+.cmp td{color:var(--ink2)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:none}
+
+/* Cards grid */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.card h3{font-size:1.02rem;font-family:var(--font-sans);font-weight:600;margin-bottom:7px}
+.card p{font-size:.9rem;color:var(--ink2)}
+.card .mono-tag{font-family:var(--font-mono);font-size:.68rem;color:var(--teal);letter-spacing:.09em;text-transform:uppercase;font-weight:600}
+
+/* EGM lab */
+.egm{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+.egm-screen{background:#07130f;border-radius:10px;padding:12px;margin-top:14px}
+canvas#egmCanvas{width:100%;height:auto;display:block}
+.egm-note{font-size:.9rem;color:var(--ink2);margin-top:12px}
+.egm-note b{color:var(--ink)}
+
+/* Glossary */
+.search-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.search-row input[type="search"]{flex:1;min-width:220px;padding:10px 14px;border:1px solid var(--line2);border-radius:10px;background:var(--surface);color:var(--ink);font-family:var(--font-sans);font-size:.95rem;min-height:44px}
+.gloss{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.gloss-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.gloss-item h3{font-family:var(--font-sans);font-size:.98rem;font-weight:600}
+.gloss-item .cat{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.gloss-item p{font-size:.88rem;color:var(--ink2);margin-top:5px}
+.empty-msg{color:var(--muted);font-size:.92rem;padding:8px 0}
+
+/* Quiz */
+.quiz{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+.q-block{margin-bottom:22px}
+.q-block:last-of-type{margin-bottom:6px}
+.q-block h3{font-family:var(--font-sans);font-size:1rem;font-weight:600;margin-bottom:10px}
+.q-opts{display:flex;flex-wrap:wrap;gap:8px}
+.q-opt{border:1px solid var(--line2);background:var(--bg);color:var(--ink);border-radius:10px;padding:9px 14px;font-size:.88rem;cursor:pointer;font-family:var(--font-sans);min-height:40px}
+.q-opt[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+.quiz-result{display:none;margin-top:20px;background:var(--teal-soft);border-radius:12px;padding:20px}
+.quiz-result.show{display:block}
+.quiz-result h3{margin-bottom:6px}
+.quiz-result p{color:var(--ink2);font-size:.94rem}
+
+/* Roadmap */
+.road{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:19px}
+.phase .pn{font-family:var(--font-mono);font-size:.7rem;color:var(--teal);font-weight:600;letter-spacing:.1em}
+.phase h3{font-family:var(--font-sans);font-size:.99rem;font-weight:600;margin:7px 0 6px}
+.phase p,.phase li{font-size:.86rem;color:var(--ink2)}
+.phase ul{margin:8px 0 0;padding-left:17px}
+.phase li{margin-bottom:4px}
+.checklist{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px 26px;margin-top:14px}
+.checklist h3{margin-bottom:12px}
+.checklist ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:9px 28px}
+.checklist li{font-size:.92rem;color:var(--ink2);padding-left:26px;position:relative}
+.checklist li::before{content:"";position:absolute;left:0;top:4px;width:15px;height:15px;border:1.5px solid var(--teal);border-radius:4px}
+.checklist li b{color:var(--ink)}
+
+footer{margin-top:70px;border-top:1px solid var(--line);padding:28px 0 44px;color:var(--muted);font-size:.85rem}
+footer a{color:var(--ink2)}
+.cite{font-size:.8em;color:var(--teal);text-decoration:none;border-bottom:1px dotted currentColor;white-space:nowrap}
+.hero .cite,.sim .cite{color:#5eead4}
+.unv{display:inline-block;font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:3px;vertical-align:middle;line-height:1.5}
+.status{background:#fff7e6;color:#5c3b00;border-bottom:1px solid #f0d9a8;font-size:.86rem;padding:9px 0}
+.status a{color:inherit}
+@media (prefers-color-scheme: dark){.status{background:#2a2110;color:#f3dfb4;border-color:#4a3a1a}}
+.hero-img svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.refs{margin:10px 0 0 18px;padding:0}.refs li{margin:5px 0}
+.sources{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-copy{padding:42px 0 34px}
+  .hero-img{min-height:280px;order:2}
+  .chain{grid-template-columns:1fr 1fr}
+  .chain-step::after{display:none}
+  .sim-body{grid-template-columns:1fr}
+  .steps-layout{grid-template-columns:1fr}
+  .step-list{flex-direction:row;flex-wrap:wrap}
+  .step-btn{flex:1 1 44%}
+  .panel-grid{grid-template-columns:1fr}
+  .grid3,.road{grid-template-columns:1fr 1fr}
+  .gloss,.grid2{grid-template-columns:1fr}
+  .checklist ul{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .section{padding:46px 0 4px}
+  .hero-points{grid-template-columns:1fr}
+  .chain{grid-template-columns:1fr}
+  .grid3,.road{grid-template-columns:1fr}
+  .cmp thead{display:none}
+  .cmp,.cmp tbody,.cmp tr,.cmp td,.cmp th{display:block;width:100%}
+  .cmp tr{border-bottom:2px solid var(--line2);padding:8px 0}
+  .cmp td,.cmp th{border-bottom:none;padding:5px 14px}
+  .cmp tbody th{font-family:var(--font-serif);font-size:1.02rem}
+  .panel,.step-detail,.quiz,.egm{padding:19px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap nav-in">
+    <a class="nav-brand" href="#top"><span class="nav-dot" aria-hidden="true"></span>EP MAPPING</a>
+    <div class="nav-links">
+      <a href="../index.html">Course home</a>
+      <a href="#simulator">Simulator</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#systems">Systems</a>
+      <a href="#modes">Map types</a>
+      <a href="#egm">Electrogram lab</a>
+      <a href="#glossary">Glossary</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#roadmap">Roadmap</a>
+    </div>
+  </div>
+</nav>
+<div class="status" role="note"><div class="wrap"><b>Draft · pending clinical review.</b> Education only: not for diagnosis, treatment or any clinical decision. Facts carry a citation (listed at the bottom); items marked <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span> have no independent source yet. Part of the <a href="../index.html">Open EP Mapping Lab</a> course.</div></div>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">Learning hub · Part 1 of 2 — Concepts</p>
+      <h1>Seeing the heart's <em>electricity</em> in 3D</h1>
+      <p class="hero-sub">An electrophysiology (EP) mapping system turns the tiny electrical signals picked up by catheters inside the heart into a live, colour-coded 3D map that shows where an abnormal rhythm starts and how it travels.</p>
+      <div class="hero-points">
+        <div class="hero-point"><b>What it maps</b><span>Activation timing, voltage, and anatomy of a heart chamber</span></div>
+        <div class="hero-point"><b>What it guides</b><span>Catheter navigation and ablation, locating catheters without X-ray <a class="cite" href="#ref-gepstein1997">Gepstein 1997</a></span></div>
+        <div class="hero-point"><b>Where it is used</b><span>Procedures for AF, atrial flutter, SVT, PVCs and ventricular tachycardia</span></div>
+        <div class="hero-point"><b>How this hub works</b><span>Learn the concepts here, then compare the real systems below</span></div>
+      </div>
+      <div class="lat-scale" aria-hidden="true">
+        <div class="bar"></div>
+        <div class="lbls"><span>EARLIEST ACTIVATION</span><span>LATEST</span></div>
+      </div>
+    </div>
+    <figure class="hero-img" style="margin:0">
+      <svg viewBox="0 0 600 520" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Schematic drawing: a heart chamber outline filled with coloured points, red at one early site and shading through yellow and green to purple far from it, with a multi-spline mapping catheter touching the early region" xmlns="http://www.w3.org/2000/svg">
+<defs><radialGradient id="hubbg" cx="45%" cy="45%" r="75%"><stop offset="0" stop-color="#123840"/><stop offset="1" stop-color="#061317"/></radialGradient></defs>
+<rect width="600" height="520" fill="url(#hubbg)"/>
+<path d="M476.9,285.0 L483.9,300.5 L487.3,316.8 L486.3,333.2 L480.6,348.6 L470.4,362.2 L456.6,373.5 L440.4,382.2 L423.0,388.4 L405.8,392.8 L389.5,396.2 L374.7,399.3 L361.3,402.9 L348.9,407.3 L337.0,412.6 L325.0,418.2 L312.4,423.7 L299.0,428.3 L285.0,431.5 L270.5,432.9 L255.9,432.4 L241.4,430.3 L227.1,426.9 L213.0,422.8 L198.9,418.2 L184.4,413.3 L169.5,407.9 L154.3,401.7 L139.4,394.1 L125.4,384.8 L113.4,373.5 L104.2,360.3 L98.7,345.5 L97.2,329.9 L99.6,314.2 L105.2,299.0 L112.9,285.0 L121.5,272.2 L129.6,260.5 L136.5,249.5 L141.6,238.4 L145.1,226.7 L147.5,214.1 L149.8,200.5 L153.1,186.1 L158.3,171.9 L166.1,158.5 L176.7,146.9 L189.8,137.7 L204.8,131.4 L221.0,127.9 L237.5,126.8 L253.9,127.5 L269.7,129.3 L285.0,131.5 L299.8,133.8 L314.4,136.2 L328.9,138.9 L343.2,142.3 L357.1,146.9 L370.4,153.0 L382.4,160.8 L392.9,170.2 L401.8,180.7 L409.4,191.8 L416.0,203.1 L422.5,214.1 L429.6,224.8 L437.7,235.4 L447.0,246.2 L457.2,257.9 L467.6,270.7 L476.9,285.0 Z" fill="rgba(255,255,255,0.04)" stroke="rgba(207,227,230,0.45)" stroke-width="2"/>
+<path d="M232,118 C228,80 236,55 250,40 M318,112 C326,76 340,58 356,48 M150,205 C120,190 98,186 76,190" fill="none" stroke="rgba(207,227,230,0.35)" stroke-width="10" stroke-linecap="round"/>
+<circle cx="98.5" cy="318.9" r="4.6" fill="#88cc6f"/><circle cx="97.7" cy="333.9" r="4.6" fill="#68be64"/><circle cx="115.7" cy="290.8" r="4.6" fill="#dded8b"/><circle cx="114.6" cy="305.8" r="4.6" fill="#c9e885"/><circle cx="113.5" cy="320.8" r="4.6" fill="#a8da7a"/><circle cx="112.7" cy="335.8" r="4.6" fill="#86cb6e"/><circle cx="112.2" cy="350.8" r="4.6" fill="#65bc65"/><circle cx="112.0" cy="365.8" r="4.6" fill="#54ab82"/><circle cx="132.5" cy="262.4" r="4.6" fill="#fae28b"/><circle cx="131.7" cy="277.4" r="4.6" fill="#f2e58b"/><circle cx="130.7" cy="292.4" r="4.6" fill="#e9e88b"/><circle cx="129.6" cy="307.4" r="4.6" fill="#dfed8b"/><circle cx="128.5" cy="322.4" r="4.6" fill="#c8e785"/><circle cx="127.7" cy="337.4" r="4.6" fill="#a3d878"/><circle cx="127.2" cy="352.4" r="4.6" fill="#7ec76b"/><circle cx="127.0" cy="367.4" r="4.6" fill="#5fb66e"/><circle cx="127.2" cy="382.4" r="4.6" fill="#4ea48d"/><circle cx="147.6" cy="218.0" r="4.6" fill="#fdc272"/><circle cx="148.0" cy="233.0" r="4.6" fill="#fdc473"/><circle cx="147.9" cy="248.0" r="4.6" fill="#feca78"/><circle cx="147.5" cy="263.0" r="4.6" fill="#fed380"/><circle cx="146.7" cy="278.0" r="4.6" fill="#fedf8a"/><circle cx="145.7" cy="293.0" r="4.6" fill="#f5e48b"/><circle cx="144.6" cy="308.0" r="4.6" fill="#e9e88b"/><circle cx="143.5" cy="323.0" r="4.6" fill="#dded8b"/><circle cx="142.7" cy="338.0" r="4.6" fill="#c0e482"/><circle cx="142.2" cy="353.0" r="4.6" fill="#98d374"/><circle cx="142.0" cy="368.0" r="4.6" fill="#70c166"/><circle cx="142.2" cy="383.0" r="4.6" fill="#58af7b"/><circle cx="159.9" cy="172.4" r="4.6" fill="#fdc071"/><circle cx="161.0" cy="187.4" r="4.6" fill="#fdb668"/><circle cx="162.0" cy="202.4" r="4.6" fill="#fdb062"/><circle cx="162.6" cy="217.4" r="4.6" fill="#fdad61"/><circle cx="163.0" cy="232.4" r="4.6" fill="#fdb062"/><circle cx="162.9" cy="247.4" r="4.6" fill="#fdb668"/><circle cx="162.5" cy="262.4" r="4.6" fill="#fdc171"/><circle cx="161.7" cy="277.4" r="4.6" fill="#fece7c"/><circle cx="160.7" cy="292.4" r="4.6" fill="#fedd89"/><circle cx="159.6" cy="307.4" r="4.6" fill="#f4e48b"/><circle cx="158.5" cy="322.4" r="4.6" fill="#e7e98b"/><circle cx="157.7" cy="337.4" r="4.6" fill="#daef8b"/><circle cx="157.2" cy="352.4" r="4.6" fill="#b3de7e"/><circle cx="157.0" cy="367.4" r="4.6" fill="#89cc6f"/><circle cx="157.2" cy="382.4" r="4.6" fill="#63b969"/><circle cx="157.8" cy="397.4" r="4.6" fill="#4fa68a"/><circle cx="173.8" cy="155.8" r="4.6" fill="#fdbf6f"/><circle cx="174.9" cy="170.8" r="4.6" fill="#fdb063"/><circle cx="176.0" cy="185.8" r="4.6" fill="#fba15b"/><circle cx="177.0" cy="200.8" r="4.6" fill="#fa9756"/><circle cx="177.6" cy="215.8" r="4.6" fill="#f99254"/><circle cx="178.0" cy="230.8" r="4.6" fill="#fa9656"/><circle cx="177.9" cy="245.8" r="4.6" fill="#fba05a"/><circle cx="177.5" cy="260.8" r="4.6" fill="#fdaf62"/><circle cx="176.7" cy="275.8" r="4.6" fill="#fdbe6e"/><circle cx="175.7" cy="290.8" r="4.6" fill="#fece7c"/><circle cx="174.6" cy="305.8" r="4.6" fill="#fee08b"/><circle cx="173.5" cy="320.8" r="4.6" fill="#f1e58b"/><circle cx="172.7" cy="335.8" r="4.6" fill="#e3eb8b"/><circle cx="172.2" cy="350.8" r="4.6" fill="#cdea87"/><circle cx="172.0" cy="365.8" r="4.6" fill="#a1d778"/><circle cx="172.2" cy="380.8" r="4.6" fill="#75c468"/><circle cx="172.8" cy="395.8" r="4.6" fill="#59b079"/><circle cx="187.9" cy="138.9" r="4.6" fill="#fdc574"/><circle cx="188.8" cy="153.9" r="4.6" fill="#fdb365"/><circle cx="189.9" cy="168.9" r="4.6" fill="#fb9f5a"/><circle cx="191.0" cy="183.9" r="4.6" fill="#f88c51"/><circle cx="192.0" cy="198.9" r="4.6" fill="#f67e4b"/><circle cx="192.6" cy="213.9" r="4.6" fill="#f57848"/><circle cx="193.0" cy="228.9" r="4.6" fill="#f67b49"/><circle cx="192.9" cy="243.9" r="4.6" fill="#f8874f"/><circle cx="192.5" cy="258.9" r="4.6" fill="#fa9957"/><circle cx="191.7" cy="273.9" r="4.6" fill="#fdae61"/><circle cx="190.7" cy="288.9" r="4.6" fill="#fdc070"/><circle cx="189.6" cy="303.9" r="4.6" fill="#fed380"/><circle cx="188.5" cy="318.9" r="4.6" fill="#f9e28b"/><circle cx="187.7" cy="333.9" r="4.6" fill="#ebe88b"/><circle cx="187.2" cy="348.9" r="4.6" fill="#ddee8b"/><circle cx="187.0" cy="363.9" r="4.6" fill="#b7e07f"/><circle cx="187.2" cy="378.9" r="4.6" fill="#8acd70"/><circle cx="187.8" cy="393.9" r="4.6" fill="#62b96a"/><circle cx="188.7" cy="408.9" r="4.6" fill="#4da48d"/><circle cx="202.9" cy="137.4" r="4.6" fill="#fdbd6e"/><circle cx="203.8" cy="152.4" r="4.6" fill="#fca95f"/><circle cx="204.9" cy="167.4" r="4.6" fill="#f99053"/><circle cx="206.0" cy="182.4" r="4.6" fill="#f67a49"/><circle cx="207.0" cy="197.4" r="4.6" fill="#f16740"/><circle cx="207.6" cy="212.4" r="4.6" fill="#ed5e3c"/><circle cx="208.0" cy="227.4" r="4.6" fill="#ef623e"/><circle cx="207.9" cy="242.4" r="4.6" fill="#f57145"/><circle cx="207.5" cy="257.4" r="4.6" fill="#f7864f"/><circle cx="206.7" cy="272.4" r="4.6" fill="#fb9e5a"/><circle cx="205.7" cy="287.4" r="4.6" fill="#fdb567"/><circle cx="204.6" cy="302.4" r="4.6" fill="#fec978"/><circle cx="203.5" cy="317.4" r="4.6" fill="#fedd89"/><circle cx="202.7" cy="332.4" r="4.6" fill="#f1e58b"/><circle cx="202.2" cy="347.4" r="4.6" fill="#e2eb8b"/><circle cx="202.0" cy="362.4" r="4.6" fill="#c8e885"/><circle cx="202.2" cy="377.4" r="4.6" fill="#9ad475"/><circle cx="202.8" cy="392.4" r="4.6" fill="#6cc065"/><circle cx="203.7" cy="407.4" r="4.6" fill="#54aa83"/><circle cx="217.9" cy="137.0" r="4.6" fill="#fdb869"/><circle cx="218.8" cy="152.0" r="4.6" fill="#fba05b"/><circle cx="219.9" cy="167.0" r="4.6" fill="#f7864e"/><circle cx="221.0" cy="182.0" r="4.6" fill="#f46c43"/><circle cx="222.0" cy="197.0" r="4.6" fill="#e95538"/><circle cx="222.6" cy="212.0" r="4.6" fill="#e14531"/><circle cx="223.0" cy="227.0" r="4.6" fill="#e54c34"/><circle cx="222.9" cy="242.0" r="4.6" fill="#ef623e"/><circle cx="222.5" cy="257.0" r="4.6" fill="#f67a49"/><circle cx="221.7" cy="272.0" r="4.6" fill="#f99455"/><circle cx="220.7" cy="287.0" r="4.6" fill="#fdaf62"/><circle cx="219.6" cy="302.0" r="4.6" fill="#fdc373"/><circle cx="218.5" cy="317.0" r="4.6" fill="#fed884"/><circle cx="217.7" cy="332.0" r="4.6" fill="#f5e48b"/><circle cx="217.2" cy="347.0" r="4.6" fill="#e6ea8b"/><circle cx="217.0" cy="362.0" r="4.6" fill="#d1ec88"/><circle cx="217.2" cy="377.0" r="4.6" fill="#a2d778"/><circle cx="217.8" cy="392.0" r="4.6" fill="#74c368"/><circle cx="218.7" cy="407.0" r="4.6" fill="#57ae7d"/><circle cx="219.8" cy="422.0" r="4.6" fill="#4298a2"/><circle cx="232.9" cy="137.8" r="4.6" fill="#fdb466"/><circle cx="233.8" cy="152.8" r="4.6" fill="#fa9b58"/><circle cx="234.9" cy="167.8" r="4.6" fill="#f7804c"/><circle cx="236.0" cy="182.8" r="4.6" fill="#f16640"/><circle cx="237.0" cy="197.8" r="4.6" fill="#e54d34"/><circle cx="237.6" cy="212.8" r="4.6" fill="#da362a"/><circle cx="238.0" cy="227.8" r="4.6" fill="#e14631"/><circle cx="237.9" cy="242.8" r="4.6" fill="#ed5f3d"/><circle cx="237.5" cy="257.8" r="4.6" fill="#f67948"/><circle cx="236.7" cy="272.8" r="4.6" fill="#f99355"/><circle cx="235.7" cy="287.8" r="4.6" fill="#fdae61"/><circle cx="234.6" cy="302.8" r="4.6" fill="#fdc372"/><circle cx="233.5" cy="317.8" r="4.6" fill="#fed784"/><circle cx="232.7" cy="332.8" r="4.6" fill="#f5e48b"/><circle cx="232.2" cy="347.8" r="4.6" fill="#e6ea8b"/><circle cx="232.0" cy="362.8" r="4.6" fill="#d2ec89"/><circle cx="232.2" cy="377.8" r="4.6" fill="#a3d778"/><circle cx="232.8" cy="392.8" r="4.6" fill="#74c368"/><circle cx="233.7" cy="407.8" r="4.6" fill="#57ad7d"/><circle cx="234.8" cy="422.8" r="4.6" fill="#4198a2"/><circle cx="247.9" cy="139.5" r="4.6" fill="#fdb365"/><circle cx="248.8" cy="154.5" r="4.6" fill="#fa9b58"/><circle cx="249.9" cy="169.5" r="4.6" fill="#f7814c"/><circle cx="251.0" cy="184.5" r="4.6" fill="#f26a41"/><circle cx="252.0" cy="199.5" r="4.6" fill="#e95639"/><circle cx="252.6" cy="214.5" r="4.6" fill="#e54e35"/><circle cx="253.0" cy="229.5" r="4.6" fill="#e95739"/><circle cx="252.9" cy="244.5" r="4.6" fill="#f36a42"/><circle cx="252.5" cy="259.5" r="4.6" fill="#f7814c"/><circle cx="251.7" cy="274.5" r="4.6" fill="#fa9a58"/><circle cx="250.7" cy="289.5" r="4.6" fill="#fdb365"/><circle cx="249.6" cy="304.5" r="4.6" fill="#fdc776"/><circle cx="248.5" cy="319.5" r="4.6" fill="#fedb87"/><circle cx="247.7" cy="334.5" r="4.6" fill="#f3e48b"/><circle cx="247.2" cy="349.5" r="4.6" fill="#e4eb8b"/><circle cx="247.0" cy="364.5" r="4.6" fill="#cbe986"/><circle cx="247.2" cy="379.5" r="4.6" fill="#9cd576"/><circle cx="247.8" cy="394.5" r="4.6" fill="#6dc065"/><circle cx="248.7" cy="409.5" r="4.6" fill="#54aa83"/><circle cx="249.8" cy="424.5" r="4.6" fill="#3e94a8"/><circle cx="262.9" cy="141.4" r="4.6" fill="#fdb668"/><circle cx="263.8" cy="156.4" r="4.6" fill="#fba15b"/><circle cx="264.9" cy="171.4" r="4.6" fill="#f88a51"/><circle cx="266.0" cy="186.4" r="4.6" fill="#f57748"/><circle cx="267.0" cy="201.4" r="4.6" fill="#f36a42"/><circle cx="267.6" cy="216.4" r="4.6" fill="#f16740"/><circle cx="268.0" cy="231.4" r="4.6" fill="#f46e43"/><circle cx="267.9" cy="246.4" r="4.6" fill="#f67d4a"/><circle cx="267.5" cy="261.4" r="4.6" fill="#f99154"/><circle cx="266.7" cy="276.4" r="4.6" fill="#fca75e"/><circle cx="265.7" cy="291.4" r="4.6" fill="#fdbb6c"/><circle cx="264.6" cy="306.4" r="4.6" fill="#fece7c"/><circle cx="263.5" cy="321.4" r="4.6" fill="#fde08b"/><circle cx="262.7" cy="336.4" r="4.6" fill="#eee68b"/><circle cx="262.2" cy="351.4" r="4.6" fill="#e0ec8b"/><circle cx="262.0" cy="366.4" r="4.6" fill="#bfe482"/><circle cx="262.2" cy="381.4" r="4.6" fill="#91d072"/><circle cx="262.8" cy="396.4" r="4.6" fill="#64bb66"/><circle cx="263.7" cy="411.4" r="4.6" fill="#4fa58b"/><circle cx="264.8" cy="426.4" r="4.6" fill="#398fb1"/><circle cx="277.9" cy="142.7" r="4.6" fill="#fdbd6e"/><circle cx="278.8" cy="157.7" r="4.6" fill="#fdad60"/><circle cx="279.9" cy="172.7" r="4.6" fill="#fa9a58"/><circle cx="281.0" cy="187.7" r="4.6" fill="#f88b51"/><circle cx="282.0" cy="202.7" r="4.6" fill="#f7834d"/><circle cx="282.6" cy="217.7" r="4.6" fill="#f7814c"/><circle cx="283.0" cy="232.7" r="4.6" fill="#f8874f"/><circle cx="282.9" cy="247.7" r="4.6" fill="#f99455"/><circle cx="282.5" cy="262.7" r="4.6" fill="#fca45c"/><circle cx="281.7" cy="277.7" r="4.6" fill="#fdb567"/><circle cx="280.7" cy="292.7" r="4.6" fill="#fdc675"/><circle cx="279.6" cy="307.7" r="4.6" fill="#fed784"/><circle cx="278.5" cy="322.7" r="4.6" fill="#f7e38b"/><circle cx="277.7" cy="337.7" r="4.6" fill="#e9e98b"/><circle cx="277.2" cy="352.7" r="4.6" fill="#dbee8b"/><circle cx="277.0" cy="367.7" r="4.6" fill="#b1de7d"/><circle cx="277.2" cy="382.7" r="4.6" fill="#83ca6d"/><circle cx="277.8" cy="397.7" r="4.6" fill="#5eb571"/><circle cx="278.7" cy="412.7" r="4.6" fill="#499f95"/><circle cx="279.8" cy="427.7" r="4.6" fill="#348aba"/><circle cx="292.9" cy="142.9" r="4.6" fill="#fec978"/><circle cx="293.8" cy="157.9" r="4.6" fill="#fdbb6c"/><circle cx="294.9" cy="172.9" r="4.6" fill="#fdae61"/><circle cx="296.0" cy="187.9" r="4.6" fill="#fba35c"/><circle cx="297.0" cy="202.9" r="4.6" fill="#fb9d59"/><circle cx="297.6" cy="217.9" r="4.6" fill="#fa9c59"/><circle cx="298.0" cy="232.9" r="4.6" fill="#fba15b"/><circle cx="297.9" cy="247.9" r="4.6" fill="#fdab5f"/><circle cx="297.5" cy="262.9" r="4.6" fill="#fdb668"/><circle cx="296.7" cy="277.9" r="4.6" fill="#fdc373"/><circle cx="295.7" cy="292.9" r="4.6" fill="#fed27f"/><circle cx="294.6" cy="307.9" r="4.6" fill="#fde08b"/><circle cx="293.5" cy="322.9" r="4.6" fill="#f0e68b"/><circle cx="292.7" cy="337.9" r="4.6" fill="#e3eb8b"/><circle cx="292.2" cy="352.9" r="4.6" fill="#ceea87"/><circle cx="292.0" cy="367.9" r="4.6" fill="#a2d778"/><circle cx="292.2" cy="382.9" r="4.6" fill="#75c368"/><circle cx="292.8" cy="397.9" r="4.6" fill="#58af7b"/><circle cx="293.7" cy="412.9" r="4.6" fill="#439a9f"/><circle cx="294.8" cy="427.9" r="4.6" fill="#3584bb"/><circle cx="307.9" cy="141.9" r="4.6" fill="#fed884"/><circle cx="308.8" cy="156.9" r="4.6" fill="#fecb79"/><circle cx="309.9" cy="171.9" r="4.6" fill="#fdc171"/><circle cx="311.0" cy="186.9" r="4.6" fill="#fdb96a"/><circle cx="312.0" cy="201.9" r="4.6" fill="#fdb567"/><circle cx="312.6" cy="216.9" r="4.6" fill="#fdb567"/><circle cx="313.0" cy="231.9" r="4.6" fill="#fdb869"/><circle cx="312.9" cy="246.9" r="4.6" fill="#fdbe6e"/><circle cx="312.5" cy="261.9" r="4.6" fill="#fdc675"/><circle cx="311.7" cy="276.9" r="4.6" fill="#fed17f"/><circle cx="310.7" cy="291.9" r="4.6" fill="#fede89"/><circle cx="309.6" cy="306.9" r="4.6" fill="#f5e48b"/><circle cx="308.5" cy="321.9" r="4.6" fill="#e9e88b"/><circle cx="307.7" cy="336.9" r="4.6" fill="#dded8b"/><circle cx="307.2" cy="351.9" r="4.6" fill="#bce381"/><circle cx="307.0" cy="366.9" r="4.6" fill="#92d072"/><circle cx="307.2" cy="381.9" r="4.6" fill="#67bd63"/><circle cx="307.8" cy="396.9" r="4.6" fill="#52a985"/><circle cx="308.7" cy="411.9" r="4.6" fill="#3e94a9"/><circle cx="322.9" cy="140.1" r="4.6" fill="#f8e38b"/><circle cx="323.8" cy="155.1" r="4.6" fill="#fedd89"/><circle cx="324.9" cy="170.1" r="4.6" fill="#fed481"/><circle cx="326.0" cy="185.1" r="4.6" fill="#fecd7b"/><circle cx="327.0" cy="200.1" r="4.6" fill="#feca78"/><circle cx="327.6" cy="215.1" r="4.6" fill="#fec978"/><circle cx="328.0" cy="230.1" r="4.6" fill="#fecb7a"/><circle cx="327.9" cy="245.1" r="4.6" fill="#fed07e"/><circle cx="327.5" cy="260.1" r="4.6" fill="#fed784"/><circle cx="326.7" cy="275.1" r="4.6" fill="#fee08b"/><circle cx="325.7" cy="290.1" r="4.6" fill="#f5e38b"/><circle cx="324.6" cy="305.1" r="4.6" fill="#ece78b"/><circle cx="323.5" cy="320.1" r="4.6" fill="#e1ec8b"/><circle cx="322.7" cy="335.1" r="4.6" fill="#cfeb88"/><circle cx="322.2" cy="350.1" r="4.6" fill="#a9da7a"/><circle cx="322.0" cy="365.1" r="4.6" fill="#81c96c"/><circle cx="322.2" cy="380.1" r="4.6" fill="#5fb66e"/><circle cx="322.8" cy="395.1" r="4.6" fill="#4ca290"/><circle cx="323.7" cy="410.1" r="4.6" fill="#388eb3"/><circle cx="338.8" cy="153.3" r="4.6" fill="#f2e58b"/><circle cx="339.9" cy="168.3" r="4.6" fill="#f8e28b"/><circle cx="341.0" cy="183.3" r="4.6" fill="#fde18b"/><circle cx="342.0" cy="198.3" r="4.6" fill="#fedf8a"/><circle cx="342.6" cy="213.3" r="4.6" fill="#fede89"/><circle cx="343.0" cy="228.3" r="4.6" fill="#fedf8a"/><circle cx="342.9" cy="243.3" r="4.6" fill="#fce18b"/><circle cx="342.5" cy="258.3" r="4.6" fill="#f7e38b"/><circle cx="341.7" cy="273.3" r="4.6" fill="#f2e58b"/><circle cx="340.7" cy="288.3" r="4.6" fill="#eae88b"/><circle cx="339.6" cy="303.3" r="4.6" fill="#e2eb8b"/><circle cx="338.5" cy="318.3" r="4.6" fill="#d7ee8a"/><circle cx="337.7" cy="333.3" r="4.6" fill="#b6e07f"/><circle cx="337.2" cy="348.3" r="4.6" fill="#93d073"/><circle cx="337.0" cy="363.3" r="4.6" fill="#6dc065"/><circle cx="337.2" cy="378.3" r="4.6" fill="#57ae7d"/><circle cx="337.8" cy="393.3" r="4.6" fill="#449b9e"/><circle cx="338.7" cy="408.3" r="4.6" fill="#3387bc"/><circle cx="353.8" cy="152.1" r="4.6" fill="#e4ea8b"/><circle cx="354.9" cy="167.1" r="4.6" fill="#eae88b"/><circle cx="356.0" cy="182.1" r="4.6" fill="#eee78b"/><circle cx="357.0" cy="197.1" r="4.6" fill="#f0e68b"/><circle cx="357.6" cy="212.1" r="4.6" fill="#f0e68b"/><circle cx="358.0" cy="227.1" r="4.6" fill="#efe68b"/><circle cx="357.9" cy="242.1" r="4.6" fill="#ede78b"/><circle cx="357.5" cy="257.1" r="4.6" fill="#e9e88b"/><circle cx="356.7" cy="272.1" r="4.6" fill="#e4ea8b"/><circle cx="355.7" cy="287.1" r="4.6" fill="#deed8b"/><circle cx="354.6" cy="302.1" r="4.6" fill="#d2ec89"/><circle cx="353.5" cy="317.1" r="4.6" fill="#b7e07f"/><circle cx="352.7" cy="332.1" r="4.6" fill="#99d375"/><circle cx="352.2" cy="347.1" r="4.6" fill="#77c569"/><circle cx="352.0" cy="362.1" r="4.6" fill="#5eb471"/><circle cx="352.2" cy="377.1" r="4.6" fill="#4ca38f"/><circle cx="352.8" cy="392.1" r="4.6" fill="#3a90af"/><circle cx="369.9" cy="167.2" r="4.6" fill="#dcee8b"/><circle cx="371.0" cy="182.2" r="4.6" fill="#dfed8b"/><circle cx="372.0" cy="197.2" r="4.6" fill="#e1ec8b"/><circle cx="372.6" cy="212.2" r="4.6" fill="#e1ec8b"/><circle cx="373.0" cy="227.2" r="4.6" fill="#e0ec8b"/><circle cx="372.9" cy="242.2" r="4.6" fill="#deed8b"/><circle cx="372.5" cy="257.2" r="4.6" fill="#dbee8b"/><circle cx="371.7" cy="272.2" r="4.6" fill="#d1ec88"/><circle cx="370.7" cy="287.2" r="4.6" fill="#c0e482"/><circle cx="369.6" cy="302.2" r="4.6" fill="#abdb7b"/><circle cx="368.5" cy="317.2" r="4.6" fill="#92d072"/><circle cx="367.7" cy="332.2" r="4.6" fill="#76c469"/><circle cx="367.2" cy="347.2" r="4.6" fill="#5fb66f"/><circle cx="367.0" cy="362.2" r="4.6" fill="#50a689"/><circle cx="367.2" cy="377.2" r="4.6" fill="#3f96a6"/><circle cx="367.8" cy="392.2" r="4.6" fill="#3584bb"/><circle cx="384.9" cy="168.3" r="4.6" fill="#b5df7f"/><circle cx="386.0" cy="183.3" r="4.6" fill="#bee382"/><circle cx="387.0" cy="198.3" r="4.6" fill="#c2e583"/><circle cx="387.6" cy="213.3" r="4.6" fill="#c3e583"/><circle cx="388.0" cy="228.3" r="4.6" fill="#c0e482"/><circle cx="387.9" cy="243.3" r="4.6" fill="#bae280"/><circle cx="387.5" cy="258.3" r="4.6" fill="#b1dd7d"/><circle cx="386.7" cy="273.3" r="4.6" fill="#a4d879"/><circle cx="385.7" cy="288.3" r="4.6" fill="#94d173"/><circle cx="384.6" cy="303.3" r="4.6" fill="#81c96c"/><circle cx="383.5" cy="318.3" r="4.6" fill="#6abf64"/><circle cx="382.7" cy="333.3" r="4.6" fill="#5cb375"/><circle cx="382.2" cy="348.3" r="4.6" fill="#4fa58c"/><circle cx="382.0" cy="363.3" r="4.6" fill="#4096a5"/><circle cx="382.2" cy="378.3" r="4.6" fill="#3486bc"/><circle cx="382.8" cy="393.3" r="4.6" fill="#4274b3"/><circle cx="401.0" cy="185.2" r="4.6" fill="#91d072"/><circle cx="402.0" cy="200.2" r="4.6" fill="#94d173"/><circle cx="402.6" cy="215.2" r="4.6" fill="#94d173"/><circle cx="403.0" cy="230.2" r="4.6" fill="#91d072"/><circle cx="402.9" cy="245.2" r="4.6" fill="#8acd70"/><circle cx="402.5" cy="260.2" r="4.6" fill="#81c96d"/><circle cx="401.7" cy="275.2" r="4.6" fill="#76c468"/><circle cx="400.7" cy="290.2" r="4.6" fill="#67bd63"/><circle cx="399.6" cy="305.2" r="4.6" fill="#5eb571"/><circle cx="398.5" cy="320.2" r="4.6" fill="#54ab81"/><circle cx="397.7" cy="335.2" r="4.6" fill="#49a095"/><circle cx="397.2" cy="350.2" r="4.6" fill="#3d93ab"/><circle cx="397.0" cy="365.2" r="4.6" fill="#3584bb"/><circle cx="397.2" cy="380.2" r="4.6" fill="#4274b3"/><circle cx="417.6" cy="217.0" r="4.6" fill="#65bc64"/><circle cx="418.0" cy="232.0" r="4.6" fill="#64bb67"/><circle cx="417.9" cy="247.0" r="4.6" fill="#61b86c"/><circle cx="417.5" cy="262.0" r="4.6" fill="#5db472"/><circle cx="416.7" cy="277.0" r="4.6" fill="#58af7b"/><circle cx="415.7" cy="292.0" r="4.6" fill="#52a886"/><circle cx="414.6" cy="307.0" r="4.6" fill="#4aa093"/><circle cx="413.5" cy="322.0" r="4.6" fill="#4197a3"/><circle cx="412.7" cy="337.0" r="4.6" fill="#368cb5"/><circle cx="412.2" cy="352.0" r="4.6" fill="#3880b9"/><circle cx="412.0" cy="367.0" r="4.6" fill="#4471b2"/><circle cx="412.2" cy="382.0" r="4.6" fill="#5061ab"/><circle cx="433.0" cy="232.9" r="4.6" fill="#4ea58c"/><circle cx="432.9" cy="247.9" r="4.6" fill="#4ca291"/><circle cx="432.5" cy="262.9" r="4.6" fill="#489e97"/><circle cx="431.7" cy="277.9" r="4.6" fill="#439a9f"/><circle cx="430.7" cy="292.9" r="4.6" fill="#3d94a9"/><circle cx="429.6" cy="307.9" r="4.6" fill="#368cb6"/><circle cx="428.5" cy="322.9" r="4.6" fill="#3683bb"/><circle cx="427.7" cy="337.9" r="4.6" fill="#3e78b6"/><circle cx="427.2" cy="352.9" r="4.6" fill="#486cb0"/><circle cx="427.0" cy="367.9" r="4.6" fill="#525ea9"/><circle cx="427.2" cy="382.9" r="4.6" fill="#5e4fa2"/><circle cx="447.9" cy="247.7" r="4.6" fill="#378db5"/><circle cx="447.5" cy="262.7" r="4.6" fill="#3389bb"/><circle cx="446.7" cy="277.7" r="4.6" fill="#3585bb"/><circle cx="445.7" cy="292.7" r="4.6" fill="#397fb9"/><circle cx="444.6" cy="307.7" r="4.6" fill="#3f77b5"/><circle cx="443.5" cy="322.7" r="4.6" fill="#466fb1"/><circle cx="442.7" cy="337.7" r="4.6" fill="#4d65ac"/><circle cx="442.2" cy="352.7" r="4.6" fill="#5659a7"/><circle cx="442.0" cy="367.7" r="4.6" fill="#5e4fa2"/><circle cx="461.7" cy="276.4" r="4.6" fill="#466fb1"/><circle cx="460.7" cy="291.4" r="4.6" fill="#4a69ae"/><circle cx="459.6" cy="306.4" r="4.6" fill="#4f63ab"/><circle cx="458.5" cy="321.4" r="4.6" fill="#555ba8"/><circle cx="457.7" cy="336.4" r="4.6" fill="#5c51a3"/><circle cx="457.2" cy="351.4" r="4.6" fill="#5e4fa2"/><circle cx="457.0" cy="366.4" r="4.6" fill="#5e4fa2"/><circle cx="475.7" cy="289.5" r="4.6" fill="#5a54a4"/><circle cx="474.6" cy="304.5" r="4.6" fill="#5e4fa2"/><circle cx="473.5" cy="319.5" r="4.6" fill="#5e4fa2"/><circle cx="472.7" cy="334.5" r="4.6" fill="#5e4fa2"/><circle cx="472.2" cy="349.5" r="4.6" fill="#5e4fa2"/>
+<circle cx="235" cy="215" r="8" fill="#ffffff"/><circle cx="235" cy="215" r="5" fill="#d73027"/>
+<path d="M610,60 C560,95 520,120 470,150" fill="none" stroke="#9fb3b8" stroke-width="7" stroke-linecap="round"/><path d="M470,150 Q337.9,186.2 241.8,284.2" fill="none" stroke="#cfe3e6" stroke-width="2"/><path d="M470,150 Q328.1,165.7 214.3,259.0" fill="none" stroke="#cfe3e6" stroke-width="2"/><path d="M470,150 Q333.1,142.9 206.2,222.6" fill="none" stroke="#cfe3e6" stroke-width="2"/><path d="M470,150 Q351.0,125.8 220.5,188.1" fill="none" stroke="#cfe3e6" stroke-width="2"/><path d="M470,150 Q375.5,120.8 252.0,168.1" fill="none" stroke="#cfe3e6" stroke-width="2"/><circle cx="382.0" cy="182.9" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="335.6" cy="208.5" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="292.1" cy="239.0" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="251.5" cy="274.5" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="374.1" cy="170.5" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="322.4" cy="190.8" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="273.0" cy="217.2" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="225.8" cy="249.9" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="375.4" cy="155.6" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="322.4" cy="168.4" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="270.3" cy="188.2" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="218.9" cy="214.8" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="385.3" cy="143.7" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="335.6" cy="149.6" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="285.0" cy="162.4" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="233.5" cy="182.1" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="400.3" cy="138.9" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="357.3" cy="141.0" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="311.9" cy="149.2" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/><circle cx="264.2" cy="163.6" r="3.2" fill="#5eead4" stroke="#0b3a40" stroke-width="1"/>
+</svg>
+      <figcaption>SCHEMATIC — ACTIVATION MAP + MAPPING CATHETER (ORIGINAL DRAWING)</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section" id="how">
+    <div class="section-head">
+      <p class="kicker">The core idea</p>
+      <h2>From heartbeat to map, in five links</h2>
+    </div>
+    <p class="lede">Every mapping system — whatever the brand — is the same chain: <b>sense</b> the heart's local electrical signal, <b>locate</b> the electrode that sensed it in 3D space, and repeat that thousands of times until the points merge into a map. The differences between systems are in how they locate, how densely they sample, and how cleverly they interpret.</p>
+    <div class="chain" style="margin-top:24px">
+      <div class="chain-step"><span class="n">01 · SENSE</span><h3>Electrogram</h3><p>Electrodes on a catheter inside the chamber record the local activation signal — the electrogram (EGM) — at each spot they touch.</p></div>
+      <div class="chain-step"><span class="n">02 · LOCATE</span><h3>3D position</h3><p>A magnetic field, impedance field, or dielectric field tells the system where each electrode is, several times per second.</p></div>
+      <div class="chain-step"><span class="n">03 · BUILD</span><h3>Geometry</h3><p>Sweeping the catheter over the chamber wall traces its shape, building a 3D shell of the atrium or ventricle.</p></div>
+      <div class="chain-step"><span class="n">04 · COLOUR</span><h3>Activation &amp; voltage</h3><p>Each point is coloured by when it fired (LAT) or how strong its signal was (voltage) — the map a clinician actually reads.</p></div>
+      <div class="chain-step"><span class="n">05 · GUIDE</span><h3>Ablation guidance</h3><p>The map shows where the source or circuit lies. The clinical team uses it to guide ablation with RF, cryo or pulsed-field energy, and can map again to check the result.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ SIMULATOR ============ -->
+  <section class="section" id="simulator">
+    <div class="section-head">
+      <p class="kicker">Interactive · Try it</p>
+      <h2>Activation map simulator</h2>
+      <p>This is a schematic chamber, not a real heart — but the reading skill is the same. Pick a rhythm and watch how the wavefront moves. Red fires first, purple last. In a re-entrant rhythm the colours chase each other in a circle and never finish; in a focal rhythm they spread out from one early spot.</p>
+    </div>
+    <div class="sim">
+      <div class="sim-head">
+        <div>
+          <h3 id="simTitle">Focal atrial tachycardia</h3>
+          <p id="simDesc">One irritable spot fires early and the wave spreads outward in rings — the map shows a single red “bullseye” with colours radiating away from it.</p>
+        </div>
+      </div>
+      <div class="sim-controls" role="group" aria-label="Rhythm pattern">
+        <button class="chip" data-rhythm="focal" aria-pressed="true">Focal tachycardia</button>
+        <button class="chip" data-rhythm="flutter" aria-pressed="false">Typical flutter (re-entry)</button>
+        <button class="chip" data-rhythm="sinus" aria-pressed="false">Sinus rhythm</button>
+        <button class="chip" data-rhythm="af" aria-pressed="false">Atrial fibrillation</button>
+        <button class="chip alt" data-rhythm="voltage" aria-pressed="false">Voltage map (scar)</button>
+      </div>
+      <div class="sim-body">
+        <div class="sim-canvas-wrap">
+          <canvas id="simCanvas" width="640" height="460" aria-label="Animated schematic activation map"></canvas>
+          <div class="sim-legend" style="margin-top:8px"><span id="legendL">EARLY</span><div class="bar" id="legendBar"></div><span id="legendR">LATE</span></div>
+        </div>
+        <div class="sim-side">
+          <div class="sim-readout">
+            <h4>What to look for</h4>
+            <p id="simLook">Find the earliest (red) point first: in a focal rhythm it marks where activation begins, and everything else is the wave spreading from it.</p>
+          </div>
+          <div class="sim-readout">
+            <h4>Key numbers</h4>
+            <p><span class="val" id="simStat1">Cycle length in this simulation ≈ 300 ms (illustrative)</span><br><span id="simStat2">In this model a single source drives the whole chamber.</span></p>
+          </div>
+          <div class="sim-readout">
+            <h4>Colour scale</h4>
+            <p id="simScale">Colours encode <b style="color:#fff">local activation time (LAT)</b> — milliseconds relative to a reference electrogram, usually from a stable catheter in the coronary sinus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKFLOW ============ -->
+  <section class="section" id="workflow">
+    <div class="section-head">
+      <p class="kicker">In the EP lab</p>
+      <h2>How a mapping case actually runs</h2>
+      <p>Six stages, in order. Select each stage to see what the team is doing and what the mapping system contributes at that moment.</p>
+    </div>
+    <div class="steps-layout">
+      <div class="step-list" id="stepList" role="group" aria-label="Procedure stages"></div>
+      <div class="step-detail" id="stepDetail"></div>
+    </div>
+  </section>
+
+  <!-- ============ SYSTEMS EXPLORER ============ -->
+  <section class="section" id="systems">
+    <div class="section-head">
+      <p class="kicker">Explorer · Part 2 of 2 — The systems</p>
+      <h2>The major mapping platforms, compared</h2>
+      <p>This explorer compares five platforms described in published studies. They all build the same kinds of maps — what differs is the localisation physics, the signature catheter, and the design philosophy: closed and integrated, open to other brands' catheters, or built for maximum point density.</p>
+    </div>
+    <div class="tabs" id="sysTabs" role="tablist" aria-label="Mapping systems"></div>
+    <div class="panel" id="sysPanel" role="tabpanel"></div>
+
+    <div style="overflow-x:auto;margin-top:18px;border-radius:14px">
+    <table class="cmp" aria-label="System comparison">
+      <thead><tr><th scope="col">System</th><th scope="col">Localisation</th><th scope="col">Signature mapping catheter</th><th scope="col">Known for</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">CARTO 3</th><td>Magnetic sensor <a class="cite" href="#ref-gepstein1997">Gepstein 1997</a> + current-based (impedance) hybrid <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>OCTARAY <a class="cite" href="#ref-sarkozy2022">Sarkozy 2022</a> &amp; PentaRay multi-spline</td><td>Integrated ecosystem, contact-force ablation, ICE integration <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td></tr>
+        <tr><th scope="row">EnSite X</th><td>Impedance (VoXel) + magnetic hybrid, open architecture <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>Advisor HD Grid paddle <a class="cite" href="#ref-magtibay2019">Magtibay 2019</a></td><td>Omnipolar mapping — voltage much less dependent on wavefront direction <a class="cite" href="#ref-deno2017">Deno 2017</a></td></tr>
+        <tr><th scope="row">OPAL HDx <span style="color:var(--muted);font-weight:400">(formerly Rhythmia HDx)</span> <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></th><td>Magnetic + impedance hybrid <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>IntellaMap Orion mini-basket (64 electrodes) <a class="cite" href="#ref-anter2015orion">Anter 2015b</a></td><td>High-density automated mapping <a class="cite" href="#ref-sultan2019">Sultan 2019</a></td></tr>
+        <tr><th scope="row">KODEX-EPD</th><td>Dielectric sensing <a class="cite" href="#ref-abeln2021">Abeln 2021</a> — no magnetic field generator <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>Works with validated catheters from other makers <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>Detailed anatomy imaging; studied in cryoballoon ablation <a class="cite" href="#ref-rottner2021">Rottner 2021</a></td></tr>
+        <tr><th scope="row">AcQMap</th><td>Ultrasound anatomy + non-contact charge-density sensing <a class="cite" href="#ref-pope2022">Pope 2022</a></td><td>AcQMap balloon (48 ultrasound transducers, 48 electrodes) <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span></td><td>Whole-chamber activation, including during AF <a class="cite" href="#ref-pope2022">Pope 2022</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="font-size:.82rem;color:var(--muted);margin-top:10px">Platform and catheter names are trademarks of their makers, used here only to identify the products. Facts carry a citation to a published study, listed at the bottom; items marked unverified have none yet. Manufacturer pages are listed for further reading, not as sources.</p>
+  </section>
+
+  <!-- ============ MAP TYPES ============ -->
+  <section class="section" id="modes">
+    <div class="section-head">
+      <p class="kicker">Reading the map</p>
+      <h2>One chamber, many maps</h2>
+      <p>The geometry stays the same; what changes is the value painted onto it. Choosing the right map type is most of the diagnostic skill.</p>
+    </div>
+    <div class="tabs" id="modeTabs" role="tablist" aria-label="Map types"></div>
+    <div class="panel" id="modePanel" role="tabpanel"></div>
+  </section>
+
+  <!-- ============ EGM LAB ============ -->
+  <section class="section" id="egm">
+    <div class="section-head">
+      <p class="kicker">Signal lab</p>
+      <h2>Reading an electrogram</h2>
+      <p>The map is only as good as the signals underneath it. These schematic traces show the four electrogram shapes a mapper learns to recognise on sight. Amplitude and timing — not the picture — are what the system measures.</p>
+    </div>
+    <div class="egm">
+      <div class="tabs" id="egmTabs" role="tablist" aria-label="Electrogram types" style="margin-bottom:0"></div>
+      <div class="egm-screen"><canvas id="egmCanvas" width="900" height="240" aria-label="Schematic electrogram trace"></canvas></div>
+      <p class="egm-note" id="egmNote"></p>
+    </div>
+  </section>
+
+  <!-- ============ CATHETERS ============ -->
+  <section class="section" id="catheters">
+    <div class="section-head">
+      <p class="kicker">Hardware</p>
+      <h2>The catheters that do the sensing</h2>
+      <p>High-density mapping became possible when catheters grew from a few electrodes to dozens of small, closely spaced ones. Smaller electrodes with closer spacing record more local signals <a class="cite" href="#ref-anter2015">Anter 2015a</a>.</p>
+    </div>
+    <div class="grid3">
+      <div class="card"><p class="mono-tag">Multi-spline</p><h3>PentaRay &amp; OCTARAY (CARTO)</h3><p>Flexible splines that splay against the chamber wall like a star — five splines carrying 20 electrodes on the PentaRay <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>, eight splines carrying 48 on the OCTARAY <a class="cite" href="#ref-masuda2024">Masuda 2024</a> — giving a wide footprint of points per placement.</p></div>
+      <div class="card"><p class="mono-tag">Grid paddle</p><h3>Advisor HD Grid (EnSite)</h3><p>A flat 4 × 4 paddle of 16 electrodes <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>. Because it samples along two axes at once, the system can compute omnipolar signals <a class="cite" href="#ref-magtibay2019">Magtibay 2019</a> — an amplitude that depends much less on the direction the wave crosses the paddle (course module m23).</p></div>
+      <div class="card"><p class="mono-tag">Mini-basket</p><h3>IntellaMap Orion (OPAL HDx)</h3><p>An expandable basket with 64 small electrodes <a class="cite" href="#ref-anter2015orion">Anter 2015b</a> on 8 splines <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>. Paired with an automated mapping system <a class="cite" href="#ref-sultan2019">Sultan 2019</a>, it collects high-density maps — the platform's design goal.</p></div>
+      <div class="card"><p class="mono-tag">Circular</p><h3>Lasso-style circular catheters</h3><p>A loop of electrodes that sits at a pulmonary vein opening and records the vein's potentials — used to check pulmonary vein isolation during AF ablation <a class="cite" href="#ref-anter2015orion">Anter 2015b</a>.</p></div>
+      <div class="card"><p class="mono-tag">Ablation</p><h3>Contact-force ablation catheters</h3><p>The treatment catheter (e.g. ThermoCool SmartTouch <a class="cite" href="#ref-teijeira2018">Teijeira-Fernandez 2018</a>; TactiFlex and IntellaNav StablePoint <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>) senses tip contact force in grams, so lesion tags on the map reflect pressure, power and time — not just position. Contact also changes the voltage recorded <a class="cite" href="#ref-teijeira2018">Teijeira-Fernandez 2018</a>.</p></div>
+      <div class="card"><p class="mono-tag">Non-contact</p><h3>AcQMap balloon</h3><p>A balloon carrying ultrasound transducers and electrodes that hovers in the chamber without touching the wall, reconstructing charge density over the whole chamber at once <a class="cite" href="#ref-pope2022">Pope 2022</a>.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ GLOSSARY ============ -->
+  <section class="section" id="glossary">
+    <div class="section-head">
+      <p class="kicker">Reference</p>
+      <h2>Glossary</h2>
+      <p>The vocabulary of the EP lab, in plain language. Search any term.</p>
+    </div>
+    <div class="search-row">
+      <input type="search" id="glossSearch" placeholder="Search terms — try “scar”, “re-entry”, “LAT”…" aria-label="Search glossary" />
+    </div>
+    <div class="gloss" id="glossGrid"></div>
+    <p class="empty-msg" id="glossEmpty" style="display:none">No term matches that search. Try a shorter word.</p>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section class="section" id="quiz">
+    <div class="section-head">
+      <p class="kicker">Check yourself</p>
+      <h2>Which map answers the question?</h2>
+      <p>Four short scenarios. Answer all four and get a read on where your mapping instincts are strong — and what to study next.</p>
+    </div>
+    <div class="quiz" id="quizBox"></div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section class="section" id="roadmap">
+    <div class="section-head">
+      <p class="kicker">Keep going</p>
+      <h2>A learning roadmap</h2>
+      <p>For a student, trainee, engineer or curious builder — the order that makes the field click.</p>
+    </div>
+    <div class="road">
+      <div class="phase"><span class="pn">PHASE 1</span><h3>Heart electricity basics</h3><p>Before any technology:</p><ul><li>Action potentials &amp; conduction</li><li>The ECG and what each wave means</li><li>Atria, ventricles &amp; the conduction system</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 2</span><h3>Arrhythmia mechanisms</h3><p>The three ways rhythms go wrong:</p><ul><li>Enhanced automaticity (focal)</li><li>Re-entry circuits</li><li>Triggered activity</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 3</span><h3>Signals &amp; maps</h3><p>The mapper's core craft:</p><ul><li>Bipolar vs unipolar EGMs</li><li>LAT annotation &amp; windows of interest</li><li>Voltage thresholds &amp; scar</li></ul></div>
+      <div class="phase"><span class="pn">PHASE 4</span><h3>Systems &amp; cases</h3><p>Put it together:</p><ul><li>Compare the five platforms above</li><li>Follow published case reports</li><li>Entrainment &amp; ablation endpoints (PVI, block lines)</li></ul></div>
+    </div>
+    <div class="checklist">
+      <h3>Map-reading checklist</h3>
+      <ul>
+        <li><b>Reference stable?</b> — LAT is only meaningful against a steady reference signal</li>
+        <li><b>Window set right?</b> — in re-entry, maps degrade when the window of interest is shorter than the cycle length <a class="cite" href="#ref-koawing2015">Koa-Wing 2015</a></li>
+        <li><b>Early meets late?</b> — in re-entry, red should sit next to purple around the circuit</li>
+        <li><b>Density sufficient?</b> — gaps in points are guesses, not data</li>
+        <li><b>Voltage direction-checked?</b> — a wave crossing at right angles to a bipole reads falsely low</li>
+        <li><b>Scar or artefact?</b> — low voltage can also come from poor contact <a class="cite" href="#ref-teijeira2018">Teijeira-Fernandez 2018</a> or wave direction</li>
+        <li><b>EGMs inspected?</b> — the colour is only as good as the signals behind it</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--ink2)">Educational use only.</b> This hub explains how electrophysiology mapping systems work in general terms. It is not medical advice, a device manual, or a guide to performing any procedure — EP studies and ablation are performed by trained specialists in equipped labs.</p>
+    <p style="margin-top:12px"><b style="color:var(--ink2)">Status.</b> Draft, pending clinical review. Written by the course author with the Muse tool and edited to the course rules: description instead of advice, citations for facts, items without a source marked unverified. Text CC BY 4.0, code MIT; the hero drawing is original.</p>
+    <p style="margin-top:12px"><b style="color:var(--ink2)">References</b> (published studies used as sources):</p>
+    <ol class="refs"><li id="ref-gepstein1997">Gepstein, Hayam, Ben-Haim (1997). A novel method for nonfluoroscopic catheter-based electroanatomical mapping of the heart. In vitro and in vivo accuracy results. <i>Circulation</i>. <a href="https://doi.org/10.1161/01.cir.95.6.1611">doi:10.1161/01.cir.95.6.1611</a></li><li id="ref-anter2015">Anter, Tschabrunn, Josephson (2015a). High-resolution mapping of scar-related atrial arrhythmias using smaller electrodes with closer interelectrode spacing. <i>Circulation: Arrhythmia and Electrophysiology</i>. <a href="https://doi.org/10.1161/CIRCEP.114.002737">doi:10.1161/CIRCEP.114.002737</a></li><li id="ref-anter2015orion">Anter, Tschabrunn, Contreras-Valdes et al. (2015b). Pulmonary vein isolation using the Rhythmia mapping system: verification of intracardiac signals using the Orion mini-basket catheter. <i>Heart Rhythm</i>. <a href="https://doi.org/10.1016/j.hrthm.2015.05.019">doi:10.1016/j.hrthm.2015.05.019</a></li><li id="ref-sultan2019">Sultan, Bellmann, Luker et al. (2019). The use of a high-resolution mapping system may facilitate standard clinical practice in VE and VT ablation. <i>Journal of Interventional Cardiac Electrophysiology</i>. <a href="https://doi.org/10.1007/s10840-019-00530-1">doi:10.1007/s10840-019-00530-1</a></li><li id="ref-masuda2024">Masuda, Matsuda, Uematsu et al. (2024). Comparison of voltage maps using OCTARAY catheter and PENTARAY catheter. <i>Pacing and Clinical Electrophysiology</i>. <a href="https://doi.org/10.1111/pace.14890">doi:10.1111/pace.14890</a></li><li id="ref-sarkozy2022">Sarkozy, Vijgen, De Potter et al. (2022). An early multicenter experience of the novel high-density star-shaped mapping catheter in complex arrhythmias. <i>Journal of Interventional Cardiac Electrophysiology</i>. <a href="https://doi.org/10.1007/s10840-022-01176-2">doi:10.1007/s10840-022-01176-2</a></li><li id="ref-masse2016">Masse, Magtibay, Jackson et al. (2016). Resolving myocardial activation with novel omnipolar electrograms. <i>Circulation: Arrhythmia and Electrophysiology</i>. <a href="https://doi.org/10.1161/CIRCEP.116.004107">doi:10.1161/CIRCEP.116.004107</a></li><li id="ref-deno2017">Deno, Balachandran, Morgan et al. (2017). Orientation-independent catheter-based characterization of myocardial activation. <i>IEEE Transactions on Biomedical Engineering</i>. <a href="https://doi.org/10.1109/TBME.2016.2589158">doi:10.1109/TBME.2016.2589158</a></li><li id="ref-magtibay2019">Magtibay, Porta-Sanchez, Haldar et al. (2019). Reinserting physiology into cardiac mapping using omnipolar electrograms. <i>Cardiac Electrophysiology Clinics</i>. <a href="https://doi.org/10.1016/j.ccep.2019.05.003">doi:10.1016/j.ccep.2019.05.003</a></li><li id="ref-abeln2021">Abeln, van den Broek, van Dijk et al. (2021). Dielectric imaging for electrophysiology procedures: The technology, current state, and future potential. <i>Journal of Cardiovascular Electrophysiology</i>. <a href="https://doi.org/10.1111/jce.14971">doi:10.1111/jce.14971</a></li><li id="ref-rottner2021">Rottner, Nodorp, Weimann et al. (2021). High anatomical accuracy of a novel high-resolution wide-band dielectric imaging system in cryoballoon-based ablation. <i>Pacing and Clinical Electrophysiology</i>. <a href="https://doi.org/10.1111/pace.14324">doi:10.1111/pace.14324</a></li><li id="ref-pope2022">Pope, Betts (2022). Global substrate mapping and targeted ablation with novel gold-tip catheter in persistent AF. <i>Arrhythmia &amp; Electrophysiology Review</i>. <a href="https://doi.org/10.15420/aer.2021.64">doi:10.15420/aer.2021.64</a></li><li id="ref-marchlinski2000">Marchlinski, Callans, Gottlieb et al. (2000). Linear ablation lesions for control of unmappable ventricular tachycardia in patients with ischemic and nonischemic cardiomyopathy. <i>Circulation</i>. <a href="https://doi.org/10.1161/01.cir.101.11.1288">doi:10.1161/01.cir.101.11.1288</a></li><li id="ref-teijeira2018">Teijeira-Fernandez, Cochet, Bourier et al. (2018). Influence of contact force on voltage mapping: a combined magnetic resonance imaging and electroanatomic mapping study in patients with tetralogy of Fallot. <i>Heart Rhythm</i>. <a href="https://doi.org/10.1016/j.hrthm.2018.03.022">doi:10.1016/j.hrthm.2018.03.022</a></li><li id="ref-koawing2015">Koa-Wing, Nakagawa, Luther et al. (2015). A diagnostic algorithm to optimize data collection and interpretation of Ripple Maps in atrial tachycardias. <i>International Journal of Cardiology</i>. <a href="https://doi.org/10.1016/j.ijcard.2015.07.017">doi:10.1016/j.ijcard.2015.07.017</a></li><li id="ref-aziz2019">Aziz, Shatz, Raiman et al. (2019). Targeted ablation of ventricular tachycardia guided by wavefront discontinuities during sinus rhythm: a new functional substrate mapping strategy. <i>Circulation</i>. <a href="https://doi.org/10.1161/CIRCULATIONAHA.119.042423">doi:10.1161/CIRCULATIONAHA.119.042423</a></li><li id="ref-stevenson1993">Stevenson, Khan, Sager et al. (1993). Identification of reentry circuit sites during catheter mapping and radiofrequency ablation of ventricular tachycardia late after myocardial infarction. <i>Circulation</i>. <a href="https://doi.org/10.1161/01.cir.88.4.1647">doi:10.1161/01.cir.88.4.1647</a></li></ol>
+    <p style="margin-top:12px">Further reading — manufacturers' and agency pages (not used as sources for the facts above):</p>
+    <div class="sources">
+      <a href="https://www.cardiovascular.abbott/int/en/hcp/products/electrophysiology/mapping-systems.html" target="_blank" rel="noopener">Abbott — Cardiac Mapping Systems (EnSite)</a>
+      <a href="https://www.bostonscientific.com/en-US/products/capital-equipment--mapping-and-navigation/rhythmia-mapping-system/rhythmia-indications.html" target="_blank" rel="noopener">Boston Scientific — Rhythmia HDx indications</a>
+      <a href="https://www.nice.org.uk/advice/mib260/chapter/The-technology" target="_blank" rel="noopener">NICE — KODEX-EPD technology overview</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= SIMULATOR ================= */
+(function(){
+  var canvas=document.getElementById('simCanvas'), ctx=canvas.getContext('2d');
+  var W=canvas.width,H=canvas.height;
+  // Build point cloud inside a chamber-like blob
+  var pts=[];
+  function inside(x,y){
+    var dx=(x-W*0.5)/(W*0.40), dy=(y-H*0.52)/(H*0.42);
+    var r=Math.sqrt(dx*dx+dy*dy);
+    var ang=Math.atan2(dy,dx);
+    var edge=1+0.10*Math.sin(ang*3+0.6)+0.06*Math.sin(ang*5);
+    return r<edge;
+  }
+  for(var gx=14;gx<W;gx+=17){ for(var gy=12;gy<H;gy+=17){
+    var jx=gx+(Math.sin(gy*1.7)*3), jy=gy+(Math.cos(gx*1.3)*3);
+    if(inside(jx,jy)) pts.push({x:jx,y:jy});
+  }}
+  var focal={x:W*0.38,y:H*0.40};
+  var scar={x:W*0.66,y:H*0.60,r:W*0.17};
+  function latColor(t){ // t 0..1 -> rainbow red..purple
+    var stops=[[215,48,39],[244,109,67],[253,174,97],[254,224,139],[217,239,139],[102,189,99],[50,136,189],[94,79,162]];
+    var f=Math.max(0,Math.min(0.999,t))* (stops.length-1), i=Math.floor(f), u=f-i;
+    var a=stops[i],b=stops[i+1];
+    return 'rgb('+Math.round(a[0]+(b[0]-a[0])*u)+','+Math.round(a[1]+(b[1]-a[1])*u)+','+Math.round(a[2]+(b[2]-a[2])*u)+')';
+  }
+  function voltageColor(v){ // 0 scar purple/grey -> healthy magenta/red like clinical voltage maps
+    if(v<0.12) return '#5e4fa2';
+    if(v<0.35) return '#3288bd';
+    if(v<0.55) return '#66bd63';
+    if(v<0.75) return '#fee08b';
+    return '#d73027';
+  }
+  var rhythms={
+    focal:{title:'Focal atrial tachycardia',desc:'One irritable spot fires early and the wave spreads outward in rings — the map shows a single red “bullseye” with colours radiating away from it.',look:'Find the earliest (red) point first: in a focal rhythm it marks where activation begins, and everything else is the wave spreading from it.',stat1:'Cycle length in this simulation ≈ 300 ms (illustrative)',stat2:'In this model a single source drives the whole chamber.'},
+    flutter:{title:'Typical atrial flutter — re-entry',desc:'The wave travels in a continuous loop around the tricuspid annulus (here, a schematic obstacle). There is no beginning or end: the head of the wave forever chases its tail.',look:'Look for “early meets late” — red directly beside purple. That seam, plus a full rainbow around the loop, is the signature of re-entry. Mapping tries to find the narrow isthmus the loop must pass through.',stat1:'Cycle length in this simulation ≈ 240 ms (illustrative)',stat2:'The whole cycle length is visible somewhere on the map — activation never stops.'},
+    sinus:{title:'Sinus rhythm — the normal reference',desc:'The impulse starts high in the right atrium at the sinus node and sweeps downward in an orderly wave. Every map is judged against this calm baseline.',look:'Notice how uniform the spread is — no bullseye low in the chamber, no circling. A sinus map is the control image that makes abnormal maps readable.',stat1:'Cycle length in this simulation ≈ 800 ms, 75 beats/min (illustrative)',stat2:'Orderly, single-direction spread from one anatomical origin.'},
+    af:{title:'Atrial fibrillation — disorganised activity',desc:'Multiple shifting wavelets collide and fragment. No single LAT map can capture it.',look:'There is no stable “earliest point” to chase — watch how the colours refuse to repeat. This is why point-by-point activation mapping struggles in AF.',stat1:'Local cycle lengths vary from place to place (illustrative)',stat2:'Chaotic and non-repeating in this model.'},
+    voltage:{title:'Voltage map — finding scar',desc:'Same chamber, different question. Colour now encodes electrogram amplitude: healthy muscle gives tall signals (red), scar gives tiny ones (purple). The pale patch is a schematic scar with a surviving channel through it.',look:'Dense scar records almost no local signal. The border zone and the surviving channel through the scar are what a voltage map helps to show.',stat1:'Classic ventricular bipolar cutoffs: below 0.5 mV dense scar, above 1.5 mV normal',stat2:'From one early study <a class="cite" href="#ref-marchlinski2000">Marchlinski 2000</a>; cutoffs depend on chamber, catheter and contact (course module m23).'}
+  };
+  var mode='focal', start=performance.now();
+  function activation(p,time){
+    var dx=p.x-focal.x, dy=p.y-focal.y, d=Math.sqrt(dx*dx+dy*dy);
+    if(mode==='focal'){ return ((d*1.6 - time*140) % 420 + 420) % 420 / 420; }
+    if(mode==='sinus'){ var t=((p.y*0.9 + p.x*0.15) - time*130) % 460; return ((t+460)%460)/460; }
+    if(mode==='flutter'){ var a=Math.atan2(p.y-H*0.52,p.x-W*0.5); var t=(a/(Math.PI*2) - time*0.28) % 1; return (t+1)%1; }
+    if(mode==='af'){ var v=Math.sin(p.x*0.045+time*2.6)+Math.sin(p.y*0.06-time*3.4)+Math.sin((p.x+p.y)*0.03+time*1.7); return (v+3)/6; }
+    return 0;
+  }
+  function draw(now){
+    var time=(now-start)/1000;
+    ctx.clearRect(0,0,W,H);
+    // chamber outline hint
+    ctx.beginPath(); ctx.ellipse(W*0.5,H*0.52,W*0.42,H*0.44,0,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.03)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.14)'; ctx.lineWidth=1.5; ctx.stroke();
+    if(mode==='flutter'){ ctx.beginPath(); ctx.ellipse(W*0.5,H*0.52,W*0.13,H*0.15,0,0,Math.PI*2); ctx.fillStyle='rgba(0,0,0,0.35)'; ctx.fill(); ctx.strokeStyle='rgba(255,255,255,0.2)'; ctx.stroke(); }
+    for(var i=0;i<pts.length;i++){ var p=pts[i]; var c;
+      if(mode==='voltage'){
+        var dsc=Math.sqrt((p.x-scar.x)*(p.x-scar.x)+(p.y-scar.y)*(p.y-scar.y));
+        var v=dsc<scar.r*0.55?0.05:(dsc<scar.r?0.3+0.25*Math.abs(Math.sin(p.x*0.08)*Math.cos(p.y*0.07)):1);
+        // surviving channel through scar
+        if(Math.abs(p.y-(scar.y+ (p.x-scar.x)*0.25))<9 && dsc<scar.r) v=0.45;
+        c=voltageColor(v);
+      } else {
+        var t=activation(p,time);
+        // brightness pulse near the wavefront
+        c=latColor(t);
+      }
+      ctx.beginPath(); ctx.arc(p.x,p.y,5.2,0,Math.PI*2); ctx.fillStyle=c; ctx.fill();
+    }
+    if(mode==='focal'){ ctx.beginPath(); ctx.arc(focal.x,focal.y,7,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill(); ctx.beginPath(); ctx.arc(focal.x,focal.y,4.5,0,Math.PI*2); ctx.fillStyle='#d73027'; ctx.fill(); }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+  var chips=document.querySelectorAll('[data-rhythm]');
+  chips.forEach(function(ch){
+    ch.addEventListener('click',function(){
+      chips.forEach(function(c){c.setAttribute('aria-pressed','false')});
+      ch.setAttribute('aria-pressed','true');
+      mode=ch.getAttribute('data-rhythm'); start=performance.now();
+      var r=rhythms[mode];
+      document.getElementById('simTitle').textContent=r.title;
+      document.getElementById('simDesc').textContent=r.desc;
+      document.getElementById('simLook').innerHTML=r.look;
+      document.getElementById('simStat1').innerHTML=r.stat1;
+      document.getElementById('simStat2').innerHTML=r.stat2;
+      document.getElementById('legendL').textContent = mode==='voltage' ? 'SCAR · LOW mV' : 'EARLY';
+      document.getElementById('legendR').textContent = mode==='voltage' ? 'HEALTHY · HIGH mV' : 'LATE';
+      document.getElementById('simScale').innerHTML = mode==='voltage'
+        ? 'Colours encode <b style="color:#fff">bipolar voltage</b> — the peak-to-peak size of the electrogram at each point, in millivolts.'
+        : 'Colours encode <b style="color:#fff">local activation time (LAT)</b> — milliseconds relative to a reference electrogram, usually from a stable catheter in the coronary sinus.';
+    });
+  });
+})();
+
+/* ================= WORKFLOW STEPS ================= */
+var steps=[
+ {t:'Access & catheters in',d:'Catheters are threaded through a vein — usually in the groin — into the heart under imaging guidance. A reference catheter is parked somewhere stable, most often the coronary sinus: its steady signal becomes the timing ruler every map point is measured against.',pts:['<b>Mapping system’s job:</b> start tracking every catheter tip in 3D','<b>Why it matters:</b> a drifting reference silently corrupts every LAT on the map']},
+ {t:'Induce the arrhythmia',d:'If the abnormal rhythm is not already running, the team provokes it with programmed stimulation — extra beats delivered in a controlled pattern — while watching for the clinical arrhythmia to start.',pts:['<b>Mapping system’s job:</b> record the 12-lead ECG and all intracardiac signals for later replay','<b>Key idea:</b> you can only map a rhythm you can start — and restart']},
+ {t:'Build the geometry',d:'The mapping catheter is swept across the chamber wall. Each position it visits adds to a 3D shell of the chamber, often merged with a pre-procedure CT or MRI, or built from intracardiac ultrasound.',pts:['<b>Mapping system’s job:</b> turn thousands of visited positions into an anatomical shell','<b>Watch out:</b> geometry built during one rhythm may shift slightly in another']},
+ {t:'Collect the map',d:'Point by point — or continuously with a high-density catheter — the system records each electrogram with its position and timing. Automated filters accept only points with good contact, stable timing and a clean signal.',pts:['<b>Mapping system’s job:</b> annotate each point’s LAT and voltage, reject noise','<b>Density matters:</b> high-density maps in published studies held thousands of points <a class="cite" href="#ref-aziz2019">Aziz 2019</a> <a class="cite" href="#ref-masuda2024">Masuda 2024</a>']},
+ {t:'Interpret the map',d:'The electrophysiologist reads the finished map — a focal source, a re-entry loop, or channels through scar — and may cross-check it with pacing tests such as entrainment or pace mapping (course module m11).',pts:['<b>Mapping system’s job:</b> replay activation as a propagation movie, overlay voltage on activation','<b>Why it matters:</b> a colour map is only as good as the electrograms behind it (course module m22)']},
+ {t:'Ablate & re-map',d:'The ablation catheter delivers energy — radiofrequency heat, cryo freezing, or pulsed-field energy. Lesions are tagged on the map, and the team can map again to check the result.',pts:['<b>Mapping system’s job:</b> tag each lesion with force, power and time; re-map to check the result','<b>Example:</b> after pulmonary vein isolation, vein potentials can be checked with a circular or basket catheter <a class="cite" href="#ref-anter2015orion">Anter 2015b</a>']}
+];
+(function(){
+  var list=document.getElementById('stepList'), det=document.getElementById('stepDetail');
+  steps.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='step-btn'; b.setAttribute('aria-pressed', i===0?'true':'false');
+    b.innerHTML='<span class="sn">0'+(i+1)+'</span><b>'+s.t+'</b>';
+    b.addEventListener('click',function(){
+      list.querySelectorAll('.step-btn').forEach(function(x){x.setAttribute('aria-pressed','false')});
+      b.setAttribute('aria-pressed','true'); show(i);
+    });
+    list.appendChild(b);
+  });
+  function show(i){ var s=steps[i];
+    det.innerHTML='<p class="kicker" style="margin-bottom:6px">Stage 0'+(i+1)+' of 06</p><h3>'+s.t+'</h3><p>'+s.d+'</p><ul>'+s.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul>';
+  }
+  show(0);
+})();
+
+/* ================= SYSTEMS EXPLORER ================= */
+var systems=[
+ {name:'CARTO 3',maker:'Biosense Webster · Johnson & Johnson MedTech',desc:'CARTO 3 locates the catheter tip with a magnetic sensor (the principle was described by Gepstein and colleagues <a class="cite" href="#ref-gepstein1997">Gepstein 1997</a>) combined with current-based localisation <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>, and wraps mapping, contact-force ablation, lesion tagging and intracardiac echo into one integrated system <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>.',loc:'Hybrid — magnetic location pad under the table + impedance/current-based tracking <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',cat:'OCTARAY (48 electrodes on 8 splines) <a class="cite" href="#ref-masuda2024">Masuda 2024</a> <a class="cite" href="#ref-sarkozy2022">Sarkozy 2022</a> and PentaRay (20 electrodes, 5 splines) <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span> multi-spline catheters',sig:'CONFIDENSE continuous mapping; VISITAG lesion tagging; CARTOSOUND ICE integration <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',best:'Integrated AF and VT workflows where mapping, ablation and imaging stay in one family <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',tags:['Magnetic + impedance','Contact force','ICE integration','Closed ecosystem']},
+ {name:'EnSite X',maker:'Abbott',desc:'Abbott’s platform is described as an open architecture that can show other manufacturers’ catheters <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>. Its signature idea is omnipolar technology: using a grid of electrodes to estimate the electrogram’s amplitude and the wavefront direction largely independently of how the catheter is oriented <a class="cite" href="#ref-masse2016">Masse 2016</a> <a class="cite" href="#ref-deno2017">Deno 2017</a>, reducing the bipolar blind spot where a wave crossing at right angles to a bipole reads falsely small (course module m23).',loc:'Hybrid — impedance-based VoXel mode + magnetic sensor-enabled tracking <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',cat:'Advisor HD Grid — 4 × 4 paddle, 16 electrodes <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>, used for omnipolar acquisition <a class="cite" href="#ref-magtibay2019">Magtibay 2019</a>',sig:'EnSite Omnipolar Technology (OT); Near Field / peak-frequency tools <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',best:'Voltage and activation mapping where wavefront direction would otherwise distort the picture <a class="cite" href="#ref-magtibay2019">Magtibay 2019</a>',tags:['Open architecture','Omnipolar','Impedance + magnetic','HD Grid']},
+ {name:'OPAL HDx',maker:'Boston Scientific · formerly Rhythmia HDx',desc:'Boston Scientific’s mapping platform (Rhythmia; the newer name OPAL HDx <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>) was built around density. Its Orion mini-basket carries 64 small electrodes <a class="cite" href="#ref-anter2015orion">Anter 2015b</a> and is paired with an automated mapping system <a class="cite" href="#ref-sultan2019">Sultan 2019</a> that accepts or rejects beats against stability criteria <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>, assembling high-density maps with little manual point-picking.',loc:'Hybrid — magnetic + impedance localisation <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',cat:'IntellaMap Orion — expandable mini-basket, 64 electrodes <a class="cite" href="#ref-anter2015orion">Anter 2015b</a> on 8 splines <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',sig:'High-density automated mapping <a class="cite" href="#ref-sultan2019">Sultan 2019</a>; LUMIPOINT tools that highlight late and fragmented activity within a chosen window <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',best:'Complex atrial and ventricular maps where fine detail matters <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',tags:['Ultra-high density','64-electrode basket','Automation','LUMIPOINT']},
+ {name:'KODEX-EPD',maker:'Philips (EPD Solutions)',desc:'A different physical principle: dielectric sensing. Electrical fields distinguish structures by their conductivity and permittivity, so the system can image anatomy without fluoroscopy <a class="cite" href="#ref-abeln2021">Abeln 2021</a>. In 65 patients having cryoballoon ablation, its pulmonary vein measurements differed from angiography by about 1 mm on average <a class="cite" href="#ref-rottner2021">Rottner 2021</a>. It is described as working without a magnetic field generator and with validated catheters from other manufacturers <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>.',loc:'Dielectric sensing <a class="cite" href="#ref-abeln2021">Abeln 2021</a>; open platform for validated catheters <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',cat:'No proprietary mapping catheter — uses the lab’s existing validated EP catheters <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',sig:'High-resolution anatomy; pulmonary vein occlusion assessment during cryoballoon ablation <a class="cite" href="#ref-abeln2021">Abeln 2021</a>',best:'Cryoballoon AF ablation <a class="cite" href="#ref-rottner2021">Rottner 2021</a>',tags:['Dielectric','Open platform','Fast anatomy','Cryoballoon workflow']},
+ {name:'AcQMap',maker:'Acutus Medical',desc:'The non-contact outlier. Instead of touching the wall point by point, its balloon catheter floats in the chamber: ultrasound rebuilds the anatomy while electrodes sense the chamber’s electrical field, and an inverse solution reconstructs charge density on the wall, showing whole-chamber activation, including during AF <a class="cite" href="#ref-pope2022">Pope 2022</a>.',loc:'Ultrasound-based anatomy + non-contact electrical sensing (inverse solution) <a class="cite" href="#ref-pope2022">Pope 2022</a>',cat:'AcQMap balloon — 48 ultrasound transducers and 48 electrodes <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',sig:'Whole-chamber charge-density maps <a class="cite" href="#ref-pope2022">Pope 2022</a>; single-beat capture of unstable rhythms <span class="unv" title="No independent source found yet; see the pull request and errata.json">unverified</span>',best:'Rhythms that change too often for point-by-point mapping, such as AF <a class="cite" href="#ref-pope2022">Pope 2022</a>',tags:['Non-contact','Single-beat','Charge density','Ultrasound anatomy']}
+];
+(function(){
+  var tabs=document.getElementById('sysTabs'), panel=document.getElementById('sysPanel');
+  systems.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false');
+    b.innerHTML=s.name+'<small>'+s.maker.split('·')[0]+'</small>';
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); show(i); });
+    tabs.appendChild(b);
+  });
+  function show(i){ var s=systems[i];
+    panel.innerHTML='<div class="panel-grid"><div><p class="maker">'+s.maker+'</p><h3>'+s.name+'</h3><p>'+s.desc+'</p><div class="tag-row">'+s.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join('')+'</div></div>'
+    +'<div><ul class="spec-list"><li><b>Localisation</b>'+s.loc+'</li><li><b>Signature catheter</b>'+s.cat+'</li><li><b>Signature software</b>'+s.sig+'</li><li><b>Best known for</b>'+s.best+'</li></ul></div></div>';
+  }
+  show(0);
+})();
+
+/* ================= MAP MODES ================= */
+var modes=[
+ {name:'Activation (LAT)',q:'“Where does the rhythm start, and how does it travel?”',d:'Each point is coloured by its local activation time relative to a reference. The workhorse map for tachycardias: focal rhythms show a centrifugal bullseye, re-entry shows a full rainbow loop with early-meets-late. Its weakness is annotation — one wrongly timed point can paint a false source.',ex:'Focal AT, typical flutter, most SVTs, VT exit sites'},
+ {name:'Voltage / substrate',q:'“Where is the scar, and where are its channels?”',d:'Colour encodes electrogram amplitude instead of timing. Healthy muscle is tall-signal; dense scar is near-silent; the border zone between them is where re-entry circuits for ventricular tachycardia are often described. Read it with the direction caveat: standard bipolar voltage shrinks when the wave travels at right angles to the bipole (course module m23) — the problem omnipolar mapping was built to address.',ex:'Ischaemic and non-ischaemic VT, atrial scar and low-voltage areas in persistent AF'},
+ {name:'Propagation',q:'“Show me the wave actually moving.”',d:'The activation map played as a movie — an animated wavefront sweeping the geometry over one cycle. Slower and more intuitive than reading static colours, and often the fastest way to spot a loop, a gap in a line, or a wave pivoting around scar.',ex:'Confirming re-entry, finding gaps in ablation lines'},
+ {name:'Entrainment',q:'“Is this spot inside the circuit, or just watching it?”',d:'Not a colour map but a pacing test layered on top of one. Pacing from a candidate site and comparing the paced rhythm and the post-pacing interval with the tachycardia’s cycle length indicates whether the site is in or near the circuit <a class="cite" href="#ref-stevenson1993">Stevenson 1993</a> (course module m11).',ex:'Flutter isthmus, VT isthmus confirmation'},
+ {name:'Pace mapping',q:'“Where does a beat that looks like this come from?”',d:'Pace from a catheter position and compare the resulting 12-lead ECG (or EGM pattern) with the clinical arrhythmia’s. A near-perfect match — often scored as a percentage by template-matching software — marks the exit region. Especially useful for PVCs and VTs that will not stay running long enough to activation-map.',ex:'Frequent PVCs, non-sustained VT'},
+ {name:'Fractionation / late potentials',q:'“Where is conduction slow, fragmented or late?”',d:'Highlights electrograms that are split, prolonged or arrive after the main wave — signatures of slow, zig-zag conduction through diseased tissue. Some systems highlight these signals inside a chosen time window. These findings are probabilistic, so they are usually read together with voltage and activation data.',ex:'Scar VT substrate, persistent AF substrate (as an adjunct)'}
+];
+(function(){
+  var tabs=document.getElementById('modeTabs'), panel=document.getElementById('modePanel');
+  modes.forEach(function(m,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false'); b.textContent=m.name;
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); show(i); });
+    tabs.appendChild(b);
+  });
+  function show(i){ var m=modes[i];
+    panel.innerHTML='<div class="panel-grid"><div><h3>'+m.name+'</h3><p style="font-family:var(--font-serif);font-size:1.08rem;color:var(--ink)">'+m.q+'</p><p>'+m.d+'</p></div><div><ul class="spec-list"><li><b>Typically used for</b>'+m.ex+'</li></ul></div></div>';
+  }
+  show(0);
+})();
+
+/* ================= EGM LAB ================= */
+var egms=[
+ {name:'Healthy tissue',note:'<b>Tall, sharp, single deflection</b> — a large bipolar electrogram (above the 1.5-mV normal cutoff of one classic ventricular study <a class="cite" href="#ref-marchlinski2000">Marchlinski 2000</a>) with a crisp downstroke. The wavefront arrives once, activates the tissue under both electrodes almost together, and leaves. This is what normal myocardium sounds like to the catheter.',fn:function(x){ return spike(x,0.5,0.012,1.0); }},
+ {name:'Fractionated (CFAE)',note:'<b>Split, prolonged, messy</b> — multiple low-amplitude deflections smeared over a long duration. Conduction here is slow and zig-zag through fibrotic tissue, so the electrodes see the wave arrive in pieces. Fractionated signals can occur at pivot points and slow zones of re-entry circuits.',fn:function(x){ return spike(x,0.38,0.008,0.35)+spike(x,0.47,0.010,0.5)+spike(x,0.56,0.008,0.3)+spike(x,0.64,0.011,0.42); }},
+ {name:'Dense scar',note:'<b>Nearly flat</b> — a tiny, blunt blip or nothing at all, below the 0.5-mV dense-scar cutoff <a class="cite" href="#ref-marchlinski2000">Marchlinski 2000</a>. Dead or replaced tissue generates almost no local signal. On a voltage map this paints purple.',fn:function(x){ return spike(x,0.5,0.02,0.07); }},
+ {name:'Double potentials',note:'<b>Two clean spikes, separated by silence</b> — the signature of a line of conduction block. The tissue on each side of the line activates at clearly different times, and the catheter straddling the line hears both. Double potentials along a line are one sign that it blocks conduction (course module m22).',fn:function(x){ return spike(x,0.36,0.011,0.85)+spike(x,0.64,0.011,0.8); }}
+];
+function spike(x,c,w,a){ var d=(x-c)/w; return a*Math.exp(-d*d)*(d<0?1:-0.55); }
+(function(){
+  var tabs=document.getElementById('egmTabs'), note=document.getElementById('egmNote');
+  var cv=document.getElementById('egmCanvas'), cx=cv.getContext('2d');
+  var cur=0, phase=0;
+  egms.forEach(function(e,i){
+    var b=document.createElement('button'); b.className='tab'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', i===0?'true':'false'); b.textContent=e.name;
+    b.addEventListener('click',function(){ tabs.querySelectorAll('.tab').forEach(function(x){x.setAttribute('aria-selected','false')}); b.setAttribute('aria-selected','true'); cur=i; note.innerHTML=egms[i].note; });
+    tabs.appendChild(b);
+  });
+  note.innerHTML=egms[0].note;
+  function drawEgm(){
+    var W=cv.width,Hh=cv.height; cx.clearRect(0,0,W,Hh);
+    cx.strokeStyle='rgba(94,234,212,0.12)'; cx.lineWidth=1;
+    for(var gx=0;gx<W;gx+=30){ cx.beginPath(); cx.moveTo(gx,0); cx.lineTo(gx,Hh); cx.stroke(); }
+    for(var gy=0;gy<Hh;gy+=30){ cx.beginPath(); cx.moveTo(0,gy); cx.lineTo(W,gy); cx.stroke(); }
+    cx.strokeStyle='#34d399'; cx.lineWidth=2.4; cx.beginPath();
+    var sweep=(phase% (W+160))-80;
+    for(var px=0;px<W;px++){
+      var lx=((px - (sweep-260))% (W*1.4) + W*1.4)%(W*1.4) / (W*1.4);
+      var rep=lx*1.6 - 0.3;
+      var v=0;
+      if(rep>0 && rep<1) v=egms[cur].fn(rep);
+      var y=Hh*0.55 - v*Hh*0.42;
+      if(px===0) cx.moveTo(px,y); else cx.lineTo(px,y);
+    }
+    cx.stroke();
+    cx.fillStyle='rgba(232,241,239,0.75)'; cx.font='11px "IBM Plex Mono",monospace';
+    cx.fillText('BIPOLAR EGM — SCHEMATIC',14,22);
+    cx.fillText('1 mV',W-46,Hh-14);
+    phase+=3.2; requestAnimationFrame(drawEgm);
+  }
+  drawEgm();
+})();
+
+/* ================= GLOSSARY ================= */
+var gloss=[
+ ['LAT (local activation time)','Timing','The moment a point on the chamber wall activates, measured in milliseconds against a fixed reference signal. The value painted on every activation map.'],
+ ['Electrogram (EGM)','Signals','The local electrical signal recorded by catheter electrodes inside the heart — the raw data from which all maps are built. Bipolar EGMs subtract two nearby electrodes; unipolar use one against a distant reference.'],
+ ['Re-entry','Mechanism','A wave that travels in a loop, re-exciting tissue it already passed through. The mechanism behind flutter and most scar-related VT. Maps show it as a full colour cycle with early-meets-late.'],
+ ['Isthmus','Mechanism','The narrow corridor of tissue a re-entry loop must pass through — often bounded by scar or a valve ring. Blocking conduction across the isthmus interrupts the loop.'],
+ ['Substrate','Mechanism','The underlying tissue landscape — scar, fibrosis, slow zones — that makes an arrhythmia possible, mapped even when the rhythm itself is not running.'],
+ ['Voltage map','Map types','A map coloured by electrogram amplitude rather than timing. Low voltage marks scar or diseased tissue; thresholds are chamber- and lab-dependent.'],
+ ['Pulmonary vein isolation (PVI)','Procedure','Encircling the pulmonary veins with ablation lesions so their triggers cannot reach the left atrium — the established ablation approach for atrial fibrillation <a class="cite" href="#ref-pope2022">Pope 2022</a>. Isolation is checked by testing for entrance and exit block <a class="cite" href="#ref-anter2015orion">Anter 2015b</a>.'],
+ ['Contact force','Hardware','The pressure (in grams) between an ablation catheter tip and the tissue, sensed in real time. An input to lesion tags; contact also changes the voltage recorded <a class="cite" href="#ref-teijeira2018">Teijeira-Fernandez 2018</a>.'],
+ ['High-density mapping','Map types','Collecting thousands of points with multi-electrode catheters and automated acceptance criteria, producing far finer maps than one-point-at-a-time roving.'],
+ ['Omnipolar','Signals','A signal-processing method (Abbott EnSite) that uses a grid of electrodes to derive the electrogram’s amplitude and the wavefront direction largely independently of the angle the wave crosses the catheter <a class="cite" href="#ref-deno2017">Deno 2017</a>.'],
+ ['Entrainment','Technique','Pacing during a tachycardia to test whether a site is inside the re-entry circuit — judged by fusion and the post-pacing interval versus the cycle length.'],
+ ['Window of interest','Timing','The time slice of each cycle the system is allowed to annotate. Set it wrong and activation points land in the wrong beat, scrambling the map.'],
+ ['Fluoroscopy','Imaging','Live X-ray imaging. 3D mapping locates catheters without X-ray <a class="cite" href="#ref-gepstein1997">Gepstein 1997</a>, which can reduce fluoroscopy use.'],
+ ['ICE (intracardiac echocardiography)','Imaging','An ultrasound catheter inside the heart giving live images of anatomy, catheter contact and complications — increasingly fused into the 3D map itself.'],
+ ['Pulsed field ablation (PFA)','Procedure','Ablation using brief high-voltage electric pulses that kill heart muscle cells by electroporation rather than heat or cold. Mapping systems increasingly visualise PFA catheters and lesions alongside RF workflows.'],
+ ['Charge density','Map types','A non-contact reconstruction (AcQMap) of the electrical charge pattern on the chamber wall, computed from a floating balloon’s electrodes via an inverse solution — a whole-chamber map <a class="cite" href="#ref-pope2022">Pope 2022</a>.']
+];
+(function(){
+  var grid=document.getElementById('glossGrid'), empty=document.getElementById('glossEmpty');
+  function render(list){
+    grid.innerHTML=list.map(function(g){ return '<div class="gloss-item"><span class="cat">'+g[1]+'</span><h3>'+g[0]+'</h3><p>'+g[2]+'</p></div>'; }).join('');
+    empty.style.display=list.length?'none':'block';
+  }
+  render(gloss);
+  document.getElementById('glossSearch').addEventListener('input',function(e){
+    var q=e.target.value.trim().toLowerCase();
+    render(gloss.filter(function(g){ return (g[0]+' '+g[1]+' '+g[2]).toLowerCase().indexOf(q)>-1; }));
+  });
+})();
+
+/* ================= QUIZ ================= */
+var quiz=[
+ {q:'A tachycardia map shows one red spot with colours spreading outward in rings. The mechanism is most likely…',opts:['Re-entry around scar','A focal source','AV node re-entry only','It cannot be told from a map'],a:1,why:'A centrifugal bullseye is the fingerprint of a focal source.'},
+ {q:'On a flutter map, the finding that confirms a re-entry circuit is…',opts:['A single early red point','Purple everywhere','Earliest (red) directly beside latest (purple), with the full cycle length mapped','No points in the chamber'],a:2,why:'“Early meets late” with the whole cycle accounted for means the wave loops continuously.'},
+ {q:'A bipolar voltage reading looks low, but the tissue may be healthy if…',opts:['The catheter is new','The wave travelled at right angles to the bipole’s axis','The map is very dense','The reference is in the coronary sinus'],a:1,why:'Bipolar amplitude depends on wavefront direction: a wave crossing at right angles to the bipole reads small (course module m23) — the blind spot omnipolar mapping was designed to reduce.'},
+ {q:'Which pacing test checks whether a site you identified on a map is part of a re-entry circuit?',opts:['Changing the reference catheter','Entrainment pacing from the site','Raising the voltage threshold','Deleting half the points'],a:1,why:'Entrainment compares the paced rhythm and the post-pacing interval with the tachycardia to judge whether the site is in the circuit (course module m11).'}
+];
+(function(){
+  var box=document.getElementById('quizBox'), answers={};
+  quiz.forEach(function(item,qi){
+    var blk=document.createElement('div'); blk.className='q-block';
+    blk.innerHTML='<h3>'+(qi+1)+'. '+item.q+'</h3>';
+    var opts=document.createElement('div'); opts.className='q-opts';
+    item.opts.forEach(function(o,oi){
+      var b=document.createElement('button'); b.className='q-opt'; b.textContent=o; b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){
+        opts.querySelectorAll('.q-opt').forEach(function(x){x.setAttribute('aria-pressed','false')});
+        b.setAttribute('aria-pressed','true'); answers[qi]=oi; finish();
+      });
+      opts.appendChild(b);
+    });
+    blk.appendChild(opts); box.appendChild(blk);
+  });
+  var res=document.createElement('div'); res.className='quiz-result'; res.id='quizResult'; box.appendChild(res);
+  function finish(){
+    if(Object.keys(answers).length<quiz.length) return;
+    var score=0, notes=[];
+    quiz.forEach(function(item,qi){ if(answers[qi]===item.a) score++; else notes.push(item.why); });
+    var head = score===4 ? 'Sharp map-reading instincts.' : score>=2 ? 'Solid — a couple of refinements to make.' : 'Good start — the core ideas are worth a revisit.';
+    res.innerHTML='<h3>'+head+' ('+score+' / 4)</h3><p>'+(notes.length? 'Review these: '+notes.join(' ') : 'You nailed focal vs re-entry patterns, the bipolar direction trap, and entrainment. Next step: work through the map-types section above, then the systems explorer.')+'</p>';
+    res.classList.add('show');
+  }
+})();
+</script>
+</body>
+</html>

@@ -2,6 +2,36 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Learning Hub tab
+
+- **Decision (author):** add the author's "Electrophysiology Mapping System — Learning Hub & Explorer" page,
+  made with Muse, as a separate navbar tab, "Learning hub". It is a self-contained HTML page (simulator,
+  workflow, systems explorer, map types, electrogram lab, glossary, quiz, roadmap), not a module, so the
+  curriculum and module numbering do not change.
+- **How it is built:** the original page is kept in `learning-hub/source/`, without its embedded raster
+  image. `tools/build_learning_hub.py` applies 67 named, exact-match edits and writes
+  `learning-hub/index.html`. Only the built page is published (`_quarto.yml` resources).
+  `tests/test_learning_hub.py` checks that the build is current, that the page runs offline, that every
+  citation resolves to a references.bib entry with a DOI, and that no ablation advice remains.
+- **Edits to meet CLAUDE.md** (the author left the content question open; the recommended option was
+  taken):
+  - Fonts: self-hosted IBM Plex instead of Google Fonts. Plex Serif 400–600 and Mono 500–600 were added to
+    `vendor/fonts/ibm-plex/` from @fontsource 5.3.0, under the same OFL.
+  - Image: the AI-generated hero image is replaced by an original SVG drawing (author's choice), generated
+    by `learning-hub/source/make_hero_svg.py`.
+  - Advice reworded as description: "ablate the red centre", "highest-value target", "never ablate on
+    colour alone", and the procedural endpoints.
+  - Numbers: simulator cycle lengths are labeled illustrative. The voltage cutoffs cite Marchlinski 2000.
+    The "~30 ms" post-pacing interval is replaced by a description that cites Stevenson 1993 and links to
+    m11.
+  - Physics: the page said bipolar voltage is small when the wave travels *along* the bipole. It is small
+    when the wave travels at right angles to it (m23), so four places are corrected.
+  - Product facts: cited to peer-reviewed papers where found (17 references, 5 new). The rest are tagged
+    "unverified" on the page and listed in `errata.json` (E2). Market claims ("most widely installed",
+    "five platforms dominate") are removed.
+- **Undo:** remove the navbar entry and the resource line in `_quarto.yml`, and delete `learning-hub/`,
+  the build script and its test.
+
 ## 2026-11-17 · Fix: duplicate citation keys in references.bib
 
 - **Problem:** three keys appeared twice. `kligfield2007` and `magtibay2019` were two copies of the same
