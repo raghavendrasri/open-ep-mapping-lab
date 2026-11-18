@@ -2,6 +2,33 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-17 · Fix: resolve every TODO(source) on the module pages
+
+- **Scope:** the ten open markers in m27, m28, m29, m30, m33, m34 and m36. One branch with one commit
+  per module, because every module change also needs this log entry; separate PRs would conflict here.
+- **How each source was checked:** PubMed metadata for every paper; full text (PMC) for any value
+  taken from a table or the methods. The FDA records were read on the FDA 510(k) database itself.
+- **m27:** blood 0.748 S/m and myocardium 0.281 S/m at 500 kHz, and A = 7.39 × 10^39 s⁻¹,
+  Ea = 2.577 × 10^5 J/mol, from one cardiac RF model (Pérez 2022). The page keeps the authors'
+  caveats: the database is uncertain below 1 MHz, and the Arrhenius values are not cardiac-specific.
+- **m28:** membrane values from a cardiomyocyte electroporation model (Scuderi 2023). Lethal
+  thresholds from ex vivo perfused hearts (Kos 2023), called preliminary as the authors do. "Beating
+  heart" was changed to "ex vivo perfused hearts", which is what the study used.
+- **m29:** the chain and its 40–250 Hz / 20 Hz values come from Li 2016, which credits Botteron.
+  Botteron and Smith 1995 is still not cited directly; its abstract does not describe the chain.
+- **m30:** localization values reuse Gepstein 1997 and Wittkampf 1999. Respiratory motion comes from
+  Shechter 2004 (4.9 ± 1.9 mm caudal shift in 10 patients).
+- **m33:** the defaults stay illustrative, with cited scale (Steinhaus 1989, De Pooter 2018,
+  Williams 2018). **No measured clinical spread of annotation error was found;** a reviewer may
+  prefer to keep a marker until one is.
+- **m34:** the m34-d3 defaults changed from 20 to 35 mm/s (coronary-artery speeds, Shechter 2006)
+  and from 100 to 25 ms (40 Hz, a general-purpose electromagnetic tracker, Yaniv 2009). The update
+  rates of commercial mapping systems were not found in public sources, and the page says so.
+- **m36:** K231207, K231415 and K241227 confirm regulation 870.1425 with product code DQK.
+- **Computed values are tested:** Arrhenius times and the conductivity ratio (m27), the membrane time
+  constant per micrometer (m28), and the m34-d3 default bound and slider values (m34).
+- **Undo:** revert the per-module commits.
+
 ## 2026-11-17 · Fix: deploy only the newest commit on main
 
 - **Problem:** PRs #106, #107 and #108 merged within minutes. Each merge ran CI, and each CI run that
