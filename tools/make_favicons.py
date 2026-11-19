@@ -4,6 +4,7 @@ Source: assets/logo/logo.png (supplied by the author, 2026-11-17). Writes, at th
   favicon.png           64 x 64, linked from every Quarto page (_quarto.yml: website.favicon)
   favicon.ico           16, 32 and 48 px, for browsers and pages that ask for /favicon.ico
   apple-touch-icon.png  180 x 180, for phone home screens
+and assets/logo/logo-mark.png (256 x 256, cropped, white background) for the home-page header.
 
 The logo is cropped to a square around its drawing, placed on a white rounded tile so it stays visible
 on dark browser tabs, and resized with Lanczos filtering.
@@ -56,7 +57,8 @@ def main():
     tile(square, 180).convert("RGB").save(ROOT / "apple-touch-icon.png", optimize=True)  # iOS fills corners itself
     frames = [tile(square, s) for s in (16, 32, 48)]  # each size drawn on its own, not scaled from one
     frames[-1].save(ROOT / "favicon.ico", sizes=[f.size for f in frames], append_images=frames[:-1])
-    for name in ("favicon.png", "apple-touch-icon.png", "favicon.ico"):
+    square.resize((256, 256), Image.LANCZOS).save(ROOT / "assets" / "logo" / "logo-mark.png", optimize=True)
+    for name in ("favicon.png", "apple-touch-icon.png", "favicon.ico", "assets/logo/logo-mark.png"):
         print(name, (ROOT / name).stat().st_size, "bytes")
 
 

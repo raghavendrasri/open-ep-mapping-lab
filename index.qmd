@@ -1,8 +1,22 @@
 ---
-title: "Open EP Mapping Lab"
-subtitle: "How electroanatomic mapping systems work, from membrane current to color map"
+pagetitle: "Open EP Mapping Lab"
+description: "How electroanatomic mapping systems work, from membrane current to color map"
 toc: false
 ---
+
+<!-- Home-page header: the logo beside the title. The page has no `title`, so Quarto draws no title
+block; `pagetitle` sets the browser-tab title and `description` the search-engine summary. -->
+:::: {.home-header}
+[![Open EP Mapping Lab logo: a heart drawn half as circuit traces with an electrogram, half as gears](assets/logo/logo-mark.png){width="128" height="128"}]{.home-logo}
+
+::: {.home-heading}
+# Open EP Mapping Lab {.title .unnumbered .unlisted}
+
+::: {.subtitle}
+How electroanatomic mapping systems work, from membrane current to color map
+:::
+:::
+::::
 
 {{< include assets/_hero-egm.md >}}
 

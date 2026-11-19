@@ -2,6 +2,17 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-18 · Home page: logo beside the title
+
+- **Decision (author):** show the logo on the home page as well as in the browser tab.
+- **How:** `tools/make_favicons.py` also writes `assets/logo/logo-mark.png` (256 px, cropped to the
+  drawing, for a 128-px display). The default title block can't hold an image, so `index.qmd` has no
+  `title`; it draws its own header (logo, one `h1`, subtitle). `pagetitle` keeps the browser-tab
+  title, and `description` gives the page a search-engine summary. Quarto 1.11 still printed a bare
+  title with `title-block-style: none`, so that option was not used. Styles are in `assets/theme.scss`
+  (`.home-header`), with a smaller layout below 576 px.
+- **Undo:** restore `title` and `subtitle` in `index.qmd`, and remove the header block and its styles.
+
 ## 2026-11-18 · Fix: module counts on the home page and README
 
 - **Problem:** the home page button said "See all 45 modules", and the README said "45 modules in
