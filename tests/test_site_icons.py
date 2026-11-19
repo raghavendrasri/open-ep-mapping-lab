@@ -25,3 +25,13 @@ def test_learning_hub_uses_the_site_icon():
     hub = (ROOT / "learning-hub" / "index.html").read_text()
     assert '<link rel="icon" type="image/png" href="../favicon.png" />' in hub
     assert 'href="data:,"' not in hub
+
+
+def test_home_page_shows_the_logo_beside_one_title():
+    """index.qmd draws its own header (logo + title) and has no `title`, so Quarto adds no second title."""
+    text = (ROOT / "index.qmd").read_text()
+    front = yaml.safe_load(text.split("---")[1])
+    assert "title" not in front and front["pagetitle"] == "Open EP Mapping Lab"
+    assert "{.home-header}" in text and "assets/logo/logo-mark.png" in text
+    assert len([l for l in text.splitlines() if l.startswith("# ")]) == 1
+    assert Image.open(ROOT / "assets" / "logo" / "logo-mark.png").size == (256, 256)

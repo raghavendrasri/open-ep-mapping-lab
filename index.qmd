@@ -1,14 +1,28 @@
 ---
-title: "Open EP Mapping Lab"
-subtitle: "How electroanatomic mapping systems work, from membrane current to color map"
+pagetitle: "Open EP Mapping Lab"
+description: "How electroanatomic mapping systems work, from membrane current to color map"
 toc: false
 ---
+
+<!-- Home-page header: the logo beside the title. The page has no `title`, so Quarto draws no title
+block; `pagetitle` sets the browser-tab title and `description` the search-engine summary. -->
+:::: {.home-header}
+[![Open EP Mapping Lab logo: a heart drawn half as circuit traces with an electrogram, half as gears](assets/logo/logo-mark.png){width="128" height="128"}]{.home-logo}
+
+::: {.home-heading}
+# Open EP Mapping Lab {.title .unnumbered .unlisted}
+
+::: {.subtitle}
+How electroanatomic mapping systems work, from membrane current to color map
+:::
+:::
+::::
 
 {{< include assets/_hero-egm.md >}}
 
 ::: {.hero-actions}
 [Read the pilot module](modules/m03-electrograms.qmd){.btn .btn-primary}
-[See all 45 modules](course-map.qmd){.btn .btn-outline-primary}
+[See all 55 modules](course-map.qmd){.btn .btn-outline-primary}
 :::
 
 ::: {.callout-warning appearance="simple"}
@@ -30,10 +44,11 @@ catheter, records and filters electrograms, and turns them into activation and v
 
 ## Status
 
-The pilot module, [m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd),
-is being written in six stages, each reviewed before the next. Its page shows how far it has got.
-The other 35 modules are planned; the [course map](course-map.qmd) lists every module, its
-status and its planned release.
+All 55 modules, in eight parts, have a draft. Each module is written in six stages and reviewed by
+a person after each one. None has been reviewed yet, so none is released, and every clinical
+section is still pending review by an EP physician. The pilot module,
+[m03 · Unipolar, bipolar and omnipolar electrograms](modules/m03-electrograms.qmd), shows the full
+format. The [course map](course-map.qmd) lists every module, its status and its planned release.
 
 ## Built on
 

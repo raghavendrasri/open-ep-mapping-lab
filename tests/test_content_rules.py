@@ -341,3 +341,25 @@ def test_glossary_is_sorted_and_linked():
     for term, definition in entries:
         linked = re.findall(r"\(\.\./modules/(m\d\d-[a-z0-9-]+)\.qmd\)", definition)
         assert linked and all(m in pages for m in linked), f"glossary '{term}' needs a link to an existing module"
+
+
+NUMBER_WORDS = {w: i for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve".split())}
+
+
+def test_hand_written_counts_match_the_curriculum():
+    """The home page and README state the number of modules and parts by hand. They said "45 modules in
+    seven parts" after Part VIII was added; keep them equal to docs/curriculum.md."""
+    curriculum = (ROOT / "docs" / "curriculum.md").read_text()
+    n_modules = len(re.findall(r"^\| *m\d\d *\|", curriculum, re.M))
+    n_parts = len(re.findall(r"^## Part ", curriculum, re.M))
+    assert (n_modules, n_parts) == (55, 8)
+    for name in ("index.qmd", "README.md"):
+        text = (ROOT / name).read_text()
+        for n in re.findall(r"\b(\d+) modules\b", text):
+            assert int(n) == n_modules, f"{name}: '{n} modules', curriculum has {n_modules}"
+        for word in re.findall(r"\b([a-z]+) parts\b", text, re.I):
+            if word.lower() in NUMBER_WORDS:
+                assert NUMBER_WORDS[word.lower()] == n_parts, f"{name}: '{word} parts', curriculum has {n_parts}"
+        for n in re.findall(r"\b(\d+) parts\b", text):
+            assert int(n) == n_parts, f"{name}: '{n} parts', curriculum has {n_parts}"
