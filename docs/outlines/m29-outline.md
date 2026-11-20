@@ -112,9 +112,9 @@ measured and found; it does not say what to do.
 - How experts think: "Would this detector find a rotor in noise alone?" Run every driver algorithm
   on data with no driver, and on data with a known driver, before trusting its map.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why does a
+Written in stage 5. At least 10 practice questions with model answers, including "why does a
 phase singularity detector need a minimum number of electrodes?" and "what can shift the dominant
 frequency without changing the activation rate?".
 

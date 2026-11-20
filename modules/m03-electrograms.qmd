@@ -568,10 +568,10 @@ falls as $1/R$ and the bipole as $d/R^2$; for a dipole, as $1/R^2$ and $d/R^3$.
   the wave is locally planar.
 - Units: 1 m/s = 1 mm/ms, so a length in mm divided by a speed in m/s gives a time in ms.
 
-## Interview questions
+## Practice questions
 
 Try each question before you open its model answer. The answers use this module's model and
-symbols. In a real interview, say which assumptions you are making.
+symbols. In your answer, say which assumptions you are making.
 
 ### Fundamentals
 
@@ -895,7 +895,7 @@ needs no activation times, but it does assume a planar wave across the clique (@
 <summary>Answer</summary>
 
 False. With $w$, $h$ and the source fixed, $c$ only stretches time: the voltage stays the same,
-the signal lasts twice as long, and slopes halve (interview Q13).
+the signal lasts twice as long, and slopes halve (practice Q13).
 
 </details>
 
@@ -918,7 +918,7 @@ to look for and where this module explains it.
   electrograms and voltage maps from a rabbit, a pig and a human heart, along two perpendicular
   electrode orientations, with maps built from the larger bipole. Compare the two orientations
   for the same **pacing** site (the place the heart was stimulated from). This module's explanation is the $\lvert\cos\theta\rvert$ rule
-  (@eq-m03-bipolar-gradient, demo m03-d2, interview Q10).
+  (@eq-m03-bipolar-gradient, demo m03-d2, practice Q10).
 - **Thresholds and lesions.** Magtibay and colleagues, Figure 8 [@magtibay2017]. Omnipolar voltage
   maps with a threshold set from ablation lesions in pig hearts, compared with maps using the
   traditional bipolar dense-scar cut-off of 0.5 mV. It goes with the clinical correlate above.

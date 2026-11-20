@@ -261,7 +261,7 @@ in a header [@goldberger2000]; the m03 code lab reads one.
 
 *Planned in the outline.*
 
-## Interview questions
+## Practice questions
 
 *Planned in the outline.*
 

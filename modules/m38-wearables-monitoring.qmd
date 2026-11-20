@@ -295,9 +295,9 @@ misses, not by its accuracy on one window.**
 - Each extra window in "k in a row" divides false notifications by about $1/q$.
 - Quote a filter's kept-true share next to its removed-false share.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why are intervals between PPG pulses more variable than RR intervals, even in perfectly regular
@@ -549,7 +549,7 @@ look for and where this module explains it.
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9640290/)]. Three panels: the share of
   participants notified, the share of notified participants with AF or flutter on a later patch,
   and the detection's PPV against a patch worn at the same time. Each panel has a different
-  denominator (interview Q5).
+  denominator (practice Q5).
 - **How long the AF lasted.** Lubitz and colleagues, Figure 3 [@lubitz2022]. AF burden on the patch
   among participants with confirmed arrhythmia, and the duration of the longest episode. Compare with
   what a "k in a row" rule can catch (@eq-m38-detect).

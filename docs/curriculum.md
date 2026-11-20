@@ -113,7 +113,7 @@ Change this list only with the author's approval.
 | Computational modeller | m01, m02, m05–m09, m12, m24, m25, m29, m33 |
 | AI in EP (engineers and clinicians) | m03, m04, m12, m22, m35, m37–m47 |
 | Imaging in EP | m04, m06, m21, m35, m40, m48–m55 |
-| Interview prep | Interview questions across all modules |
+| Interview prep | Practice questions across all modules |
 
 ## Release order
 
@@ -122,5 +122,5 @@ Change this list only with the author's approval.
 | Pilot | m03 |
 | v0.1 (MVP) | m03, m04, m20, m22, m23, m24, m25, m30 |
 | v0.5 | Parts I–III, plus m21, m26 |
-| v1.0 | Parts V–VI, formula sheet, glossary, interview bank |
+| v1.0 | Parts V–VI, formula sheet, glossary, practice-question bank |
 | v1.5 | Part VII |

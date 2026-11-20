@@ -243,9 +243,9 @@ know the chain before you trust the shape or the timing.**
 | PhysioNet Intracardiac Atrial Fibrillation Database: 1 kHz, 14 bits | @iafdb |
 | Timing error, SQNR, filter delays and distortions | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What is aliasing, and why can't you fix it in software?**

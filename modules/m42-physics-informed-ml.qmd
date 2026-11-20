@@ -293,9 +293,9 @@ what it does not describe.**
 - Pair every map with an uncertainty map, and check its coverage.
 - Keep surrogates inside the parameter range they were trained on.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Write the loss of a physics-informed fit of an activation map and explain each term.**

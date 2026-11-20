@@ -92,9 +92,9 @@ Describes findings only; no advice on patient care.
 - How experts think: "What is the worst case, not the average?" Every buffer has a bound, every
   stage a deadline, every stored value a timestamp and a unit.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including system-design
+Written in stage 5. At least 10 practice questions with model answers, including system-design
 questions ("design the acquisition path for N channels").
 
 ### 8. Code lab and Self-check

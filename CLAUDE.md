@@ -11,7 +11,7 @@ activation and voltage maps.
 
 - Working name: **Open EP Mapping Lab**. Do not call it "OpenEP"; that is a separate,
   established project (openep.io) that we build on and credit.
-- The course format (parts, modules, live figures, code labs, formula sheet, interview
+- The course format (parts, modules, live figures, code labs, formula sheet, practice
   questions, errata) is inspired by OpenUltrasoundLab. We borrow the idea only (see §6).
 - **Education only. Not for diagnosis, treatment or any clinical decision.**
 
@@ -56,7 +56,7 @@ Every module has these sections, in this order:
 5. **Clinical correlate** — where this shows up in a real case. Mark it
    `status: pending clinical review` until an EP physician signs it off.
 6. **Visual summary** and **How experts think**.
-7. **Cheat sheet** and **Interview questions** with model answers.
+7. **Cheat sheet** and **Practice questions** with model answers.
 8. **Code lab**, then a **Self-check**.
 9. **Literature figures** with citations, and **Further reading**.
 
@@ -147,7 +147,7 @@ labs/octave/        Part I copies
 tests/              equation and lab tests
 data/registry.json  dataset DOIs, licenses, checksums
 data/samples/       small sample files
-glossary/  formula-sheet/  interview/
+glossary/  formula-sheet/  practice/
 docs/               curriculum.md, decisions.md
 vendor/             pinned third-party JS
 errata.json  review_record.json  references.bib
@@ -166,7 +166,7 @@ errata.json  review_record.json  references.bib
 1. Read this file, `docs/curriculum.md` and the module's outline, `docs/outlines/mNN-outline.md`
    (if any).
 2. Work in stages and **stop for author review after each stage**:
-   outline → derivations + tests → demos → code lab → cheat sheet + interview questions →
+   outline → derivations + tests → demos → code lab → cheat sheet + practice questions →
    self-check + literature figures.
 3. The outline lists every planned equation, demo and lab, with the sources to be verified.
 4. Run the full check suite before calling any stage done, and report what failed.
@@ -209,6 +209,6 @@ Every module already has a generated placeholder page (`status: planned`).
 - [ ] Every citation resolved (DOI or PMID) and present in `references.bib`
 - [ ] No `TODO(source)` or `[unverified]` left
 - [ ] New glossary terms and formula-sheet entries added
-- [ ] At least 10 interview questions with model answers, and at least 5 self-check questions
+- [ ] At least 10 practice questions with model answers, and at least 5 self-check questions
 - [ ] Expert review recorded in `review_record.json` (human)
 - [ ] Clinical correlate signed off by an EP physician (human)

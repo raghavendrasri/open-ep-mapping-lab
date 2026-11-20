@@ -269,9 +269,9 @@ tissue.**
 | Records longer than 2 s needed for reliable dominant frequency (one technical study) | @ng2007tech |
 | Sidelobe levels, variance ratios, harmonic positions, phase-turn counts | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. You need to separate peaks 0.5 Hz apart. How long must the record be?**

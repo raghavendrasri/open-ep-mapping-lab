@@ -252,9 +252,9 @@ One sentence to keep: **every ECG lead is a projection, and the torso decides th
 | Front ball radius 30 mm, velocity 0.6 m/s, noise 0.01, heart offsets | illustrative |
 | Lead-vector angles, axis errors, QRS duration | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why does an insulated torso triple the surface potential of a centric dipole?**

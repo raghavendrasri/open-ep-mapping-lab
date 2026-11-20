@@ -275,9 +275,9 @@ One sentence to keep: **velocity is a property of the wave as much as of the tis
 | Membrane constants | @nietoramos2023, based on @mitchell2003 |
 | Velocities, grid errors, curvature fits, launch radii | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What is the length constant, and what sets it?**

@@ -23,7 +23,7 @@ REQUIRED_HEADINGS = [
     "Visual summary",
     "How experts think",
     "Cheat sheet",
-    "Interview questions",
+    "Practice questions",
     "Code lab",
     "Self-check",
     "Literature figures",
@@ -150,7 +150,7 @@ def section(body, heading):
 
 # CLAUDE.md §3 and §11: question sections, their numbering, answer label and released minimum.
 QUESTION_SECTIONS = {
-    "Interview questions": ("Q", "Model answer", 10),
+    "Practice questions": ("Q", "Model answer", 10),
     "Self-check": ("S", "Answer", 5),
 }
 
@@ -158,9 +158,9 @@ QUESTION_SECTIONS = {
 @pytest.mark.parametrize("heading", list(QUESTION_SECTIONS))
 @pytest.mark.parametrize("path", [module_ids(p) for p in MODULE_FILES])
 def test_questions_have_answers(path, heading):
-    """Questions are numbered **Q1.**, **Q2.**, ... (interview) or **S1.**, ... (self-check), and each
+    """Questions are numbered **Q1.**, **Q2.**, ... (practice) or **S1.**, ... (self-check), and each
     is followed by exactly one answer in a <details class="model-answer"> block. Released modules
-    need at least 10 interview and 5 self-check questions (CLAUDE.md §11)."""
+    need at least 10 practice and 5 self-check questions (CLAUDE.md §11)."""
     meta, body = split_front_matter(path.read_text())
     if meta.get("status") == "planned":
         pytest.skip("planned placeholder pages have no questions")

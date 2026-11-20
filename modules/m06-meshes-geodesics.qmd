@@ -274,9 +274,9 @@ One sentence to keep: **every map computed on a mesh inherits the mesh's resolut
 | Heat-method time step $t = h^2$ | @crane2012 |
 | Speed errors with timing noise, Laplacian and eigenvalue errors, path ratios, heat-method errors | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. A closed mesh has 1000 vertices and 2990 edges. Is something wrong?**

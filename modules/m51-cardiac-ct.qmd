@@ -385,9 +385,9 @@ scale set by water and air.**
 | @dong2006 | Error at targets after registration | Animal study, 9 dogs |
 | @mergen2023 | Image quality at two windows | Single-center cohort, 30 patients |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What does one CT detector reading measure?**

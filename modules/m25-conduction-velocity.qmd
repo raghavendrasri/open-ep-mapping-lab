@@ -225,9 +225,9 @@ One sentence to keep: **speed is an inverse; noise makes fast conduction look er
 | Timing and gradient errors, point counts, radii, geometry | illustrative |
 | Relative errors, covariances, RMS errors, clique ratios | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. How do you get conduction velocity from an activation map?**

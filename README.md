@@ -14,7 +14,7 @@ localize catheters, process electrograms and build activation and voltage maps.
 - 55 modules in eight parts (see [docs/curriculum.md](docs/curriculum.md))
 - Live in-browser figures, each labeled as exact, simulation, approximate model or schematic
 - Runnable Python labs, with GNU Octave versions for the math foundations
-- A formula sheet, glossary, interview questions and a public errata log
+- A formula sheet, glossary, practice questions and a public errata log
 
 ## Built on
 

@@ -242,9 +242,9 @@ One sentence to keep: **near the heart, microamperes matter; every path and ever
 | Capacitances, mains voltages, radii, areas, pulse values, RF amplitudes, β | illustrative |
 | Leakage currents, maximum capacitances, filter orders, energies | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why is a catheter connection more dangerous than a skin electrode at the same current?**

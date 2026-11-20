@@ -232,9 +232,9 @@ One sentence to keep: **a small fit error says the shapes agree; it does not say
 | Image intensities, noise, landmark error, rotations, shapes | illustrative |
 | Thresholds, Dice values, FRE and TRE, ICP outcomes | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. How does Otsu's method choose a threshold?**

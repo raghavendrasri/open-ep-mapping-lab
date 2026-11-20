@@ -246,9 +246,9 @@ its error.**
 | Generator layout, noise levels, conductor strength and position | illustrative |
 | Precision curves, slopes, biases | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why can a small generator coil be treated as a dipole?**

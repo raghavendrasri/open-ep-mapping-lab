@@ -123,7 +123,7 @@ def test_clique_velocity_from_amplitude_ratio(speed):
 
 
 def test_collinear_clique_cannot_give_the_field():
-    """Interview question: a 2D field needs two independent bipoles, so at least three electrodes
+    """Practice question: a 2D field needs two independent bipoles, so at least three electrodes
     that are not in a line. For collinear electrodes D D^T has rank 1 and the field is not determined."""
     line = np.array([[0, 0], [1, 0], [2, 0]], dtype=float)
     pairs = [(0, 1), (1, 2), (0, 2)]

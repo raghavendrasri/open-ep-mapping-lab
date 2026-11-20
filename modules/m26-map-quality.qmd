@@ -225,9 +225,9 @@ One sentence to keep: **a map without uncertainty hides where it was guessed.**
 | Kernel settings, error sizes, point counts | illustrative |
 | RMS errors, coverages, distances, SDs | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What does a Gaussian process add to interpolation?**

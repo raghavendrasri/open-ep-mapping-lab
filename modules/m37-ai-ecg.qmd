@@ -376,9 +376,9 @@ place it is used.**
 - Split by patient; test on an external site; report subgroups.
 - Retrospective accuracy is not clinical benefit.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Derive the gradient of the softmax cross-entropy with respect to the scores.**
@@ -646,7 +646,7 @@ look for and where this module explains it.
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC6784839/)]. ROC curves for the network
   and F1 scores for the network and for six cardiologists, against a committee consensus. A
   publisher correction notes that the x axis of Figure 1a is 1 − specificity. Compare where the
-  network and the average cardiologist fall for AF. This module: @eq-m37-softmax, interview Q4.
+  network and the average cardiologist fall for AF. This module: @eq-m37-softmax, practice Q4.
 - **Confusion matrices.** Hannun and colleagues, Figure 2 [@hannun2019]. Which rhythm classes the
   network and the averaged cardiologists confuse; the correction notes that panel b is for the
   cardiologists. Both tend to struggle with the same classes, a sign that the labels themselves are
@@ -654,11 +654,11 @@ look for and where this module explains it.
 - **A data set built for testing.** Wagner and colleagues, the overview figure and the description
   of the cross-validation folds [@wagner2020; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC7248071/)].
   Look at how folds are assigned by patient and why fold 10 holds only human-validated records.
-  This module: interview Q8 and Q12.
+  This module: practice Q8 and Q12.
 - **Overtraining in a public challenge.** Clifford and colleagues, the table of top-scoring entries
   with their training, validation and test scores [@clifford2017;
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC5978770/)]. Compare each entry's
-  training score with its test score. This module: From the field, interview Q7.
+  training score with its test score. This module: From the field, practice Q7.
 
 ## Further reading
 

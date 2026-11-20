@@ -109,9 +109,9 @@ no claim that twins should guide therapy.
 - How experts think: "Which of these parameters did the data actually determine?" Report held-out
   error and the spread of parameter sets that fit equally well, not just the best fit.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why solve the
+Written in stage 5. At least 10 practice questions with model answers, including "why solve the
 timing offset separately?" and "how do you tell overfitting from a good twin?".
 
 ### 8. Code lab and Self-check

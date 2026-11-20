@@ -290,9 +290,9 @@ One sentence to keep: **matching and impedance decide what the amplifier ever ge
 | Resistor tolerances, impedances, noise densities, 50 Hz, 10 mV common mode, 200 mV span | illustrative |
 | CMRR values, noise totals, WCT errors, bit counts | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Define CMRR and say why biopotential amplifiers need a high one.**

@@ -115,9 +115,9 @@ section describes these findings and their limits; it gives no targets.
 - How experts think: "Which part of the circuit is the tissue, and where does the heat go?" Power
   set at the generator is not power in the tissue; a number on the screen is a model's estimate.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why does
+Written in stage 5. At least 10 practice questions with model answers, including "why does
 impedance fall during an application?" and "why can two applications with the same FTI give
 different lesions?".
 

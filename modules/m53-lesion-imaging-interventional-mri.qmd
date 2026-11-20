@@ -257,9 +257,9 @@ conduction measured later.**
 | @tampakis2023 | State of real-time MRI-guided ablation | Narrative review |
 | @fusco2024 | MRI before, during and after ablation | Primer for radiologists |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Derive the signal at the center of a gap in a blurred lesion line.**

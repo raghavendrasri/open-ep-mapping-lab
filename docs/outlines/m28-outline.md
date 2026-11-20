@@ -108,9 +108,9 @@ section describes these findings only.
 - How experts think: "What does an empty electrogram prove?" Silence right after PFA is a
   necessary sign, not proof of a lasting lesion; time and contact change the answer.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why does lesion
+Written in stage 5. At least 10 practice questions with model answers, including "why does lesion
 radius grow as the square root of voltage in the sphere model?" and "why can a voltage map taken
 right after PFA overstate the lesion?".
 

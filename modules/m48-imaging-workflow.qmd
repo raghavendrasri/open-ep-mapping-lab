@@ -310,9 +310,9 @@ the answer changes.**
 | @rajendran2022 | Technical performance of a photon-counting CT system | Phantom measurements and 4 participants |
 | @beinart2011 | Left atrial wall thickness | Observational CT study |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What is the FWHM of a Gaussian blur, and why use it?**

@@ -286,9 +286,9 @@ does not change its mind for a change nobody can see.**
 - Calibrate conformal sets on data like the deployment data; check coverage per class and group.
 - Report group metrics with intervals; plan subgroup sample sizes (m45).
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What is integrated gradients, and what does completeness tell you?**

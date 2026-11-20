@@ -229,9 +229,9 @@ One sentence to keep: **between the points, the map shows the interpolant, not t
 | Point counts, delays, fill radii, source positions | illustrative |
 | Errors, gradients, apparent speeds, coverage | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What does a mapping system show between mapped points?**

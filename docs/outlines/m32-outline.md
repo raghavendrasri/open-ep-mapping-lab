@@ -114,9 +114,9 @@ comparison in [duchateau2019]. Descriptive only.
 - How experts think: "How much of this map is the data and how much is the regularizer?" Change
   $\lambda$ and the method; features that survive are more trustworthy than features that do not.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why does noise
+Written in stage 5. At least 10 practice questions with model answers, including "why does noise
 blow up without regularization?" and "what does the L-curve trade off?".
 
 ### 8. Code lab and Self-check
