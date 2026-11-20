@@ -2,6 +2,25 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-19 · Rename "Interview questions" to "Practice questions"
+
+- **Decision (author):** the section is now called "Practice questions". Its contents and its
+  rules are unchanged: at least 10 questions numbered Q1, Q2, …, each with a model answer. The short
+  "Self-check" quiz keeps its name.
+- **What changed:**
+  - The heading in all 55 modules and the template.
+  - The intro line under it, now "In your answer, say which assumptions you are making" instead of
+    "In a real interview, …".
+  - In-text cross-references ("interview Q10" is now "practice Q10").
+  - The content tests, the home page, README, curriculum, course map and module outlines.
+  - CLAUDE.md §1, §3, §8 (`practice/` folder), §10 and §11.
+- **Kept:** the "Interview prep" learning path. Preparing for job interviews is still a real use of
+  the course; its description now points to the practice questions. Older entries in this log are
+  not rewritten.
+- **Links:** the section's anchor changes from `#interview-questions` to `#practice-questions`. No
+  page in the site linked to the old anchor; outside links to it would land at the top of the module.
+- **Undo:** reverse the replacements; the commit touches only names, not question content.
+
 ## 2026-11-18 · Home page: logo beside the title
 
 - **Decision (author):** show the logo on the home page as well as in the browser tab.

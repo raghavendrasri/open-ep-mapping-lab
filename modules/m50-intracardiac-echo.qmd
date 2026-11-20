@@ -295,9 +295,9 @@ whose shape you chose.**
 | @dellorusso2023 | ICE vs none, pulsed-field ablation | Multicenter cohort |
 | @chen2026tsp | Two ICE-guided puncture strategies | Randomized trial |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. How does an ultrasound system know how deep a reflector is?**

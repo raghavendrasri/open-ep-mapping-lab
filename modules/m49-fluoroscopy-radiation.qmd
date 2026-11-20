@@ -283,9 +283,9 @@ needs.**
 | @debreceni2023 | Zero versus conventional fluoroscopy for AF ablation | Meta-analysis of observational studies |
 | @chen2026sheath | Visible versus conventional sheath | Randomized trial, 100 patients |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why does a catheter electrode show clearly on fluoroscopy while the inside of the heart does not?**

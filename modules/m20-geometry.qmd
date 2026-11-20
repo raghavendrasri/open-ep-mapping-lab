@@ -215,9 +215,9 @@ One sentence to keep: **a reconstructed chamber is the shape of where the cathet
 | Chamber shape, sampling depth, radii, noise, step sizes | illustrative |
 | Hull and reconstruction errors, shrinkage, volumes | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why does a convex hull overestimate a chamber with concavities?**

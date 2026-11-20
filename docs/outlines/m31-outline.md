@@ -116,9 +116,9 @@ database has no outcome data and supports no clinical conclusions.
 - How experts think: "Would I get the same answer with a different reasonable pipeline?" Run the
   analysis with two or three defensible parameter sets and report the spread.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "why can't you
+Written in stage 5. At least 10 practice questions with model answers, including "why can't you
 compare amplitudes across iafdb records?" and "why bootstrap windows rather than samples?".
 
 ### 8. Code lab and Self-check

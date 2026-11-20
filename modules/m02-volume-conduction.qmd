@@ -252,9 +252,9 @@ field tells you which tissue it reports.**
 | All conductivities: relative, with ratios as free parameters | our own code |
 | Bipole lead field at 8 mm against 0.2 mm (2-mm spacing, 1 mm above tissue): 0.5%, against 3% unipolar | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Derive Poisson's equation for a volume conductor.**

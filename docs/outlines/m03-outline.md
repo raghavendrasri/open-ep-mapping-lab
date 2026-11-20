@@ -111,9 +111,9 @@ it gives no advice on patient care.
   wavefront together." Ask which electrode the signal came from, which way the wave was going, and
   what the spacing was.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. Cheat sheet draws on the equation table above. At least 10 interview
+Written in stage 5. Cheat sheet draws on the equation table above. At least 10 practice
 questions with model answers.
 
 ### 8. Code lab and Self-check

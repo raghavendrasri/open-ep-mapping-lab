@@ -104,9 +104,9 @@ public FDA record (to verify in stage 2). Describes the process only; not legal 
 - How experts think: "Every requirement has a test, every hazard has a control, every control has
   a test, and every change starts with an impact analysis."
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "a field issue
+Written in stage 5. At least 10 practice questions with model answers, including "a field issue
 needs a software fix in two weeks; walk me through it."
 
 ### 8. Code lab and Self-check

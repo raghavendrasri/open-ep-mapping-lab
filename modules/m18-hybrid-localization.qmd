@@ -233,9 +233,9 @@ One sentence to keep: **a hybrid correction is an interpolation; trust it near i
 | Scale errors, chamber size, SDs, tissue parameters | illustrative |
 | Correction errors, fused SD, phases | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why combine magnetic and impedance localization?**

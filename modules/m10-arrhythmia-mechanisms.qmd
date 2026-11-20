@@ -253,9 +253,9 @@ enough of the chamber to tell.**
 | 37% freedom from atrial fibrillation at 18 ± 7 months | @buch2016 |
 | Ring lengths, velocities, alternans thresholds, singularities, spans | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Define the wavelength of excitation and why it matters.**

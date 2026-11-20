@@ -335,9 +335,9 @@ metric and a named use.**
 - Find the region of interest first: in the left atrial benchmark, two-stage networks did best
   [@xiong2020]; lab part E shows why.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. A paper reports an intersection over union of 0.80; another reports a Dice of 0.86. Which is
@@ -588,11 +588,11 @@ look for and where this module explains it.
   curves for one patient who had arrhythmic sudden death and one who did not, drawn against
   Kaplan–Meier and Cox-model curves [@popescu2022;
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC9022904/)]. Compare with what the
-  concordance index does and does not measure (@eq-m40-cindex, interview Q8).
+  concordance index does and does not measure (@eq-m40-cindex, practice Q8).
 - **A trial flow for an imaging AI.** He and colleagues, the study flow figure, which shows the
   echocardiograms excluded for image quality before randomization [@he2023;
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC10115627/)]. Compare with the
-  before-and-after design of the clinical correlate (interview Q10, Q11).
+  before-and-after design of the clinical correlate (practice Q10, Q11).
 
 ## Further reading
 

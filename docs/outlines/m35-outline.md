@@ -95,9 +95,9 @@ Describes findings only; no advice on patient care.
   leakage, label noise, miscalibration, dataset shift. Badge: schematic.
 - How experts think: "Split by patient, report by patient, validate on someone else's patients."
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including "your model has
+Written in stage 5. At least 10 practice questions with model answers, including "your model has
 0.98 AUC in cross-validation; what do you check first?"
 
 ### 8. Code lab and Self-check

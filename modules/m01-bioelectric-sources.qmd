@@ -273,9 +273,9 @@ are visible.**
 | Intracellular resistance across/along fibers 9.4; extracellular 2.7 | @clerc1976 |
 | All other values: relative units, $\sigma = \beta = \Delta V = 1$ | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why does a point source's potential fall as 1/r?**

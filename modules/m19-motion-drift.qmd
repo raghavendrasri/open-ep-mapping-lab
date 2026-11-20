@@ -237,9 +237,9 @@ One sentence to keep: **every correction for motion trades something: time, lag 
 | Breathing period and excursion, correlations, drift rate, noise | illustrative |
 | Duty cycles, residuals, standard errors, gains | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why is respiratory gating usually done at end expiration?**

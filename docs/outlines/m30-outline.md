@@ -101,9 +101,9 @@ not procedures.
 - How experts think: "What would this map look like if I were wrong?" Score every map against a
   known truth before trusting it on a patient whose truth is unknown.
 
-### 7. Cheat sheet and Interview questions
+### 7. Cheat sheet and Practice questions
 
-Written in stage 5. At least 10 interview questions with model answers, including a system-design
+Written in stage 5. At least 10 practice questions with model answers, including a system-design
 question ("sketch the data flow of a mapping system from amplifier to map") and error-budget
 questions.
 

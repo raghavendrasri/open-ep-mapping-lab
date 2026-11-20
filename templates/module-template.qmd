@@ -64,7 +64,7 @@ Where this shows up in a real case, with a cited source.
 
 ## Cheat sheet
 
-## Interview questions
+## Practice questions
 
 ## Code lab
 

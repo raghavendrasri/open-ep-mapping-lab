@@ -275,9 +275,9 @@ reset's time scale.**
 | Concentrations, FitzHugh–Nagumo parameters, stimuli | illustrative |
 | Thresholds, APDs, refractory periods, restitution gaps | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why is the membrane modeled as a capacitor?**

@@ -184,7 +184,7 @@ CC = 1 but RE > 0, which is why both are reported.
 
 *Planned in the outline.*
 
-## Interview questions
+## Practice questions
 
 *Planned in the outline.*
 

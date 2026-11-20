@@ -309,9 +309,9 @@ One sentence to keep: **regularization does not recover lost detail; it decides 
 | Front width 0.3 mm, height 1 mm (demo defaults, as in m03-d1) | m03, @riccio2021 |
 | Condition numbers, error budgets, resolution, parameter-choice scores, coverage | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What makes an inverse problem ill-posed?**

@@ -167,7 +167,7 @@ def test_disk_transfer_first_null():
 
 
 def test_far_field_share_grows_with_spacing():
-    """Interview question: for d << a both the local and the far-field bipolar signals scale with d,
+    """Practice question: for d << a both the local and the far-field bipolar signals scale with d,
     so their ratio barely changes; once d is comparable to a = w + h the local signal saturates
     (towards the unipolar peak-to-peak A / a) while the far-field term keeps growing.
     Far source: a unit monopole on the bipole axis at R = 200 a."""

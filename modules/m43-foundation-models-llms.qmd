@@ -367,9 +367,9 @@ One sentence to keep: **pretraining buys labels, not truth; a fluent answer is n
 - Retrieval quality caps answer quality: test it on its own.
 - 95% intervals on small benchmarks are wide; plan the number of questions first.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Write the InfoNCE loss and explain what the temperature and the negatives do.**
@@ -639,7 +639,7 @@ look for and where this module explains it.
 - **Embeddings that cluster by cohort.** The same paper, Figure 4: a model pretrained with random
   mixed-cohort batches forms clusters by cohort, and Figure 5 shows the clusters fade with
   single-cohort batches [@khattak2026; [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC13537565/)].
-  This module: lab part C and interview question Q4.
+  This module: lab part C and practice question Q4.
 - **The experimental design.** The same paper, Figure 1: five pretrained models, each probed on
   five labelled cohorts, 25 evaluations in all. A good template for testing transfer.
 

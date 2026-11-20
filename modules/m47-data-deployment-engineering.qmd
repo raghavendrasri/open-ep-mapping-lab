@@ -302,9 +302,9 @@ One sentence to keep: **every number about a model is also a number about its da
 - Count unique records before any release; remember waveforms and free text.
 - Quantize, then retest on the same data and subgroups; record checksums in the model card.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. A model trained on one database scores poorly on another. Before blaming the model, what do you check?**

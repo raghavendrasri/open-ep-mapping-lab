@@ -247,9 +247,9 @@ One sentence to keep: **a LAT is a choice of reference, window and rule, not a m
 | Noise levels, reference jitter, cycle length, far-field shape | illustrative |
 | Onset leads, jitters, window coverage, gains | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Define local activation time.**

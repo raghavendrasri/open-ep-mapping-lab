@@ -315,9 +315,9 @@ chose.**
 | @russo2017; @nazarian2017 | MRI with devices not labelled for MRI | Prospective registries |
 | @sheagren2025 | LGE with a defibrillator present | Animal study |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What frequency does a 3 T scanner transmit at, and why?**

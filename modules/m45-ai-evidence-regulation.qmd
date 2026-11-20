@@ -287,9 +287,9 @@ whose pass mark is set before the result is known.**
 - Monitor scores daily and labels on a sample; set alarm thresholds from the false-alarm rate.
 - Fix acceptance criteria before any update, on interval bounds and in subgroups.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. A paper reports AUC 0.95 for an AF-recurrence model. What do you ask?**

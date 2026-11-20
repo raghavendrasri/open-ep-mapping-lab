@@ -247,9 +247,9 @@ carries the noise of two scans.**
 | @bourque2024 | Nuclear imaging for cardiovascular infection | Multisociety expert consensus |
 | @birnie2014 | Arrhythmias in cardiac sarcoidosis | Expert consensus statement (cited by title) |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What does an SUV of 1 mean?**

@@ -183,7 +183,7 @@ are added, but only where they are added; module m26 relates it to interpolation
 
 *Planned in the outline.*
 
-## Interview questions
+## Practice questions
 
 *Planned in the outline.*
 

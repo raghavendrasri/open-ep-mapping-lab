@@ -40,7 +40,7 @@ catheter, records and filters electrograms, and turns them into activation and v
 - Live figures you can change, each labeled as exact, simulation, approximate model or
   schematic, with its assumptions listed underneath.
 - A runnable lab in Python, with GNU Octave versions for the math foundations.
-- A cheat sheet, interview questions and a self-check, plus a public [errata](errata.qmd) log.
+- A cheat sheet, practice questions and a self-check, plus a public [errata](errata.qmd) log.
 
 ## Status
 

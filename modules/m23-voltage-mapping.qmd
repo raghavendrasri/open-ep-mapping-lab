@@ -234,9 +234,9 @@ One sentence to keep: **a voltage map measures tissue, contact, direction and no
 | Tissue medians, spreads, noise SD, sample counts | illustrative |
 | Amplitude ratios, direction fractions, noise floors, rates | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What does a voltage map show?**

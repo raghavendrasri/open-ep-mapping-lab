@@ -241,9 +241,9 @@ measured.**
 | Recovery time constant 100 ms; interval times on the synthetic recording | illustrative |
 | Conduction ratios, PPI values | our own code |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What do the AH and HV intervals measure?**

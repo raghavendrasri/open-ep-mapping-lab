@@ -233,9 +233,9 @@ One sentence to keep: **the number a system reports about its fit is not the err
 | @kistler2006 | CT merged with the map in AF ablation | Clinical series, 30 patients |
 | @dong2006 | Error at targets after CT registration | Animal study, 9 dogs |
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What is the difference between FRE and TRE?**

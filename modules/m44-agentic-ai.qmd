@@ -336,9 +336,9 @@ whole loop, not the model.**
 - Allowlist first: approval cannot cover a tool the policy does not know.
 - Evaluate on a task suite with attacks; report success per category with an interval.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. What are the parts of an AI agent?**

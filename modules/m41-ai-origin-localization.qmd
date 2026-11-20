@@ -305,9 +305,9 @@ distance metric.**
 - Pair a population model with patient-specific updates when pacing is possible.
 - Quote errors along the surface, with spread, and the number of pacing sites used.
 
-## Interview questions
+## Practice questions
 
-Try each question before you open its model answer. In a real interview, say which assumptions you
+Try each question before you open its model answer. In your answer, say which assumptions you
 are making.
 
 **Q1. Why does the integral of the QRS carry information about the origin?**
@@ -560,7 +560,7 @@ look for and where this module explains it.
 - **Errors per patient.** Zhou and colleagues, Figure 1, the localization error for the pacing sites
   of each patient in the prospective series and the mean per patient [@zhou2021jaha;
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC8751877/)]. Compare the spread between
-  patients with the mean (interview Q2).
+  patients with the mean (practice Q2).
 - **Origins on a real surface.** The same paper, Figure 3, three premature-beat origins estimated on
   electroanatomic surfaces next to the clinically identified sites [@zhou2021jaha;
   [free full text](https://pmc.ncbi.nlm.nih.gov/articles/PMC8751877/)]. This module: @eq-m41-geodesic.
