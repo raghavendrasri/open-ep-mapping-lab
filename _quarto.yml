@@ -8,6 +8,7 @@ project:
     - errata.qmd
     - course-map.qmd
     - ai-competencies.qmd
+    - useful-links.qmd
     - glossary/index.qmd
     - formula-sheet/index.qmd
     - modules/*.qmd
@@ -47,6 +48,8 @@ website:
         text: Formula sheet
       - href: learning-hub/index.html
         text: Learning hub
+      - href: useful-links.qmd
+        text: Useful links
       - href: ai-competencies.qmd
         text: AI competencies
       - href: errata.qmd

@@ -2,6 +2,40 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-22 · "Useful links" tab
+
+- **Decision (author):** add the author's "Cardiac EP Intelligence Library" page as a navbar tab called
+  "Useful links". It is rewritten as a normal course page, `useful-links.qmd`, in the site's style.
+- **Copyright check:**
+  - The text is the author's own. Searches for its most distinctive sentences found no matches
+    elsewhere, it quotes nothing, and it contains no images.
+  - Lists of links and the names of journals, societies and companies are not protected text.
+    Company names are used only to identify the companies (CLAUDE.md §6).
+  - As course content, the page is under CC BY 4.0.
+- **Other problems found and fixed (author's choices):**
+  - **Named physicians removed.** Seven physicians' X handles were listed as a "monitoring" watchlist,
+    and the page itself said the handles were unconfirmed. Only the HRS, ESC Journals and ACC
+    accounts remain, each confirmed.
+  - **Reframed as a neutral learner resource.** The market-research parts are dropped: "competitive
+    intelligence", the pain-point table, the tracker fields with "business relevance", the roadmap
+    and the monitoring cadence. Companies are listed with links only, with no product claims
+    (CLAUDE.md §5).
+  - **Out-of-date company removed.** Acutus Medical has left the mapping business; its mapping
+    platform was sold to EnChannel Medical in 2025.
+  - **Links fixed.** Three journal addresses were not the journals' homepages (JCE, PACE, Journal of
+    Arrhythmia); they now point to Wiley Online Library. Four other links had moved: EHRA (new ESC
+    site), EP Lab Digest (HMP Global), FDA recalls (the old address returned 404) and J&J's
+    electrophysiology page.
+- **Link check, 2026-11-22:**
+  - 22 links opened in a browser, including the societies, FDA databases, companies and X
+    accounts.
+  - Four publisher sites showed a bot check, so they were confirmed by web search instead.
+  - PubMed searches are generated from their query strings.
+  - Searching X needs a signed-in account, and the page says so.
+- **Guard:** `tests/test_useful_links.py` (navbar, https only, organization accounts only, and the
+  addresses found wrong stay out).
+- **Undo:** delete `useful-links.qmd`, its navbar entry and the test.
+
 ## 2026-11-19 · Rename "Interview questions" to "Practice questions"
 
 - **Decision (author):** the section is now called "Practice questions". Its contents and its
