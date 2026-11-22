@@ -1,5 +1,6 @@
 ---
 title: "m13 · Catheter design: electrode size and spacing, high-density grids, baskets, contact-force sensing"
+pagetitle: "EP Catheter Design & Contact Force | Open EP Mapping Lab"
 description: "Mapping catheter design as a sampling problem: electrode size and spacing, high-density grids, basket catheters and contact-force sensing."
 module-id: m13
 part: "Part III · Hardware and localization"

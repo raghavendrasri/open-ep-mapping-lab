@@ -15,3 +15,8 @@ This license does not cover:
   License in the LICENSE file.
 - Third-party datasets, libraries and figures, which keep their own licenses as
   recorded in data/registry.json and next to each figure.
+- Self-hosted IBM Plex font files in vendor/fonts/ibm-plex/, which are licensed
+  under the SIL Open Font License 1.1 (see vendor/fonts/ibm-plex/LICENSE-OFL.txt).
+- The Open EP Mapping Lab logo and site icons (assets/logo/, favicon.*,
+  apple-touch-icon.png), which are reserved to identify this project and may not
+  be used to suggest endorsement or affiliation.

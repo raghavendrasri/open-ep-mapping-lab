@@ -1,5 +1,6 @@
 ---
 title: "m06 · Triangle meshes, Laplace–Beltrami operators and geodesics"
+pagetitle: "Triangle Meshes, Laplacians & Geodesics | Open EP"
 description: "How mapping systems store a heart chamber as a triangle mesh, and the math used on it: Laplace–Beltrami operators and geodesic distances."
 module-id: m06
 part: "Part I · Math and bioelectric foundations"

@@ -49,10 +49,14 @@ mentioning a company or product is not an endorsement. See the [Disclaimer](disc
 - The course format (parts, modules, live figures, code labs) is inspired by
   [OpenUltrasoundLab](https://openultrasoundlab.org). Only the idea is borrowed; no text, figures or code.
 
+Open EP Mapping Lab is an independent educational project and is not affiliated with or endorsed by the
+[OpenEP](https://openep.io/) project or any medical device manufacturer.
+
 ## License and contact
 
 Text, figures and questions are licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); code is
-licensed MIT. Datasets keep their original licenses.
+licensed MIT. Datasets keep their original licenses, self-hosted IBM Plex fonts are under the SIL Open Font License 1.1,
+and the project logo is reserved to identify Open EP Mapping Lab.
 
 Found an error or have a suggestion? Open an issue in the
 [course repository]({{< var repo.url >}}/issues).

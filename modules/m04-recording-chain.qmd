@@ -1,5 +1,6 @@
 ---
 title: "m04 · Sampling, filtering and the EP recording chain"
+pagetitle: "Sampling, Filtering & EP Recording Chain | Open EP"
 description: "The EP recording chain from electrode to screen: amplifiers, analog and digital filters, sampling and quantization, and how each step shapes an electrogram."
 module-id: m04
 part: "Part I · Math and bioelectric foundations"

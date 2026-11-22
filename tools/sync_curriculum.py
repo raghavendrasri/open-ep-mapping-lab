@@ -219,6 +219,7 @@ def course_map(parts, paths, statuses):
     lines = [
         "---",
         'title: "Course map"',
+        'description: "Full 55-module curriculum across eight parts, from bioelectric physics and electrograms to AI and cardiac imaging, with learning paths and status."',
         "toc: true",
         "---",
         "",

@@ -1,5 +1,6 @@
 ---
 title: "m33 · Capstone: from map to digital twin (OpenEP to openCARP)"
+pagetitle: "Capstone: OpenEP to openCARP Digital Twin | Open EP"
 description: "Capstone: turn an electroanatomic map into a digital twin, from OpenEP data to an openCARP simulation."
 module-id: m33
 part: "Part V · Therapy and capstones"

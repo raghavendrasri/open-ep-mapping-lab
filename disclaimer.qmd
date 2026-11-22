@@ -1,5 +1,6 @@
 ---
 title: "Disclaimer"
+description: "Educational-use disclaimer, review status, bench-only hardware safety notice, no-warranty terms and trademark attributions for Open EP Mapping Lab."
 toc: false
 ---
 
@@ -17,6 +18,9 @@ module, and each module shows its review status at the top. Known errors are lis
 **Hardware.** Any bench or hardware material is for bench use only. It must never be
 connected to a person or an animal.
 
-**Trademarks.** Product names such as CARTO, EnSite, Rhythmia and KODEX belong to their
-owners. They are used only to describe products, based on public sources. This course is not
-affiliated with or endorsed by any device maker.
+**Trademarks and independence.** Product, catheter and software names — including CARTO, EnSite,
+Rhythmia, OPAL HDx, KODEX-EPD, AcQMap, PentaRay, OCTARAY, Advisor HD Grid, IntellaMap Orion,
+ThermoCool SmartTouch, TactiFlex, IntellaNav StablePoint, LUMIPOINT, CONFIDENSE, VISITAG and
+CARTOSOUND — are trademarks of their respective owners. They are used only to identify and describe
+products from public sources. Open EP Mapping Lab is an independent educational project and is not
+affiliated with or endorsed by any device manufacturer or by the OpenEP (`openep.io`) project.

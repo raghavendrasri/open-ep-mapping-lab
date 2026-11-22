@@ -1,5 +1,6 @@
 ---
 title: "Formula sheet"
+description: "Verified equations for cardiac electroanatomic mapping, electrograms, localization, ablation biophysics, AI and cardiac imaging, linked to derivations."
 ---
 
 The main results of each module, with links to their derivations. Each result holds only under its

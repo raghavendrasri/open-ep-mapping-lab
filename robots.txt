@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://openepengineering.org/sitemap.xml

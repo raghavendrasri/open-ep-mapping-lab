@@ -1,5 +1,6 @@
 ---
 title: "m42 · Physics-informed machine learning: PINNs, surrogate models and uncertainty for digital twins"
+pagetitle: "Physics-Informed ML for Digital Twins | Open EP"
 description: "Physics-informed machine learning for cardiac digital twins: physics-informed neural networks, surrogate models and uncertainty."
 module-id: m42
 part: "Part VII · AI in electrophysiology"

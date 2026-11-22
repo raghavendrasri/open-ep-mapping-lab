@@ -1,5 +1,6 @@
 ---
 title: "m39 · AI on intracardiac electrograms and maps"
+pagetitle: "AI on Electrograms & Cardiac Maps | Open EP Mapping Lab"
 description: "AI on intracardiac electrograms and maps: learning from many electrograms tied to locations on the heart, and how to validate such models."
 module-id: m39
 part: "Part VII · AI in electrophysiology"

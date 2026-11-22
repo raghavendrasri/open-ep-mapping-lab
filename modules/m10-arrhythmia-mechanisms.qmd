@@ -1,5 +1,6 @@
 ---
 title: "m10 · Arrhythmia mechanisms: focal, macro-reentry, rotors, atrial fibrillation"
+pagetitle: "Arrhythmia Mechanisms: Reentry & AF | Open EP Mapping Lab"
 description: "The arrhythmia mechanisms that mapping systems are asked to explain, from an engineering view: focal activity, macro-reentry, rotors and atrial fibrillation."
 module-id: m10
 part: "Part II · Cardiac electrophysiology for engineers"

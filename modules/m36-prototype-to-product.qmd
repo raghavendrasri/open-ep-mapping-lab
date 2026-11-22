@@ -1,5 +1,6 @@
 ---
 title: "m36 · From prototype to product: FDA Class II (21 CFR 870.1425, product code DQK), 510(k), IEC 60601-1, IEC 62304, ISO 14971, EU MDR"
+pagetitle: "EP Device Regulation: FDA 510(k) & IEC | Open EP"
 description: "From prototype to product for a mapping system: FDA Class II and product code DQK, 510(k), IEC 60601-1, IEC 62304, ISO 14971 and EU MDR."
 module-id: m36
 part: "Part VI · Systems and practice"

@@ -1,5 +1,6 @@
 ---
 title: "m08 · Action potentials and ionic models, from FitzHugh–Nagumo to detailed atrial models"
+pagetitle: "Cardiac Action Potentials & Ionic Models | Open EP"
 description: "How cardiac action potentials arise and are modeled, from the FitzHugh–Nagumo equations to detailed ionic models of atrial cells."
 module-id: m08
 part: "Part II · Cardiac electrophysiology for engineers"

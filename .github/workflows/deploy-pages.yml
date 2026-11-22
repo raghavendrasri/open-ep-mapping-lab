@@ -48,6 +48,9 @@ jobs:
       - name: Build site
         run: quarto render
 
+      - name: Add static pages to sitemap
+        run: python3 tools/update_sitemap.py _site
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: _site

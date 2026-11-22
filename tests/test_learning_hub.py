@@ -26,7 +26,9 @@ def test_hub_runs_offline():
     """CLAUDE.md §4: no network requests at runtime (fonts are self-hosted) and no embedded raster images."""
     s = page()
     assert "fonts.googleapis" not in s and "fonts.gstatic" not in s
-    assert not re.search(r'<(link|script|img|iframe|source)\b[^>]*\b(href|src)="https?://', s)
+    # Passive <link rel="canonical"> never triggers a browser network request; block all fetched external URLs.
+    s_no_canonical = re.sub(r'<link\s+rel="canonical"\s+href="https://openepengineering\.org/[^"]*"\s*/?>', "", s)
+    assert not re.search(r'<(link|script|img|iframe|source)\b[^>]*\b(href|src)="https?://', s_no_canonical)
     assert not re.search(r"url\(\s*['\"]?https?://", s)
     assert "data:image/" not in s, "raster images are not allowed; the hero is an original inline SVG"
     for font in re.findall(r'url\("\.\./(vendor/fonts/[^"]+)"\)', s):

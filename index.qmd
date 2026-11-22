@@ -12,6 +12,7 @@ include-in-header:
         {
           "@type": "WebSite",
           "name": "Open EP Mapping Lab",
+          "alternateName": "Open EP Engineering",
           "url": "https://openepengineering.org/"
         },
         {
@@ -21,11 +22,27 @@ include-in-header:
           "url": "https://openepengineering.org/",
           "inLanguage": "en",
           "isAccessibleForFree": true,
+          "educationalLevel": "Graduate / Professional Engineering",
           "license": "https://creativecommons.org/licenses/by/4.0/",
+          "teaches": [
+            "Cardiac electroanatomic mapping systems",
+            "Unipolar, bipolar and omnipolar electrograms",
+            "Catheter localization (magnetic, impedance, hybrid, dielectric)",
+            "Activation, voltage and conduction velocity mapping",
+            "AI and multimodal cardiac imaging in electrophysiology"
+          ],
+          "author": {
+            "@type": "Person",
+            "name": "raghavendrasri",
+            "url": "https://github.com/raghavendrasri"
+          },
           "provider": {
             "@type": "Organization",
             "name": "Open EP Mapping Lab",
-            "url": "https://openepengineering.org/"
+            "url": "https://openepengineering.org/",
+            "sameAs": [
+              "https://github.com/raghavendrasri"
+            ]
           },
           "offers": [{ "@type": "Offer", "category": "Free" }],
           "hasCourseInstance": [{ "@type": "CourseInstance", "courseMode": "Online" }]
@@ -87,7 +104,8 @@ format. The [course map](course-map.qmd) lists every module, its status and its 
 - [openCARP](https://www.opencarp.org/) for cardiac simulation
 - [PhysioNet](https://physionet.org/) and [EDGAR](https://edgar.sci.utah.edu/) for public recordings
 
-The course format is inspired by [OpenUltrasoundLab](https://openultrasoundlab.org).
+The course format is inspired by [OpenUltrasoundLab](https://openultrasoundlab.org). Open EP Mapping Lab is an
+independent educational project and is not affiliated with or endorsed by the [OpenEP](https://openep.io/) project.
 
 ## License
 

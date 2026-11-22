@@ -1,5 +1,6 @@
 ---
 title: "m49 · Fluoroscopy and radiation protection: X-ray attenuation and contrast, quantum noise, dose quantities, reference levels, staff protection, low-fluoroscopy workflows"
+pagetitle: "Fluoroscopy & Radiation Protection | Open EP Mapping Lab"
 description: "Fluoroscopy and radiation protection in EP: X-ray attenuation and contrast, quantum noise, dose quantities, staff protection and low-fluoroscopy workflows."
 module-id: m49
 part: "Part VIII · Imaging in electrophysiology"

@@ -1,5 +1,6 @@
 ---
 title: "m35 · Machine learning in EP mapping: annotation, driver detection, validation pitfalls"
+pagetitle: "Machine Learning in EP Mapping | Open EP Mapping Lab"
 description: "Machine learning in EP mapping: automated electrogram annotation, driver detection, and the validation pitfalls that inflate reported accuracy."
 module-id: m35
 part: "Part VI · Systems and practice"
