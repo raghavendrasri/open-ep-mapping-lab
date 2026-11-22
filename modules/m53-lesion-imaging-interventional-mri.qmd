@@ -1,5 +1,6 @@
 ---
 title: "m53 · Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and edema, interventional MRI and its limits"
+pagetitle: "Imaging ablation lesions and real-time MRI-guided EP: lesions, gaps and edema, interventional MRI and its limits"
 description: "Imaging ablation lesions with MRI: lesions, gaps and edema, and what real-time MRI-guided EP procedures can and cannot do."
 module-id: m53
 part: "Part VIII · Imaging in electrophysiology"

@@ -1,5 +1,6 @@
 ---
 title: "m24 · Interpolation, activation maps and isochrones"
+pagetitle: "Interpolation, activation maps and isochrones"
 description: "How activation maps and isochrones are built by interpolating local activation times between recorded points, and what interpolation hides."
 module-id: m24
 part: "Part IV · Map formation"
