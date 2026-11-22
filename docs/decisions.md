@@ -2,6 +2,21 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-22 · Author's LinkedIn link
+
+- **Decision (author):** show the author's public LinkedIn profile in the usual places:
+  - an icon at the right of the navbar
+  - an icon in the center of the page footer
+  - a link in "Who makes it" on the About page
+- **How:** the address is stored once in `_variables.yml` (`author.linkedin`), and the About page
+  uses `{{< var author.linkedin >}}`. Quarto doesn't expand variables in `_quarto.yml`, so the navbar
+  and footer repeat the address; `tests/test_author_links.py` checks that the copies agree. The icon
+  is the LinkedIn glyph from the Bootstrap Icons font that Quarto bundles, so it works offline. Each
+  icon-only link has an `aria-label` for screen readers.
+- **Not added:** the author's name in the structured data, because no name was given.
+- **Undo:** remove the navbar and footer items, the `author` block in `_variables.yml`, the sentence on
+  the About page and the test.
+
 ## 2026-11-22 · Search-engine basics: module summaries, About page, link previews, Course markup
 
 - **Why:** the author asked for help ranking in search. The site had no meta description on any of

@@ -6,6 +6,9 @@
 # tests/test_content_rules.py checks that they agree with this file.
 site:
   url: https://openepengineering.org/
+# The author's public profile, shown in the navbar, footer and About page (author's request, 2026-11-22).
+author:
+  linkedin: https://www.linkedin.com/in/eraghavendrasri/
 repo:
   url: https://github.com/raghavendrasri/open-ep-mapping-lab
   colab: https://colab.research.google.com/github/raghavendrasri/open-ep-mapping-lab

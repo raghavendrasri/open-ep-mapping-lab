@@ -14,9 +14,9 @@ want the engineering view, and researchers who use open EP tools. The course has
 
 ## Who makes it
 
-The course is created and maintained by [raghavendrasri](https://github.com/raghavendrasri) on GitHub. All of its source,
-including every page, test and lab, is public in the
-[course repository]({{< var repo.url >}}).
+The course is created and maintained by its author: connect on [LinkedIn]({{< var author.linkedin >}}), or see
+[raghavendrasri](https://github.com/raghavendrasri) on GitHub. All of its source, including every page, test and
+lab, is public in the [course repository]({{< var repo.url >}}).
 
 ## How the content is written and checked
 
