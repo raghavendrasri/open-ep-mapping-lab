@@ -1,5 +1,6 @@
 ---
 title: "m09 · Propagation: cable theory, monodomain and bidomain, anisotropy"
+pagetitle: "Propagation: cable theory, monodomain and bidomain, anisotropy"
 description: "How the cardiac action potential propagates through tissue: cable theory, monodomain and bidomain models, and fiber anisotropy."
 module-id: m09
 part: "Part II · Cardiac electrophysiology for engineers"

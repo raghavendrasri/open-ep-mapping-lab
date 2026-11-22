@@ -1,5 +1,9 @@
 ---
 title: "mNN · Module title"
+# The search-result title: the module title without the "mNN · " code (tests/test_search_metadata.py).
+pagetitle: "Module title"
+# One sentence, 90-160 characters: the search-result summary, also shown under the title.
+description: "What this module teaches, in one sentence with the words a learner would search for."
 module-id: mNN
 part: "Part X · Part name"
 # draft | in-review | released

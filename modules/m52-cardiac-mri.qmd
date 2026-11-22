@@ -1,5 +1,6 @@
 ---
 title: "m52 · Cardiac MRI for EP: relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis, ventricular scar, MRI with implanted devices"
+pagetitle: "Cardiac MRI for EP: relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis, ventricular scar, MRI with implanted devices"
 description: "Cardiac MRI for EP: relaxation and inversion recovery, late gadolinium enhancement, atrial fibrosis, ventricular scar and MRI with implanted devices."
 module-id: m52
 part: "Part VIII · Imaging in electrophysiology"

@@ -1,5 +1,6 @@
 ---
 title: "m43 · Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval"
+pagetitle: "Foundation models and large language models: self-supervised ECG encoders, LLM evaluation, retrieval"
 description: "Foundation models and large language models in EP: self-supervised ECG encoders, LLM evaluation and retrieval."
 module-id: m43
 part: "Part VII · AI in electrophysiology"

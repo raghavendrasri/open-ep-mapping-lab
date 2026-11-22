@@ -1,5 +1,6 @@
 ---
 title: "m18 · Hybrid and dielectric localization concepts"
+pagetitle: "Hybrid and dielectric localization concepts"
 description: "Hybrid and dielectric localization concepts: how mapping systems combine the strengths of magnetic and impedance localization, and where each falls short."
 module-id: m18
 part: "Part III · Hardware and localization"
