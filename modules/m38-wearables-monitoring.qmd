@@ -1,5 +1,6 @@
 ---
 title: "m38 · Wearables and implantable monitors"
+description: "Wearables and implantable cardiac monitors: optical pulse sensing in smartwatches, implanted ECG monitors, and the AI that screens their data."
 module-id: m38
 part: "Part VII · AI in electrophysiology"
 # draft | in-review | released

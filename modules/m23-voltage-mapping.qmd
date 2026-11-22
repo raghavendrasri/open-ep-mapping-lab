@@ -1,5 +1,6 @@
 ---
 title: "m23 · Voltage mapping: amplitude, thresholds, dependence on wavefront direction"
+description: "Voltage mapping explained: electrogram amplitude, voltage thresholds, and why amplitude depends on the direction of the activation wavefront."
 module-id: m23
 part: "Part IV · Map formation"
 # draft | in-review | released

@@ -1,5 +1,6 @@
 ---
 title: "m26 · Map quality and uncertainty: point density, annotation error, interpolation error"
+description: "How good is a map? Point density, annotation error and interpolation error, and how to show where an activation map is uncertain."
 module-id: m26
 part: "Part IV · Map formation"
 # draft | in-review | released

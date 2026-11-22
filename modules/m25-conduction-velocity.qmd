@@ -1,5 +1,6 @@
 ---
 title: "m25 · Conduction velocity estimation: triangulation, surface fitting, omnipolar methods"
+description: "Conduction velocity estimation from activation times: triangulation, surface fitting and omnipolar methods, with their sources of error."
 module-id: m25
 part: "Part IV · Map formation"
 # draft | in-review | released

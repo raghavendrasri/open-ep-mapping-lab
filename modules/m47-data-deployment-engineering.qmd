@@ -1,5 +1,6 @@
 ---
 title: "m47 · Data and deployment engineering for AI in EP: data formats, labelling, de-identification, versioning, quantization and model cards"
+description: "Data and deployment engineering for AI in EP: data formats, labeling, de-identification, versioning, quantization and model cards."
 module-id: m47
 part: "Part VII · AI in electrophysiology"
 # draft | in-review | released

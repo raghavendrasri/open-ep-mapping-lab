@@ -1,0 +1,58 @@
+---
+title: "About"
+description: "Who makes Open EP Mapping Lab, how its content is written and checked, and what it is and is not for"
+toc: false
+---
+
+## What this is
+
+Open EP Mapping Lab is a free, open course on how cardiac electroanatomic mapping systems work: how they locate
+catheters, record and process electrograms, and build activation and voltage maps. It is written for engineers joining
+electrophysiology (EP) device companies, clinical mapping specialists and field engineers, EP fellows and physicians who
+want the engineering view, and researchers who use open EP tools. The course has 55 modules in eight parts; the
+[course map](course-map.qmd) lists them all.
+
+## Who makes it
+
+The course is created and maintained by [raghavendrasri](https://github.com/raghavendrasri) on GitHub. All of its source,
+including every page, test and lab, is public in the
+[course repository]({{< var repo.url >}}).
+
+## How the content is written and checked
+
+Drafts are prepared with the help of an AI assistant (Claude) and checked against written rules before they are
+published:
+
+- **Equations:** every equation has a numeric test in code, and a symbolic check where feasible.
+- **Numbers:** every value comes from a cited source or from the course's own code. Where a source is missing, the
+  value is marked and kept out of releases.
+- **Citations:** every reference is looked up and stored with its DOI or PubMed ID.
+- **Figures:** every figure is labeled as exact, simulation, approximate model or schematic, with its assumptions
+  listed.
+- **Human review:** nothing is marked reviewed until a person signs it off. Clinical sections stay "pending clinical
+  review" until an EP physician approves them. Sign-offs are recorded publicly in the repository.
+
+**Current status:** all 55 modules are drafts. None has been reviewed yet, so treat every page as a draft. Corrections
+are listed on the [Errata](errata.qmd) page.
+
+## What it is not
+
+Education only. The course is not for diagnosis, treatment or any clinical decision. It gives no ablation-strategy
+advice and no vendor operating instructions. Product names are used only to describe products, from public sources, and
+mentioning a company or product is not an endorsement. See the [Disclaimer](disclaimer.qmd).
+
+## Built on and credits
+
+- [OpenEP](https://github.com/openep) for mapping data formats and analysis
+- [openCARP](https://www.opencarp.org/) for cardiac simulation
+- [PhysioNet](https://physionet.org/) and [EDGAR](https://edgar.sci.utah.edu/) for public recordings
+- The course format (parts, modules, live figures, code labs) is inspired by
+  [OpenUltrasoundLab](https://openultrasoundlab.org). Only the idea is borrowed; no text, figures or code.
+
+## License and contact
+
+Text, figures and questions are licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); code is
+licensed MIT. Datasets keep their original licenses.
+
+Found an error or have a suggestion? Open an issue in the
+[course repository]({{< var repo.url >}}/issues).

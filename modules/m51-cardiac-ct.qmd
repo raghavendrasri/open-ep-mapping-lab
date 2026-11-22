@@ -1,5 +1,6 @@
 ---
 title: "m51 · Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, anatomy, thrombus, esophagus and wall thickness"
+description: "Cardiac CT for EP: attenuation and Hounsfield units, reconstruction, ECG gating, and imaging of anatomy, thrombus, esophagus and wall thickness."
 module-id: m51
 part: "Part VIII · Imaging in electrophysiology"
 # draft | in-review | released

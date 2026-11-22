@@ -1,5 +1,6 @@
 ---
 title: "m20 · Geometry from catheter positions: point clouds to surfaces"
+description: "How a mapping system builds chamber geometry from catheter positions: from point clouds to triangle surfaces."
 module-id: m20
 part: "Part IV · Map formation"
 # draft | in-review | released

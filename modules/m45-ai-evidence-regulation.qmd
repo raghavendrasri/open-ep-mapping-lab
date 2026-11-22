@@ -1,5 +1,6 @@
 ---
 title: "m45 · Evidence and regulation of AI in EP: study designs, reporting checklists, change control and monitoring"
+description: "Evidence and regulation of AI in EP: study designs, reporting checklists, change control for learning models and post-market monitoring."
 module-id: m45
 part: "Part VII · AI in electrophysiology"
 # draft | in-review | released

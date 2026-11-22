@@ -2,6 +2,30 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-22 · Search-engine basics: module summaries, About page, link previews, Course markup
+
+- **Why:** the author asked for help ranking in search. The site had no meta description on any of
+  its 55 module pages, no About page and no structured data. Google's guidance puts helpful,
+  trustworthy content first, and weighs trust signals more heavily for health-related topics.
+- **Module summaries:** each module has a hand-written `description` of 90–160 characters, built from
+  its title and topics, with no new numbers or claims. Quarto uses it as the page's meta description
+  and shows it as a lead line under the title, styled in `.quarto-title-block .description`.
+- **About page (`about.qmd`, navbar right):**
+  - What the course is, who maintains it (the GitHub account only; no personal details were
+    given), and how the content is written and checked.
+  - It says that drafts are prepared with an AI assistant (Claude) and checked under the course
+    rules, which matches this file and CLAUDE.md §5.
+  - It states the current status: all 55 modules are drafts and none has been reviewed.
+  - It covers scope, credits, license and contact. The author can add a short biography.
+- **Link previews:** `website.open-graph` and `website.twitter-card` are on, with the logo as the
+  preview image.
+- **Structured data:** the home page carries schema.org JSON-LD for `WebSite` and `Course` (free,
+  online, CC BY 4.0). Google's richer "course info" result also needs a study time for a
+  self-paced course, which isn't added because no figure has been chosen yet.
+- **Guard:** `tests/test_search_metadata.py`.
+- **Undo:** remove the `description` lines, `about.qmd` and its navbar entry, the three `website`
+  keys and the `include-in-header` block in `index.qmd`.
+
 ## 2026-11-22 · "Useful links" tab
 
 - **Decision (author):** add the author's "Cardiac EP Intelligence Library" page as a navbar tab called

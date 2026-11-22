@@ -1,5 +1,6 @@
 ---
 title: "m28 · Pulsed field ablation: electroporation and what it changes for mapping"
+description: "Pulsed field ablation explained: electroporation, membrane charging and lethal field thresholds, and what PFA changes for mapping systems."
 module-id: m28
 part: "Part V · Therapy and capstones"
 # draft | in-review | released

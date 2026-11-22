@@ -1,5 +1,6 @@
 ---
 title: "m34 · Mapping-system software architecture: real-time pipeline, latency, data formats"
+description: "Mapping-system software architecture: the real-time data pipeline, latency budgets, stream alignment and data formats."
 module-id: m34
 part: "Part VI · Systems and practice"
 # draft | in-review | released

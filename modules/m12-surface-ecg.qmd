@@ -1,5 +1,6 @@
 ---
 title: "m12 · The surface ECG and the forward problem"
+description: "How the surface ECG arises from the heart's current sources seen through the torso, and the forward problem that connects them."
 module-id: m12
 part: "Part II · Cardiac electrophysiology for engineers"
 # draft | in-review | released
