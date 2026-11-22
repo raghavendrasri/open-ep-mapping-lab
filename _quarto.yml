@@ -35,7 +35,6 @@ website:
   title: "Open EP Mapping Lab"
   description: "A free, open course on cardiac electroanatomic mapping systems."
   site-url: https://openepengineering.org/
-  canonical-url: true
   favicon: favicon.png
   # Link previews when a page is shared (LinkedIn, X, messaging apps); 1200x630 social card.
   image: assets/logo/og-card.png
@@ -87,5 +86,6 @@ format:
       - cosmo
       - assets/theme.scss
     css: assets/styles.css
+    canonical-url: true
     toc: true
     html-math-method: mathjax

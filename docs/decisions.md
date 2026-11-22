@@ -20,7 +20,7 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
   - Updated AcQMap's maker line on the Learning Hub to note the 2025 sale to EnChannel Medical.
 - **Technical SEO & crawlability:**
   - Added `robots.txt` pointing to `https://openepengineering.org/sitemap.xml` and enabled
-    `website.canonical-url: true` in `_quarto.yml`.
+    `format.html.canonical-url: true` in `_quarto.yml`.
   - Added 60–160-character `description` summaries to `course-map.qmd` (via `tools/sync_curriculum.py`),
     `glossary/index.qmd`, `formula-sheet/index.qmd`, `ai-competencies.qmd`, `disclaimer.qmd` and
     `errata.qmd`.

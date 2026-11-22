@@ -56,7 +56,7 @@ def test_about_page_is_rendered_and_linked():
 def test_link_previews_and_canonicals_are_on():
     site = CFG["website"]
     assert site["open-graph"] is True and site["twitter-card"] is True
-    assert site["canonical-url"] is True
+    assert CFG["format"]["html"]["canonical-url"] is True
     img = ROOT / site["image"]
     assert img.exists()
     assert Image.open(img).size == (1200, 630)
