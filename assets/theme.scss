@@ -184,6 +184,15 @@ tbody tr:nth-child(even) {
   font-size: 0.88rem;
 }
 
+// ---------------------------------------------------------------- page summary under the title
+// Each module's `description` (also its search-result summary) shows as a lead line under the title.
+.quarto-title-block .description {
+  color: $epml-muted;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  margin: 0.35rem 0 0.5rem;
+}
+
 // ---------------------------------------------------------------- home page
 
 // Logo beside the title (index.qmd turns off the default title block).

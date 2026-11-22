@@ -1,5 +1,6 @@
 ---
 title: "m27 · RF ablation biophysics and lesion metrics (power, force, time, impedance drop)"
+description: "Radiofrequency ablation biophysics: resistive heating, thermal damage and lesion metrics such as power, contact force, time and impedance drop."
 module-id: m27
 part: "Part V · Therapy and capstones"
 # draft | in-review | released

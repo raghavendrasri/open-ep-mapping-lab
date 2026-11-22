@@ -1,5 +1,6 @@
 ---
 title: "m48 · Imaging across the EP workflow: which modality answers which question, resolution, contrast, noise and dose, accuracy of imaging tests"
+description: "Imaging across the EP workflow: which modality answers which question, and how resolution, contrast, noise, dose and test accuracy compare."
 module-id: m48
 part: "Part VIII · Imaging in electrophysiology"
 # draft | in-review | released

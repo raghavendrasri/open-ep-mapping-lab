@@ -9,6 +9,7 @@ project:
     - course-map.qmd
     - ai-competencies.qmd
     - useful-links.qmd
+    - about.qmd
     - glossary/index.qmd
     - formula-sheet/index.qmd
     - modules/*.qmd
@@ -33,6 +34,10 @@ website:
   description: "A free, open course on cardiac electroanatomic mapping systems."
   site-url: https://openepengineering.org/
   favicon: favicon.png
+  # Link previews when a page is shared (LinkedIn, X, messaging apps); the image is the logo.
+  image: assets/logo/logo-mark.png
+  open-graph: true
+  twitter-card: true
   page-navigation: true
   navbar:
     left:
@@ -56,6 +61,9 @@ website:
         text: Errata
       - href: disclaimer.qmd
         text: Disclaimer
+    right:
+      - href: about.qmd
+        text: About
   page-footer:
     left: "Education only. Not for clinical use."
     right: "Text CC BY 4.0 · Code MIT"

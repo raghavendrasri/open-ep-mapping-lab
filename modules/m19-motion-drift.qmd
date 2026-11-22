@@ -1,5 +1,6 @@
 ---
 title: "m19 · Motion and drift: respiration, cardiac gating, reference catheters"
+description: "Why catheter positions move and drift during mapping, and how respiration compensation, cardiac gating and reference catheters handle it."
 module-id: m19
 part: "Part III · Hardware and localization"
 # draft | in-review | released

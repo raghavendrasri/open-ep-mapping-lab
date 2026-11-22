@@ -1,5 +1,6 @@
 ---
 title: "m14 · Biopotential front ends: instrumentation amplifiers, CMRR, noise, Wilson central terminal, ADCs"
+description: "Biopotential front ends for EP recording: instrumentation amplifiers, common-mode rejection, noise, the Wilson central terminal and ADCs."
 module-id: m14
 part: "Part III · Hardware and localization"
 # draft | in-review | released

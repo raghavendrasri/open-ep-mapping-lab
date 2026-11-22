@@ -1,5 +1,6 @@
 ---
 title: "m21 · Image integration: CT/MRI segmentation, landmark and ICP registration"
+description: "Image integration for EP mapping: segmenting CT or MRI anatomy and aligning it with the map by landmark and ICP registration."
 module-id: m21
 part: "Part IV · Map formation"
 # draft | in-review | released

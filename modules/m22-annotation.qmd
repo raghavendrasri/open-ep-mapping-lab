@@ -1,5 +1,6 @@
 ---
 title: "m22 · Electrogram annotation: local activation time, window of interest, reference, far-field rejection"
+description: "How local activation times are annotated on electrograms: the window of interest, the timing reference and rejection of far-field signals."
 module-id: m22
 part: "Part IV · Map formation"
 # draft | in-review | released

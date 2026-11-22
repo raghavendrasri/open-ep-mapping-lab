@@ -2,6 +2,37 @@
 pagetitle: "Open EP Mapping Lab"
 description: "How electroanatomic mapping systems work, from membrane current to color map"
 toc: false
+# Structured data for search engines (schema.org): the site's name, and the course itself.
+include-in-header:
+  text: |
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Open EP Mapping Lab",
+          "url": "https://openepengineering.org/"
+        },
+        {
+          "@type": "Course",
+          "name": "Open EP Mapping Lab",
+          "description": "A free, open course on how cardiac electroanatomic mapping systems work, from membrane current to color map.",
+          "url": "https://openepengineering.org/",
+          "inLanguage": "en",
+          "isAccessibleForFree": true,
+          "license": "https://creativecommons.org/licenses/by/4.0/",
+          "provider": {
+            "@type": "Organization",
+            "name": "Open EP Mapping Lab",
+            "url": "https://openepengineering.org/"
+          },
+          "offers": [{ "@type": "Offer", "category": "Free" }],
+          "hasCourseInstance": [{ "@type": "CourseInstance", "courseMode": "Online" }]
+        }
+      ]
+    }
+    </script>
 ---
 
 <!-- Home-page header: the logo beside the title. The page has no `title`, so Quarto draws no title

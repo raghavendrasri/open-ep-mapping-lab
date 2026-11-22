@@ -33,5 +33,6 @@ def test_home_page_shows_the_logo_beside_one_title():
     front = yaml.safe_load(text.split("---")[1])
     assert "title" not in front and front["pagetitle"] == "Open EP Mapping Lab"
     assert "{.home-header}" in text and "assets/logo/logo-mark.png" in text
-    assert len([l for l in text.splitlines() if l.startswith("# ")]) == 1
+    body = text.split("---", 2)[2]
+    assert len([l for l in body.splitlines() if l.startswith("# ")]) == 1
     assert Image.open(ROOT / "assets" / "logo" / "logo-mark.png").size == (256, 256)
