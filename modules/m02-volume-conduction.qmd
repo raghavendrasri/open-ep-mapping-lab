@@ -1,5 +1,6 @@
 ---
 title: "m02 · Volume conduction and Poisson's equation"
+pagetitle: "Volume conduction and Poisson's equation"
 description: "How current spreads through blood, tissue and torso: volume conduction, Poisson's equation and the potential of a current dipole, derived and tested."
 module-id: m02
 part: "Part I · Math and bioelectric foundations"

@@ -1,5 +1,6 @@
 ---
 title: "m11 · The EP study: catheters, pacing protocols, intervals, entrainment"
+pagetitle: "The EP study: catheters, pacing protocols, intervals, entrainment"
 description: "The electrophysiology study explained for engineers: intracardiac catheters, pacing protocols, conduction intervals and entrainment."
 module-id: m11
 part: "Part II · Cardiac electrophysiology for engineers"

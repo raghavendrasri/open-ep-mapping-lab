@@ -1,5 +1,6 @@
 ---
 title: "m50 · Intracardiac echocardiography with TEE and TTE: ultrasound essentials for ICE, phased-array steering, frame rate, transseptal guidance, evidence"
+pagetitle: "Intracardiac echocardiography with TEE and TTE: ultrasound essentials for ICE, phased-array steering, frame rate, transseptal guidance, evidence"
 description: "Intracardiac echocardiography (ICE) with TEE and TTE: ultrasound essentials, phased-array steering, frame rate and transseptal guidance."
 module-id: m50
 part: "Part VIII · Imaging in electrophysiology"

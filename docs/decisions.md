@@ -22,9 +22,13 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
 - **Structured data:** the home page carries schema.org JSON-LD for `WebSite` and `Course` (free,
   online, CC BY 4.0). Google's richer "course info" result also needs a study time for a
   self-paced course, which isn't added because no figure has been chosen yet.
+- **Search titles:** each module has a `pagetitle`, its title without the "mNN · " code. The
+  browser tab, search results and link previews now lead with the topic words, and Google shows
+  only about 60 characters of a title. The page heading, breadcrumbs and sidebar keep the code.
+  The module template carries both new fields.
 - **Guard:** `tests/test_search_metadata.py`.
-- **Undo:** remove the `description` lines, `about.qmd` and its navbar entry, the three `website`
-  keys and the `include-in-header` block in `index.qmd`.
+- **Undo:** remove the `description` and `pagetitle` lines, `about.qmd` and its navbar entry, the
+  three `website` keys and the `include-in-header` block in `index.qmd`.
 
 ## 2026-11-22 · "Useful links" tab
 
