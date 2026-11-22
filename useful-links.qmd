@@ -1,0 +1,178 @@
+---
+title: "Useful links"
+description: "Societies, journals, literature searches, FDA databases and companies for learning about cardiac electrophysiology and mapping"
+toc: true
+---
+
+::: {.callout-note}
+## About this page
+
+A starting list of outside resources for learners: professional societies, journals, ready-made literature
+searches, FDA device databases and companies in the field. Links lead to other websites, which this course does not
+control. A listing is not an endorsement. Links were last checked on 2026-11-22; if one breaks, please report it
+on the [Errata](errata.qmd) page.
+
+Education only. Nothing here is for diagnosis, treatment or any clinical decision.
+:::
+
+## Professional societies
+
+| Society | What you will find | Link |
+| --- | --- | --- |
+| Heart Rhythm Society (HRS) | Consensus statements, education, meetings and EP practice resources | [hrsonline.org](https://www.hrsonline.org/) |
+| European Heart Rhythm Association (EHRA), part of the ESC | European consensus documents, practice surveys and education | [escardio.org/…/ehra](https://www.escardio.org/communities/associations/ehra/) |
+| Asia Pacific Heart Rhythm Society (APHRS) | Regional meetings and EP education | [aphrs.org](https://www.aphrs.org/) |
+| British Heart Rhythm Society (BHRS) | Practical guidance, device management and training resources | [bhrs.com](https://bhrs.com/) |
+| American College of Cardiology (ACC) | Clinical education and scientific statements | [acc.org](https://www.acc.org/) |
+| American Heart Association (AHA), professional site | Scientific statements and cardiovascular research news | [professional.heart.org](https://professional.heart.org/) |
+
+### EP lab practice
+
+| Resource | What you will find | Link |
+| --- | --- | --- |
+| EP Lab Digest | A monthly magazine for EP professionals: interviews, case reports and lab practice | [EP Lab Digest](https://www.hmpgloballearningnetwork.com/site/eplab) |
+| MedAxiom | Cardiovascular practice operations: staffing, lab use and service lines | [medaxiom.com](https://www.medaxiom.com/) |
+
+## Journals and search tools
+
+| Journal | Focus | Link |
+| --- | --- | --- |
+| Heart Rhythm | Clinical EP studies, mapping, ablation and outcomes | [heartrhythmjournal.com](https://www.heartrhythmjournal.com/) |
+| JACC: Clinical Electrophysiology | Clinical EP research and technology evaluation | [jacc.org/journal/jacep](https://www.jacc.org/journal/jacep) |
+| EP Europace | The journal of EHRA: guidelines, surveys, interventional EP and devices | [academic.oup.com/europace](https://academic.oup.com/europace) |
+| Journal of Cardiovascular Electrophysiology | Procedural research, mapping and clinical EP | [Wiley Online Library](https://onlinelibrary.wiley.com/journal/15408167) |
+| Heart Rhythm O2 | Open-access EP research from HRS | [heartrhythmopen.com](https://www.heartrhythmopen.com/) |
+| Pacing and Clinical Electrophysiology (PACE) | Pacing, devices and electrophysiology | [Wiley Online Library](https://onlinelibrary.wiley.com/journal/15408159) |
+| Journal of Arrhythmia | Open-access arrhythmia and EP research (Japanese Heart Rhythm Society and APHRS) | [Wiley Online Library](https://onlinelibrary.wiley.com/journal/18832148) |
+
+To search the literature, use [PubMed](https://pubmed.ncbi.nlm.nih.gov/) for biomedical papers with full citation
+details, and [Google Scholar](https://scholar.google.com/) for broader discovery and "cited by" tracking.
+
+## Ready-made literature searches
+
+Each link opens a PubMed search. Results change as new papers appear; read the papers themselves before relying on
+a finding.
+
+- [Workflow challenges in the EP lab](https://pubmed.ncbi.nlm.nih.gov/?term=electrophysiology+workflow+challenges)
+- [Variability of activation-time annotation](https://pubmed.ncbi.nlm.nih.gov/?term=electroanatomical+mapping+annotation+variability)
+- [Electrogram signal quality and interpretation](https://pubmed.ncbi.nlm.nih.gov/?term=intracardiac+electrogram+signal+quality+interpretation)
+- [High-density mapping and procedure time](https://pubmed.ncbi.nlm.nih.gov/?term=high+density+mapping+procedure+time)
+- [AI and automated annotation in EP](https://pubmed.ncbi.nlm.nih.gov/?term=electrophysiology+artificial+intelligence+annotation)
+- [Limits of VT substrate mapping](https://pubmed.ncbi.nlm.nih.gov/?term=ventricular+tachycardia+substrate+mapping+limitations)
+- [EHRA surveys on vascular access and hemostasis](https://pubmed.ncbi.nlm.nih.gov/?term=EHRA+vascular+access+hemostasis+electrophysiology+survey)
+- [EHRA surveys on EP simulators and training](https://pubmed.ncbi.nlm.nih.gov/?term=EHRA+electrophysiology+simulator+physician+survey)
+- [Scientific statements on AI in clinical EP](https://pubmed.ncbi.nlm.nih.gov/?term=artificial+intelligence+clinical+electrophysiology+scientific+statement)
+
+### Search strings to adapt
+
+Copy a string into PubMed and refine it with your own terms.
+
+| Topic | PubMed search string | Run it |
+| --- | --- | --- |
+| Workflow challenges | `"electrophysiologist" AND "workflow challenges"` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22electrophysiologist%22+AND+%22workflow+challenges%22) |
+| Mapping usability | `"electroanatomical mapping" AND usability` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22electroanatomical+mapping%22+AND+usability) |
+| Manual annotation | `"local activation time" AND annotation AND variability` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22local+activation+time%22+AND+annotation+AND+variability) |
+| Signal interpretation | `"intracardiac electrogram" AND interpretation AND limitations` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22intracardiac+electrogram%22+AND+interpretation+AND+limitations) |
+| Mapping efficiency | `"high-density mapping" AND procedure time` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22high-density+mapping%22+AND+procedure+time) |
+| Catheter navigation | `"catheter navigation" AND electrophysiology AND limitations` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22catheter+navigation%22+AND+electrophysiology+AND+limitations) |
+| VT mapping | `"ventricular tachycardia" AND substrate mapping AND challenges` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22ventricular+tachycardia%22+AND+substrate+mapping+AND+challenges) |
+| AF mapping | `"atrial fibrillation" AND electrogram mapping AND workflow` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22atrial+fibrillation%22+AND+electrogram+mapping+AND+workflow) |
+| PFA workflow | `"pulsed field ablation" AND workflow AND mapping` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22pulsed+field+ablation%22+AND+workflow+AND+mapping) |
+| Radiation | `"electrophysiology laboratory" AND radiation exposure` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22electrophysiology+laboratory%22+AND+radiation+exposure) |
+| Automation | `"electrophysiology" AND automated annotation` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22electrophysiology%22+AND+automated+annotation) |
+| AI validation | `"electrophysiology" AND artificial intelligence AND validation` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22electrophysiology%22+AND+artificial+intelligence+AND+validation) |
+| EP lab staffing | `"EP lab" AND staffing AND operational efficiency` | [Search](https://pubmed.ncbi.nlm.nih.gov/?term=%22EP+lab%22+AND+staffing+AND+operational+efficiency) |
+
+## FDA device databases (United States)
+
+| Resource | Use | Link |
+| --- | --- | --- |
+| FDA Medical Devices | Guidance, policy, safety communications and device information | [FDA portal](https://www.fda.gov/medical-devices) |
+| 510(k) database | Clearance records, device descriptions and predicate devices | [Search](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm) |
+| PMA database | Premarket approvals and supplements | [Search](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpma/pma.cfm) |
+| MAUDE | Reports of medical device adverse events | [Search](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfmaude/search.cfm) |
+| Recalls and early alerts | Device recalls, corrections and removals | [FDA recalls](https://www.fda.gov/medical-devices/medical-device-safety/medical-device-recalls-and-early-alerts) |
+| Product classification | Device class, regulation number and product code | [Search](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfPCD/classification.cfm) |
+| Recognized consensus standards | Standards the FDA recognizes for device submissions | [Search](https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfStandards/search.cfm) |
+| Device Advice | How device regulation works, step by step | [FDA Device Advice](https://www.fda.gov/medical-devices/device-advice-comprehensive-regulatory-assistance) |
+| ClinicalTrials.gov | Ongoing and completed clinical studies | [Search](https://clinicaltrials.gov/) |
+
+How to read a device's public record:
+
+1. Search by product name, manufacturer, model and product code.
+2. Note the intended use, indications, contraindications and warnings.
+3. Read the 510(k) summary or PMA record, and any supplements.
+4. Check MAUDE reports and recall notices for safety signals worth a closer look.
+5. Link each clinical study to the device and indication it actually tested.
+
+::: {.callout-warning}
+## Read these records with care
+
+A MAUDE report does not prove that a device caused an event. Reports can be incomplete, duplicated or unverified,
+and raw counts do not compare device safety, because the number of devices in use is unknown. FDA clearance or
+approval shows that a device met the regulatory standard; it does not, by itself, show that one device is better
+than another.
+:::
+
+For how mapping systems are regulated, see
+[m36 · From prototype to product](modules/m36-prototype-to-product.qmd); for AI software, see
+[m45 · Evidence and regulation of AI in EP](modules/m45-ai-evidence-regulation.qmd).
+
+## Companies in the field
+
+Companies working on EP mapping, ablation, recording or navigation technology, listed alphabetically. Company
+websites describe their own products. For independent facts, use the FDA databases above and peer-reviewed papers.
+
+| Company | Website |
+| --- | --- |
+| Abbott (cardiovascular) | [cardiovascular.abbott](https://www.cardiovascular.abbott/) |
+| Boston Scientific | [bostonscientific.com](https://www.bostonscientific.com/) |
+| GE HealthCare | [gehealthcare.com](https://www.gehealthcare.com/) |
+| Johnson & Johnson MedTech (electrophysiology) | [jnjmedtech.com](https://www.jnjmedtech.com/en-US/specialties/electrophysiology) |
+| Kardium | [kardium.com](https://kardium.com/) |
+| Medtronic | [medtronic.com](https://www.medtronic.com/) |
+| Stereotaxis | [stereotaxis.com](https://www.stereotaxis.com/) |
+| Vektor Medical | [vektormedical.com](https://vektormedical.com/) |
+| Volta Medical | [volta-medical.com](https://www.volta-medical.com/) |
+
+## Social media
+
+Societies and journals post news, papers and meeting coverage on X:
+[\@HRSonline](https://x.com/HRSonline), [\@ESC_Journals](https://x.com/ESC_Journals) and
+[\@ACCinTouch](https://x.com/ACCinTouch). Common EP hashtags include
+[#EPeeps](https://x.com/search?q=%23EPeeps), [#CardiacEP](https://x.com/search?q=%23CardiacEP),
+[#CardiacMapping](https://x.com/search?q=%23CardiacMapping) and [#PFA](https://x.com/search?q=%23PFA); searching X
+needs a signed-in account.
+
+Social posts are not peer-reviewed evidence. Note the author, date and original post, and look for a published
+source before using a post to support a claim.
+
+## Judging what you read
+
+Three kinds of statement are easy to mix up, and they are not interchangeable:
+
+1. a **reported frustration**: what users say is hard;
+2. a **measured technical limit**: what a test or study measured;
+3. a **validated clinical outcome**: what a clinical study showed for patients.
+
+A simple way to label a source:
+
+| Label | Source type |
+| --- | --- |
+| A · Formal evidence | Peer-reviewed study, consensus statement or official regulatory record |
+| B · Reported need | Survey, structured interview or conference presentation |
+| C · Company claim | Manufacturer material, product brochure or company announcement |
+| D · Discovery signal | Social post, informal discussion or anecdote |
+
+These labels are a reading aid, not a formal grading system such as GRADE.
+
+When you cite a source:
+
+- Prefer the original paper, society document, FDA record or instructions for use over a summary of it.
+- Record the full title, authors, journal, year, DOI or PMID, and the date you accessed it.
+- For a device, record the exact product name, model, software version, market and labeling version.
+- For a comment from a clinician, record the role, context and date, and whether it is a personal view or a
+  research finding.
+- Do not infer how common a problem is from one interview or one post.
+- Do not compare adverse-event counts without knowing how many devices were in use and how reports were made.
+- Keep regulatory clearance, technical performance, clinical effectiveness and market adoption apart.
