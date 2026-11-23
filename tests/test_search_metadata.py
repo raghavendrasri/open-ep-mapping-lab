@@ -41,7 +41,7 @@ def test_every_top_level_page_has_a_search_summary():
 
 def test_about_page_is_rendered_and_linked():
     assert "about.qmd" in CFG["project"]["render"]
-    assert {"href": "about.qmd", "text": "About"} in CFG["website"]["navbar"]["right"]
+    assert {"href": "about.qmd", "text": "About"} in CFG["website"]["navbar"]["left"]
     text = (ROOT / "about.qmd").read_text()
     for must in ("Education only", "None has been reviewed yet", "AI assistant", "/issues", "not affiliated"):
         assert must in text, must

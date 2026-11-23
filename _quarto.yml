@@ -41,31 +41,40 @@ website:
   open-graph: true
   twitter-card: true
   page-navigation: true
+  # Search lives in the navbar as a text box; press "/" (or f, s) to jump to it.
+  search:
+    location: navbar
+    type: textbox
   navbar:
+    logo: assets/logo/logo-mark.png
+    # The title text sits next to the logo in the same link, so the logo is decorative (empty alt text).
+    logo-alt: ""
+    # Four main items, the rest under "More". The logo and title link to the home page.
     left:
-      - href: index.qmd
-        text: Home
       - href: course-map.qmd
         text: Course map
-      - href: modules/m03-electrograms.qmd
-        text: Pilot module
-      - href: glossary/index.qmd
-        text: Glossary
-      - href: formula-sheet/index.qmd
-        text: Formula sheet
       - href: learning-hub/index.html
         text: Learning hub
       - href: useful-links.qmd
         text: Useful links
-      - href: ai-competencies.qmd
-        text: AI competencies
-      - href: errata.qmd
-        text: Errata
-      - href: disclaimer.qmd
-        text: Disclaimer
-    right:
       - href: about.qmd
         text: About
+      - text: More
+        menu:
+          - href: glossary/index.qmd
+            text: Glossary
+          - href: formula-sheet/index.qmd
+            text: Formula sheet
+          - href: ai-competencies.qmd
+            text: AI competencies
+          - href: modules/m03-electrograms.qmd
+            text: Pilot module
+          - text: "---"
+          - href: errata.qmd
+            text: Errata
+          - href: disclaimer.qmd
+            text: Disclaimer
+    right:
       # The author's LinkedIn profile (same address as author.linkedin in _variables.yml).
       - icon: linkedin
         href: https://www.linkedin.com/in/eraghavendrasri/
@@ -88,12 +97,26 @@ filters:
 execute:
   freeze: auto
 
+# Interface wording: the hint shown in the empty search box.
+language:
+  search-text-placeholder: "Search the course"
+
 format:
   html:
+    # Light and dark themes; Quarto adds a switch to the navbar. The first visit follows the reader's
+    # system setting (respect-user-color-scheme); the switch overrides it and is remembered.
     theme:
-      - cosmo
-      - assets/theme.scss
+      light:
+        - cosmo
+        - assets/theme.scss
+      dark:
+        - cosmo
+        - assets/theme.scss
+        - assets/theme-dark.scss
+    respect-user-color-scheme: true
     css: assets/styles.css
+    # Marks the menu item for the current page (see the comment in the file).
+    include-after-body: assets/nav-current.html
     canonical-url: true
     toc: true
     html-math-method: mathjax

@@ -2,6 +2,38 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-23 · Shorter menu, search box in the menu, and a dark theme
+
+- **Our own design, not a copy.** The author shared another course site's menu as a reference. We
+  kept only the general pattern, which is common across documentation sites: a short menu with a
+  "More" list, a search box and a dark-mode switch. The look comes from this course: the isochrone
+  band, the activation-color underline and the recording-monitor dark theme. No text, styles or
+  code were taken from that site (CLAUDE.md §6).
+- **Menu:** the logo and title link home, then Course map, Learning hub, Useful links, About and
+  "More" (Glossary, Formula sheet, AI competencies, Pilot module, Errata, Disclaimer). The
+  separate Home item is gone. The LinkedIn icon stays on the right.
+- **Wavefront underline.** On hover or keyboard focus the activation colors sweep under a menu
+  item, like a wave crossing an isochronal map. The current page keeps the full band. The sweep is
+  turned off for readers who ask for reduced motion.
+- **Current page marked by a small script** (`assets/nav-current.html`). Quarto marks "Course
+  map" as current on every page, because the course sidebar is site-wide. The script marks the
+  real page with `aria-current="page"`. Module pages mark "Course map", and pages under "More"
+  mark the "More" button. Without JavaScript nothing is marked, which is harmless.
+- **Search box in the menu** (`search: location: navbar, type: textbox`), with a "/" key hint.
+- **Dark theme ("night lab")** in `assets/theme-dark.scss`, layered after `theme.scss`. It is
+  modeled on an EP recording screen in a dimmed lab. The home-page electrogram becomes a green
+  monitor trace on a dark grid. The first visit follows the reader's system setting, and the
+  switch overrides it. The colors in `theme.scss` became `!default` so the dark layer can
+  override them; `tests/test_theme.py` checks this. Every text color meets WCAG AA (4.5:1) in
+  both themes; the lowest is 5.4:1 (gray text on the light-gray panels).
+- **Demos stay on a light panel in the dark theme.** The demo scripts draw with fixed colors
+  meant for white paper. Restyling 149 demos for dark mode would risk breaking colors that carry
+  meaning, such as activation scales. A lit panel keeps them exactly as designed.
+- **The Learning Hub stays light.** It is a self-contained page built by
+  `tools/build_learning_hub.py`, outside the Quarto theme.
+- **Undo:** restore the previous `navbar` block and `theme: [cosmo, assets/theme.scss]`, then
+  delete `assets/theme-dark.scss`, `assets/nav-current.html` and `tests/test_theme.py`.
+
 ## 2026-11-22 · Technical SEO, Learning Hub crawlability, and IP/trademark clarifications
 
 - **Why:** an audit of copyright/IP hygiene and Google Search ranking found no copyright violations
