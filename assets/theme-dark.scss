@@ -1,0 +1,120 @@
+/*-- scss:defaults --*/
+
+// Open EP Mapping Lab, dark theme ("night lab").
+// Layered after assets/theme.scss for the dark stylesheet only (see _quarto.yml). The idea is the screen of
+// an EP recording system in a dimmed lab: deep slate background, light slate ink, a lighter mapping blue
+// for links and a softer activation red. The isochrone band under the navbar keeps its colors.
+// Contrast of every text color on the background is checked in tests/test_theme.py (WCAG AA, 4.5:1).
+
+$epml-ink: #d8e0e7;
+$epml-muted: #9aa8b5;
+$epml-rule: #26333d;
+$epml-paper-tint: #141d24;
+$epml-blue: #74b4f0;
+$epml-red: #ff7a7a;
+
+$epml-night-bg: #0f161c;
+$epml-night-bar: #0b1116;
+
+$body-bg: $epml-night-bg;
+$body-color: $epml-ink;
+$headings-color: #eef3f7;
+$primary: $epml-blue;
+$link-color: $epml-blue;
+$border-color: $epml-rule;
+
+$navbar-bg: $epml-night-bar;
+$navbar-fg: $epml-ink;
+$navbar-hl: $epml-red;
+$sidebar-bg: $epml-paper-tint;
+$sidebar-fg: $epml-ink;
+$sidebar-hl: $epml-red;
+$footer-bg: $epml-night-bar;
+$footer-fg: $epml-muted;
+$toc-color: $epml-muted;
+
+$code-color: #f4a3b4;
+$code-block-bg: $epml-paper-tint;
+
+// Bootstrap surfaces that default to white
+$dropdown-bg: #141d24;
+$dropdown-border-color: $epml-rule;
+$dropdown-divider-bg: $epml-rule;
+$dropdown-link-color: $epml-ink;
+$dropdown-link-hover-color: #ffffff;
+$dropdown-link-hover-bg: #1d2832;
+$input-bg: #141d24;
+$input-color: $epml-ink;
+$input-border-color: #33424e;
+$input-placeholder-color: $epml-muted;
+$card-bg: #141d24;
+$popover-bg: #141d24;
+$modal-content-bg: #141d24;
+
+/*-- scss:rules --*/
+
+// ---------------------------------------------------------------- surfaces that are white in the light theme
+
+tbody tr:nth-child(even) {
+  background: #131c23;
+}
+
+.status-planned { background: #1e2a33; color: $epml-muted; }
+.status-draft { background: #3a2c12; color: #f3c87a; }
+.status-in-review { background: #13283d; color: #8cc4f5; }
+.status-released { background: #13301f; color: #7fd49b; }
+
+details.model-answer {
+  background: $epml-paper-tint;
+  border-left-color: $epml-blue;
+}
+
+details.model-answer > summary {
+  color: $epml-blue;
+}
+
+// The logo has a white background: show it as a rounded tile, like an app icon.
+.home-logo img,
+.navbar-logo {
+  border-radius: 22%;
+  background: #ffffff;
+}
+
+// ---------------------------------------------------------------- the home-page electrogram as a monitor trace
+// The hero SVG is drawn for ECG paper (pink grid, dark trace). At night it becomes a recording monitor:
+// dark screen, dim grid, a bright trace with a soft glow. Attribute selectors restyle the inline SVG.
+
+.hero-egm {
+  background: #0a1015;
+  border-color: $epml-rule;
+}
+
+.hero-egm svg [stroke="#f5e3e3"] { stroke: #15212a; }
+.hero-egm svg [stroke="#ebc9c9"] { stroke: #1f313d; }
+.hero-egm svg [stroke="#1e2b37"] {
+  stroke: #7ee0b0;
+  filter: drop-shadow(0 0 2px rgba(126, 224, 176, 0.55));
+}
+.hero-egm svg [fill="#5b6875"] { fill: #8fa0ad; }
+
+// ---------------------------------------------------------------- demos stay on a lit panel
+// Demo plots are drawn for white paper (fixed colors in demos/*.js). In the dark theme each demo sits on a
+// light panel, like a lit instrument display, so its colors and contrast stay as designed.
+
+.demo {
+  background: #fbfcfd;
+  color: #1f2328;
+  border-color: #2f3d48;
+  box-shadow: 0 0 0 4px rgba(116, 180, 240, 0.06);
+}
+
+.demo a { color: #155e9a; }
+.demo code { background: #eef2f5; color: #8a2a3b; }
+.demo .demo-readout { background: #eef2f5; color: #1f2328; }
+.demo .demo-control select,
+.demo .demo-control input { color-scheme: light; }
+
+// ---------------------------------------------------------------- forms in the navbar
+#quarto-search .aa-Form {
+  background: #141d24;
+}

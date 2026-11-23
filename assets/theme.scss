@@ -4,13 +4,14 @@
 // Palette: white recording paper, slate ink, a mapping blue for links, and activation red
 // kept for small highlights. The isochrone band under the navbar uses the red-to-violet order
 // of an activation map, in discrete steps as on an isochronal map.
+// Colors are `!default` so assets/theme-dark.scss (the dark layer) can override them.
 
-$epml-ink: #1e2b37;
-$epml-muted: #5b6875;
-$epml-rule: #dfe4ea;
-$epml-paper-tint: #f6f8fa;
-$epml-blue: #155e9a;
-$epml-red: #b2182b;
+$epml-ink: #1e2b37 !default;
+$epml-muted: #5b6875 !default;
+$epml-rule: #dfe4ea !default;
+$epml-paper-tint: #f6f8fa !default;
+$epml-blue: #155e9a !default;
+$epml-red: #b2182b !default;
 
 $web-font-path: false; // no Google Fonts; IBM Plex is self-hosted (see rules below)
 $font-family-sans-serif: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -18,28 +19,28 @@ $font-family-monospace: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Co
 $font-size-root: 17px;
 $line-height-base: 1.6;
 $headings-font-weight: 600;
-$headings-color: $epml-ink;
+$headings-color: $epml-ink !default;
 
-$body-bg: #ffffff;
-$body-color: $epml-ink;
-$primary: $epml-blue;
-$link-color: $epml-blue;
-$link-decoration: none;
-$link-hover-decoration: underline;
-$border-color: $epml-rule;
+$body-bg: #ffffff !default;
+$body-color: $epml-ink !default;
+$primary: $epml-blue !default;
+$link-color: $epml-blue !default;
+$link-decoration: none !default;
+$link-hover-decoration: underline !default;
+$border-color: $epml-rule !default;
 
-$navbar-bg: #ffffff;
-$navbar-fg: $epml-ink;
-$navbar-hl: $epml-red;
-$sidebar-bg: $epml-paper-tint;
-$sidebar-fg: $epml-ink;
-$sidebar-hl: $epml-red;
-$footer-bg: #ffffff;
-$footer-fg: $epml-muted;
-$toc-color: $epml-muted;
+$navbar-bg: #ffffff !default;
+$navbar-fg: $epml-ink !default;
+$navbar-hl: $epml-red !default;
+$sidebar-bg: $epml-paper-tint !default;
+$sidebar-fg: $epml-ink !default;
+$sidebar-hl: $epml-red !default;
+$footer-bg: #ffffff !default;
+$footer-fg: $epml-muted !default;
+$toc-color: $epml-muted !default;
 
-$code-color: #8a2a3b;
-$code-block-bg: $epml-paper-tint;
+$code-color: #8a2a3b !default;
+$code-block-bg: $epml-paper-tint !default;
 
 /*-- scss:rules --*/
 
@@ -83,11 +84,164 @@ $code-block-bg: $epml-paper-tint;
   font-weight: 500;
 }
 
-// Quarto marks the navbar item tied to the sidebar as active on every module page, which
-// points at the wrong place. The sidebar shows the current page, so keep navbar links neutral.
+// Wavefront underline: on hover or keyboard focus, the activation colors sweep left to right under the link,
+// like a wave crossing an isochronal map. The current section keeps the full band.
+.navbar .navbar-nav > .nav-item > .nav-link {
+  background-image: linear-gradient(
+    to right,
+    #b2182b, #d6452e, #ee8a2f, #e9c341, #79b35a, #2e9c8f, #3a6fb0, #6a4c9c
+  );
+  background-repeat: no-repeat;
+  background-position: left calc(100% - 0.1rem);
+  background-size: 0% 2px;
+  transition: background-size 0.35s ease-out;
+}
+
+.navbar .navbar-nav > .nav-item > .nav-link:hover,
+.navbar .navbar-nav > .nav-item > .nav-link:focus-visible,
+.navbar .navbar-nav > .nav-item > .nav-link[aria-current="page"],
+.navbar .navbar-nav > .nav-item > .nav-link.epml-current-section,
+.navbar .navbar-nav > .nav-item.dropdown.show > .nav-link {
+  background-size: 100% 2px;
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar .navbar-nav > .nav-item > .nav-link {
+    transition: none;
+  }
+}
+
+// Logo in the navbar
+.navbar-logo {
+  max-height: 32px;
+  width: auto;
+  margin-right: 0.15rem;
+}
+
+// Menu items never wrap onto two lines
+.navbar .navbar-nav .nav-link {
+  white-space: nowrap;
+}
+
+// Laptops between the collapse point (992px) and 1200px: tighter spacing so the whole menu fits on one line
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar .navbar-nav > .nav-item > .nav-link {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+  }
+
+  .navbar-brand .navbar-title {
+    font-size: 1.1rem;
+  }
+
+  #quarto-search .aa-Form {
+    width: 10rem;
+  }
+
+  #quarto-search .aa-Form::after {
+    display: none;
+  }
+}
+
+// Phones: a smaller title so the whole name fits beside the menu button, switch and search icon
+@media (max-width: 575.98px) {
+  .navbar-brand .navbar-title {
+    font-size: 1rem;
+  }
+
+  .navbar-brand-container .navbar-brand {
+    margin-right: 0.35rem;
+  }
+
+  #quarto-header .navbar-container > .type-textbox {
+    margin-left: 0.25rem;
+  }
+
+  .navbar-logo {
+    max-height: 26px;
+  }
+}
+
+// Small phones (360px wide is common): smaller still. Below about 340px the name ends in an ellipsis.
+@media (max-width: 379.98px) {
+  .navbar-brand .navbar-title {
+    font-size: 0.84rem;
+  }
+
+  #quarto-header .navbar-toggler {
+    margin-right: 0.35rem;
+  }
+}
+
+// "More" menu
+.navbar .dropdown-menu {
+  border-color: $epml-rule;
+  border-radius: 8px;
+  padding: 0.35rem 0;
+  box-shadow: 0 8px 24px rgba(15, 22, 28, 0.12);
+}
+
+.navbar .dropdown-item {
+  padding: 0.35rem 1rem;
+}
+
+// Search box in the navbar: a rounded field with a "/" key hint (the shortcut that jumps to it)
+#quarto-search .aa-Form {
+  border-radius: 999px;
+  border: 1px solid $epml-rule;
+  background: $epml-paper-tint;
+  box-shadow: none;
+}
+
+#quarto-search .aa-Form:focus-within {
+  border-color: $epml-blue;
+  box-shadow: 0 0 0 3px rgba(21, 94, 154, 0.15);
+}
+
+#quarto-search .aa-Form::after {
+  content: "/";
+  order: 5; // the form's parts use order 1-4; keep the hint at the end
+  font-family: $font-family-monospace;
+  font-size: 0.75rem;
+  color: $epml-muted;
+  border: 1px solid $epml-rule;
+  border-radius: 4px;
+  padding: 0 0.35rem;
+  margin-right: 0.6rem;
+  line-height: 1.4;
+}
+
+#quarto-search .aa-Form:focus-within::after {
+  visibility: hidden;
+}
+
+// Quarto fixes the form at 180px; widen it on desktops so the placeholder and "/" hint both fit
+@media (min-width: 1200px) {
+  #quarto-search .aa-Form {
+    width: 14.5rem;
+  }
+}
+
+// Quarto marks the navbar item tied to the course sidebar as active on every page (the sidebar is site-wide),
+// so its `.active` class is ignored. assets/nav-current.html marks the real current page with
+// aria-current="page" (or the current section, for module pages and items under "More").
 .navbar .nav-link.active,
-.navbar .nav-link.active:focus {
+.navbar .nav-link.active:focus,
+.navbar .dropdown-item.active {
+  color: $navbar-fg;
+  background-color: transparent;
+}
+
+.navbar .nav-link[aria-current="page"],
+.navbar .nav-link.epml-current-section,
+.navbar .dropdown-item[aria-current="page"] {
   color: $epml-ink;
+}
+
+.navbar .dropdown-item[aria-current="page"] {
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 $epml-red;
 }
 
 // ---------------------------------------------------------------- reading column
