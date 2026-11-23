@@ -135,8 +135,8 @@ $code-block-bg: $epml-paper-tint !default;
     font-size: 1.1rem;
   }
 
-  #quarto-search .aa-Autocomplete {
-    width: 9rem;
+  #quarto-search .aa-Form {
+    width: 10rem;
   }
 
   #quarto-search .aa-Form::after {
@@ -216,8 +216,9 @@ $code-block-bg: $epml-paper-tint !default;
   visibility: hidden;
 }
 
-@media (min-width: 1100px) {
-  #quarto-search .aa-Autocomplete {
+// Quarto fixes the form at 180px; widen it on desktops so the placeholder and "/" hint both fit
+@media (min-width: 1200px) {
+  #quarto-search .aa-Form {
     width: 14.5rem;
   }
 }
