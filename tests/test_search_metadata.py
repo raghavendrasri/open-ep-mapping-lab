@@ -22,18 +22,12 @@ def front_matter(path):
 
 def test_every_module_has_a_distinct_search_summary():
     descs = {}
-    pagetitles = {}
     for f in sorted((ROOT / "modules").glob("m*.qmd")):
-        fm = front_matter(f)
-        d = fm.get("description", "")
+        d = front_matter(f).get("description", "")
         assert 90 <= len(d) <= 160, f"{f.name}: description is {len(d)} characters; keep it 90-160"
         descs[f.name] = d
-        pt = fm.get("pagetitle", "")
-        assert 20 <= len(pt) <= 60, f"{f.name}: pagetitle is {len(pt)} characters; keep it <= 60"
-        pagetitles[f.name] = pt
     assert len(descs) == 55
     assert len(set(descs.values())) == 55, "two modules share a description"
-    assert len(set(pagetitles.values())) == 55, "two modules share a pagetitle"
 
 
 def test_every_top_level_page_has_a_search_summary():

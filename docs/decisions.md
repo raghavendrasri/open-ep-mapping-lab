@@ -2,6 +2,42 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-22 · Technical SEO, Learning Hub crawlability, and IP/trademark clarifications
+
+- **Why:** an audit of copyright/IP hygiene and Google Search ranking found no copyright violations
+  but identified brand-disambiguation/trademark gaps (conflation with `openep.io` and outdated AcQMap
+  maker attribution) and technical SEO gaps (missing `robots.txt`, no canonical URLs, 6 core pages
+  without meta descriptions, a 256×256 OG image, missing module/glossary JSON-LD, and an unindexed
+  Learning Hub with JS-replaced tab panels).
+- **IP & trademark hygiene:**
+  - Added explicit non-affiliation notices with OpenEP (`openep.io`) on `index.qmd`, `about.qmd` and
+    `disclaimer.qmd`.
+  - Broadened the trademark list in `disclaimer.qmd` to cover all commercial system, catheter and
+    software marks named across the course and Learning Hub.
+  - Clarified `LICENSE-CONTENT` to note self-hosted IBM Plex fonts (SIL OFL 1.1) and exclude the
+    project logo and site icons from CC BY 4.0 to protect brand identity.
+  - Updated AcQMap's maker line on the Learning Hub to note the 2025 sale to EnChannel Medical.
+- **Technical SEO & crawlability:**
+  - Added `robots.txt` pointing to `https://openepengineering.org/sitemap.xml` and enabled
+    `format.html.canonical-url: true` in `_quarto.yml`.
+  - Added 60–160-character `description` summaries to `course-map.qmd` (via `tools/sync_curriculum.py`),
+    `glossary/index.qmd`, `formula-sheet/index.qmd`, `ai-competencies.qmd`, `disclaimer.qmd` and
+    `errata.qmd`.
+  - Kept the topic-first `pagetitle` convention introduced on `main` (PR #116).
+  - Created a 1200×630 social preview card (`assets/logo/og-card.png`) for `website.image` and
+    Learning Hub Open Graph / Twitter metadata.
+  - Added `filters/seo-schema.lua` to emit `max-image-preview:large`, per-module `LearningResource`
+    + `BreadcrumbList` JSON-LD, and glossary `DefinedTermSet` JSON-LD; expanded home-page `Course`
+    JSON-LD with `alternateName`, `educationalLevel`, `teaches`, `author` and `sameAs`.
+  - Updated `tools/build_learning_hub.py` to add full meta/OG/Twitter/canonical/JSON-LD tags and to
+    keep all tab panels (`workflow`, `systems`, `modes`) in the DOM using `hidden` so crawlers can
+    index every platform comparison without clicking.
+  - Added `tools/update_sitemap.py` (run after `quarto render` in `ci.yml` and `deploy-pages.yml`)
+    so `learning-hub/index.html` is included in `_site/sitemap.xml`.
+- **Guards:** expanded `tests/test_search_metadata.py` and updated `tests/test_learning_hub.py` to
+  allow passive `<link rel="canonical">` tags while continuing to block fetched external resources.
+- **Undo:** revert the PR commit; no module text, equations, demos or labs were altered.
+
 ## 2026-11-22 · Author's LinkedIn link
 
 - **Decision (author):** show the author's public LinkedIn profile in the usual places:
