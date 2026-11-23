@@ -1,6 +1,6 @@
 ---
 title: "m40 · AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis, automated chamber reconstruction"
-pagetitle: "AI for Cardiac Imaging & Substrate | Open EP Mapping Lab"
+pagetitle: "AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis, automated chamber reconstruction"
 description: "AI for cardiac imaging and substrate: atrial segmentation, scar and fibrosis detection, and automated chamber reconstruction."
 module-id: m40
 part: "Part VII · AI in electrophysiology"

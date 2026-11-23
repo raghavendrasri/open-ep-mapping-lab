@@ -1,6 +1,6 @@
 ---
 title: "m46 · Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness, out-of-distribution inputs and robustness"
-pagetitle: "Trustworthy AI in Cardiac EP | Open EP Mapping Lab"
+pagetitle: "Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness, out-of-distribution inputs and robustness"
 description: "Trustworthy AI in EP: explanations, uncertainty and conformal prediction, fairness across groups, out-of-distribution inputs and robustness."
 module-id: m46
 part: "Part VII · AI in electrophysiology"

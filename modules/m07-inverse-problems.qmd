@@ -1,6 +1,6 @@
 ---
 title: "m07 · Inverse problems and regularization (Tikhonov, L-curve)"
-pagetitle: "Inverse Problems & Tikhonov Regularization | Open EP"
+pagetitle: "Inverse problems and regularization (Tikhonov, L-curve)"
 description: "Forward and inverse problems in cardiac electrophysiology, and how Tikhonov regularization and the L-curve stabilize ill-posed inverse solutions."
 module-id: m07
 part: "Part I · Math and bioelectric foundations"

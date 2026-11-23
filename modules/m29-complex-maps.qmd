@@ -1,6 +1,6 @@
 ---
 title: "m29 · Complex maps: fractionation, phase mapping, rotor and driver detection"
-pagetitle: "Complex Maps: Fractionation & Phase | Open EP Mapping Lab"
+pagetitle: "Complex maps: fractionation, phase mapping, rotor and driver detection"
 description: "Complex maps for atrial fibrillation: electrogram fractionation, dominant frequency, phase mapping, and rotor and driver detection."
 module-id: m29
 part: "Part V · Therapy and capstones"

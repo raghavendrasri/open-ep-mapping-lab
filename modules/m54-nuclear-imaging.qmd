@@ -1,6 +1,6 @@
 ---
 title: "m54 · Nuclear imaging in EP: PET and SPECT, standardized uptake and partial volume, inflammation and device infection"
-pagetitle: "Nuclear Imaging (PET & SPECT) in EP | Open EP Mapping Lab"
+pagetitle: "Nuclear imaging in EP: PET and SPECT, standardized uptake and partial volume, inflammation and device infection"
 description: "Nuclear imaging in EP: PET and SPECT, standardized uptake values and partial-volume effects, and imaging of inflammation and device infection."
 module-id: m54
 part: "Part VIII · Imaging in electrophysiology"

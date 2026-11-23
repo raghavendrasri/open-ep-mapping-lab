@@ -1,6 +1,6 @@
 ---
 title: "m31 · Capstone: AF electrogram analysis on real recordings (PhysioNet iafdb)"
-pagetitle: "Capstone: AF Electrograms on PhysioNet | Open EP"
+pagetitle: "Capstone: AF electrogram analysis on real recordings (PhysioNet iafdb)"
 description: "Capstone: analyze real atrial fibrillation electrograms from the open PhysioNet intracardiac AF database (iafdb), step by step."
 module-id: m31
 part: "Part V · Therapy and capstones"

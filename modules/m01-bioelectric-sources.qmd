@@ -1,6 +1,6 @@
 ---
 title: "m01 · Bioelectric sources: transmembrane current, dipoles and double layers"
-pagetitle: "Bioelectric Sources & Dipoles | Open EP Mapping Lab"
+pagetitle: "Bioelectric sources: transmembrane current, dipoles and double layers"
 description: "How heart-cell membrane currents become the signals that mapping catheters record: transmembrane current, current dipoles and double layers."
 module-id: m01
 part: "Part I · Math and bioelectric foundations"

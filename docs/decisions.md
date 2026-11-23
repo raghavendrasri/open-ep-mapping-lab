@@ -2,43 +2,20 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
-## 2026-11-22 · Technical SEO, Learning Hub crawlability, and IP/trademark clarifications
+## 2026-11-22 · Author's LinkedIn link
 
-- **Why:** an audit of copyright/IP hygiene and Google Search ranking found no copyright violations
-  but identified brand-disambiguation/trademark gaps (conflation with `openep.io` and outdated AcQMap
-  maker attribution) and several technical SEO bottlenecks (missing `robots.txt`, no canonical URLs,
-  6 core pages without meta descriptions, 46/55 module `<title>` tags exceeding 60 characters, a
-  256×256 OG image, missing module/glossary JSON-LD, and an unindexed Learning Hub with JS-replaced
-  tab panels).
-- **IP & trademark hygiene:**
-  - Added explicit non-affiliation notices with OpenEP (`openep.io`) on `index.qmd`, `about.qmd` and
-    `disclaimer.qmd`.
-  - Broadened the trademark list in `disclaimer.qmd` to cover all commercial system, catheter and
-    software marks named across the course and Learning Hub.
-  - Clarified `LICENSE-CONTENT` to note self-hosted IBM Plex fonts (SIL OFL 1.1) and exclude the
-    project logo and site icons from CC BY 4.0 to protect brand identity.
-  - Updated AcQMap's maker line on the Learning Hub to note the 2025 sale to EnChannel Medical.
-- **Technical SEO & crawlability:**
-  - Added `robots.txt` pointing to `https://openepengineering.org/sitemap.xml` and enabled
-    `format.html.canonical-url: true` in `_quarto.yml`.
-  - Added 60–160-character `description` summaries to `course-map.qmd` (via `tools/sync_curriculum.py`),
-    `glossary/index.qmd`, `formula-sheet/index.qmd`, `ai-competencies.qmd`, `disclaimer.qmd` and
-    `errata.qmd`.
-  - Added concise, keyword-first `pagetitle` values (≤ 60 chars) to all 55 modules while keeping the
-    full `mNN · …` `title` on the page.
-  - Created a 1200×630 social preview card (`assets/logo/og-card.png`) for `website.image` and
-    Learning Hub Open Graph / Twitter metadata.
-  - Added `filters/seo-schema.lua` to emit `max-image-preview:large`, per-module `LearningResource`
-    + `BreadcrumbList` JSON-LD, and glossary `DefinedTermSet` JSON-LD; expanded home-page `Course`
-    JSON-LD with `alternateName`, `educationalLevel`, `teaches`, `author` and `sameAs`.
-  - Updated `tools/build_learning_hub.py` to add full meta/OG/Twitter/canonical/JSON-LD tags and to
-    keep all tab panels (`workflow`, `systems`, `modes`) in the DOM using `hidden` so crawlers can
-    index every platform comparison without clicking.
-  - Added `tools/update_sitemap.py` (run after `quarto render` in `ci.yml` and `deploy-pages.yml`)
-    so `learning-hub/index.html` is included in `_site/sitemap.xml`.
-- **Guards:** expanded `tests/test_search_metadata.py` and updated `tests/test_learning_hub.py` to
-  allow passive `<link rel="canonical">` tags while continuing to block fetched external resources.
-- **Undo:** revert the PR commit; no module text, equations, demos or labs were altered.
+- **Decision (author):** show the author's public LinkedIn profile in the usual places:
+  - an icon at the right of the navbar
+  - an icon in the center of the page footer
+  - a link in "Who makes it" on the About page
+- **How:** the address is stored once in `_variables.yml` (`author.linkedin`), and the About page
+  uses `{{< var author.linkedin >}}`. Quarto doesn't expand variables in `_quarto.yml`, so the navbar
+  and footer repeat the address; `tests/test_author_links.py` checks that the copies agree. The icon
+  is the LinkedIn glyph from the Bootstrap Icons font that Quarto bundles, so it works offline. Each
+  icon-only link has an `aria-label` for screen readers.
+- **Not added:** the author's name in the structured data, because no name was given.
+- **Undo:** remove the navbar and footer items, the `author` block in `_variables.yml`, the sentence on
+  the About page and the test.
 
 ## 2026-11-22 · Search-engine basics: module summaries, About page, link previews, Course markup
 
@@ -60,9 +37,13 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
 - **Structured data:** the home page carries schema.org JSON-LD for `WebSite` and `Course` (free,
   online, CC BY 4.0). Google's richer "course info" result also needs a study time for a
   self-paced course, which isn't added because no figure has been chosen yet.
+- **Search titles:** each module has a `pagetitle`, its title without the "mNN · " code. The
+  browser tab, search results and link previews now lead with the topic words, and Google shows
+  only about 60 characters of a title. The page heading, breadcrumbs and sidebar keep the code.
+  The module template carries both new fields.
 - **Guard:** `tests/test_search_metadata.py`.
-- **Undo:** remove the `description` lines, `about.qmd` and its navbar entry, the three `website`
-  keys and the `include-in-header` block in `index.qmd`.
+- **Undo:** remove the `description` and `pagetitle` lines, `about.qmd` and its navbar entry, the
+  three `website` keys and the `include-in-header` block in `index.qmd`.
 
 ## 2026-11-22 · "Useful links" tab
 

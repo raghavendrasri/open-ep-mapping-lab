@@ -1,6 +1,6 @@
 ---
 title: "m15 · Patient safety: CF-type applied parts, leakage current, isolation, defibrillation and ablation-energy protection"
-pagetitle: "Patient Safety, Leakage & Isolation | Open EP Mapping Lab"
+pagetitle: "Patient safety: CF-type applied parts, leakage current, isolation, defibrillation and ablation-energy protection"
 description: "Patient safety in mapping-system electronics: CF-type applied parts, leakage current, isolation, and protection from defibrillation and ablation energy."
 module-id: m15
 part: "Part III · Hardware and localization"

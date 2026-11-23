@@ -1,6 +1,6 @@
 ---
 title: "m03 · Unipolar, bipolar and omnipolar electrograms as spatial filters"
-pagetitle: "Unipolar, Bipolar & Omnipolar Electrograms | Open EP"
+pagetitle: "Unipolar, bipolar and omnipolar electrograms as spatial filters"
 description: "Unipolar, bipolar and omnipolar electrograms as spatial filters: what each recording sees, and why bipolar amplitude depends on wavefront direction."
 module-id: m03
 part: "Part I · Math and bioelectric foundations"

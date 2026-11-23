@@ -1,6 +1,6 @@
 ---
 title: "m37 · AI on the surface ECG"
-pagetitle: "AI on the Surface ECG | Open EP Mapping Lab"
+pagetitle: "AI on the surface ECG"
 description: "AI on the surface ECG: how deep networks classify ECGs, how their scores become probabilities, and how to read reported performance."
 module-id: m37
 part: "Part VII · AI in electrophysiology"

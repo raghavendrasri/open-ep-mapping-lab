@@ -1,6 +1,6 @@
 ---
 title: "m05 · Time–frequency tools: dominant frequency, Hilbert phase, wavelets"
-pagetitle: "Time-Frequency, Hilbert Phase & Wavelets | Open EP"
+pagetitle: "Time–frequency tools: dominant frequency, Hilbert phase, wavelets"
 description: "Signal tools behind fibrillation maps: dominant frequency, organization, Hilbert phase and wavelets, with the limits of each method."
 module-id: m05
 part: "Part I · Math and bioelectric foundations"

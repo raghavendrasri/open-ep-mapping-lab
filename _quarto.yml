@@ -66,8 +66,16 @@ website:
     right:
       - href: about.qmd
         text: About
+      # The author's LinkedIn profile (same address as author.linkedin in _variables.yml).
+      - icon: linkedin
+        href: https://www.linkedin.com/in/eraghavendrasri/
+        aria-label: "The author on LinkedIn"
   page-footer:
     left: "Education only. Not for clinical use."
+    center:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/eraghavendrasri/
+        aria-label: "The author on LinkedIn"
     right: "Text CC BY 4.0 · Code MIT"
 
 bibliography: references.bib

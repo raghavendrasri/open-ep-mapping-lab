@@ -1,6 +1,6 @@
 ---
 title: "m32 · Capstone: ECG imaging end to end (EDGAR)"
-pagetitle: "Capstone: ECG Imaging End to End (EDGAR) | Open EP"
+pagetitle: "Capstone: ECG imaging end to end (EDGAR)"
 description: "Capstone: electrocardiographic imaging (ECGI) end to end with open EDGAR data, from body-surface signals to heart-surface estimates."
 module-id: m32
 part: "Part V · Therapy and capstones"

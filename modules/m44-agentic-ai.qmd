@@ -1,6 +1,6 @@
 ---
 title: "m44 · Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight"
-pagetitle: "Agentic AI & Guardrails in Cardiac EP | Open EP"
+pagetitle: "Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight"
 description: "Agentic AI in EP: tool-using agents, workflow automation, guardrails and human oversight, shown on course data only."
 module-id: m44
 part: "Part VII · AI in electrophysiology"

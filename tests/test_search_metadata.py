@@ -109,3 +109,13 @@ def test_home_page_structured_data_is_valid_json():
     assert course["isAccessibleForFree"] is True
     assert course["offers"][0]["category"] == "Free"
     assert course["provider"]["name"] and course["description"]
+
+
+def test_search_titles_lead_with_the_topic():
+    """Each module's <title> (the search-result title) is its topic without the "mNN · " code, so the topic words
+    come first; the page heading, breadcrumbs and sidebar keep the code."""
+    for f in sorted((ROOT / "modules").glob("m*.qmd")):
+        fm = front_matter(f)
+        code, topic = fm["title"].split(" · ", 1)
+        assert re.fullmatch(r"m\d\d", code), f.name
+        assert fm["pagetitle"] == topic, f"{f.name}: pagetitle should be {topic!r}"

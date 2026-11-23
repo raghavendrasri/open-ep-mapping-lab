@@ -1,6 +1,6 @@
 ---
 title: "m17 · Impedance (current-based) localization: patch fields, nonlinearity, field scaling"
-pagetitle: "Impedance Catheter Localization | Open EP Mapping Lab"
+pagetitle: "Impedance (current-based) localization: patch fields, nonlinearity, field scaling"
 description: "How impedance (current-based) localization turns catheter electrodes into position sensors: patch fields, nonlinearity and field scaling."
 module-id: m17
 part: "Part III · Hardware and localization"
