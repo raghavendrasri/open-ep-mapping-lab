@@ -85,9 +85,60 @@ def main(out_path: Path = OUT) -> int:
                              ("sans", 600, "normal"), ("serif", 400, "normal"), ("serif", 500, "normal"),
                              ("serif", 600, "normal"), ("mono", 400, "normal"), ("mono", 500, "normal"),
                              ("mono", 600, "normal")]))
-    # ---------------------------------------------------------------- icon: the site's logo (tools/make_favicons.py)
+    # ---------------------------------------------------------------- icon & SEO metadata
+    hub_url = "https://openepengineering.org/learning-hub/index.html"
+    hub_desc = (
+        "Interactive guide to cardiac electrophysiology (EP) mapping systems: activation map simulator, "
+        "lab workflow, platform comparisons (CARTO 3, EnSite X, OPAL HDx, KODEX-EPD, AcQMap) and electrogram lab."
+    )
+    hub_desc_short = (
+        "Interactive guide to cardiac electrophysiology mapping systems: live activation simulator, "
+        "lab workflow, platform comparisons, electrogram lab and glossary."
+    )
+    og_img = "https://openepengineering.org/assets/logo/og-card.png"
+    hub_jsonld = (
+        '<script type="application/ld+json">\n'
+        '{\n'
+        '  "@context": "https://schema.org",\n'
+        '  "@graph": [\n'
+        '    {\n'
+        '      "@type": "LearningResource",\n'
+        '      "name": "Electrophysiology Mapping System — Learning Hub & Explorer",\n'
+        f'      "description": "{hub_desc_short}",\n'
+        f'      "url": "{hub_url}",\n'
+        '      "inLanguage": "en",\n'
+        '      "isAccessibleForFree": true,\n'
+        '      "license": "https://creativecommons.org/licenses/by/4.0/",\n'
+        '      "learningResourceType": "Interactive simulation",\n'
+        '      "isPartOf": {"@type": "Course", "name": "Open EP Mapping Lab", "url": "https://openepengineering.org/"}\n'
+        '    },\n'
+        '    {\n'
+        '      "@type": "BreadcrumbList",\n'
+        '      "itemListElement": [\n'
+        '        {"@type": "ListItem", "position": 1, "name": "Open EP Mapping Lab", "item": "https://openepengineering.org/"},\n'
+        f'        {{"@type": "ListItem", "position": 2, "name": "Learning Hub", "item": "{hub_url}"}}\n'
+        '      ]\n'
+        '    }\n'
+        '  ]\n'
+        '}\n'
+        '</script>'
+    )
     E('<link rel="icon" href="data:," />',
-      '<link rel="icon" type="image/png" href="../favicon.png" />')
+      '<link rel="icon" type="image/png" href="../favicon.png" />\n'
+      f'<meta name="description" content="{hub_desc_short}" />\n'
+      '<meta name="robots" content="max-image-preview:large" />\n'
+      f'<link rel="canonical" href="{hub_url}" />\n'
+      '<meta property="og:type" content="website" />\n'
+      '<meta property="og:site_name" content="Open EP Mapping Lab" />\n'
+      '<meta property="og:title" content="EP Mapping System — Interactive Learning Hub &amp; Explorer" />\n'
+      f'<meta property="og:description" content="{hub_desc}" />\n'
+      f'<meta property="og:url" content="{hub_url}" />\n'
+      f'<meta property="og:image" content="{og_img}" />\n'
+      '<meta name="twitter:card" content="summary_large_image" />\n'
+      '<meta name="twitter:title" content="EP Mapping System — Interactive Learning Hub &amp; Explorer" />\n'
+      f'<meta name="twitter:description" content="{hub_desc_short}" />\n'
+      f'<meta name="twitter:image" content="{og_img}" />\n'
+      f'{hub_jsonld}')
     E("footer a{color:var(--ink2)}",
       "footer a{color:var(--ink2)}\n"
       ".cite{font-size:.8em;color:var(--teal);text-decoration:none;border-bottom:1px dotted currentColor;white-space:nowrap}\n"
@@ -98,6 +149,7 @@ def main(out_path: Path = OUT) -> int:
       ".status a{color:inherit}\n"
       "@media (prefers-color-scheme: dark){.status{background:#2a2110;color:#f3dfb4;border-color:#4a3a1a}}\n"
       ".hero-img svg{position:absolute;inset:0;width:100%;height:100%;display:block}\n"
+      ".tab-pane[hidden]{display:none!important}\n"
       ".refs{margin:10px 0 0 18px;padding:0}.refs li{margin:5px 0}")
 
     # ---------------------------------------------------------------- navigation and status
@@ -164,6 +216,33 @@ def main(out_path: Path = OUT) -> int:
       f"desc:'Boston Scientific’s mapping platform (Rhythmia; the newer name OPAL HDx {UNV}) was built around density. Its Orion mini-basket carries 64 small electrodes {C['anter2015orion']} and is paired with an automated mapping system {C['sultan2019']} that accepts or rejects beats against stability criteria {UNV}, assembling high-density maps with little manual point-picking.',loc:'Hybrid — magnetic + impedance localisation {UNV}',cat:'IntellaMap Orion — expandable mini-basket, 64 electrodes {C['anter2015orion']} on 8 splines {UNV}',sig:'High-density automated mapping {C['sultan2019']}; LUMIPOINT tools that highlight late and fragmented activity within a chosen window {UNV}',best:'Complex atrial and ventricular maps where fine detail matters {UNV}'")
     E("desc:'A different physical principle altogether: dielectric sensing. Electrodes measure how the surrounding tissue and blood alter an applied field, letting KODEX-EPD reconstruct detailed anatomy in real time without a magnetic field generator — and it works with validated catheters from any manufacturer. NICE’s overview notes it can provide imaging within minutes and is aimed at reducing X-ray use.',loc:'Dielectric sensing — no magnetic generator; open platform for validated catheters',cat:'No proprietary mapping catheter — uses the lab’s existing validated EP catheters',sig:'Real-time high-definition anatomy; occlusion visualisation tools for cryoballoon procedures',best:'Cryoballoon AF ablation and labs wanting fast anatomy without importing a CT'",
       f"desc:'A different physical principle: dielectric sensing. Electrical fields distinguish structures by their conductivity and permittivity, so the system can image anatomy without fluoroscopy {C['abeln2021']}. In 65 patients having cryoballoon ablation, its pulmonary vein measurements differed from angiography by about 1 mm on average {C['rottner2021']}. It is described as working without a magnetic field generator and with validated catheters from other manufacturers {UNV}.',loc:'Dielectric sensing {C['abeln2021']}; open platform for validated catheters {UNV}',cat:'No proprietary mapping catheter — uses the lab’s existing validated EP catheters {UNV}',sig:'High-resolution anatomy; pulmonary vein occlusion assessment during cryoballoon ablation {C['abeln2021']}',best:'Cryoballoon AF ablation {C['rottner2021']}'")
+    E("{name:'AcQMap',maker:'Acutus Medical',",
+      "{name:'AcQMap',maker:'Acutus Medical (mapping platform sold to EnChannel Medical in 2025)',")
+    # ---------------------------------------------------------------- crawlable tab panels: render all panels in DOM
+    E("  function show(i){ var s=steps[i];\n"
+      "    det.innerHTML='<p class=\"kicker\" style=\"margin-bottom:6px\">Stage 0'+(i+1)+' of 06</p><h3>'+s.t+'</h3><p>'+s.d+'</p><ul>'+s.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul>';\n"
+      "  }\n"
+      "  show(0);",
+      "  det.innerHTML=steps.map(function(s,i){ return '<div class=\"tab-pane\"'+(i===0?'':' hidden')+'><p class=\"kicker\" style=\"margin-bottom:6px\">Stage 0'+(i+1)+' of 06</p><h3>'+s.t+'</h3><p>'+s.d+'</p><ul>'+s.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul></div>'; }).join('');\n"
+      "  function show(i){ det.querySelectorAll('.tab-pane').forEach(function(p,idx){ p.hidden=idx!==i; }); }\n"
+      "  show(0);")
+    E("  function show(i){ var s=systems[i];\n"
+      "    panel.innerHTML='<div class=\"panel-grid\"><div><p class=\"maker\">'+s.maker+'</p><h3>'+s.name+'</h3><p>'+s.desc+'</p><div class=\"tag-row\">'+s.tags.map(function(t){return '<span class=\"tag\">'+t+'</span>'}).join('')+'</div></div>'\n"
+      "    +'<div><ul class=\"spec-list\"><li><b>Localisation</b>'+s.loc+'</li><li><b>Signature catheter</b>'+s.cat+'</li><li><b>Signature software</b>'+s.sig+'</li><li><b>Best known for</b>'+s.best+'</li></ul></div></div>';\n"
+      "  }\n"
+      "  show(0);",
+      "  panel.innerHTML=systems.map(function(s,i){ return '<div class=\"panel-grid tab-pane\"'+(i===0?'':' hidden')+'><div><p class=\"maker\">'+s.maker+'</p><h3>'+s.name+'</h3><p>'+s.desc+'</p><div class=\"tag-row\">'+s.tags.map(function(t){return '<span class=\"tag\">'+t+'</span>'}).join('')+'</div></div>'\n"
+      "    +'<div><ul class=\"spec-list\"><li><b>Localisation</b>'+s.loc+'</li><li><b>Signature catheter</b>'+s.cat+'</li><li><b>Signature software</b>'+s.sig+'</li><li><b>Best known for</b>'+s.best+'</li></ul></div></div>'; }).join('');\n"
+      "  function show(i){ panel.querySelectorAll('.tab-pane').forEach(function(p,idx){ p.hidden=idx!==i; }); }\n"
+      "  show(0);")
+    E("  function show(i){ var m=modes[i];\n"
+      "    panel.innerHTML='<div class=\"panel-grid\"><div><h3>'+m.name+'</h3><p style=\"font-family:var(--font-serif);font-size:1.08rem;color:var(--ink)\">'+m.q+'</p><p>'+m.d+'</p></div><div><ul class=\"spec-list\"><li><b>Typically used for</b>'+m.ex+'</li></ul></div></div>';\n"
+      "  }\n"
+      "  show(0);",
+      "  panel.innerHTML=modes.map(function(m,i){ return '<div class=\"panel-grid tab-pane\"'+(i===0?'':' hidden')+'><div><h3>'+m.name+'</h3><p style=\"font-family:var(--font-serif);font-size:1.08rem;color:var(--ink)\">'+m.q+'</p><p>'+m.d+'</p></div><div><ul class=\"spec-list\"><li><b>Typically used for</b>'+m.ex+'</li></ul></div></div>'; }).join('');\n"
+      "  function show(i){ panel.querySelectorAll('.tab-pane').forEach(function(p,idx){ p.hidden=idx!==i; }); }\n"
+      "  show(0);")
+
     E("desc:'The non-contact outlier. Instead of touching the wall point by point, its balloon catheter floats in the chamber: ultrasound transducers rebuild the anatomy while 48 electrodes sense the chamber’s electrical field, and inverse-solution mathematics reconstructs charge density on the wall — capturing an entire chamber in a single beat.',loc:'Ultrasound-based anatomy + non-contact electrical sensing (inverse solution)',cat:'AcQMap balloon — 48 ultrasound transducers and 48 electrodes on one catheter',sig:'Single-beat, whole-chamber charge-density maps — works even when the rhythm is unstable or non-sustained',best:'Unstable or constantly changing rhythms that point-by-point mapping cannot keep up with'",
       f"desc:'The non-contact outlier. Instead of touching the wall point by point, its balloon catheter floats in the chamber: ultrasound rebuilds the anatomy while electrodes sense the chamber’s electrical field, and an inverse solution reconstructs charge density on the wall, showing whole-chamber activation, including during AF {C['pope2022']}.',loc:'Ultrasound-based anatomy + non-contact electrical sensing (inverse solution) {C['pope2022']}',cat:'AcQMap balloon — 48 ultrasound transducers and 48 electrodes {UNV}',sig:'Whole-chamber charge-density maps {C['pope2022']}; single-beat capture of unstable rhythms {UNV}',best:'Rhythms that change too often for point-by-point mapping, such as AF {C['pope2022']}'")
     E('<tr><th scope="row">CARTO 3</th><td>Magnetic sensor + current-based (impedance) hybrid</td><td>OCTARAY &amp; PentaRay multi-spline</td><td>Integrated ecosystem, contact-force ablation, ICE integration</td></tr>',

@@ -21,9 +21,11 @@ project:
     # The Learning Hub is a self-contained page built by tools/build_learning_hub.py; only the built page is
     # published, not its source folder.
     - learning-hub/index.html
-    # Site icons made from the author's logo by tools/make_favicons.py; favicon.png is linked below.
+    # Site icons and social preview card made from the author's logo by tools/make_favicons.py.
     - favicon.ico
     - apple-touch-icon.png
+    - assets/logo/og-card.png
+    - robots.txt
 
 # The sidebar is generated from docs/curriculum.md by tools/sync_curriculum.py.
 metadata-files:
@@ -34,8 +36,8 @@ website:
   description: "A free, open course on cardiac electroanatomic mapping systems."
   site-url: https://openepengineering.org/
   favicon: favicon.png
-  # Link previews when a page is shared (LinkedIn, X, messaging apps); the image is the logo.
-  image: assets/logo/logo-mark.png
+  # Link previews when a page is shared (LinkedIn, X, messaging apps); 1200x630 social card.
+  image: assets/logo/og-card.png
   open-graph: true
   twitter-card: true
   page-navigation: true
@@ -81,6 +83,7 @@ link-citations: true
 
 filters:
   - filters/badges.lua
+  - filters/seo-schema.lua
 
 execute:
   freeze: auto
@@ -91,5 +94,6 @@ format:
       - cosmo
       - assets/theme.scss
     css: assets/styles.css
+    canonical-url: true
     toc: true
     html-math-method: mathjax

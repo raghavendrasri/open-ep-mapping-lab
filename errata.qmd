@@ -1,5 +1,6 @@
 ---
 title: "Errata"
+description: "Public errata and open-claims log for Open EP Mapping Lab, recording corrections and how to report errors in modules, equations or labs."
 toc: false
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "AI competency map: classical AI topics in EP"
+description: "How nine classical AI competency areas map to cardiac electrophysiology and electroanatomic mapping, and which course modules cover each topic."
 ---
 
 ::: {.callout-warning}

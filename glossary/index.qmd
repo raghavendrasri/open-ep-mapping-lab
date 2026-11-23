@@ -1,5 +1,6 @@
 ---
 title: "Glossary"
+description: "Plain-language glossary of cardiac electrophysiology and electroanatomic mapping terms for engineers, linking each term to the modules that explain it."
 ---
 
 Terms used in the course, in alphabetical order. Each entry names the modules that use it.
