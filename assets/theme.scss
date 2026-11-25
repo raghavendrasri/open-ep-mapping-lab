@@ -452,3 +452,214 @@ tbody tr:nth-child(even) {
 .status-draft { background: #fff1d6; color: #7a4d00; }
 .status-in-review { background: #e3eefa; color: $epml-blue; }
 .status-released { background: #e2f3e8; color: #1c6b3a; }
+
+// ---------------------------------------------------------------- feedback button and form (assets/feedback.html)
+// A pill in the bottom-right corner. On hover or focus its outline becomes the activation band, like the menu.
+
+$epml-isochrone: linear-gradient(90deg, #b2182b, #d6452e, #ee8a2f, #e9c341, #79b35a, #2e9c8f, #3a6fb0, #6a4c9c);
+
+.epml-feedback-button {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 1030;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border: 1.5px solid $epml-rule;
+  border-radius: 999px;
+  background: $body-bg;
+  color: $epml-ink;
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(15, 22, 28, 0.14);
+  cursor: pointer;
+}
+
+.epml-feedback-button .bi {
+  color: $epml-red;
+}
+
+.epml-feedback-button:hover,
+.epml-feedback-button:focus-visible {
+  border-color: transparent;
+  background: linear-gradient($body-bg, $body-bg) padding-box, $epml-isochrone border-box;
+  outline: none;
+}
+
+.epml-feedback-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(21, 94, 154, 0.35);
+}
+
+.epml-feedback-button[hidden] {
+  display: none;
+}
+
+// Room under the footer so the button never sits on top of the footer text
+.nav-footer {
+  padding-bottom: 3.75rem;
+}
+
+// Phones: icon only (the button keeps its accessible name, "Feedback on this page")
+@media (max-width: 575.98px) {
+  .epml-feedback-button {
+    padding: 0.6rem;
+  }
+
+  .epml-feedback-button-text {
+    display: none;
+  }
+}
+
+.epml-feedback {
+  width: min(34rem, calc(100vw - 1.5rem));
+  max-height: calc(100vh - 2rem);
+  padding: 0;
+  overflow: auto;
+  border: 1px solid $epml-rule;
+  border-radius: 12px;
+  background: $body-bg;
+  color: $epml-ink;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.epml-feedback::backdrop {
+  background: rgba(15, 22, 28, 0.5);
+}
+
+.epml-feedback-band {
+  height: 4px;
+  background: $epml-isochrone;
+}
+
+.epml-feedback form {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem 1.2rem;
+}
+
+.epml-feedback-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.epml-feedback-head h2 {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+.epml-feedback-close {
+  border: 0;
+  background: transparent;
+  color: $epml-muted;
+  padding: 0.25rem 0.4rem;
+  border-radius: 6px;
+}
+
+.epml-feedback-close:hover,
+.epml-feedback-close:focus-visible {
+  color: $epml-ink;
+  background: $epml-paper-tint;
+}
+
+.epml-feedback-page {
+  margin: 0.15rem 0 0.9rem;
+  color: $epml-muted;
+  font-size: 0.85rem;
+}
+
+.epml-feedback .form-label {
+  margin: 0.35rem 0 0.25rem;
+  font-weight: 500;
+}
+
+.epml-feedback .form-select,
+.epml-feedback .form-control {
+  margin-bottom: 0.6rem;
+}
+
+// Cancel: theme colors, so it reads in both light and dark (Bootstrap's gray outline fades on dark slate)
+.epml-feedback .btn-outline-secondary {
+  --bs-btn-color: #{$epml-ink};
+  --bs-btn-border-color: #{$epml-muted};
+  --bs-btn-hover-color: #{$epml-ink};
+  --bs-btn-hover-bg: #{$epml-paper-tint};
+  --bs-btn-hover-border-color: #{$epml-ink};
+  --bs-btn-active-color: #{$epml-ink};
+  --bs-btn-active-bg: #{$epml-paper-tint};
+  --bs-btn-active-border-color: #{$epml-ink};
+}
+
+.epml-feedback-selection {
+  margin: 0.2rem 0 0.4rem;
+}
+
+.epml-feedback-selection blockquote {
+  margin: 0.35rem 0 0.2rem;
+  padding: 0.35rem 0.7rem;
+  max-height: 6.5rem;
+  overflow: auto;
+  border-left: 3px solid $epml-blue;
+  background: $epml-paper-tint;
+  color: $epml-muted;
+  font-size: 0.85rem;
+}
+
+.epml-feedback-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.epml-feedback-turnstile:not(:empty) {
+  margin: 0.2rem 0 0.6rem;
+}
+
+.epml-feedback-note {
+  margin: 0.2rem 0 0.4rem;
+  color: $epml-muted;
+  font-size: 0.85rem;
+}
+
+.epml-feedback-status {
+  min-height: 1.4em;
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.epml-feedback-status.is-error {
+  color: $epml-red;
+}
+
+.epml-feedback-status.is-done::before {
+  content: "\2713\00a0"; // check mark
+  color: $epml-blue;
+  font-weight: 700;
+}
+
+.epml-feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.epml-feedback-github {
+  margin-right: auto;
+  font-size: 0.85rem;
+}
+
+@media print {
+  .epml-feedback-button,
+  .epml-feedback {
+    display: none !important;
+  }
+}

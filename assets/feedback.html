@@ -1,0 +1,284 @@
+<!-- Open EP Mapping Lab: Feedback button and form (docs/decisions.md, 2026-11-25). Included after the body of every
+     page by _quarto.yml. Styles: "Feedback button and form" in assets/theme.scss. Relay: services/feedback-worker. -->
+<button type="button" id="epml-feedback-open" class="epml-feedback-button" aria-haspopup="dialog" aria-label="Feedback on this page" hidden>
+  <i class="bi bi-chat-square-text" aria-hidden="true"></i><span class="epml-feedback-button-text">Feedback</span>
+</button>
+
+<dialog id="epml-feedback" class="epml-feedback" aria-labelledby="epml-feedback-title">
+  <div class="epml-feedback-band" aria-hidden="true"></div>
+  <form id="epml-feedback-form" novalidate>
+    <div class="epml-feedback-head">
+      <h2 id="epml-feedback-title">Feedback on this page</h2>
+      <button type="button" class="epml-feedback-close" data-close aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+    </div>
+    <p class="epml-feedback-page" data-page-title></p>
+
+    <label class="form-label" for="epml-feedback-kind">What kind of feedback?</label>
+    <select class="form-select" id="epml-feedback-kind" name="kind"></select>
+
+    <div class="epml-feedback-selection" data-selection-box hidden>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="epml-feedback-include" name="includeSelection" checked>
+        <label class="form-check-label" for="epml-feedback-include">Include the text I selected</label>
+      </div>
+      <blockquote data-selection></blockquote>
+    </div>
+
+    <label class="form-label" for="epml-feedback-message">Your feedback</label>
+    <textarea class="form-control" id="epml-feedback-message" name="message" rows="6" maxlength="4000" required
+      aria-describedby="epml-feedback-public"
+      placeholder="What is wrong, unclear or missing? If you know a source, please name it."></textarea>
+
+    <!-- Hidden from people; spam bots tend to fill it in. -->
+    <div class="epml-feedback-hp" aria-hidden="true">
+      <label for="epml-feedback-website">Leave this field empty</label>
+      <input type="text" id="epml-feedback-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="epml-feedback-turnstile" data-turnstile></div>
+
+    <p class="epml-feedback-note" id="epml-feedback-public">
+      <i class="bi bi-globe2" aria-hidden="true"></i>
+      Your feedback is posted publicly as a GitHub issue, with this page's address. Please don't include personal or
+      patient information. <span data-mode-note></span>
+    </p>
+    <p class="epml-feedback-status" data-status role="status" aria-live="polite"></p>
+
+    <div class="epml-feedback-actions">
+      <a class="epml-feedback-github" data-github-link href="#" target="_blank" rel="noopener" hidden>Use GitHub instead</a>
+      <button type="button" class="btn btn-outline-secondary" data-close data-cancel>Cancel</button>
+      <button type="submit" class="btn btn-primary" data-submit>Send feedback</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+(function () {
+  "use strict";
+
+  // Public settings. With `endpoint` empty, sending opens a prefilled issue on GitHub, which the reader submits
+  // with their own GitHub account. After deploying services/feedback-worker (see its README), set `endpoint` and
+  // `turnstileSiteKey`; neither is secret. tests/test_feedback.py checks these values, and that `repo` matches
+  // repo.url in _variables.yml.
+  var FEEDBACK = {
+    repo: "https://github.com/raghavendrasri/open-ep-mapping-lab",
+    endpoint: "",
+    turnstileSiteKey: ""
+  };
+
+  // Must match KINDS in services/feedback-worker/src/index.js (tests/test_feedback.py checks this).
+  var KINDS = {
+    error: "Error in the content",
+    unclear: "Something is unclear",
+    broken: "Broken page or demo",
+    suggestion: "Suggestion",
+    other: "Other"
+  };
+  var MESSAGE_MIN = 10;
+  var SELECTION_MAX = 1000;
+  var TURNSTILE_SCRIPT = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=epmlTurnstileReady";
+
+  var openButton = document.getElementById("epml-feedback-open");
+  var dialog = document.getElementById("epml-feedback");
+  if (!openButton || !dialog || typeof dialog.showModal !== "function") return; // the button stays hidden
+
+  var form = dialog.querySelector("form");
+  var kind = form.elements.kind;
+  var message = form.elements.message;
+  var includeSelection = form.elements.includeSelection;
+  var status = dialog.querySelector("[data-status]");
+  var submit = dialog.querySelector("[data-submit]");
+  var githubLink = dialog.querySelector("[data-github-link]");
+  var selectionBox = dialog.querySelector("[data-selection-box]");
+  var selectionQuote = dialog.querySelector("[data-selection]");
+  var turnstileBox = dialog.querySelector("[data-turnstile]");
+  var cancel = dialog.querySelector("[data-cancel]");
+  var automatic = Boolean(FEEDBACK.endpoint && FEEDBACK.turnstileSiteKey);
+  var selected = "";
+  var token = "";
+  var widget = null;
+  var scriptRequested = false;
+
+  Object.keys(KINDS).forEach(function (key) {
+    var option = document.createElement("option");
+    option.value = key;
+    option.textContent = KINDS[key];
+    kind.appendChild(option);
+  });
+  submit.textContent = automatic ? "Send feedback" : "Continue on GitHub";
+  githubLink.hidden = !automatic;
+  dialog.querySelector("[data-mode-note]").textContent = automatic
+    ? "No account needed."
+    : "You'll finish on GitHub, with your GitHub account.";
+  openButton.hidden = false;
+
+  function page() {
+    return { url: location.origin + location.pathname, path: location.pathname, title: document.title };
+  }
+
+  function shortPath(path) {
+    return path.replace(/^\/+/, "").replace(/\.html$/, "").replace(/(^|\/)index$/, "$1") || "home page";
+  }
+
+  function readSelection() {
+    var text = window.getSelection ? String(window.getSelection()) : "";
+    text = text.replace(/\s+/g, " ").trim();
+    return text.length > SELECTION_MAX ? text.slice(0, SELECTION_MAX) + " …" : text;
+  }
+
+  function selectionToSend() {
+    return selected && includeSelection.checked ? selected : "";
+  }
+
+  // A prefilled "new issue" page on GitHub: used when the relay is off, or as a fallback when sending fails.
+  function issueUrl() {
+    var p = page();
+    var body = "**Kind:** " + KINDS[kind.value] + "\n**Page:** " + p.url + "\n\n**Feedback**\n\n" + message.value.trim();
+    var quote = selectionToSend();
+    if (quote) body += "\n\n**Text I selected on the page**\n\n> " + quote;
+    if (body.length > 6000) body = body.slice(0, 6000) + "\n\n(shortened)";
+    var query = new URLSearchParams({
+      title: "Feedback (" + KINDS[kind.value] + "): " + shortPath(p.path),
+      body: body,
+      labels: "feedback"
+    });
+    return FEEDBACK.repo + "/issues/new?" + query.toString();
+  }
+
+  function setStatus(text, tone, linkHref, linkText) {
+    status.textContent = text;
+    status.className = "epml-feedback-status" + (tone ? " is-" + tone : "");
+    if (linkHref) {
+      var link = document.createElement("a");
+      link.href = linkHref;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = linkText;
+      status.appendChild(document.createTextNode(" "));
+      status.appendChild(link);
+    }
+  }
+
+  function loadTurnstile() {
+    if (widget !== null) return;
+    if (window.turnstile) {
+      renderTurnstile();
+      return;
+    }
+    if (scriptRequested) return;
+    scriptRequested = true;
+    window.epmlTurnstileReady = renderTurnstile;
+    var script = document.createElement("script");
+    script.src = TURNSTILE_SCRIPT;
+    script.async = true;
+    script.onerror = function () {
+      scriptRequested = false;
+      setStatus("The spam check could not load, so the form can't send right now.", "error", issueUrl(), "Send it on GitHub instead.");
+    };
+    document.head.appendChild(script);
+  }
+
+  function renderTurnstile() {
+    if (widget !== null || !window.turnstile) return;
+    widget = window.turnstile.render(turnstileBox, {
+      sitekey: FEEDBACK.turnstileSiteKey,
+      theme: document.body.classList.contains("quarto-dark") ? "dark" : "light",
+      callback: function (t) { token = t; },
+      "expired-callback": function () { token = ""; },
+      "error-callback": function () {
+        token = "";
+        setStatus("The spam check didn't work. Please try again in a moment.", "error");
+      }
+    });
+  }
+
+  function openForm() {
+    var title = document.title.replace(/\s+[–-]\s+Open EP Mapping Lab$/, "");
+    dialog.querySelector("[data-page-title]").textContent = title;
+    selectionBox.hidden = !selected;
+    selectionQuote.textContent = selected;
+    includeSelection.checked = true;
+    setStatus("");
+    cancel.textContent = "Cancel";
+    githubLink.href = issueUrl();
+    dialog.showModal();
+    message.focus();
+    if (automatic) loadTurnstile();
+  }
+
+  // Read the selection before the click can clear it; keyboard users reach the button without a pointer.
+  openButton.addEventListener("pointerdown", function () { selected = readSelection(); });
+  openButton.addEventListener("click", function () {
+    if (!selected) selected = readSelection();
+    openForm();
+  });
+  dialog.querySelectorAll("[data-close]").forEach(function (button) {
+    button.addEventListener("click", function () { dialog.close(); });
+  });
+  dialog.addEventListener("click", function (event) {
+    if (event.target === dialog) dialog.close(); // a click on the backdrop
+  });
+  dialog.addEventListener("close", function () {
+    selected = "";
+    openButton.focus();
+  });
+  form.addEventListener("input", function () { githubLink.href = issueUrl(); });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var text = message.value.trim();
+    if (text.length < MESSAGE_MIN) {
+      setStatus("Please write at least " + MESSAGE_MIN + " characters.", "error");
+      message.focus();
+      return;
+    }
+    if (!automatic) {
+      window.open(issueUrl(), "_blank", "noopener");
+      setStatus("GitHub opened in a new tab. Check the text there and create the issue.", "done");
+      return;
+    }
+    if (!token) {
+      setStatus("Please wait a moment for the spam check to finish, then send again.", "error");
+      return;
+    }
+    var p = page();
+    var payload = {
+      kind: kind.value,
+      message: text,
+      page: p.url,
+      pageTitle: p.title,
+      selection: selectionToSend(),
+      token: token,
+      website: form.elements.website.value
+    };
+    submit.disabled = true;
+    setStatus("Sending…");
+    fetch(FEEDBACK.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (res.ok && data.url) {
+            form.reset();
+            selected = "";
+            selectionBox.hidden = true;
+            setStatus("Thank you. Your feedback is now issue #" + data.number + " on GitHub.", "done", data.url, "View it");
+            cancel.textContent = "Close";
+          } else {
+            setStatus("Sorry, your feedback didn't send (" + (data.error || res.status) + ").", "error", issueUrl(), "Send it on GitHub instead.");
+          }
+        });
+      })
+      .catch(function () {
+        setStatus("Sorry, your feedback didn't send: the connection failed.", "error", issueUrl(), "Send it on GitHub instead.");
+      })
+      .then(function () {
+        submit.disabled = false;
+        token = "";
+        if (window.turnstile && widget !== null) window.turnstile.reset(widget); // each token works once
+      });
+  });
+})();
+</script>

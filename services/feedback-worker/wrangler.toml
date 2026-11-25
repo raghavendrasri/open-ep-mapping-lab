@@ -1,0 +1,18 @@
+# Cloudflare Worker that turns the site's Feedback form into GitHub issues.
+# Deploy steps: README.md in this folder. Secrets (never committed): GITHUB_TOKEN, TURNSTILE_SECRET.
+# tests/test_feedback.py checks that these values agree with _variables.yml.
+name = "epml-feedback"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+# The Worker answers at https://feedback.openepengineering.org/ (Cloudflare creates the DNS record and certificate).
+routes = [
+  { pattern = "feedback.openepengineering.org", custom_domain = true },
+]
+
+[vars]
+SITE_URL = "https://openepengineering.org/"
+ALLOWED_ORIGINS = "https://openepengineering.org"
+EXPECTED_HOSTNAME = "openepengineering.org"
+GITHUB_REPO = "raghavendrasri/open-ep-mapping-lab"
+ISSUE_LABELS = "feedback"
