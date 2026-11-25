@@ -115,8 +115,11 @@ format:
         - assets/theme-dark.scss
     respect-user-color-scheme: true
     css: assets/styles.css
-    # Marks the menu item for the current page (see the comment in the file).
-    include-after-body: assets/nav-current.html
+    # nav-current.html marks the menu item for the current page; feedback.html adds the Feedback button and
+    # form (see the comment at the top of each file).
+    include-after-body:
+      - assets/nav-current.html
+      - assets/feedback.html
     canonical-url: true
     toc: true
     html-math-method: mathjax

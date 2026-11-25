@@ -2,6 +2,33 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-25 · Feedback button that opens GitHub issues
+
+- **What:** a **Feedback** button on every page (`assets/feedback.html`) opens a short form: kind of
+  feedback, message, and optionally the text the reader selected. Sending it creates an issue labeled
+  `feedback` in the course repository.
+- **How "automatic" works:** a static site cannot hold a GitHub token, so the form posts to a small
+  Cloudflare Worker (`services/feedback-worker/`). The Worker holds the token as a secret, checks the
+  input and the Cloudflare Turnstile spam check, and calls GitHub's issue API. The token is
+  fine-grained: this repository only, Issues read and write. Cloudflare was chosen because the
+  domain's DNS is already there. This adds `services/` to the repository layout (CLAUDE.md §8) and
+  one hosted component to the stack (CLAUDE.md §7). The site itself stays static.
+- **Before the Worker is deployed** (the endpoint in `assets/feedback.html` is empty), the button
+  opens a prefilled GitHub issue that the reader submits with their own account. Nothing else
+  changes when it is switched on.
+- **Privacy:** issues are public. The form says so, asks readers not to include personal or patient
+  information (CLAUDE.md §6), and collects no name, email or IP address. The Turnstile script loads
+  only when a reader opens the form, so pages make no outside calls until then.
+- **Abuse:** every submission must pass Turnstile, and each token works once. The Worker accepts
+  only the course site's origin and limits message length. Reader text goes into code blocks, so it
+  cannot @mention people or add links, and the issue title holds only the kind and the page path.
+- **Tests stay offline:** `tests/test_feedback.py` runs the Worker's Node tests (Turnstile and GitHub
+  mocked) and drives the form in Chromium with every outside call intercepted. CI now installs
+  Chromium before `pytest`.
+- **Undo:** remove `assets/feedback.html` from `include-after-body` in `_quarto.yml`. To stop only
+  the automatic sending, set `endpoint: ""`, then delete the Worker in Cloudflare and revoke the
+  token on GitHub.
+
 ## 2026-11-23 · Shorter menu, search box in the menu, and a dark theme
 
 - **Our own design, not a copy.** The author shared another course site's menu as a reference. We

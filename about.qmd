@@ -58,5 +58,9 @@ Text, figures and questions are licensed [CC BY 4.0](https://creativecommons.org
 licensed MIT. Datasets keep their original licenses, self-hosted IBM Plex fonts are under the SIL Open Font License 1.1,
 and the project logo is reserved to identify Open EP Mapping Lab.
 
-Found an error or have a suggestion? Open an issue in the
-[course repository]({{< var repo.url >}}/issues).
+Found an error or have a suggestion? Use the **Feedback** button at the bottom right of any page, or open an
+issue in the [course repository]({{< var repo.url >}}/issues). Feedback is posted publicly as a GitHub issue,
+together with the page's address and, if you choose, the text you selected. The form does not collect your name,
+email or IP address, so please don't include personal or patient information. It uses Cloudflare Turnstile to keep
+out spam bots, loaded only when you open the form. When automatic sending is not available, the button opens a
+prefilled issue on GitHub instead, which you post with your own GitHub account.

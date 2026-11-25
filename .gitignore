@@ -20,3 +20,8 @@ data/cache/
 .DS_Store
 
 **/*.quarto_ipynb
+
+# Feedback Worker (services/feedback-worker): local secrets and tooling
+.dev.vars
+.wrangler/
+node_modules/

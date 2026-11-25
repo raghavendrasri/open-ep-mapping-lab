@@ -1,0 +1,10 @@
+{
+  "name": "epml-feedback-worker",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare Worker that turns the Open EP Mapping Lab feedback form into GitHub issues",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  }
+}

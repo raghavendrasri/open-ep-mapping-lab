@@ -28,6 +28,10 @@ jobs:
 
       - uses: quarto-dev/quarto-actions/setup@v2
 
+      # Before pytest: tests/test_feedback.py drives the feedback form in Chromium; the render check uses it too.
+      - name: Install Chromium for browser tests and render checks
+        run: python -m playwright install --with-deps chromium
+
       - name: Content rules and equation tests
         run: pytest -q
 
@@ -76,9 +80,6 @@ jobs:
 
       - name: Check internal links and anchors
         run: python tools/check_links.py _site
-
-      - name: Install Chromium for render checks
-        run: python -m playwright install --with-deps chromium
 
       - name: Check every page renders without errors
         run: python tools/check_render.py _site

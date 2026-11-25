@@ -59,8 +59,9 @@ def test_logo_and_search_box_are_in_the_menu():
 
 
 def test_current_page_marker_is_included():
-    inc = CFG["format"]["html"]["include-after-body"]
-    text = (ROOT / inc).read_text()
+    includes = CFG["format"]["html"]["include-after-body"]
+    assert "assets/nav-current.html" in includes
+    text = (ROOT / "assets/nav-current.html").read_text()
     assert 'aria-current", "page"' in text
     assert r"\/modules\/" in text and "course-map" in text  # module pages mark "Course map" as their section
 
