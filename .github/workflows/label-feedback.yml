@@ -1,0 +1,29 @@
+# Labels issues sent with the site's Feedback button (assets/feedback.html, services/feedback-worker).
+# Both routes title them "Feedback (<kind>): <page>". Labeling here, with the workflow's own token, means the
+# prefilled GitHub link carries no label (the GitHub mobile app failed on a label the repository did not have),
+# readers need no permission to set labels, and the label is created the first time it is needed.
+#
+# Safe for issues from anyone: no code is checked out, and the issue title is used only in the `if:` expression,
+# never in a shell command.
+name: Label feedback issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  label:
+    if: startsWith(github.event.issue.title, 'Feedback (')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add the feedback label (created on first use)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh label create feedback --repo "$GITHUB_REPOSITORY" --color 1D76DB \
+            --description "Sent with the Feedback button on the course site" --force
+          gh issue edit "$NUMBER" --repo "$GITHUB_REPOSITORY" --add-label feedback

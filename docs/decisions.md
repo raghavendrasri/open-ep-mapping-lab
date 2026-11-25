@@ -25,6 +25,11 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
 - **Tests stay offline:** `tests/test_feedback.py` runs the Worker's Node tests (Turnstile and GitHub
   mocked) and drives the form in Chromium with every outside call intercepted. CI now installs
   Chromium before `pytest`.
+- **Label added by a workflow (2026-11-25, same day):** the prefilled link first carried
+  `labels=feedback`. The repository had no such label, and the GitHub iPhone app failed on submit
+  (GitHub's website ignores an unknown label). Now neither route sets labels:
+  `.github/workflows/label-feedback.yml` labels every issue titled "Feedback (…)" with the
+  workflow's own token, and creates the label the first time. Readers need no permission for it.
 - **Undo:** remove `assets/feedback.html` from `include-after-body` in `_quarto.yml`. To stop only
   the automatic sending, set `endpoint: ""`, then delete the Worker in Cloudflare and revoke the
   token on GitHub.

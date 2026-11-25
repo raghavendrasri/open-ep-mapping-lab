@@ -98,7 +98,8 @@ export function validate(input, siteUrl) {
   };
 }
 
-export function buildIssue(value, labels = ["feedback"]) {
+// No labels here: .github/workflows/label-feedback.yml labels every feedback issue, whichever route made it.
+export function buildIssue(value) {
   const shortPath = value.pagePath.replace(/^\/+/, "").replace(/\.html$/, "").replace(/(^|\/)index$/, "$1") || "home page";
   const title = `Feedback (${KINDS[value.kind]}): ${shortPath}`;
   // The title comes from the reader's browser, so it is shown as inline code: no links, mentions or markup.
@@ -118,7 +119,7 @@ export function buildIssue(value, labels = ["feedback"]) {
     "Sent with the Feedback button on the course site. The sender is anonymous: the form collects no name, " +
       "email or IP address. Please check the claim against its source before changing the course.",
   );
-  return { title, body: parts.join("\n"), labels };
+  return { title, body: parts.join("\n") };
 }
 
 export async function verifyTurnstile(token, secret, expectedHostname) {
@@ -216,8 +217,7 @@ export default {
     }
     if (!human) return json(403, { error: "spam-check" }, cors);
 
-    const labels = String(env.ISSUE_LABELS || "feedback").split(",").map((l) => l.trim()).filter(Boolean);
-    const issue = buildIssue(checked.value, labels);
+    const issue = buildIssue(checked.value);
     if (dryRun) return json(200, { ok: true, dryRun: true, issue }, cors);
 
     let created;

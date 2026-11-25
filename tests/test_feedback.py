@@ -166,7 +166,7 @@ def test_form_without_relay_opens_a_prefilled_github_issue(site, browser):
     assert f"{opened.scheme}://{opened.netloc}{opened.path}" == VARS["repo"]["url"] + "/issues/new"
     query = parse_qs(opened.query)
     assert query["title"] == ["Feedback (Something is unclear): modules/m03"]
-    assert query["labels"] == ["feedback"]
+    assert "labels" not in query  # the GitHub mobile app fails on it; a workflow labels the issue instead
     body = query["body"][0]
     assert url in body and "electrode spacing" in body and CLAIM in body
 
@@ -271,3 +271,24 @@ def test_form_waits_for_the_spam_check(site, browser):
     status_contains(page, "spam check")
     assert posts == []
     page.close()
+
+
+# ---------------------------------------------------------------- labeling
+
+
+def test_feedback_issues_are_labeled_by_a_safe_workflow():
+    """Neither route sets labels (the GitHub mobile app failed on an unknown one); a workflow adds them."""
+    wf = yaml.safe_load((ROOT / ".github/workflows/label-feedback.yml").read_text())
+    on = wf.get("on", wf.get(True))  # PyYAML reads the key `on` as True
+    assert on == {"issues": {"types": ["opened"]}}
+    assert wf["permissions"] == {"issues": "write"}
+    job = wf["jobs"]["label"]
+    assert job["if"] == "startsWith(github.event.issue.title, 'Feedback (')"
+    steps = job["steps"]
+    assert not any("uses" in s and "checkout" in s["uses"] for s in steps), "no code is checked out"
+    run = "\n".join(s.get("run", "") for s in steps)
+    assert "github.event.issue.title" not in run and "${{" not in run, "event text never reaches the shell"
+    assert "gh label create feedback" in run and "--force" in run and "--add-label feedback" in run
+    # Both routes title issues so the workflow matches them.
+    assert '"Feedback (" + KINDS[kind.value] + "): "' in FORM.read_text()
+    assert "const title = `Feedback (${KINDS[value.kind]}): ${shortPath}`;" in (WORKER / "src/index.js").read_text()
