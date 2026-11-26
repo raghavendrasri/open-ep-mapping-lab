@@ -1,19 +1,41 @@
 ---
 title: "Useful links"
-description: "Societies, journals, literature searches, FDA databases and companies for learning about cardiac electrophysiology and mapping"
+description: "Top videos, lectures and courses on cardiac electrophysiology and mapping, plus societies, journals, literature searches, FDA databases and companies"
 toc: true
 ---
 
 ::: {.callout-note}
 ## About this page
 
-A starting list of outside resources for learners: professional societies, journals, ready-made literature
-searches, FDA device databases and companies in the field. Links lead to other websites, which this course does not
-control. A listing is not an endorsement. Links were last checked on 2026-11-22; if one breaks, please report it
-on the [Errata](errata.qmd) page.
+A starting list of outside resources for learners: videos, lectures and courses, professional societies, journals,
+ready-made literature searches, FDA device databases and companies in the field. Links lead to other websites, which
+this course does not control. A listing is not an endorsement. Links were last checked on 2026-11-22, and the videos
+and courses on 2026-11-26; if one breaks, please report it with the **Feedback** button or on the
+[Errata](errata.qmd) page.
 
 Education only. Nothing here is for diagnosis, treatment or any clinical decision.
 :::
+
+## Videos and courses {#videos}
+
+The most-watched free videos, lectures and courses we could find on cardiac electrophysiology and mapping, from
+societies, universities, hospitals and established educators. Start with a watch path, or jump to a topic in the
+contents list.
+
+{{< include links/_videos.md >}}
+
+### How this list was made {#videos-method}
+
+- **Search:** for each topic, YouTube was searched with results sorted by view count, on 2026-11-26.
+- **Kept:** talks from societies, universities, hospitals, journals and established educators that match the course.
+  The course author's own bookmarks were checked the same way.
+- **Left out:** manufacturers' channels, to keep the list neutral (see [Companies in the field](#companies-in-the-field)),
+  short promotional clips, and courses that are no longer available.
+- **Views and lengths** are copied as YouTube showed them that day; views keep changing. YouTube no longer shows
+  dislikes, so popularity here means views, not ratings.
+- **Watch critically.** A lecture is expert teaching, not evidence: check claims against the papers and guidelines the
+  speaker cites (see [Judging what you read](#judging-what-you-read)). Videos are not for clinical decisions.
+- **Suggest a video** with the **Feedback** button at the bottom right of this page.
 
 ## Professional societies
 

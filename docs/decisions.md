@@ -2,6 +2,50 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-26 · Videos and courses on the Useful links page
+
+- **Decision (author):** add YouTube videos, lectures and university material on EP and mapping to
+  "Useful links", starting from the author's bookmarks and adding the most-watched, most useful items.
+- **What was added:** a new first section, "Videos and courses":
+  - three **watch paths**: new to cardiac EP; how maps are made; the engineer's track;
+  - a **library of 40 items** in ten topics, each with its source, length, YouTube views, level and a
+    **Read next** link to the matching course module;
+  - **channels worth following**, and a note on how the list was made.
+- **Single source:** `links/videos.yml`. `tools/build_video_links.py` writes `links/_videos.md`,
+  which the page includes. Watch-path totals are summed by the tool, never typed by hand.
+- **How items were chosen (2026-11-26):**
+  - YouTube was searched per topic with results sorted by view count, in the built-in browser.
+  - Kept: societies, universities, hospitals, journals and established educators.
+  - Titles, channels, lengths and view counts were copied as YouTube showed them, and the page
+    prints the date. YouTube no longer shows dislikes, so popularity means views.
+  - One-line descriptions say only what the title, the channel or the page itself shows.
+- **Author's bookmarks:** 8 of 9 kept and marked "★ Author's pick".
+  - The "Dr. Mitch Tan" playlist is the Texas Heart Institute's Cardiac Electrophysiology
+    collection, linked there.
+  - Left out: the Memorial Cardiac and Vascular Institute channel, which holds only one- to
+    two-minute promotional clips.
+  - The three neuroscience lectures sit under "Beyond the heart", where the inverse-problem,
+    stimulation-mapping and open-data ideas carry over.
+- **Also left out:**
+  - Manufacturers' channels, to keep the list vendor-neutral. The test lists the names it rejects.
+  - Duke's Coursera course "Bioelectricity: A Quantitative Approach": its Coursera page returns
+    404.
+- **Named people:** the 2026-11-22 rule removed a watchlist of physicians' X accounts. Lecturers
+  are now credited only as the source of their own public lecture, as on any citation. The test
+  docstring says so.
+- **Layout:** tables on wider screens. On phones each row becomes a card (title, level,
+  description, then source, length, views and module). Level labels carry the meaning in words;
+  the colored dot is only a visual aid.
+- **Guard:** `tests/test_useful_links.py`:
+  - the data is complete and the generated file is current;
+  - YouTube links and view formats are valid;
+  - every "Read next" module exists;
+  - no manufacturer channels;
+  - watch-path totals are computed;
+  - the retired course and the promotional channel stay out.
+- **Undo:** remove the section and the include from `useful-links.qmd`, then delete `links/`
+  and `tools/build_video_links.py`.
+
 ## 2026-11-25 · Feedback button that opens GitHub issues
 
 - **What:** a **Feedback** button on every page (`assets/feedback.html`) opens a short form: kind of

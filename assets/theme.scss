@@ -663,3 +663,105 @@ $epml-isochrone: linear-gradient(90deg, #b2182b, #d6452e, #ee8a2f, #e9c341, #79b
     display: none !important;
   }
 }
+
+// ---------------------------------------------------------------- video library (useful-links.qmd, links/_videos.md)
+// Level labels: the word carries the meaning; the colored dot (from the isochrone palette) is only a visual aid.
+
+.epml-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 0.35rem;
+  padding: 0 0.45rem;
+  border: 1px solid $epml-rule;
+  border-radius: 999px;
+  background: $epml-paper-tint;
+  color: $epml-ink;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.epml-level::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+}
+
+.epml-level-intro::before { background: #79b35a; }
+.epml-level-intermediate::before { background: #3a6fb0; }
+.epml-level-advanced::before { background: #b2182b; }
+
+.epml-pick {
+  margin-right: 0.35rem;
+  color: $epml-ink;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// Library tables: the first column carries the description, so give it the room
+#videos ~ section table td:first-child,
+section[id^="videos-"] table td:first-child {
+  min-width: 18rem;
+}
+
+section[id^="videos-"] table td:nth-child(n + 3) {
+  white-space: nowrap;
+}
+
+section[id^="videos-"] table th {
+  white-space: nowrap;
+}
+
+// Phones: each row becomes a card. Title and description first, then source, length, views and the module link
+// on one line, each with a short label.
+@media (max-width: 575.98px) {
+  section[id^="videos-"] table thead {
+    display: none;
+  }
+
+  section[id^="videos-"] table,
+  section[id^="videos-"] table tbody,
+  section[id^="videos-"] table tr {
+    display: block;
+    width: 100%;
+  }
+
+  section[id^="videos-"] table tr {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid $epml-rule;
+  }
+
+  section[id^="videos-"] table td {
+    display: inline;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 0.85rem;
+    color: $epml-muted;
+    white-space: normal;
+  }
+
+  section[id^="videos-"] table td:first-child {
+    display: block;
+    min-width: 0;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    color: $epml-ink;
+  }
+
+  section[id^="videos-"] table td:nth-child(n + 3)::before {
+    content: " · ";
+  }
+
+  section[id^="videos-"] table td:nth-child(4)::after {
+    content: " views";
+  }
+
+  section[id^="videos-"] table td:nth-child(5)::before {
+    content: " · Read next ";
+  }
+}
