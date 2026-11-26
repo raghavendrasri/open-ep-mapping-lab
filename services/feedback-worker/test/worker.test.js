@@ -13,7 +13,6 @@ const ENV = {
   GITHUB_REPO: "owner/repo",
   GITHUB_TOKEN: "test-token-not-real",
   TURNSTILE_SECRET: "test-secret-not-real",
-  ISSUE_LABELS: "feedback",
 };
 
 const good = () => ({
@@ -84,7 +83,7 @@ test("valid feedback creates one GitHub issue and returns its address", async ()
   assert.ok(create.init.headers["User-Agent"]);
   const issue = JSON.parse(create.init.body);
   assert.equal(issue.title, "Feedback (Error in the content): modules/m03-electrograms");
-  assert.deepEqual(issue.labels, ["feedback"]);
+  assert.equal(issue.labels, undefined, "labels come from the label-feedback workflow");
   assert.match(issue.body, /https:\/\/openepengineering\.org\/modules\/m03-electrograms\.html\n/);
   assert.ok(!issue.body.includes("?x=1") && !issue.body.includes("#fig-2"), "query and fragment are dropped");
   assert.ok(issue.body.includes("spacing of 4 mm"));

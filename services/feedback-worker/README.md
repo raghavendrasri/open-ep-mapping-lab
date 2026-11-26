@@ -2,7 +2,7 @@
 
 The **Feedback** button on every course page opens a short form. This Worker receives the form, checks
 it, verifies the spam check (Cloudflare Turnstile) and opens an issue in the course repository with the
-label `feedback`. Readers do not need a GitHub account.
+label `feedback` (added by `.github/workflows/label-feedback.yml`). Readers do not need a GitHub account.
 
 Until the Worker is deployed and switched on in `assets/feedback.html`, the button still works: it
 opens a prefilled issue on GitHub, which the reader submits with their own GitHub account.
@@ -39,7 +39,7 @@ into a file in this repository, a chat or an issue.
    npx wrangler secret put TURNSTILE_SECRET  # paste the Turnstile secret key when asked
    ```
 
-   `wrangler.toml` holds the public settings: the site address, the repository and the label.
+   `wrangler.toml` holds the public settings: the site address and the repository.
 4. **Switch the form on.** In `assets/feedback.html`, set the two public values and open a pull
    request:
 

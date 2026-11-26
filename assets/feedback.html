@@ -131,6 +131,7 @@
   }
 
   // A prefilled "new issue" page on GitHub: used when the relay is off, or as a fallback when sending fails.
+  // No `labels` parameter: the GitHub mobile app fails on it. .github/workflows/label-feedback.yml labels the issue.
   function issueUrl() {
     var p = page();
     var body = "**Kind:** " + KINDS[kind.value] + "\n**Page:** " + p.url + "\n\n**Feedback**\n\n" + message.value.trim();
@@ -139,8 +140,7 @@
     if (body.length > 6000) body = body.slice(0, 6000) + "\n\n(shortened)";
     var query = new URLSearchParams({
       title: "Feedback (" + KINDS[kind.value] + "): " + shortPath(p.path),
-      body: body,
-      labels: "feedback"
+      body: body
     });
     return FEEDBACK.repo + "/issues/new?" + query.toString();
   }
