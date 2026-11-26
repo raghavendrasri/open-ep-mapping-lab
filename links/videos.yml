@@ -1,0 +1,557 @@
+# Videos and courses on the "Useful links" page (useful-links.qmd).
+#
+# Single source for that section: `python tools/build_video_links.py` writes links/_videos.md from this file,
+# and tests/test_useful_links.py checks both (fields, https, module links, no manufacturer channels, generated
+# file up to date). See docs/decisions.md, 2026-11-26.
+#
+# How items were chosen: for each topic, YouTube was searched with results sorted by view count, and talks from
+# societies, universities, hospitals, journals and established educators that match the course were kept.
+# Manufacturer channels and short promotional clips were left out. The author's own bookmarks are marked
+# `bookmark: true`.
+#
+# `length` and `views` are copied as YouTube showed them on `checked` (search results and video pages). Views change
+# daily, so the page always prints them with that date. Lengths of non-YouTube items come from the item's own page.
+
+checked: 2026-11-26
+
+topics:
+  foundations: "Foundations: the heart's electrical system"
+  mechanisms: "Arrhythmia mechanisms"
+  electrograms: "Electrograms and the EP study"
+  mapping: "Mapping methods and mapping systems"
+  ablation: "Ablation energy and biophysics"
+  ecgi: "ECG imaging and the inverse problem"
+  simulation: "Simulation and digital twins"
+  experimental: "Optical mapping and lab methods"
+  courses: "Courses, reference sites and open tools"
+  beyond: "Beyond the heart: the same mapping ideas"
+
+items:
+  # ---------------------------------------------------------------- foundations
+  - id: alila-conduction-ecg
+    title: "Cardiac Conduction System and Understanding ECG, Animation"
+    url: https://www.youtube.com/watch?v=RYZ4daFwMa8
+    source: Alila Medical Media
+    kind: video
+    length: "3:45"
+    views: 8.1M
+    level: intro
+    topic: foundations
+    why: "How the impulse travels from the sinus node to the ventricles, and how that shapes the ECG."
+    next: m12
+
+  - id: alila-action-potential
+    title: "Cardiac Action Potential, Animation"
+    url: https://www.youtube.com/watch?v=v7Q9BrNfIpQ
+    source: Alila Medical Media
+    kind: video
+    length: "7:50"
+    views: 3.1M
+    level: intro
+    topic: foundations
+    why: "The ion currents behind each phase of the cardiac action potential."
+    next: m08
+
+  - id: ninjanerd-conduction
+    title: "Cardiovascular | Electrophysiology | Intrinsic Cardiac Conduction System"
+    url: https://www.youtube.com/watch?v=1kX6Tp8CWFw
+    source: Ninja Nerd
+    kind: lecture
+    length: "48:01"
+    views: 2.1M
+    level: intro
+    topic: foundations
+    why: "A long lecture on the heart's pacemaker and conduction tissue."
+    next: m09
+
+  - id: mit-rc-neuron
+    title: "Resistor Capacitor Neuron Model (Intro to Neural Computation, lecture 3)"
+    url: https://www.youtube.com/watch?v=KXnHxZdn8NU
+    source: MIT OpenCourseWare
+    kind: lecture
+    length: "1:06:14"
+    views: 23K
+    level: intermediate
+    topic: foundations
+    why: "The cell membrane as an electrical circuit: the starting point for cardiac cell models."
+    next: m08
+
+  - id: mit-hodgkin-huxley
+    title: "Hodgkin-Huxley Model Part 1 (Intro to Neural Computation, lecture 4)"
+    url: https://www.youtube.com/watch?v=88tKZLGOr3M
+    source: MIT OpenCourseWare
+    kind: lecture
+    length: "1:14:56"
+    views: 45K
+    level: intermediate
+    topic: foundations
+    why: "Voltage-gated channels and the Hodgkin–Huxley equations, which cardiac ionic models extend."
+    next: m08
+
+  # ---------------------------------------------------------------- mechanisms
+  - id: alila-arrhythmias
+    title: "Cardiac Arrhythmias, Animation"
+    url: https://www.youtube.com/watch?v=6LrptveKYus
+    source: Alila Medical Media
+    kind: video
+    length: "6:06"
+    views: 1.5M
+    level: intro
+    topic: mechanisms
+    why: "A short visual overview of how rhythm disorders arise."
+    next: m10
+
+  - id: khan-avrt-avnrt
+    title: "Atrioventricular reentrant tachycardia (AVRT) & AV nodal reentrant tachycardia (AVNRT)"
+    url: https://www.youtube.com/watch?v=tRuvXP-H164
+    source: Khan Academy Medicine
+    kind: video
+    length: "10:43"
+    views: 749K
+    level: intro
+    topic: mechanisms
+    why: "Reentry explained with two common circuits."
+    next: m10
+
+  - id: cooper-atrial-flutter
+    title: "Atrial Flutter - Fundamentals of Diagnosis and Ablation"
+    url: https://www.youtube.com/watch?v=dadaNkiqV68
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "2:20:18"
+    views: 118K
+    level: intermediate
+    topic: mechanisms
+    why: "Typical flutter is a macro-reentrant circuit; this lecture covers its diagnosis and ablation."
+    next: m10
+
+  # ---------------------------------------------------------------- electrograms
+  - id: cooper-intro-egm
+    title: "Intro to Intra-cardiac Electrograms & the EP Lab"
+    url: https://www.youtube.com/watch?v=-6Z4TB5h7lY
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "1:51:50"
+    views: 175K
+    level: intro
+    topic: electrograms
+    why: "An introduction to intracardiac electrograms and the EP lab; the most-viewed EP lab primer in our search."
+    next: m03
+
+  - id: thi-ep-lab-concepts
+    title: "Understanding Electrophysiology Lab Concepts and Electrogram Interpretation"
+    url: https://www.youtube.com/watch?v=en6OYh88t3k
+    source: The Texas Heart Institute
+    kind: lecture
+    length: "58:46"
+    views: 65K
+    level: intro
+    topic: electrograms
+    why: "An institutional lecture on intracardiac electrograms and the EP study."
+    next: m11
+    bookmark: true
+
+  - id: thi-ep-collection
+    title: "Cardiac Electrophysiology collection, Texas Heart Institute TV"
+    url: https://tv.texasheart.org/cardiac-electrophysiology
+    source: The Texas Heart Institute
+    kind: collection
+    length: ""
+    views: ""
+    level: intro
+    topic: electrograms
+    why: "Short plain-language explainers (pacemakers, ICDs, the EP lab) alongside the lecture above."
+    next: m11
+    bookmark: true
+
+  - id: cooper-svt-diagnosis
+    title: "Diagnosis of SVT in the EP lab"
+    url: https://www.youtube.com/watch?v=QXVTYGIuAlQ
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "3:11:52"
+    views: 219K
+    level: advanced
+    topic: electrograms
+    why: "How supraventricular tachycardias are diagnosed in the EP lab."
+    next: m11
+
+  # ---------------------------------------------------------------- mapping
+  - id: medmovie-3d-mapping
+    title: "3D Electrical Mapping"
+    url: https://www.youtube.com/watch?v=01P2Jt22lUY
+    source: "Medmovie, Inc."
+    kind: video
+    length: "0:59"
+    views: 42K
+    level: intro
+    topic: mapping
+    why: "A one-minute animation on 3D electrical mapping of the heart."
+    next: m20
+
+  - id: heartbeatsz-mapping
+    title: "Intracardiac Mapping Explained: Inside Cardiac Electrophysiology"
+    url: https://www.youtube.com/watch?v=oPrlmAhKICc
+    source: London HeartbeatsZ Academy
+    kind: video
+    length: "7:23"
+    views: "750"
+    level: intro
+    topic: mapping
+    why: "A short tour of intracardiac mapping from an EP training company (some of its courses are paid)."
+    next: m20
+    bookmark: true
+
+  - id: shd-ap-3d-mapping
+    title: "Where are we at with 3D Mapping: Electroanatomic Mapping"
+    url: https://www.youtube.com/watch?v=ZFyr61Ph32g
+    source: Structural Heart Disease Asia Pacific
+    kind: lecture
+    length: "20:50"
+    views: 4.7K
+    level: intermediate
+    topic: mapping
+    why: "A conference talk on the state of 3D electroanatomic mapping."
+    next: m20
+
+  - id: fellows-eam-101
+    title: "Electroanatomic Mapping 101 (2020 lecture)"
+    url: https://www.youtube.com/watch?v=FKBeK75ACj8
+    source: "Nishant Verma, MD (2020 EP lecture series)"
+    kind: lecture
+    length: "1:00:59"
+    views: 4.1K
+    level: intermediate
+    topic: mapping
+    why: "An introductory lecture on electroanatomic mapping."
+    next: m24
+
+  - id: cooper-activation-mapping
+    title: "Activation Mapping: Basic Concepts, Pitfalls, and Windowing"
+    url: https://www.youtube.com/watch?v=CoRDSVjHQVU
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "1:58:29"
+    views: 86K
+    level: intermediate
+    topic: mapping
+    why: "Basic concepts, pitfalls and windowing (the window of interest); the most-viewed mapping lecture in our search."
+    next: m22
+
+  - id: cooper-entrainment
+    title: "Entrainment Mapping: The Post-Pacing Interval"
+    url: https://www.youtube.com/watch?v=-D3ZbyDiOwE
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "51:59"
+    views: 65K
+    level: intermediate
+    topic: mapping
+    why: "Pacing inside a reentrant circuit and what the return interval tells you."
+    next: m11
+
+  - id: cooper-pace-mapping
+    title: "Pace Mapping: Principles and Pitfalls"
+    url: https://www.youtube.com/watch?v=N2hRuYifFG4
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "1:13:26"
+    views: 36K
+    level: intermediate
+    topic: mapping
+    why: "Matching paced ECGs to a clinical arrhythmia to find where it starts."
+    next: m41
+
+  - id: cooper-vt-entrainment
+    title: "VT Entrainment Mapping of Scar/Reentry VT"
+    url: https://www.youtube.com/watch?v=XykkZNLm9bc
+    source: "Dr. Joshua Cooper – Arrhythmia Education"
+    kind: lecture
+    length: "2:04:24"
+    views: 28K
+    level: advanced
+    topic: mapping
+    why: "Entrainment applied to scar-related ventricular tachycardia circuits."
+    next: m11
+
+  - id: ivept-deep-mapping
+    title: "DEEP mapping for substrate VT ablation"
+    url: https://www.youtube.com/watch?v=Lam6cZDSH-g
+    source: International Virtual EP Talks
+    kind: lecture
+    length: "1:04:49"
+    views: 3.1K
+    level: advanced
+    topic: mapping
+    why: "A talk on DEEP mapping, a substrate-mapping method for scar-related VT."
+    next: m23
+
+  # ---------------------------------------------------------------- ablation
+  - id: fellows-rf-biophysics
+    title: "Biophysics of RF Ablation (2020 lecture)"
+    url: https://www.youtube.com/watch?v=s8moaOlC4kk
+    source: "Nishant Verma, MD (2020 EP lecture series)"
+    kind: lecture
+    length: "1:03:03"
+    views: 10K
+    level: intermediate
+    topic: ablation
+    why: "How radiofrequency energy heats tissue and forms a lesion."
+    next: m27
+
+  - id: hrtv-pfa-biophysics
+    title: "Heart Rhythm TV Update: PFA Biophysics for the Clinician"
+    url: https://www.youtube.com/watch?v=o1MREsmA5gc
+    source: "Heart Rhythm TV (Heart Rhythm Society)"
+    kind: lecture
+    length: "49:17"
+    views: 3.2K
+    level: intermediate
+    topic: ablation
+    why: "Electroporation and pulsed field ablation, from the Heart Rhythm Society's news and media channel."
+    next: m28
+
+  # ---------------------------------------------------------------- ecgi
+  - id: abi-ecgi
+    title: "Non-invasive Electrocardiographic Imaging (ECGi): Validation, Amelioration and Application"
+    url: https://www.youtube.com/watch?v=2aWiJL8yN6w
+    source: Auckland Bioengineering Institute, University of Auckland
+    kind: lecture
+    length: "41:14"
+    views: "682"
+    level: advanced
+    topic: ecgi
+    why: "Reconstructing heart-surface activity from body-surface ECGs, and how well it works."
+    next: m32
+
+  - id: cvrti-modeling-imaging
+    title: "Modeling and Imaging Cardiac Electrical Excitation"
+    url: https://www.youtube.com/watch?v=abyOu4TOCvk
+    source: CVRTI, University of Utah
+    kind: lecture
+    length: "1:01:49"
+    views: "112"
+    level: advanced
+    topic: ecgi
+    why: "Modeling and imaging cardiac electrical excitation, from the University of Utah's cardiovascular research institute."
+    next: m07
+
+  # ---------------------------------------------------------------- simulation
+  - id: esc-computational-modelling
+    title: "Demonstration on the use of Computational Modelling"
+    url: https://www.youtube.com/watch?v=LhdSj8almSs
+    source: European Society of Cardiology
+    kind: lecture
+    length: "46:47"
+    views: 3.2K
+    level: intro
+    topic: simulation
+    why: "An ESC Scientists of Tomorrow interview: why model ion channels and action potentials, and with which tools."
+    next: m08
+
+  - id: opencarp-workflow-1
+    title: "openCARP - Overview of workflow - Part 1"
+    url: https://www.youtube.com/watch?v=Idt65RqX_50
+    source: openCARP
+    kind: video
+    length: "15:11"
+    views: 1.6K
+    level: intermediate
+    topic: simulation
+    why: "An overview of the simulation workflow in openCARP, an open-source cardiac simulator."
+    next: m33
+
+  - id: opencarp-workflow-2
+    title: "openCARP - Overview of workflow - Part 2"
+    url: https://www.youtube.com/watch?v=oxJCNf-gRZo
+    source: openCARP
+    kind: video
+    length: "10:11"
+    views: 1.2K
+    level: intermediate
+    topic: simulation
+    why: "The second half of the openCARP workflow overview."
+    next: m33
+
+  - id: llnl-heart-simulations
+    title: "Computing Meets Cardiology: Making Heart Simulations Fast and Accurate"
+    url: https://www.youtube.com/watch?v=h0tviC32kE8
+    source: Lawrence Livermore National Laboratory (Inside Livermore Lab)
+    kind: lecture
+    length: "57:41"
+    views: 1.1K
+    level: intermediate
+    topic: simulation
+    why: "Making heart simulations fast and accurate, from LLNL's finite-element seminar series (FEM@LLNL)."
+    next: m09
+
+  # ---------------------------------------------------------------- experimental
+  - id: abi-optical-mapping
+    title: "Optical mapping in cardiac tissue: Advances and applications"
+    url: https://www.youtube.com/watch?v=LJFMaV8IEB8
+    source: Auckland Bioengineering Institute, University of Auckland
+    kind: lecture
+    length: "44:38"
+    views: 1.1K
+    level: intermediate
+    topic: experimental
+    why: "Optical mapping records activity with voltage- and calcium-sensitive dyes; this talk covers its advances and applications."
+    next: m25
+
+  - id: ishr-optical-mapping
+    title: "Cardiac optical mapping: past, present and future"
+    url: https://www.youtube.com/watch?v=Udgvi4p_VxE
+    source: ISHR Cardiovascular Webinar Series
+    kind: lecture
+    length: "50:59"
+    views: "919"
+    level: intermediate
+    topic: experimental
+    why: "A webinar on how optical mapping developed and where it is going."
+    next: m25
+
+  - id: jove-electromap
+    title: "ElectroMap for High-Throughput Analysis of Optical Mapping Data (protocol preview)"
+    url: https://www.youtube.com/watch?v=3AsbZVfur90
+    also: https://www.jove.com/t/59663
+    also_label: "full methods article (JoVE, doi:10.3791/59663)"
+    source: "JoVE (Journal of Visualized Experiments)"
+    kind: methods
+    length: "2:01"
+    views: "143"
+    level: intro
+    topic: experimental
+    why: "Open-source software that maps conduction velocity, action potential duration and more from optical mapping data."
+    next: m25
+    bookmark: true
+
+  # ---------------------------------------------------------------- courses and reference sites
+  - id: mit-940-course
+    title: "9.40 Introduction to Neural Computation (Spring 2018): lecture videos, notes and problem sets"
+    url: https://ocw.mit.edu/courses/9-40-introduction-to-neural-computation-spring-2018/
+    source: MIT OpenCourseWare
+    kind: course
+    length: ""
+    views: ""
+    level: intermediate
+    topic: courses
+    why: "The full university course behind the two membrane-model lectures above, with problem sets."
+    next: m08
+
+  - id: utah-ecg-learning-center
+    title: "The Alan E. Lindsay ECG Learning Center"
+    url: https://ecg.utah.edu/
+    source: University of Utah School of Medicine
+    kind: website
+    length: ""
+    views: ""
+    level: intro
+    topic: courses
+    why: "A long-standing free ECG tutorial with an image library and quizzes."
+    next: m12
+
+  - id: utah-macleod-links
+    title: "Links to research groups and resources (bioelectricity, ECG imaging, mapping systems, clinical EP)"
+    url: https://www.sci.utah.edu/~macleod/links
+    source: "Rob MacLeod, SCI Institute, University of Utah"
+    kind: website
+    length: ""
+    views: ""
+    level: intermediate
+    topic: courses
+    why: "A researcher's curated directory of simulation groups, tutorials and ECG imaging resources."
+    next: m12
+    bookmark: true
+
+  - id: openep-site
+    title: "OpenEP: open-source electroanatomic mapping data analysis"
+    url: https://openep.io/
+    source: OpenEP
+    kind: website
+    length: ""
+    views: ""
+    level: intermediate
+    topic: courses
+    why: "Documentation and examples for the open tools this course builds on."
+    next: m33
+
+  - id: opencarp-site
+    title: "openCARP: cardiac electrophysiology simulator"
+    url: https://opencarp.org/
+    source: openCARP
+    kind: website
+    length: ""
+    views: ""
+    level: intermediate
+    topic: courses
+    why: "Home of the open-source simulator used in the workflow videos above."
+    next: m33
+
+  # ---------------------------------------------------------------- beyond the heart
+  - id: martinos-esi
+    title: "Electrophysiological Source Imaging: Recent Advancement and Applications to Brain Mapping and Neural Interfacing"
+    url: https://www.youtube.com/watch?v=-cty_b7kpOA
+    source: MGH Martinos Center
+    kind: lecture
+    length: "56:27"
+    views: "367"
+    level: advanced
+    topic: beyond
+    why: "EEG source imaging solves the same kind of inverse problem as ECG imaging."
+    next: m07
+    bookmark: true
+
+  - id: neurohackademy-bids-ieeg
+    title: "BIDS-iEEG to map electrical stimulation driven connectivity (NeuroHackademy 2022)"
+    url: https://www.youtube.com/watch?v=0xh2qYQWm2o
+    source: UW eScience Institute
+    kind: lecture
+    length: "1:30:28"
+    views: "296"
+    level: advanced
+    topic: beyond
+    why: "Stimulation mapping in intracranial EEG and a shared data standard (BIDS) for the recordings."
+    next: m47
+    bookmark: true
+
+  - id: ibl-brainwide-atlas
+    title: "The IBL brainwide map: electrophysiological atlas (UCL Neuropixels course 2024)"
+    url: https://www.youtube.com/watch?v=-sxVVKEcTB0
+    source: "Carandinilab channel (UCL Neuropixels course)"
+    kind: lecture
+    length: "12:30"
+    views: "471"
+    level: intermediate
+    topic: beyond
+    why: "A brain-wide atlas of electrophysiological recordings from the IBL collaboration: mapping at a very large scale."
+    bookmark: true
+
+# Ordered viewing sequences. Totals are computed by tools/build_video_links.py.
+paths:
+  - title: "New to cardiac EP"
+    for: "anyone starting out, including engineers new to the heart"
+    items: [alila-conduction-ecg, alila-action-potential, alila-arrhythmias, khan-avrt-avnrt, thi-ep-lab-concepts, cooper-intro-egm]
+  - title: "How maps are made"
+    for: "EP fellows, mapping specialists and field engineers"
+    items: [medmovie-3d-mapping, shd-ap-3d-mapping, fellows-eam-101, cooper-activation-mapping, cooper-entrainment, cooper-pace-mapping]
+  - title: "The engineer's track"
+    for: "software, signal-processing and modelling engineers"
+    items: [mit-rc-neuron, mit-hodgkin-huxley, fellows-rf-biophysics, hrtv-pfa-biophysics, abi-ecgi, opencarp-workflow-1, opencarp-workflow-2]
+
+# Channels to subscribe to (official or long-running educational channels).
+channels:
+  - name: "Dr. Joshua Cooper – Arrhythmia Education"
+    url: https://www.youtube.com/@dr.joshuacooper-arrhythmia
+    what: "Long-form EP lab teaching: electrograms, SVT, flutter and mapping methods."
+  - name: "Heart Rhythm TV"
+    url: https://www.youtube.com/@HeartRhythmTV
+    what: "The Heart Rhythm Society's news and media channel: meeting coverage and technology updates."
+  - name: "Heart Rhythm Society"
+    url: https://www.youtube.com/@heartrhythmsociety
+    what: "The society's own channel."
+  - name: "Asia Pacific Heart Rhythm Society"
+    url: https://www.youtube.com/@AsiaPacificHeartRhythmSociety
+    what: "Official APHRS channel: lectures and meeting sessions."
+  - name: "European Society of Cardiology"
+    url: https://www.youtube.com/@EuropeanSocietyofCardiology
+    what: "ESC talks and interviews, including EHRA content."
