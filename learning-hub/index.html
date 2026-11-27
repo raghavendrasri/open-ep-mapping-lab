@@ -830,5 +830,28 @@ var quiz=[
   }
 })();
 </script>
+<!-- Open EP Mapping Lab: page-view counting with Cloudflare Web Analytics (docs/decisions.md, 2026-11-27).
+     Included on every page by _quarto.yml, and added to the Learning hub by tools/build_learning_hub.py.
+     Off until the token below is set. Even then it loads only on the live site (never in local previews or CI), and
+     not at all when the browser sends Global Privacy Control or Do Not Track. Cloudflare's beacon stores nothing in
+     the browser (no cookies or local storage). The page works the same without it. Privacy note: about.qmd#privacy. -->
+<script>
+(function () {
+  // The site token from Cloudflare (Analytics & Logs > Web Analytics > the site's JS snippet). It is not secret: it
+  // appears in every page's source. tests/test_analytics.py checks its format.
+  var CLOUDFLARE_ANALYTICS_TOKEN = "";
+  var LIVE_HOSTS = ["openepengineering.org", "www.openepengineering.org"];
+
+  if (!CLOUDFLARE_ANALYTICS_TOKEN) return;
+  if (LIVE_HOSTS.indexOf(location.hostname) === -1) return;
+  if (navigator.globalPrivacyControl === true || navigator.doNotTrack === "1" || window.doNotTrack === "1") return;
+
+  var beacon = document.createElement("script");
+  beacon.defer = true;
+  beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
+  beacon.setAttribute("data-cf-beacon", JSON.stringify({ token: CLOUDFLARE_ANALYTICS_TOKEN }));
+  document.body.appendChild(beacon);
+})();
+</script>
 </body>
 </html>

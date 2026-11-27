@@ -23,8 +23,15 @@ def test_hub_is_up_to_date_with_its_build(tmp_path):
 
 
 def test_hub_runs_offline():
-    """CLAUDE.md §4: no network requests at runtime (fonts are self-hosted) and no embedded raster images."""
+    """CLAUDE.md §4: no network requests at runtime (fonts are self-hosted) and no embedded raster images.
+
+    The one exception is the optional page-view count (assets/analytics.html, docs/decisions.md 2026-11-27): it loads
+    only on the live site once a token is set, and the page works the same without it. tests/test_analytics.py
+    checks that snippet; here it is removed before looking for outside requests."""
     s = page()
+    analytics = (ROOT / "assets" / "analytics.html").read_text(encoding="utf-8")
+    assert s.count(analytics) == 1, "the hub carries the shared analytics snippet once (tools/build_learning_hub.py)"
+    s = s.replace(analytics, "")
     assert "fonts.googleapis" not in s and "fonts.gstatic" not in s
     # Passive <link rel="canonical"> never triggers a browser network request; block all fetched external URLs.
     s_no_canonical = re.sub(r'<link\s+rel="canonical"\s+href="https://openepengineering\.org/[^"]*"\s*/?>', "", s)

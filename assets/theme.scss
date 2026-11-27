@@ -765,3 +765,10 @@ section[id^="videos-"] table th {
     content: " · Read next ";
   }
 }
+
+// ---------------------------------------------------------------- citation (docs/decisions.md, 2026-11-27)
+// The group author is set site-wide for the "Citation" box at the bottom of each page. The title block would repeat
+// it under every title, so it is hidden there; no page sets a date (tests/test_citation.py), so nothing else is lost.
+.quarto-title-meta {
+  display: none;
+}

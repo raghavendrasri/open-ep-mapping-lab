@@ -8,6 +8,7 @@ matplotlib>=3.11.2
 pyyaml>=6.0.3
 pytest>=9.2.0
 playwright>=1.65.2
+cffconvert>=2.0.0       # validates CITATION.cff (tests/test_citation.py)
 
 # Code labs
 wfdb>=4.3.1
