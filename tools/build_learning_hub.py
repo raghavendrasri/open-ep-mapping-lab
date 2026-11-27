@@ -358,6 +358,14 @@ def main(out_path: Path = OUT) -> int:
             print(f"edit matched {n} times (expected 1):\n  {old[:160]}")
             return 1
         out = out.replace(old, new)
+
+    # Page-view counting: the same snippet as every Quarto page (assets/analytics.html). It loads only on the live
+    # site, and only once a Cloudflare token is set there; the page works the same without it.
+    if out.count("</body>") != 1:
+        print("expected exactly one </body>")
+        return 1
+    analytics = (ROOT / "assets" / "analytics.html").read_text(encoding="utf-8")
+    out = out.replace("</body>", analytics + "</body>")
     Path(out_path).write_text(out, encoding="utf-8")
     print(f"wrote {out_path} ({len(out.encode())} bytes, {len(edits)} edits, {out.count(UNV)} unverified tags)")
     return 0

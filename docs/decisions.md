@@ -2,6 +2,44 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-27 · How to cite the course, and page-view counts
+
+- **Decision (author):** let people cite the course, and count page views. The author chose a group
+  author, "Open EP Mapping Lab contributors", and Cloudflare Web Analytics for counting.
+- **Citation, in three places that tests keep in step (`tests/test_citation.py`):**
+  - `CITATION.cff` (schema 1.2.0, validated with `cffconvert`, now in `requirements.txt`). GitHub
+    shows it as "Cite this repository". `preferred-citation` gives the year, 2026.
+  - Site-wide `author` (a literal name, so BibTeX keeps the group whole), `citation` and
+    `google-scholar` in `_quarto.yml`. Every page gets a "Citation" box with BibTeX and a formatted
+    reference, plus citation meta tags that Zotero and Google Scholar read. The formatted reference
+    uses the site's existing Chicago style, which title-cases page titles.
+  - "How to cite" on the About page, for the whole course, linked from the footer ("Cite this
+    course").
+- **Title block:** the site-wide author would appear under every page title, repeating the
+  citation box, so `.quarto-title-meta` is hidden. No page sets a date (tested), so nothing else is
+  hidden.
+- **DOI:** not yet. Connecting the repository to Zenodo and publishing a GitHub release would mint
+  one, and Zenodo reads `CITATION.cff`. That needs the author's own Zenodo sign-in.
+- **Page views:** `assets/analytics.html`, on every Quarto page and added to the Learning hub by
+  `tools/build_learning_hub.py`.
+  - Off until the Cloudflare site token is set. The token is public: it is part of every page.
+  - Loads only on openepengineering.org, so local previews and CI are never counted. Never loads
+    when the browser sends Global Privacy Control or Do Not Track.
+  - Cloudflare describes the beacon as using no cookies or local storage and no fingerprinting, so
+    no consent banner is needed.
+  - The page works the same without it. This is the one outside request on the Learning hub; its
+    offline test allows exactly this snippet.
+  - Privacy note on About ("Page views and privacy").
+- **Tests:** `tests/test_analytics.py` serves the snippet as if from the live host, with every
+  outside call intercepted. It checks four cases: with a token on the live site it loads Cloudflare's
+  beacon; with no token it does nothing; local hosts are never counted; Global Privacy Control and
+  Do Not Track are respected.
+- **Undo:**
+  - Remove `assets/analytics.html` from `include-after-body` and from the hub build. To pause
+    counting only, set the token to "".
+  - For citations, remove `author`, `citation` and `google-scholar` from `_quarto.yml`, and the
+    CSS rule.
+
 ## 2026-11-26 · Videos and courses on the Useful links page
 
 - **Decision (author):** add YouTube videos, lectures and university material on EP and mapping to

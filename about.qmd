@@ -52,6 +52,34 @@ mentioning a company or product is not an endorsement. See the [Disclaimer](disc
 Open EP Mapping Lab is an independent educational project and is not affiliated with or endorsed by the
 [OpenEP](https://openep.io/) project or any medical device manufacturer.
 
+## How to cite {#how-to-cite}
+
+Please cite the whole course as:
+
+> Open EP Mapping Lab contributors. 2026. "Open EP Mapping Lab: An Open Course on Cardiac Electroanatomic Mapping
+> Systems." https://openepengineering.org/.
+
+```bibtex
+@online{openepmappinglab2026,
+  author = {{Open EP Mapping Lab contributors}},
+  title = {Open {EP} Mapping Lab: An Open Course on Cardiac
+           Electroanatomic Mapping Systems},
+  year = {2026},
+  url = {https://openepengineering.org/}
+}
+```
+
+Pages change as the course grows, so add the date you read it (`urldate` in BibTeX). To cite a single module, use the
+**Citation** box at the bottom of that page. The course repository's **Cite this repository** button on GitHub gives
+the same citation, from its `CITATION.cff` file.
+
+## Page views and privacy {#privacy}
+
+The site counts page views with Cloudflare Web Analytics, so the author can see which pages are read. According to
+Cloudflare, it uses no cookies or other storage in your browser and does not fingerprint visitors. The counter loads
+only on openepengineering.org, and not at all if your browser sends a Global Privacy Control or Do Not Track signal.
+The site stores nothing else about you; your light or dark choice is kept only in your own browser.
+
 ## License and contact
 
 Text, figures and questions are licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/); code is

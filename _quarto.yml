@@ -85,10 +85,21 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/eraghavendrasri/
         aria-label: "The author on LinkedIn"
-    right: "Text CC BY 4.0 · Code MIT"
+    right: "[Cite this course](/about.html#how-to-cite) · Text CC BY 4.0 · Code MIT"
 
 bibliography: references.bib
 link-citations: true
+
+# Every page gets a "Cite this page" box (BibTeX and a formatted reference) and citation meta tags that Zotero and
+# Google Scholar read. Group author as chosen by the author (docs/decisions.md, 2026-11-27); CITATION.cff matches.
+author:
+  - name:
+      literal: "Open EP Mapping Lab contributors"
+citation:
+  type: webpage
+  container-title: "Open EP Mapping Lab"
+  issued: 2026
+google-scholar: true
 
 filters:
   - filters/badges.lua
@@ -116,10 +127,11 @@ format:
     respect-user-color-scheme: true
     css: assets/styles.css
     # nav-current.html marks the menu item for the current page; feedback.html adds the Feedback button and
-    # form (see the comment at the top of each file).
+    # form; analytics.html counts page views once a Cloudflare token is set (see the comment in each file).
     include-after-body:
       - assets/nav-current.html
       - assets/feedback.html
+      - assets/analytics.html
     canonical-url: true
     toc: true
     html-math-method: mathjax
