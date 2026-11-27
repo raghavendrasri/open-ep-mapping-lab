@@ -138,6 +138,16 @@ def test_dark_text_colors_meet_aa():
             assert ratio >= AA, f"dark: ${fg} on ${bg} is {ratio:.2f}:1"
 
 
+def test_dark_plain_code_is_readable():
+    """Bootstrap prints plain <pre> text in black; the dark theme must override it (the Citation box BibTeX)."""
+    d, light = scss_vars(DARK), scss_vars(LIGHT)
+    pre = resolve("pre-color", d, light)
+    for bg in ("body-bg", "code-block-bg"):
+        ratio = contrast(pre, resolve(bg, d, light))
+        assert ratio >= AA, f"dark: $pre-color on ${bg} is {ratio:.2f}:1"
+    assert "#quarto-appendix .quarto-appendix-bibtex {" in LIGHT.read_text()
+
+
 def rule_colors(path, selector):
     m = re.search(re.escape(selector) + r"\s*\{([^}]*)\}", path.read_text())
     assert m, selector

@@ -2,6 +2,19 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-27 · AI disclosure in the footer; readable citation BibTeX in dark mode
+
+- **AI disclosure (author's request):** every page's footer now says "Developed using AI: Claude
+  and Gemini" on its own line under "Education only. Not for clinical use." It links to "How the
+  content is written and checked" on the About page, which now names both assistants (Claude by
+  Anthropic, Gemini by Google). `tests/test_ai_disclosure.py` keeps the footer and About in step.
+  The standalone Learning hub keeps its own status note.
+- **Dark-mode fix:** Bootstrap prints plain `<pre>` text in black. Syntax-highlighted code blocks
+  were fine, but the BibTeX in each page's Citation box is plain text, so it was nearly invisible
+  on the dark theme.
+  - Fix: `$pre-color` in the dark theme, and a code-block panel for that BibTeX in both themes.
+  - Guard: `tests/test_theme.py` checks the contrast.
+
 ## 2026-11-27 · How to cite the course, and page-view counts
 
 - **Decision (author):** let people cite the course, and count page views. The author chose a group

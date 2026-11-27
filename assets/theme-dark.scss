@@ -34,6 +34,7 @@ $footer-fg: $epml-muted;
 $toc-color: $epml-muted;
 
 $code-color: #f4a3b4;
+$pre-color: $epml-ink; // plain code blocks (e.g. the BibTeX in each page's Citation box); Bootstrap's default is black
 $code-block-bg: $epml-paper-tint;
 
 // Bootstrap surfaces that default to white
