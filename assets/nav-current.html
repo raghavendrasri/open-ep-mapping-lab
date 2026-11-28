@@ -2,7 +2,7 @@
 // Open EP Mapping Lab: mark the menu item for the page being read.
 // Quarto marks the item tied to the course sidebar ("Course map") on every page, because the sidebar is
 // site-wide, so this replaces that marking. Exact page matches get aria-current="page". Module pages also
-// mark "Course map" as their section, and a page under "More" marks the "More" button.
+// mark "Course map" as their section, blog posts mark "Blog", and a page under "More" marks the "More" button.
 (function () {
   var nav = document.querySelector("#quarto-header .navbar-nav");
   if (!nav) return;
@@ -21,11 +21,16 @@
     a.setAttribute("aria-current", "page");
     if (a.classList.contains("dropdown-item")) menuMatch = a; else topMatch = a;
   });
-  if (!topMatch && /\/modules\/[^/]+$/.test(here)) {
+  var sections = [
+    [/\/modules\/[^/]+$/, /\/course-map$/],
+    [/\/blog\/posts\//, /\/blog\/$/]
+  ];
+  sections.forEach(function (rule) {
+    if (topMatch || !rule[0].test(here)) return;
     nav.querySelectorAll("a.nav-link[href]").forEach(function (a) {
-      if (/\/course-map$/.test(key(a.href))) { a.classList.add("epml-current-section"); topMatch = a; }
+      if (rule[1].test(key(a.href))) { a.classList.add("epml-current-section"); topMatch = a; }
     });
-  }
+  });
   if (!topMatch && menuMatch) {
     var toggle = menuMatch.closest(".dropdown") && menuMatch.closest(".dropdown").querySelector(".dropdown-toggle");
     if (toggle) toggle.classList.add("epml-current-section");

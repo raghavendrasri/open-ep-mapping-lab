@@ -127,16 +127,20 @@ $code-block-bg: $epml-paper-tint !default;
 // Laptops between the collapse point (992px) and 1200px: tighter spacing so the whole menu fits on one line
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .navbar .navbar-nav > .nav-item > .nav-link {
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
   }
 
   .navbar-brand .navbar-title {
-    font-size: 1.1rem;
+    font-size: 1rem; // leaves a little slack so the name never ends in "…"
   }
 
   #quarto-search .aa-Form {
-    width: 10rem;
+    width: 8.75rem;
+  }
+
+  #quarto-search .aa-Input {
+    font-size: 0.8rem; // so "Search the course" fits the narrower box
   }
 
   #quarto-search .aa-Form::after {
@@ -776,7 +780,20 @@ section[id^="videos-"] table th {
 }
 
 // The group author is set site-wide for the "Citation" box at the bottom of each page. The title block would repeat
-// it under every title, so it is hidden there; no page sets a date (tests/test_citation.py), so nothing else is lost.
-.quarto-title-meta {
-  display: none;
+// it under every title, so it is hidden there. Only blog posts set a date (tests/test_citation.py), and blog pages
+// (body class epml-blog, from blog/_metadata.yml) keep the block so readers see when a post was published.
+// !important: Quarto's listing pages style the title block with a more specific rule.
+body:not(.epml-blog) .quarto-title-meta {
+  display: none !important;
+}
+
+// ---------------------------------------------------------------- blog (docs/decisions.md, 2026-11-28)
+.epml-all-posts {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+.epml-rss .bi-rss {
+  color: #ee8a2f; // the RSS orange, from the isochrone palette
 }

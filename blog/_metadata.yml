@@ -1,0 +1,7 @@
+# Blog pages (docs/decisions.md, 2026-11-28).
+# No course sidebar: it is the course's table of contents, and dated posts do not belong in it.
+sidebar: false
+# Lets assets/theme.scss show post dates and bylines, which the rest of the site hides.
+body-classes: epml-blog
+# American English dates (CLAUDE.md §9), for example "November 28, 2026".
+date-format: "MMMM D, YYYY"

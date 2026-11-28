@@ -60,8 +60,12 @@ def test_about_page_citation_matches_the_citation_file():
 
 
 def test_no_page_sets_a_date():
-    """The title block is hidden (it would only repeat the author), so a page date would be hidden too."""
-    pages = [p for p in ROOT.rglob("*.qmd") if "_site" not in p.parts and ".quarto" not in p.parts]
+    """The title block is hidden (it would only repeat the author), so a page date would be hidden too.
+
+    Blog posts are the exception: they need a date, and blog pages keep the title block (body class epml-blog,
+    set in blog/_metadata.yml; tests/test_blog.py checks it)."""
+    skip = {"_site", ".quarto", "blog", "templates"}
+    pages = [p for p in ROOT.rglob("*.qmd") if not skip & set(p.relative_to(ROOT).parts)]
     for page in pages:
         front = page.read_text().split("---", 2)
         if len(front) > 2:

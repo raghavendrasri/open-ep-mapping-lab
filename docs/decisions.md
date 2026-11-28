@@ -24,6 +24,42 @@ Non-trivial choices, newest first. Each entry: date, decision, why, and how to u
 - **Undo:** revert this commit; off-repo indexing steps (Google Search Console verification and
   sitemap submission, Bing Webmaster Tools, GitHub topics) are managed outside git.
 
+## 2026-11-28 · Blog (placeholder for the author's review)
+
+- **Decision (author):** add a blog, one post a month. Placement follows the UI/UX plan the author
+  approved:
+  - **Top menu:** "Blog" between the course items (Course map, Learning hub) and the reference
+    pages (Useful links, About, More). It is one click away for returning readers, not hidden
+    under More.
+  - **Home page:** "Latest from the blog", the three newest posts as cards, placed below the main
+    buttons and the intro so it never competes with "start the course". Links to "All posts".
+  - **Footer:** an RSS icon beside LinkedIn.
+  - **In modules:** posts are linked from a module's existing "Further reading" section when they
+    fit. This keeps the nine-section template (CLAUDE.md §3).
+  - **Not used:** the course sidebar (it is the course's table of contents), and "latest posts"
+    lists on module pages (they distract from study).
+- **Pages:** `blog/index.qmd` lists posts newest first, with category filters, a search box, a
+  visible RSS link and the feed at `blog/index.xml`. Categories: Concept, Paper, Behind the module,
+  Reader questions, Course news.
+- **`blog/_metadata.yml`:** blog pages have no course sidebar and carry the body class `epml-blog`,
+  so post dates and bylines stay visible. The rest of the site hides the title-block meta, and the
+  list page hides it too. Dates read "November 28, 2026" (American English, CLAUDE.md §9). The
+  Useful links page's video date now uses the same style.
+- **Posts:** one folder per post, `blog/posts/YYYY-MM-DD-short-name/index.qmd`. Copy
+  `templates/blog-post-template.qmd`, which starts as `draft: true`, so drafts stay out of the site
+  and the feed until the author publishes them. A short welcome post ships so the layout can be
+  reviewed; the author may replace it.
+- **Laptop widths (992–1199 px):** with six menu items, the nav spacing, name size and search box
+  were tightened so everything fits on one line and nothing is clipped. Measured at 992, 1000, 1024,
+  1100 and 1199 px.
+- **Rules:** posts follow the course rules (CLAUDE.md §5). `tests/test_blog.py` checks:
+  - the menu position, the list page and the RSS icon;
+  - the home strip sits below the main buttons;
+  - each post's folder, date, description length and category;
+  - the template starts as a draft.
+- **Undo:** remove the menu item, the `blog/` render lines, the home strip and its listing, and the
+  footer RSS icon, then delete `blog/`.
+
 ## 2026-11-27 · AI disclosure in the footer; readable citation BibTeX in dark mode
 
 - **AI disclosure (author's request):** every page's footer now says "Developed using AI: Claude
