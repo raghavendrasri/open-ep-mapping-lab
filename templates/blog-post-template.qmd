@@ -1,0 +1,35 @@
+---
+# How to add a post (docs/decisions.md, 2026-11-28):
+#   1. Copy this file to blog/posts/YYYY-MM-DD-short-name/index.qmd (put the post's images in the same folder).
+#   2. Fill in the fields below and write the post. Keep `draft: true` while you work: drafts show in
+#      `quarto preview` but are left out of the published site, the post list and the RSS feed.
+#   3. Remove `draft: true`, run the checks (CLAUDE.md §10), and open a pull request.
+title: "Post title in sentence case"
+description: "One sentence for the post list, search results and link previews (60 to 160 characters)."
+date: YYYY-MM-DD
+# One of: Concept, Paper, Behind the module, Reader questions, Course news
+categories: [Concept]
+draft: true
+---
+
+<!-- The same rules as the course apply (CLAUDE.md §5): cite every claim with a key from references.bib, take every
+number from a cited source or our own code, no clinical advice, vendor claims only from public sources, and nothing
+marked "reviewed". Figures carry a badge and an Assumptions list, as in modules (§4). -->
+
+## In short
+
+Two or three sentences: the one idea a reader should leave with.
+
+## The idea
+
+The explanation. Define every term on first use, and link the glossary where it has an entry.
+
+## Read next
+
+The course module that goes deeper, for example [m03 · Electrograms](../../../modules/m03-electrograms.qmd).
+
+## Sources
+
+Cite with keys from references.bib, for example [@key]; the reference list is added below automatically.
+
+[← All posts](../../index.qmd)

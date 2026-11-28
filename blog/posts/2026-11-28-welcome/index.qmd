@@ -1,0 +1,31 @@
+---
+title: "Welcome to the Open EP Mapping Lab blog"
+description: "What this blog will cover, how often new posts appear, and how to follow along or suggest a topic."
+date: 2026-11-28
+categories: [Course news]
+---
+
+## In short
+
+Once a month, this blog takes one idea from cardiac mapping and explains it properly. The first posts arrive in the
+coming weeks.
+
+## What to expect
+
+Posts come in four kinds:
+
+- **Concept:** one idea explained in depth, with a live figure where it helps.
+- **Paper:** a plain-language walk through one open-access paper, recreating a figure with our own code.
+- **Behind the module:** how a new module was built, what was hard, and what we got wrong.
+- **Reader questions:** answers to good questions sent with the **Feedback** button.
+
+Posts follow the same rules as the course: sources for every claim, no clinical advice, and nothing here is for
+diagnosis or treatment. Like the rest of the site, they are developed with AI assistants and checked against the
+course's written rules (see [how the content is written and checked](../../../about.qmd#how-the-content-is-written-and-checked)).
+
+## Follow along
+
+Subscribe with the [RSS feed](../../index.xml), or suggest a topic with the **Feedback** button at the bottom right of
+this page.
+
+[← All posts](../../index.qmd)

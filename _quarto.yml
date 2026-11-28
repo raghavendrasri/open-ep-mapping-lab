@@ -13,6 +13,9 @@ project:
     - glossary/index.qmd
     - formula-sheet/index.qmd
     - modules/*.qmd
+    # Blog: the post list and one folder per post (templates/blog-post-template.qmd explains how to add one).
+    - blog/index.qmd
+    - blog/posts/*/index.qmd
   # Copied to the site as-is: demo scripts (plain ES modules, no build step) and pinned
   # third-party files such as the self-hosted IBM Plex fonts (SIL Open Font License).
   resources:
@@ -55,6 +58,8 @@ website:
         text: Course map
       - href: learning-hub/index.html
         text: Learning hub
+      - href: blog/index.qmd
+        text: Blog
       - href: useful-links.qmd
         text: Useful links
       - href: about.qmd
@@ -86,6 +91,10 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/eraghavendrasri/
         aria-label: "The author on LinkedIn"
+      # The blog's RSS feed (blog/index.qmd sets `feed: true`).
+      - icon: rss
+        href: /blog/index.xml
+        aria-label: "Blog RSS feed"
     right: "[Cite this course](/about.html#how-to-cite) · Text CC BY 4.0 · Code MIT"
 
 bibliography: references.bib

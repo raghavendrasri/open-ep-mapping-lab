@@ -4,6 +4,19 @@ description: "Open EP Mapping Lab (openepengineering.org): a free, open course o
 image: assets/logo/og-card.png
 image-alt: "Open EP Mapping Lab — a free, open course on cardiac electroanatomic mapping systems"
 toc: false
+# "Latest from the blog": the three newest posts (blog/posts), below the main buttons (docs/decisions.md, 2026-11-28).
+listing:
+  id: latest-posts
+  contents: blog/posts
+  sort: "date desc"
+  type: grid
+  max-items: 3
+  fields: [date, title, description, categories]
+  date-format: "MMMM D, YYYY"
+  categories: false
+  filter-ui: false
+  sort-ui: false
+  feed: false
 # Structured data for search engines (schema.org): the site's name, organization, and the course itself.
 include-in-header:
   text: |
@@ -101,6 +114,13 @@ Open EP Mapping Lab (**openepengineering.org**, Open EP Engineering) is a free, 
 engineers joining EP device companies, clinical mapping specialists, EP fellows and researchers.
 It follows the signal the whole way: how a mapping system finds the catheter, records and filters
 electrograms, and turns them into activation and voltage maps.
+
+## Latest from the blog {#latest-from-the-blog}
+
+::: {#latest-posts}
+:::
+
+[All posts →](blog/index.qmd){.epml-all-posts}
 
 ## How each module works
 

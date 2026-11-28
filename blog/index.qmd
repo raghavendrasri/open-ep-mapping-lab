@@ -1,0 +1,26 @@
+---
+title: "Blog"
+description: "One post a month from Open EP Mapping Lab: a mapping idea explained, a paper walked through, and news on new modules"
+toc: false
+# The list page is not cited and needs no byline; posts keep both (blog/_metadata.yml, assets/theme.scss).
+citation: false
+google-scholar: false
+body-classes: epml-blog-list
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  feed: true
+  filter-ui: true
+  sort-ui: false
+  fields: [date, title, description, categories, reading-time]
+  date-format: "MMMM D, YYYY"
+  page-size: 10
+---
+
+One post a month. Each takes a single idea from cardiac mapping and explains it properly, walks through an open
+paper, or shows how a new module was built. Posts follow the same rules as the course: sources for every claim, no
+clinical advice.
+
+[<i class="bi bi-rss" aria-hidden="true"></i> Subscribe with RSS](index.xml){.epml-rss} · Suggest a topic with the **Feedback** button.

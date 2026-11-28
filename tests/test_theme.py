@@ -23,17 +23,19 @@ AA = 4.5  # WCAG 2.x level AA for body-size text
 
 def test_menu_has_four_items_and_more():
     left = NAV["left"]
-    assert [i["text"] for i in left] == ["Course map", "Learning hub", "Useful links", "About", "More"]
-    assert [i["href"] for i in left[:4]] == [
+    # "Blog" added 2026-11-28 (docs/decisions.md): what's new sits between the course and the reference pages.
+    assert [i["text"] for i in left] == ["Course map", "Learning hub", "Blog", "Useful links", "About", "More"]
+    assert [i["href"] for i in left[:5]] == [
         "course-map.qmd",
         "learning-hub/index.html",
+        "blog/index.qmd",
         "useful-links.qmd",
         "about.qmd",
     ]
 
 
 def test_more_menu_lists_the_other_pages_and_each_is_built():
-    more = NAV["left"][4]["menu"]
+    more = next(i for i in NAV["left"] if i["text"] == "More")["menu"]
     pages = [i for i in more if "href" in i]
     assert [i["text"] for i in pages] == [
         "Glossary",

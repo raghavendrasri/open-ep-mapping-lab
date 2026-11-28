@@ -62,7 +62,7 @@ def cell(text):
 def long_date(iso):
     y, m, d = str(iso).split("-")
     months = "January February March April May June July August September October November December".split()
-    return f"{int(d)} {months[int(m) - 1]} {y}"
+    return f"{months[int(m) - 1]} {int(d)}, {y}"  # American English (CLAUDE.md §9)
 
 
 def build(data, pages):

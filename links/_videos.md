@@ -33,7 +33,7 @@ Three short sequences to start with, in viewing order. Times are the videos' len
 7. [openCARP - Overview of workflow - Part 2](https://www.youtube.com/watch?v=oxJCNf-gRZo) · openCARP · 10:11
 
 The library below is sorted by topic, most-viewed first within each topic. Views are as YouTube showed them
-on 26 November 2026; ★ marks the course author's own picks. **Read next** links to the course module on the same
+on November 26, 2026; ★ marks the course author's own picks. **Read next** links to the course module on the same
 subject.
 
 ### Foundations: the heart's electrical system {#videos-foundations}
