@@ -80,7 +80,8 @@ website:
         href: https://www.linkedin.com/in/eraghavendrasri/
         aria-label: "The author on LinkedIn"
   page-footer:
-    left: "Education only. Not for clinical use."
+    # AI disclosure (docs/decisions.md, 2026-11-27): the link explains how AI drafts are checked.
+    left: "Education only. Not for clinical use.<br>[Developed using AI: Claude and Gemini](/about.html#how-the-content-is-written-and-checked)"
     center:
       - icon: linkedin
         href: https://www.linkedin.com/in/eraghavendrasri/

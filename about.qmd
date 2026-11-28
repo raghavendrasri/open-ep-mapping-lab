@@ -20,8 +20,8 @@ lab, is public in the [course repository]({{< var repo.url >}}).
 
 ## How the content is written and checked
 
-Drafts are prepared with the help of an AI assistant (Claude) and checked against written rules before they are
-published:
+The site and its drafts are developed with AI assistants, Claude (Anthropic) and Gemini (Google), and checked against
+written rules before they are published:
 
 - **Equations:** every equation has a numeric test in code, and a symbolic check where feasible.
 - **Numbers:** every value comes from a cited source or from the course's own code. Where a source is missing, the
