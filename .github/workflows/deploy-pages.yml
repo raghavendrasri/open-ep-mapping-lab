@@ -40,8 +40,9 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          # Deploy exactly the commit that CI checked.
+          # Deploy exactly the commit that CI checked; full history gives sitemap.xml real lastmod dates.
           ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
 
       - uses: quarto-dev/quarto-actions/setup@v2
 

@@ -3,7 +3,12 @@
 A free, open, interactive course on cardiac electroanatomic mapping systems: how they
 localize catheters, process electrograms and build activation and voltage maps.
 
-**Site (pilot):** https://openepengineering.org/
+**Course website:** [Open EP Mapping Lab — openepengineering.org](https://openepengineering.org/) (Open EP Engineering)
+
+- [Course map (55 modules in eight parts)](https://openepengineering.org/course-map.html)
+- [Interactive Learning Hub & Explorer](https://openepengineering.org/learning-hub/index.html)
+- [Pilot module: Unipolar, bipolar and omnipolar electrograms](https://openepengineering.org/modules/m03-electrograms.html)
+- [Glossary](https://openepengineering.org/glossary/) · [Formula sheet](https://openepengineering.org/formula-sheet/) · [About & citation](https://openepengineering.org/about.html)
 
 **Status:** draft. All 55 modules have a draft; none has been reviewed yet, so none is complete.
 
