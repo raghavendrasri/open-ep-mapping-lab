@@ -31,7 +31,7 @@ def test_home_page_shows_the_logo_beside_one_title():
     """index.qmd draws its own header (logo + title) and has no `title`, so Quarto adds no second title."""
     text = (ROOT / "index.qmd").read_text()
     front = yaml.safe_load(text.split("---")[1])
-    assert "title" not in front and front["pagetitle"] == "Open EP Mapping Lab"
+    assert "title" not in front and front["pagetitle"].startswith("Open EP Mapping Lab")
     assert "{.home-header}" in text and "assets/logo/logo-mark.png" in text
     body = text.split("---", 2)[2]
     assert len([l for l in body.splitlines() if l.startswith("# ")]) == 1

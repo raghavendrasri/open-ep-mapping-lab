@@ -1,8 +1,10 @@
 ---
-pagetitle: "Open EP Mapping Lab"
-description: "How electroanatomic mapping systems work, from membrane current to color map"
+pagetitle: "Open EP Mapping Lab — Cardiac EP Mapping (Open EP Engineering)"
+description: "Open EP Mapping Lab (openepengineering.org): a free, open course on cardiac electroanatomic mapping systems, electrograms, localization, and AI in EP."
+image: assets/logo/og-card.png
+image-alt: "Open EP Mapping Lab — a free, open course on cardiac electroanatomic mapping systems"
 toc: false
-# Structured data for search engines (schema.org): the site's name, and the course itself.
+# Structured data for search engines (schema.org): the site's name, organization, and the course itself.
 include-in-header:
   text: |
     <script type="application/ld+json">
@@ -11,15 +13,34 @@ include-in-header:
       "@graph": [
         {
           "@type": "WebSite",
+          "@id": "https://openepengineering.org/#website",
+          "name": "Open EP Mapping Lab",
+          "alternateName": ["Open EP Engineering", "openepengineering.org"],
+          "url": "https://openepengineering.org/",
+          "description": "A free, open, interactive course on how cardiac electroanatomic mapping systems work, from membrane current to color map.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://openepengineering.org/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://openepengineering.org/#organization",
           "name": "Open EP Mapping Lab",
           "alternateName": "Open EP Engineering",
-          "url": "https://openepengineering.org/"
+          "url": "https://openepengineering.org/",
+          "logo": "https://openepengineering.org/assets/logo/logo-mark.png",
+          "sameAs": [
+            "https://github.com/raghavendrasri",
+            "https://www.linkedin.com/in/eraghavendrasri/"
+          ]
         },
         {
           "@type": "Course",
+          "@id": "https://openepengineering.org/#course",
           "name": "Open EP Mapping Lab",
+          "alternateName": "Open EP Engineering",
           "description": "A free, open course on how cardiac electroanatomic mapping systems work, from membrane current to color map.",
           "url": "https://openepengineering.org/",
+          "image": "https://openepengineering.org/assets/logo/og-card.png",
           "inLanguage": "en",
           "isAccessibleForFree": true,
           "educationalLevel": "Graduate / Professional Engineering",
@@ -32,17 +53,15 @@ include-in-header:
             "AI and multimodal cardiac imaging in electrophysiology"
           ],
           "author": {
-            "@type": "Person",
-            "name": "raghavendrasri",
-            "url": "https://github.com/raghavendrasri"
+            "@type": "Organization",
+            "name": "Open EP Mapping Lab contributors",
+            "url": "https://openepengineering.org/about.html"
           },
           "provider": {
+            "@id": "https://openepengineering.org/#organization",
             "@type": "Organization",
             "name": "Open EP Mapping Lab",
-            "url": "https://openepengineering.org/",
-            "sameAs": [
-              "https://github.com/raghavendrasri"
-            ]
+            "url": "https://openepengineering.org/"
           },
           "offers": [{ "@type": "Offer", "category": "Free" }],
           "hasCourseInstance": [{ "@type": "CourseInstance", "courseMode": "Online" }]
@@ -78,9 +97,10 @@ Education only. Nothing here is for diagnosis, treatment or any clinical decisio
 Read the [disclaimer](disclaimer.qmd) before relying on any content.
 :::
 
-A free, open course for engineers joining EP device companies, clinical mapping specialists,
-EP fellows and researchers. It follows the signal the whole way: how a mapping system finds the
-catheter, records and filters electrograms, and turns them into activation and voltage maps.
+Open EP Mapping Lab (**openepengineering.org**, Open EP Engineering) is a free, open course for
+engineers joining EP device companies, clinical mapping specialists, EP fellows and researchers.
+It follows the signal the whole way: how a mapping system finds the catheter, records and filters
+electrograms, and turns them into activation and voltage maps.
 
 ## How each module works
 

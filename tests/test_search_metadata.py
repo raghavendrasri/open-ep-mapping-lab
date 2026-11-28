@@ -62,13 +62,26 @@ def test_robots_txt_and_seo_filter_configured():
     assert "robots.txt" in CFG["project"]["resources"]
     assert "assets/logo/og-card.png" in CFG["project"]["resources"]
     assert "filters/seo-schema.lua" in CFG["filters"]
-    assert (ROOT / "filters" / "seo-schema.lua").exists()
+    lua = (ROOT / "filters" / "seo-schema.lua").read_text()
+    for must in ('index, follow, max-image-preview:large', 'property="og:url"', 'property="og:type"', '"AboutPage"', '"CollectionPage"'):
+        assert must in lua, must
+
+
+def test_home_page_explicitly_uses_social_card_and_domain_brand():
+    text = (ROOT / "index.qmd").read_text()
+    fm = front_matter(ROOT / "index.qmd")
+    assert fm.get("image") == "assets/logo/og-card.png"
+    assert "Open EP Engineering" in fm["pagetitle"]
+    assert "openepengineering.org" in fm["description"]
+    body = text.split("---", 2)[2]
+    assert "openepengineering.org" in body
 
 
 def test_learning_hub_has_seo_metadata():
     hub = (ROOT / "learning-hub" / "index.html").read_text()
     for must in (
         '<meta name="description"',
+        '<meta name="robots" content="index, follow, max-image-preview:large"',
         '<link rel="canonical" href="https://openepengineering.org/learning-hub/index.html"',
         'property="og:image"',
         'application/ld+json',
@@ -76,19 +89,35 @@ def test_learning_hub_has_seo_metadata():
         assert must in hub, must
 
 
-def test_update_sitemap_adds_learning_hub(tmp_path):
+def test_update_sitemap_normalizes_canonicals_and_adds_learning_hub(tmp_path):
     (tmp_path / "learning-hub").mkdir()
-    (tmp_path / "learning-hub" / "index.html").write_text("<html></html>")
+    (tmp_path / "learning-hub" / "index.html").write_text(
+        '<html><head><link rel="canonical" href="https://openepengineering.org/learning-hub/index.html"></head></html>'
+    )
+    (tmp_path / "index.html").write_text(
+        '<html><head><link rel="canonical" href="https://openepengineering.org/"></head></html>'
+    )
+    (tmp_path / "glossary").mkdir()
+    (tmp_path / "glossary" / "index.html").write_text(
+        '<html><head><link rel="canonical" href="https://openepengineering.org/glossary/"></head></html>'
+    )
     sm = tmp_path / "sitemap.xml"
     sm.write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        '  <url><loc>https://openepengineering.org/</loc></url>\n'
+        '  <url><loc>https://openepengineering.org/modules/m03-electrograms.html</loc></url>\n'
+        '  <url><loc>https://openepengineering.org/glossary/index.html</loc></url>\n'
+        '  <url><loc>https://openepengineering.org/index.html</loc></url>\n'
         '</urlset>\n'
     )
     subprocess.run([sys.executable, str(ROOT / "tools" / "update_sitemap.py"), str(tmp_path)], check=True)
     text = sm.read_text()
-    assert "https://openepengineering.org/learning-hub/index.html" in text
+    assert "<loc>https://openepengineering.org/</loc>" in text
+    assert "<loc>https://openepengineering.org/index.html</loc>" not in text
+    assert "<loc>https://openepengineering.org/glossary/</loc>" in text
+    assert "<loc>https://openepengineering.org/glossary/index.html</loc>" not in text
+    assert "<loc>https://openepengineering.org/learning-hub/index.html</loc>" in text
+    assert text.index("https://openepengineering.org/</loc>") < text.index("m03-electrograms.html")
     # Running a second time is idempotent.
     subprocess.run([sys.executable, str(ROOT / "tools" / "update_sitemap.py"), str(tmp_path)], check=True)
     assert sm.read_text().count("learning-hub/index.html") == 1
@@ -98,11 +127,14 @@ def test_home_page_structured_data_is_valid_json():
     header = front_matter(ROOT / "index.qmd")["include-in-header"]["text"]
     data = json.loads(re.search(r"<script type=\"application/ld\+json\">(.*)</script>", header, re.S).group(1))
     types = {node["@type"]: node for node in data["@graph"]}
-    course = types["Course"]
-    assert types["WebSite"]["url"] == course["url"] == "https://openepengineering.org/"
+    website, org, course = types["WebSite"], types["Organization"], types["Course"]
+    assert website["url"] == org["url"] == course["url"] == "https://openepengineering.org/"
+    assert "Open EP Engineering" in website["alternateName"]
+    assert "openepengineering.org" in website["alternateName"]
     assert course["isAccessibleForFree"] is True
     assert course["offers"][0]["category"] == "Free"
     assert course["provider"]["name"] and course["description"]
+    assert course["author"]["name"] == "Open EP Mapping Lab contributors"
 
 
 def test_search_titles_lead_with_the_topic():

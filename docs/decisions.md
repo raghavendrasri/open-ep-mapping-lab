@@ -2,6 +2,28 @@
 
 Non-trivial choices, newest first. Each entry: date, decision, why, and how to undo it.
 
+## 2026-11-27 · Search visibility fixes for openepengineering.org
+
+- **Sitemap canonical alignment and git-accurate `lastmod`:** Quarto wrote `/index.html`,
+  `/glossary/index.html`, and `/formula-sheet/index.html` into `_site/sitemap.xml` even though
+  `canonical-url: true` sets `<link rel="canonical">` to the trailing-slash directory URLs (`/`),
+  and stamped every page with the build timestamp on every deploy. `tools/update_sitemap.py` now
+  rewrites each sitemap `<loc>` to match the page's `<link rel="canonical">`, sets `<lastmod>` from
+  each source file's latest git commit (with `fetch-depth: 0` in `deploy-pages.yml`), and orders
+  URLs deterministically with the homepage first.
+- **Homepage social card and domain-brand association:** Quarto picked the 256×256 inline logo on
+  `index.qmd` for `og:image`/`twitter:image` instead of the 1200×630 `og-card.png`. Setting
+  `image: assets/logo/og-card.png` fixes link previews. `index.qmd`, `about.qmd`, and `README.md`
+  now explicitly connect **Open EP Mapping Lab** with **openepengineering.org** / **Open EP
+  Engineering** in `<title>`, `<meta name="description">`, visible prose, and JSON-LD (`WebSite`,
+  `Organization`, `Course`, aligned with `Open EP Mapping Lab contributors` in `CITATION.cff`).
+- **Site-wide Open Graph & structured data (`filters/seo-schema.lua`):** every Quarto page now
+  emits `<meta name="robots" content="index, follow, max-image-preview:large">`, `og:url`, and
+  `og:type`, and top-level pages (`about`, `course-map`, `formula-sheet`, `ai-competencies`,
+  `useful-links`, `glossary`) emit schema.org + `BreadcrumbList` JSON-LD.
+- **Undo:** revert this commit; off-repo indexing steps (Google Search Console verification and
+  sitemap submission, Bing Webmaster Tools, GitHub topics) are managed outside git.
+
 ## 2026-11-27 · AI disclosure in the footer; readable citation BibTeX in dark mode
 
 - **AI disclosure (author's request):** every page's footer now says "Developed using AI: Claude

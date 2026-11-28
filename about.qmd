@@ -6,11 +6,12 @@ toc: false
 
 ## What this is
 
-Open EP Mapping Lab is a free, open course on how cardiac electroanatomic mapping systems work: how they locate
-catheters, record and process electrograms, and build activation and voltage maps. It is written for engineers joining
-electrophysiology (EP) device companies, clinical mapping specialists and field engineers, EP fellows and physicians who
-want the engineering view, and researchers who use open EP tools. The course has 55 modules in eight parts; the
-[course map](course-map.qmd) lists them all.
+Open EP Mapping Lab (published at [openepengineering.org]({{< var site.url >}}), Open EP Engineering) is a free, open
+course on how cardiac electroanatomic mapping systems work: how they locate catheters, record and process electrograms,
+and build activation and voltage maps. It is written for engineers joining electrophysiology (EP) device companies,
+clinical mapping specialists and field engineers, EP fellows and physicians who want the engineering view, and
+researchers who use open EP tools. The course has 55 modules in eight parts; the [course map](course-map.qmd) lists them
+all.
 
 ## Who makes it
 

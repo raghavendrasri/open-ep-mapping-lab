@@ -126,7 +126,7 @@ def main(out_path: Path = OUT) -> int:
     E('<link rel="icon" href="data:," />',
       '<link rel="icon" type="image/png" href="../favicon.png" />\n'
       f'<meta name="description" content="{hub_desc_short}" />\n'
-      '<meta name="robots" content="max-image-preview:large" />\n'
+      '<meta name="robots" content="index, follow, max-image-preview:large" />\n'
       f'<link rel="canonical" href="{hub_url}" />\n'
       '<meta property="og:type" content="website" />\n'
       '<meta property="og:site_name" content="Open EP Mapping Lab" />\n'
